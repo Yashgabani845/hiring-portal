@@ -3,17 +3,7 @@
     color: #000000;
     text-align: center;
     padding: 100px 20px;
-    background-color: #f8f9fa;
-  }
-  
-  .hero-background img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+    height: fit-content;
   }
   
   .hero-content {
@@ -26,6 +16,7 @@
   .hero-content h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    font-family:sans-serif
   }
   
   .hero-content p {
@@ -36,50 +27,67 @@
   .search-bar {
     margin-top: 30px;
     display: flex;
-    justify-content: center;
+    max-width: fit-content;
     align-items: center;
     position: relative;
+    justify-content: center;
+    border-radius: 8px;
+    width: fit-content;
+    padding-right: 15px;
+    height: 65px;
+    margin-left: 66%;
+    box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
   }
   
   .searchdiv {
     display: flex;
     align-items: center;
     position: relative;
-    width: 300px; /* Adjust width as needed */
-    margin: 0 10px; /* Add margin for spacing between search inputs */
+    margin: 0 10px; 
+    border: none;
+    
   }
   
   .search {
     height: 40px;
-    width: 100%;
     border-radius: 16px;
-    padding-left: 40px; /* Increase padding to make space for the icon */
+    padding-left: 40px; 
+    border: none;
     font-size: 17px;
     outline: none;
-    border: 1px solid #ced4da;
     transition: all 0.3s ease;
   }
   
   .search:focus {
     border-color: #80bdff;
-    box-shadow: 0 0 8px rgba(128, 189, 255, 0.5);
   }
   
   .search-icon,
   .location-icon {
     position: absolute;
     left: 10px; 
-    color: #6c757d;
+    color: #000000;
   }
   
-  .search-button {
+  .searchbtn {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #0564c9;
     color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10px; 
+    width: fit-content;
+    font-weight: 600;
+
   }
-  
+  .seprate{
+    font-size: x-large;
+    color: #565353;
+ opacity: 0.3;
+ font-weight: 100;
+  }
+  center{
+    width: fit-content;
+    align-self: center;
+  }

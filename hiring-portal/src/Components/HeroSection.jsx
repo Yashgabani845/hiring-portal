@@ -8,19 +8,21 @@ const HeroSection = () => {
     <div className="hero-section">
       <div className="hero-content">
         <h1>Find Your Dream Job</h1>
-        <p>Explore job opportunities and connect with top employers.</p>
-       
+        <p>Explore Thousands of  job opportunities and connect with top employers.</p>
+        </div>
+       <center>
         <div className="search-bar">
           <div className="searchdiv">
             <SearchIcon className="search-icon" />
             <input
               type="text"
               className="search"
-              placeholder="Search jobs"
+              placeholder="Job title,Keywords"
               name=""
               id=""
             />
           </div>
+          <div className="seprate">|</div>
           <div className="searchdiv">
             <LocationOnIcon className="location-icon" />
             <input
@@ -31,10 +33,13 @@ const HeroSection = () => {
               id=""
             />
           </div>
-          <button className="search-button">Search</button>
+          <button className="searchbtn">Find</button>
         </div>
-      </div>
+        </center>
+   
+      
     </div>
+    
   );
 };
 
