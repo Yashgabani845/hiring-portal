@@ -4,22 +4,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
-import SearchIcon from "@mui/icons-material/Search";
+import LaunchIcon from '@mui/icons-material/Launch';
 import logo from "../logo.png"
 const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo"><img className="logoimg" src={logo} alt="" /></div>
-      <div className="searchdiv">
-        <input
-          type="text"
-          className="search"
-          placeholder="Search jobs"
-          name=""
-          id=""
-        />
-        <SearchIcon className="search-icon" />
-      </div>
       <div className="icons">
         <div className="icon home">
           <HomeIcon />
@@ -37,6 +27,11 @@ const Navbar = () => {
           <LoginIcon />
           <span>Login</span>
         </div>
+      </div>
+      <div className="posting">
+      <span>Employer/Post Job   </span>
+        <LaunchIcon className="posting-icon" />
+        
       </div>
     </div>
   );
