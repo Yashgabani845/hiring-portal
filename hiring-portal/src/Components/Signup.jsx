@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../CSS/signup.css";
 
 const Signup = () => {
   const [step, setStep] = useState(1);
@@ -6,40 +7,67 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    degree: "",
-    university: "",
-    cgpa: "",
-    company: "",
-    role: "",
-    duration: ""
+    resume: null, // File upload for resume
+    techStack: [],
+    skills: [],
+    experience: "",
+    address: "",
+    languages: [],
+    jobType: "",
+    expectedSalary: ""
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value, type, files, checked, options } = e.target;
+
+    if (type === "file") {
+      setFormData({
+        ...formData,
+        [name]: files[0]
+      });
+    } else if (type === "checkbox") {
+      let updatedSkills = [...formData.skills];
+      if (checked) {
+        updatedSkills.push(value);
+      } else {
+        updatedSkills = updatedSkills.filter(skill => skill !== value);
+      }
+      setFormData({
+        ...formData,
+        skills: updatedSkills
+      });
+    } else if (name === "languages") {
+      const selectedLanguages = Array.from(options)
+        .filter(option => option.selected)
+        .map(option => option.value);
+      setFormData({
+        ...formData,
+        languages: selectedLanguages
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
-  // Function to go to the next step
   const nextStep = () => {
     setStep(step + 1);
   };
 
-  // Function to go to the previous step
   const prevStep = () => {
     setStep(step - 1);
   };
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // You can add the logic to send the form data to the server here
+    // Handle form submission logic, e.g., sending data to the server
   };
 
   return (
-    <div>
+    <div className="signupform">
       <h1>Signup Form</h1>
       <form onSubmit={handleSubmit}>
         {step === 1 && (
@@ -50,6 +78,7 @@ const Signup = () => {
               <input
                 type="text"
                 name="name"
+                className="signupinput"
                 value={formData.name}
                 onChange={handleChange}
               />
@@ -60,6 +89,7 @@ const Signup = () => {
               <input
                 type="email"
                 name="email"
+                className="signupinput"
                 value={formData.email}
                 onChange={handleChange}
               />
@@ -70,7 +100,17 @@ const Signup = () => {
               <input
                 type="password"
                 name="password"
+                className="signupinput"
                 value={formData.password}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Upload Resume:
+              <input
+                type="file"
+                name="resume"
                 onChange={handleChange}
               />
             </label>
@@ -82,33 +122,57 @@ const Signup = () => {
         )}
         {step === 2 && (
           <div>
-            <h2>Educational Information</h2>
+            <h2>Skills and Experience</h2>
             <label>
-              Degree:
+              Tech Stack:
               <input
                 type="text"
-                name="degree"
-                value={formData.degree}
+                name="techStack"
+                className="signupinput"
+                value={formData.techStack}
                 onChange={handleChange}
               />
             </label>
             <br />
             <label>
-              University:
-              <input
-                type="text"
-                name="university"
-                value={formData.university}
-                onChange={handleChange}
-              />
+              Skills:
+              <label>
+                <input
+                  type="checkbox"
+                  name="skills"
+                  value="JavaScript"
+                  checked={formData.skills.includes("JavaScript")}
+                  onChange={handleChange}
+                /> JavaScript
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="skills"
+                  value="React"
+                  checked={formData.skills.includes("React")}
+                  onChange={handleChange}
+                /> React
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="skills"
+                  value="Node.js"
+                  checked={formData.skills.includes("Node.js")}
+                  onChange={handleChange}
+                /> Node.js
+              </label>
+              {/* Add more skills as needed */}
             </label>
             <br />
             <label>
-              CGPA:
+              Experience:
               <input
                 type="text"
-                name="cgpa"
-                value={formData.cgpa}
+                name="experience"
+                className="signupinput"
+                value={formData.experience}
                 onChange={handleChange}
               />
             </label>
@@ -123,33 +187,54 @@ const Signup = () => {
         )}
         {step === 3 && (
           <div>
-            <h2>Experience</h2>
+            <h2>Location and Preferences</h2>
             <label>
-              Company:
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
+              Address:
+              <textarea
+                name="address"
+                className="signupinput"
+                value={formData.address}
                 onChange={handleChange}
-              />
+              ></textarea>
             </label>
             <br />
             <label>
-              Role:
-              <input
-                type="text"
-                name="role"
-                value={formData.role}
+              Languages:
+              <select
+                name="languages"
+                className="signupinput"
+                multiple
+                value={formData.languages}
                 onChange={handleChange}
-              />
+              >
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                {/* Add more languages as needed */}
+              </select>
             </label>
             <br />
             <label>
-              Duration:
+              Job Type:
+              <select
+                name="jobType"
+                className="signupinput"
+                value={formData.jobType}
+                onChange={handleChange}
+              >
+                <option value="">Select Job Type</option>
+                <option value="part-time">Part-time</option>
+                <option value="full-time">Full-time</option>
+              </select>
+            </label>
+            <br />
+            <label>
+              Expected Salary Range:
               <input
                 type="text"
-                name="duration"
-                value={formData.duration}
+                name="expectedSalary"
+                className="signupinput"
+                value={formData.expectedSalary}
                 onChange={handleChange}
               />
             </label>
