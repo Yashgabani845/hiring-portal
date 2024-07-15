@@ -3,18 +3,27 @@ import "../CSS/signup.css";
 
 const Signup = () => {
   const [step, setStep] = useState(1);
+  const [isFresher, setIsFresher] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    resume: null, // File upload for resume
-    techStack: [],
+    location: "",
+    locationPreferences: "",
+    expectedSalary: "",
+    jobType: "",
+    jobTitle: "",
+    techStack: "",
     skills: [],
     experience: "",
+    resume: null,
     address: "",
     languages: [],
-    jobType: "",
-    expectedSalary: ""
+    degree: "",
+    university: "",
+    cgpa: "",
+    pastJobs: [],
+    pastJobDetails: ""
   });
 
   const handleChange = (e) => {
@@ -44,6 +53,17 @@ const Signup = () => {
         ...formData,
         languages: selectedLanguages
       });
+    } else if (name === "isFresher") {
+      setIsFresher(checked);
+      setFormData({
+        ...formData,
+        experience: "",
+        degree: "",
+        university: "",
+        cgpa: "",
+        pastJobs: [],
+        pastJobDetails: ""
+      });
     } else {
       setFormData({
         ...formData,
@@ -72,7 +92,96 @@ const Signup = () => {
       <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div>
-            <h2>Personal Information</h2>
+            <h2>Welcome</h2>
+            <p>Welcome to our platform! Let's get started with your registration.</p>
+            <button type="button" onClick={nextStep}>
+              Start
+            </button>
+          </div>
+        )}
+        {step === 2 && (
+          <div>
+            <h2>Location and Preferences</h2>
+            <label>
+              Location:
+              <input
+                type="text"
+                name="location"
+                className="signupinput"
+                value={formData.location}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Location Preferences:
+              <input
+                type="text"
+                name="locationPreferences"
+                className="signupinput"
+                value={formData.locationPreferences}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <button type="button" onClick={prevStep}>
+              Previous
+            </button>
+            <button type="button" onClick={nextStep}>
+              Next
+            </button>
+          </div>
+        )}
+        {step === 3 && (
+          <div>
+            <h2>Salary Range and Job Type</h2>
+            <label>
+              Expected Salary Range:
+              <input
+                type="text"
+                name="expectedSalary"
+                className="signupinput"
+                value={formData.expectedSalary}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Job Type:
+              <select
+                name="jobType"
+                className="signupinput"
+                value={formData.jobType}
+                onChange={handleChange}
+              >
+                <option value="">Select Job Type</option>
+                <option value="part-time">Part-time</option>
+                <option value="full-time">Full-time</option>
+              </select>
+            </label>
+            <br />
+            <label>
+              Job Title:
+              <input
+                type="text"
+                name="jobTitle"
+                className="signupinput"
+                value={formData.jobTitle}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <button type="button" onClick={prevStep}>
+              Previous
+            </button>
+            <button type="button" onClick={nextStep}>
+              Next
+            </button>
+          </div>
+        )}
+        {step === 4 && (
+          <div>
+            <h2>Personal and Professional Information</h2>
             <label>
               Name:
               <input
@@ -106,23 +215,6 @@ const Signup = () => {
               />
             </label>
             <br />
-            <label>
-              Upload Resume:
-              <input
-                type="file"
-                name="resume"
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <button type="button" onClick={nextStep}>
-              Next
-            </button>
-          </div>
-        )}
-        {step === 2 && (
-          <div>
-            <h2>Skills and Experience</h2>
             <label>
               Tech Stack:
               <input
@@ -167,27 +259,14 @@ const Signup = () => {
             </label>
             <br />
             <label>
-              Experience:
+              Upload Resume:
               <input
-                type="text"
-                name="experience"
-                className="signupinput"
-                value={formData.experience}
+                type="file"
+                name="resume"
                 onChange={handleChange}
               />
             </label>
             <br />
-            <button type="button" onClick={prevStep}>
-              Previous
-            </button>
-            <button type="button" onClick={nextStep}>
-              Next
-            </button>
-          </div>
-        )}
-        {step === 3 && (
-          <div>
-            <h2>Location and Preferences</h2>
             <label>
               Address:
               <textarea
@@ -215,30 +294,88 @@ const Signup = () => {
             </label>
             <br />
             <label>
-              Job Type:
-              <select
-                name="jobType"
-                className="signupinput"
-                value={formData.jobType}
-                onChange={handleChange}
-              >
-                <option value="">Select Job Type</option>
-                <option value="part-time">Part-time</option>
-                <option value="full-time">Full-time</option>
-              </select>
-            </label>
-            <br />
-            <label>
-              Expected Salary Range:
+              Are you a fresher?
               <input
-                type="text"
-                name="expectedSalary"
-                className="signupinput"
-                value={formData.expectedSalary}
+                type="checkbox"
+                name="isFresher"
+                checked={isFresher}
                 onChange={handleChange}
               />
             </label>
             <br />
+            <button type="button" onClick={prevStep}>
+              Previous
+            </button>
+            <button type="button" onClick={nextStep}>
+              Next
+            </button>
+          </div>
+        )}
+        {step === 5 && (
+          <div>
+            {isFresher ? (
+              <div>
+                <h2>Educational Information</h2>
+                <label>
+                  Degree:
+                  <input
+                    type="text"
+                    name="degree"
+                    className="signupinput"
+                    value={formData.degree}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  University:
+                  <input
+                    type="text"
+                    name="university"
+                    className="signupinput"
+                    value={formData.university}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  CGPA:
+                  <input
+                    type="text"
+                    name="cgpa"
+                    className="signupinput"
+                    value={formData.cgpa}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+              </div>
+            ) : (
+              <div>
+                <h2>Past Job Details</h2>
+                <label>
+                  Experience:
+                  <input
+                    type="text"
+                    name="experience"
+                    className="signupinput"
+                    value={formData.experience}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  Past Job Details:
+                  <textarea
+                    name="pastJobDetails"
+                    className="signupinput"
+                    value={formData.pastJobDetails}
+                    onChange={handleChange}
+                  ></textarea>
+                </label>
+                <br />
+              </div>
+            )}
             <button type="button" onClick={prevStep}>
               Previous
             </button>
