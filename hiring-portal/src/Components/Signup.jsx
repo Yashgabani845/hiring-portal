@@ -92,7 +92,7 @@ const Signup = () => {
       <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div>
-            <h2>Welcome</h2>
+            <h2>Welcome to Hirehub</h2>
             <p>Welcome to our platform! Let's get started with your registration.</p>
             <button type="button" onClick={nextStep}>
               Start
@@ -384,7 +384,7 @@ const Signup = () => {
         )}
       </form>
     </div>
-  );
+  );  
 };
 
 export default Signup;
