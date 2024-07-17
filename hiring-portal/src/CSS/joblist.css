@@ -1,0 +1,41 @@
+.job-list {
+    margin-top: 40px;
+    
+}
+
+.job-list h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.job-list ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.job-list ul li {
+    margin-bottom: 20px;
+}
+
+.job-list ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.job-list ul li a:hover {
+    text-decoration: underline;
+}
+
+.job-list ul li h3 {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.job-list ul li p {
+    margin: 5px 0;
+    color: #777;
+}

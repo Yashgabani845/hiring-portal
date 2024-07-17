@@ -54,7 +54,6 @@ const Jobpage = () => {
             { value: 'shillong', label: 'Shillong' },
         ];
         
-        // Add more locations as needed
     
 
     const handleLocationChange = (selectedOptions) => {

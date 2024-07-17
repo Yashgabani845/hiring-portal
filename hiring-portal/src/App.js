@@ -5,6 +5,7 @@ import HeroSection from './Components/HeroSection';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from './Components/Signup';
 import Jobpage from './Components/Jobpage';
+import Job from './Components/Job';
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
         <Route path='/' element={<Homepage />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/jobcard' element={<Jobpage />}/>
+        <Route path="/job/:id" element={<Job/>} />
+
    </Routes>
    </Router>
   );
