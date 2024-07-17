@@ -4,7 +4,7 @@ import Homepage from './Components/Homepage';
 import HeroSection from './Components/HeroSection';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from './Components/Signup';
-import Jobgrid from './Components/JobGrid';
+import Jobpage from './Components/Jobpage';
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage />}/>
         <Route path='/signup' element={<Signup />}/>
-        <Route path='/jobcard' element={<Jobgrid />}/>
+        <Route path='/jobcard' element={<Jobpage />}/>
    </Routes>
    </Router>
   );

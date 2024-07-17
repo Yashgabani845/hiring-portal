@@ -1,0 +1,38 @@
+.jobpage {
+    display: flex;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.filter {
+    margin-bottom: 15px;
+}
+
+.filter label {
+    font-size: 1em;
+    color: #555;
+}
+
+.mainarea {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.mainarea h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
