@@ -1,0 +1,64 @@
+.jobcard {
+    height: 300px;
+    width: 230px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(67, 71, 85, 0.30) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 15px;
+}
+.comname{
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+
+}
+
+.joblogo img {
+    width: 200px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.rate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rating {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-right: 20px;
+}
+
+.review {
+    font-size: 14px;
+    color: #777;
+}
+
+.role {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.viewjob button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:#EDF4FF;
+    color: #275DF5;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 600;
+    
+}
+
+
