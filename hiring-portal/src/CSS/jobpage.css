@@ -1,5 +1,6 @@
 .jobpage {
     display: flex;
+    font-family: Arial, sans-serif;
 }
 
 .sidebar {
@@ -7,22 +8,78 @@
     padding: 20px;
     background-color: #f8f9fa;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height: 100vh;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .sidebar h2 {
     margin-bottom: 20px;
     font-size: 1.5em;
     color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
 
 .filter {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .filter label {
     font-size: 1em;
     color: #555;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.filter input[type="checkbox"],
+.filter input[type="radio"] {
+    margin-right: 10px;
+}
+
+.salary-range {
+    display: flex;
+    justify-content: space-between;
+}
+
+.salary-range input {
+    width: 48%;
+    padding: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter select[multiple] {
+    height: auto;
+}
+
+.location-select {
+    width: 100%;
+    margin-top: 5px;
+    font-size: 1em;
+}
+
+.selected-locations {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.selected-locations span {
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .mainarea {
