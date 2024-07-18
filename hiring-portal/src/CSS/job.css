@@ -1,14 +1,48 @@
-.job-detail-page {
+.job-page {
+    display: flex;
+    justify-content: center;
     padding: 20px;
     font-family: Arial, sans-serif;
 }
 
-.job-detail-page h1 {
-    font-size: 2em;
+.job-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.recommended-jobs, .current-job {
+    width: 48%;
+}
+
+.recommended-jobs h2, .current-job h1 {
+    font-size: 1.8em;
     color: #333;
 }
 
-.company, .location, .salary {
+.recommended-job-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.recommended-job-card h3 {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.recommended-job-card p {
+    font-size: 1em;
+    color: #777;
+}
+
+.current-job .company, .location, .salary {
     font-size: 1.2em;
     color: #777;
 }
@@ -55,4 +89,3 @@
 .job-details ul li {
     margin-bottom: 5px;
 }
-
