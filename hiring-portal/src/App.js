@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+
 import Homepage from './Components/Homepage';
 import HeroSection from './Components/HeroSection';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -11,6 +13,8 @@ import AdminDashboard from './Components/AdminDashboard';
 import CreateTest from './Components/CreateTest';
 import TakeTest from './Components/TakeTest';
 function App() {
+  const [test, setTest] = useState(null);
+
   return (
     <Router>
       <Routes>
@@ -20,8 +24,8 @@ function App() {
         <Route path="/job/:id" element={<Job/>} />
         <Route path="/owner" element={<Dashboard/>}/>
         <Route path="/admin" element={<AdminDashboard/>}/>
-        <Route path="/createtest" element={<CreateTest/>}/>
-        <Route path="/taketest" element={<TakeTest/>}/>
+        <Route path="/createtest" element={<CreateTest setTest={setTest}/>}/>
+        <Route path="/taketest" element={<TakeTest test={test}/>}/>
 
    </Routes>
    </Router>

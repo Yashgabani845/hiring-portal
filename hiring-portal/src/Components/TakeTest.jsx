@@ -48,39 +48,62 @@ const TakeTest = ({ test }) => {
         alert(`Your score: ${score}`);
     };
 
+    const renderQuestion = (question) => {
+        switch (question.type) {
+            case 'mcq':
+                return (
+                    <div className="question">
+                        <h2>{question.text}</h2>
+                        {question.options.map((option, index) => (
+                            <label key={index}>
+                                <input
+                                    type="radio"
+                                    name="answer"
+                                    value={option}
+                                    checked={answers[currentQuestionIndex] === option}
+                                    onChange={handleAnswerChange}
+                                />
+                                {option}
+                            </label>
+                        ))}
+                    </div>
+                );
+            case 'textual':
+                return (
+                    <div className="question">
+                        <h2>{question.text}</h2>
+                        <textarea
+                            value={answers[currentQuestionIndex] || ''}
+                            onChange={handleAnswerChange}
+                        />
+                    </div>
+                );
+            case 'coding':
+                return (
+                    <div className="question">
+                        <h2>{question.text}</h2>
+                        <textarea
+                            value={answers[currentQuestionIndex] || ''}
+                            onChange={handleAnswerChange}
+                            placeholder="Write your code here..."
+                        />
+                        <button className="run-code-btn">Run Code</button>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+    if (!test) {
+        return <div>Please create a test first.</div>;
+    }
+
     return (
         <div className="take-test">
             <h1>{test.title}</h1>
             <div className="timer">Time left: {Math.floor(timeLeft / 60)}:{timeLeft % 60}</div>
-            <div className="question">
-                <h2>{test.questions[currentQuestionIndex].text}</h2>
-                {test.questions[currentQuestionIndex].type === 'mcq' && (
-                    test.questions[currentQuestionIndex].options.map((option, index) => (
-                        <label key={index}>
-                            <input
-                                type="radio"
-                                name="answer"
-                                value={option}
-                                checked={answers[currentQuestionIndex] === option}
-                                onChange={handleAnswerChange}
-                            />
-                            {option}
-                        </label>
-                    ))
-                )}
-                {test.questions[currentQuestionIndex].type === 'textual' && (
-                    <textarea
-                        value={answers[currentQuestionIndex] || ''}
-                        onChange={handleAnswerChange}
-                    />
-                )}
-                {test.questions[currentQuestionIndex].type === 'coding' && (
-                    <textarea
-                        value={answers[currentQuestionIndex] || ''}
-                        onChange={handleAnswerChange}
-                    />
-                )}
-            </div>
+            {renderQuestion(test.questions[currentQuestionIndex])}
             <div className="navigation">
                 <button onClick={handlePrevious} disabled={currentQuestionIndex === 0}>Previous</button>
                 {currentQuestionIndex < test.questions.length - 1 ? (

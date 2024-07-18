@@ -61,3 +61,17 @@
 .navigation button:hover:not(:disabled) {
     background-color: #0056b3;
 }
+
+.run-code-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.run-code-btn:hover {
+    background-color: #218838;
+}

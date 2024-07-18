@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/createTest.css';
 
-const CreateTest = () => {
+const CreateTest = ({ setTest }) => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState({
         type: 'mcq',
@@ -12,6 +13,8 @@ const CreateTest = () => {
         marks: 0,
         time: 0
     });
+
+    const navigate = useNavigate();
 
     const handleQuestionChange = (e) => {
         setCurrentQuestion({ ...currentQuestion, [e.target.name]: e.target.value });
@@ -41,8 +44,9 @@ const CreateTest = () => {
     };
 
     const handleSubmit = () => {
-        // Submit the test data to the server or store it in the state
-        console.log('Test created', questions);
+        const newTest = { title: 'New Test', questions };
+        setTest(newTest);
+        navigate('/taketest');
     };
 
     return (
