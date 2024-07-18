@@ -1,0 +1,65 @@
+.interview {
+    display: flex;
+    align-items: center;
+  
+    border-radius: 8px;
+}
+
+.itext-part {
+    flex: 1;
+    padding-left: 15%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+.ititle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.islogan {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.viewbtn {
+    margin-top: 10px;
+}
+
+.viewbtn .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0564c9;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 600;
+
+}
+
+.viewbtn .btn:hover {
+    background-color: #0056b3;
+}
+
+.iimg {
+    flex: 1;
+    display: flex;
+    height: 450px;
+    width: 450px;
+}
+
+.iimg img {
+    height: 300px;
+    width: 350px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.iimg img:hover {
+    transform: scale(1.05);
+}

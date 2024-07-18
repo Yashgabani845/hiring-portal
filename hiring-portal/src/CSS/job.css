@@ -55,8 +55,4 @@
 .job-details ul li {
     margin-bottom: 5px;
 }
-.recommand{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+

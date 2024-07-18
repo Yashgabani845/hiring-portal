@@ -20,7 +20,7 @@
 .joblogo img {
     width: 200px;
     height: 70px;
-   
+    
 }
 
 .rate {
@@ -41,7 +41,7 @@
     color: #777;
 }
 
-.role {
+.jobrole {
     font-size: 1em;
     font-weight: bold;
     text-align: center;

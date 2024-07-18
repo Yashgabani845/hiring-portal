@@ -7,7 +7,6 @@ const Jobpage = () => {
     const [selectedLocations, setSelectedLocations] = useState([]);
 
     const locations = [
-        
             { value: 'amd', label: 'Ahmedabad' },
             { value: 'sur', label: 'Surat' },
             { value: 'raj', label: 'Rajkot' },
