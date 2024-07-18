@@ -1,0 +1,164 @@
+.admin-dashboard {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-dashboard h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.search-section,
+.profile-section,
+.request-section,
+.upload-job-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.search-section h2,
+.profile-section h2,
+.request-section h2,
+.upload-job-section h2 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.search-section form {
+    display: flex;
+    align-items: center;
+}
+
+.search-section input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-section button:hover {
+    background-color: #0056b3;
+}
+
+.profile-list,
+.request-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile-card,
+.request-card {
+    flex: 0 0 48%;
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-card h3,
+.request-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profile-card p,
+.request-card p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.profile-card button,
+.request-buttons button {
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-card button:hover,
+.request-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.request-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.request-buttons .approve {
+    background-color: #28a745;
+}
+
+.request-buttons .approve:hover {
+    background-color: #218838;
+}
+
+.request-buttons .deny {
+    background-color: #dc3545;
+}
+
+.request-buttons .deny:hover {
+    background-color: #c82333;
+}
+
+.upload-job-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-job-section .form-group {
+    margin-bottom: 15px;
+}
+
+.upload-job-section label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.upload-job-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.upload-job-section button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width:200px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-job-section button:hover {
+    background-color: #218838;
+}
