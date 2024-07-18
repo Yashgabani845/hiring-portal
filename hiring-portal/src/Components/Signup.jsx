@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select from 'react-select';
 import "../CSS/signup.css";
 
 const Signup = () => {
@@ -35,25 +36,6 @@ const Signup = () => {
         [name]: files[0]
       });
     } else if (type === "checkbox") {
-      let updatedSkills = [...formData.skills];
-      if (checked) {
-        updatedSkills.push(value);
-      } else {
-        updatedSkills = updatedSkills.filter(skill => skill !== value);
-      }
-      setFormData({
-        ...formData,
-        skills: updatedSkills
-      });
-    } else if (name === "languages") {
-      const selectedLanguages = Array.from(options)
-        .filter(option => option.selected)
-        .map(option => option.value);
-      setFormData({
-        ...formData,
-        languages: selectedLanguages
-      });
-    } else if (name === "isFresher") {
       setIsFresher(checked);
       setFormData({
         ...formData,
@@ -64,12 +46,25 @@ const Signup = () => {
         pastJobs: [],
         pastJobDetails: ""
       });
+    } else if (name === "languages") {
+      const selectedLanguages = Array.from(options)
+        .filter(option => option.selected)
+        .map(option => option.value);
+      setFormData({
+        ...formData,
+        languages: selectedLanguages
+      });
     } else {
       setFormData({
         ...formData,
         [name]: value
       });
     }
+  };
+
+  const handleSkillsChange = (selectedOptions) => {
+    const skills = selectedOptions ? selectedOptions.map(option => option.value) : [];
+    setFormData({ ...formData, skills });
   };
 
   const nextStep = () => {
@@ -86,10 +81,26 @@ const Signup = () => {
     // Handle form submission logic, e.g., sending data to the server
   };
 
+  const skillsOptions = [
+    { value: 'JavaScript', label: 'JavaScript' },
+    { value: 'React', label: 'React' },
+    { value: 'Node.js', label: 'Node.js' },
+    { value: 'CSS', label: 'CSS' },
+    { value: 'HTML', label: 'HTML' }
+    // Add more skills as needed
+  ];
+
   return (
     <div className="signupform">
       <h1>Signup Form</h1>
       <form onSubmit={handleSubmit}>
+        <div className="step-indicator">
+          <div className={step >= 1 ? 'active' : ''}></div>
+          <div className={step >= 2 ? 'active' : ''}></div>
+          <div className={step >= 3 ? 'active' : ''}></div>
+          <div className={step >= 4 ? 'active' : ''}></div>
+          <div className={step >= 5 ? 'active' : ''}></div>
+        </div>
         {step === 1 && (
           <div>
             <h2>Welcome to Hirehub</h2>
@@ -228,34 +239,15 @@ const Signup = () => {
             <br />
             <label>
               Skills:
-              <label>
-                <input
-                  type="checkbox"
-                  name="skills"
-                  value="JavaScript"
-                  checked={formData.skills.includes("JavaScript")}
-                  onChange={handleChange}
-                /> JavaScript
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="skills"
-                  value="React"
-                  checked={formData.skills.includes("React")}
-                  onChange={handleChange}
-                /> React
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="skills"
-                  value="Node.js"
-                  checked={formData.skills.includes("Node.js")}
-                  onChange={handleChange}
-                /> Node.js
-              </label>
-              {/* Add more skills as needed */}
+              <Select
+                isMulti
+                name="skills"
+                options={skillsOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={skillsOptions.filter(option => formData.skills.includes(option.value))}
+                onChange={handleSkillsChange}
+              />
             </label>
             <br />
             <label>
@@ -354,6 +346,22 @@ const Signup = () => {
               <div>
                 <h2>Past Job Details</h2>
                 <label>
+                  Past Jobs:
+                  <input
+                    type="text"
+                    name="pastJobs"
+                    className="signupinput"
+                    value={formData.pastJobs.join(", ")}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        pastJobs: e.target.value.split(",").map((job) => job.trim())
+                      })
+                    }
+                  />
+                </label>
+                <br />
+                <label>
                   Experience:
                   <input
                     type="text"
@@ -365,7 +373,7 @@ const Signup = () => {
                 </label>
                 <br />
                 <label>
-                  Past Job Details:
+                  Details about Past Jobs:
                   <textarea
                     name="pastJobDetails"
                     className="signupinput"
@@ -384,7 +392,7 @@ const Signup = () => {
         )}
       </form>
     </div>
-  );  
+  );
 };
 
 export default Signup;
