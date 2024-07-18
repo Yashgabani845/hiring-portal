@@ -13,6 +13,7 @@ import AdminDashboard from './Components/AdminDashboard';
 import CreateTest from './Components/CreateTest';
 import TakeTest from './Components/TakeTest';
 import JobPostForm from './Components/JobPostForm';
+import VideoMeeting from './Components/VideoMeeting';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/createtest" element={<CreateTest setTest={setTest}/>}/>
         <Route path="/taketest" element={<TakeTest test={test}/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
+        <Route path="/video" element={<VideoMeeting/>}/>
    </Routes>
    </Router>
   );

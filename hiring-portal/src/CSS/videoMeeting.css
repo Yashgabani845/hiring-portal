@@ -1,0 +1,67 @@
+.video-meeting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.video-container {
+    background-color: #000;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.control-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.control-btn.on {
+    background-color: #28a745;
+    color: white;
+}
+
+.control-btn.off {
+    background-color: #dc3545;
+    color: white;
+}
+
+.control-btn.start-call {
+    background-color: #007bff;
+    color: white;
+}
+
+.control-btn.end-call {
+    background-color: #dc3545;
+    color: white;
+}
+
+.control-btn:hover {
+    opacity: 0.8;
+}
