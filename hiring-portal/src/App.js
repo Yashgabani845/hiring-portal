@@ -12,6 +12,7 @@ import Dashboard from './Components/Dashboard';
 import AdminDashboard from './Components/AdminDashboard';
 import CreateTest from './Components/CreateTest';
 import TakeTest from './Components/TakeTest';
+import JobPostForm from './Components/JobPostForm';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -26,7 +27,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/createtest" element={<CreateTest setTest={setTest}/>}/>
         <Route path="/taketest" element={<TakeTest test={test}/>}/>
-
+        <Route path="/postjob" element ={<JobPostForm/>}/>
    </Routes>
    </Router>
   );
