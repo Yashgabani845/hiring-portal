@@ -9,7 +9,6 @@ const AdminDashboard = () => {
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
-        // Implement search logic here
     };
 
     return (

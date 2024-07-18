@@ -8,7 +8,8 @@ import Jobpage from './Components/Jobpage';
 import Job from './Components/Job';
 import Dashboard from './Components/Dashboard';
 import AdminDashboard from './Components/AdminDashboard';
-
+import CreateTest from './Components/CreateTest';
+import TakeTest from './Components/TakeTest';
 function App() {
   return (
     <Router>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/job/:id" element={<Job/>} />
         <Route path="/owner" element={<Dashboard/>}/>
         <Route path="/admin" element={<AdminDashboard/>}/>
+        <Route path="/createtest" element={<CreateTest/>}/>
+        <Route path="/taketest" element={<TakeTest/>}/>
 
    </Routes>
    </Router>
