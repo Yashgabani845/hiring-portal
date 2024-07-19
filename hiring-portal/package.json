@@ -18,6 +18,8 @@
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
+    "styled-components": "^6.1.12",
+    "tailwindcss": "^3.4.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
