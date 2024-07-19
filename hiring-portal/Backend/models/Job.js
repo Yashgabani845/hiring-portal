@@ -4,7 +4,7 @@ const jobSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   requirements: [String], 
-  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
   type: { type: String, enum: ['native', 'external'], required: true },
   applications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Application' }],
   salaryRange: {
@@ -17,7 +17,6 @@ const jobSchema = new mongoose.Schema({
   employmentType: { type: String, enum: ['part-time', 'full-time'], required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-
   remote: { type: Boolean, default: false },
   benefits: [String], 
   companyCulture: { type: String },
