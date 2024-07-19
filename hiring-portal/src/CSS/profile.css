@@ -1,0 +1,83 @@
+.profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.profile-name {
+    font-size: 2em;
+    color: #333;
+    margin: 0;
+}
+
+.profile-email {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-section h2 {
+    font-size: 1.6em;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.profile-section p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.education-info, .experience-info {
+    padding: 10px 0;
+}
+
+.experience-list, .skills-list, .languages-list {
+    list-style: none;
+    padding: 0;
+}
+
+.experience-item, .skill-item, .language-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.resume-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.resume-link:hover {
+    text-decoration: underline;
+}

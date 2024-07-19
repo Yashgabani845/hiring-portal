@@ -15,6 +15,7 @@ import TakeTest from './Components/TakeTest';
 import JobPostForm from './Components/JobPostForm';
 import VideoMeeting from './Components/VideoMeeting';
 import CompanyRegistration from './Components/CompanyRegistration';
+import Profile from './Components/Profile';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -31,7 +32,8 @@ function App() {
         <Route path="/taketest" element={<TakeTest test={test}/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path="/video" element={<VideoMeeting/>}/>
-        <Route path="/company" element={<CompanyRegistration/>}/>       
+        <Route path="/company" element={<CompanyRegistration/>}/>  
+        <Route path="/profile" element={<Profile/>}/>     
    </Routes>
    </Router>
   );
