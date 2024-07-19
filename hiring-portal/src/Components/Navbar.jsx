@@ -13,19 +13,19 @@ const Navbar = () => {
       <div className="icons">
         <div className="icon home">
           <HomeIcon />
-          <span>Home</span>
+          <a href=""><span>Home</span></a>
         </div>
         <div className="icon jobs">
           <WorkIcon />
-          <span>Jobs</span>
+          <a href="/jobcard"> <span>Jobs</span></a>
         </div>
         <div className="icon aboutus">
           <InfoIcon />
-          <span>About</span>
+          <a href=""> <span>About</span></a>
         </div>
         <div className="icon login">
           <LoginIcon />
-          <span>Login</span>
+          <a href="/signup"> <span>Login</span></a>
         </div>
       </div>
       <div className="posting">

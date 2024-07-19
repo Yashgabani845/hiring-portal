@@ -78,7 +78,6 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Handle form submission logic, e.g., sending data to the server
   };
 
   const skillsOptions = [
@@ -87,7 +86,6 @@ const Signup = () => {
     { value: 'Node.js', label: 'Node.js' },
     { value: 'CSS', label: 'CSS' },
     { value: 'HTML', label: 'HTML' }
-    // Add more skills as needed
   ];
 
   return (
@@ -281,7 +279,6 @@ const Signup = () => {
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
                 <option value="French">French</option>
-                {/* Add more languages as needed */}
               </select>
             </label>
             <br />
