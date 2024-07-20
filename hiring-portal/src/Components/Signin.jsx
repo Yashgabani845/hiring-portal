@@ -7,7 +7,6 @@ const SignIn = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      // Add your sign-in logic here
       console.log('Email:', email);
       console.log('Password:', password);
       console.log('Remember Me:', rememberMe);

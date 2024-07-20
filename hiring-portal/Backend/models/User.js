@@ -4,7 +4,7 @@ const experienceSchema = new mongoose.Schema({
   company: { type: String, required: true },
   role: { type: String, required: true },
   duration: { type: String, required: true },
-  details: { type: String } 
+  details: { type: String }
 });
 
 const educationSchema = new mongoose.Schema({
@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
   expectedSalary: { type: String },
   jobType: { type: String, enum: ['part-time', 'full-time'] },
   jobTitle: { type: String },
-  resume: { type: String } 
+  resume: { type: String }
 });
 
 module.exports = mongoose.model('User', userSchema);

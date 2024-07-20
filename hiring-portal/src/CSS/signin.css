@@ -1,15 +1,4 @@
-/* signin.css */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e9ecef;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+
   .signin-container {
     display: flex;
     justify-content: center;
@@ -86,18 +75,7 @@ body {
   .form-group.remember-me a:hover {
     text-decoration: underline;
   }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007BFF;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+
   
   button[type="submit"]:hover {
     background-color: #0056b3;
