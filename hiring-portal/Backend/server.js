@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
+const Company = require('./models/Company');
 
 require('dotenv').config();
 
@@ -13,10 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-
-
 const MONGODB_URI = process.env.MONGODB_URI;
-
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB connection error:', err));
@@ -91,7 +89,7 @@ app.post('/api/users/signin', async (req, res) => {
 
 
 app.post('/api/jobs', async (req, res) => {
-  console.log('Request Body:', req.body); // Log the request body for debugging
+  console.log('Request Body:', req.body); 
   try {
       const {
           title,
@@ -134,7 +132,7 @@ app.post('/api/jobs', async (req, res) => {
           remote,
           benefits,
           companyCulture,
-          applicationDeadline: new Date(applicationDeadline), // Convert date string to Date object
+          applicationDeadline: new Date(applicationDeadline), 
           experienceLevel,
           educationLevel,
           industry,
@@ -152,6 +150,36 @@ app.post('/api/jobs', async (req, res) => {
   }
 });
 
+app.post('/api/company',  async (req, res) => {
+  try {
+    console.log("Received request body:", req.body);
+
+    const newCompany = new Company({
+      name: req.body.name,
+      description: req.body.description,
+      industry: req.body.industry,
+      location: req.body.location,
+      website: req.body.website,
+      email: req.body.email,
+      phone: req.body.phone,
+      logo: null, 
+      establishedYear: req.body.establishedYear,
+      employeesCount: req.body.employeesCount,
+      socialMediaLinks: {
+        linkedin: req.body.linkedin,
+        facebook: req.body.facebook,
+        twitter: req.body.twitter,
+      }
+    });
+
+    const result = await newCompany.save();
+    console.log('Company saved:', result);
+    res.status(201).json({ message: 'Company registered successfully', company: result });
+  } catch (error) {
+    console.error('Error saving company:', error);
+    res.status(500).json({ message: 'Error registering company', error });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

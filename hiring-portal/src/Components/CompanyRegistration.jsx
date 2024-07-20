@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../CSS/company.css';
 import Select from 'react-select';
+import axios from 'axios';
 
 const CompanyRegistration = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const CompanyRegistration = () => {
     website: '',
     email: '',
     phone: '',
-    logo: null,
     establishedYear: '',
     employeesCount: '',
     linkedin: '',
@@ -20,18 +20,26 @@ const CompanyRegistration = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === 'file') {
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log(formData);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/company', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      console.log('Response:', response.data);
+      // Handle successful response (e.g., show a success message, redirect, etc.)
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error (e.g., show an error message)
+    }
   };
 
   const industryOptions = [
@@ -39,7 +47,6 @@ const CompanyRegistration = () => {
     { value: 'finance', label: 'Finance' },
     { value: 'healthcare', label: 'Healthcare' },
     { value: 'education', label: 'Education' }
-    // Add more industries as needed
   ];
 
   return (
@@ -78,10 +85,6 @@ const CompanyRegistration = () => {
         <div className="form-group">
           <label>Phone</label>
           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Company Logo</label>
-          <input type="file" name="logo" onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Established Year</label>
