@@ -16,6 +16,7 @@ import JobPostForm from './Components/JobPostForm';
 import VideoMeeting from './Components/VideoMeeting';
 import CompanyRegistration from './Components/CompanyRegistration';
 import Profile from './Components/Profile';
+import SignIn from './Components/Signin';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -33,7 +34,8 @@ function App() {
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path="/video" element={<VideoMeeting/>}/>
         <Route path="/company" element={<CompanyRegistration/>}/>  
-        <Route path="/profile" element={<Profile/>}/>     
+        <Route path="/profile" element={<Profile/>}/>    
+        <Route path="/signin" element={<SignIn/>}/> 
    </Routes>
    </Router>
   );
