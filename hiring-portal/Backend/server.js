@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken'); 
+
 const User = require('./models/User'); 
 require('dotenv').config();
 
@@ -55,6 +57,35 @@ app.post('/api/users/signup', async (req, res) => {
     res.status(500).json({ message: 'Error creating user', error });
   }
 });
+
+
+app.post('/api/users/signin', async (req, res) => {
+  try {
+    const { email, password, rememberMe } = req.body;
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: rememberMe ? '30d' : '1d' } 
+    );
+
+    res.json({ message: 'Sign in successful', token });
+  } catch (error) {
+    console.error('Error during sign in:', error);
+    res.status(500).json({ message: 'Error during sign in', error });
+  }
+});
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

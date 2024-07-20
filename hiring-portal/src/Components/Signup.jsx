@@ -3,8 +3,11 @@
   import "../CSS/signup.css";
   import axios from 'axios';
 
+  import { useNavigate } from 'react-router-dom';
 
   const Signup = () => {
+    const navigate = useNavigate();
+
     const [step, setStep] = useState(1);
     const [isFresher, setIsFresher] = useState(false);
     const [formData, setFormData] = useState({
@@ -74,7 +77,7 @@
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(formData); // Log form data before sending
+      console.log(formData); 
       try {
         const response = await axios.post('http://localhost:5000/api/users/signup', formData, {
           headers: {
@@ -83,8 +86,11 @@
         });
         console.log(response.data);
       } catch (error) {
-        console.error('Error submitting form:', error.response.data); // Log error details
+        console.error('Error submitting form:', error.response.data);
       }
+
+          navigate('/signin');
+
     };
   
   
@@ -393,7 +399,7 @@
               <button type="button" onClick={prevStep}>
                 Previous
               </button>
-              <button type="submit">Submit</button>
+            <a href="/signin">  <button type="submit">Submit</button></a>  
             </div>
           )}
         </form>
