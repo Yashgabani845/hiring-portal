@@ -1,39 +1,34 @@
 .job-post-form-container {
-    width: 80%;
-    max-width: 800px;
-    margin: auto;
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .job-post-form-container h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
-}
-
-.job-post-form {
-    display: flex;
-    flex-direction: column;
 }
 
 .job-post-form label {
+    display: block;
     margin-bottom: 10px;
-    color: #333;
 }
 
-.job-post-form input,
+.job-post-form input[type="text"],
+.job-post-form input[type="email"],
+.job-post-form input[type="url"],
+.job-post-form input[type="number"],
+.job-post-form input[type="date"],
 .job-post-form select,
 .job-post-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 10px 0;
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin: 5px 0 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
+    border-radius: 3px;
 }
 
 .job-post-form .salary-range {
@@ -45,37 +40,18 @@
     width: calc(50% - 5px);
 }
 
-.job-post-form textarea {
-    resize: vertical;
-    height: 100px;
-}
-
 .job-post-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    display: block;
+    width: 100%;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
     font-size: 16px;
-    margin-top: 10px;
+    cursor: pointer;
 }
 
 .job-post-form button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
 }
-
-.basic-multi-select {
-    margin-bottom: 10px;
-}
-
-.select__control {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.select__multi-value {
-    background-color: #e7f3ff;
-}
-    

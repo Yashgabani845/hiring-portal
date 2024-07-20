@@ -3,13 +3,17 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
-
+const bodyParser = require('body-parser');
+const Job = require('./models/Job');
 const User = require('./models/User'); 
+
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
+
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -23,7 +27,6 @@ app.post('/api/users/signup', async (req, res) => {
 
     console.log("Received data", req.body);
 
-    // Validate required fields
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email, and password are required' });
     }
@@ -83,6 +86,69 @@ app.post('/api/users/signin', async (req, res) => {
   } catch (error) {
     console.error('Error during sign in:', error);
     res.status(500).json({ message: 'Error during sign in', error });
+  }
+});
+
+
+app.post('/api/jobs', async (req, res) => {
+  console.log('Request Body:', req.body); // Log the request body for debugging
+  try {
+      const {
+          title,
+          description,
+          requirements,
+          postedBy,
+          type,
+          salaryRange,
+          workLocation,
+          role,
+          department,
+          employmentType,
+          remote,
+          benefits,
+          companyCulture,
+          applicationDeadline,
+          experienceLevel,
+          educationLevel,
+          industry,
+          keywords,
+          contactEmail,
+          companyWebsite,
+          jobResponsibilities,
+          languagesRequired
+      } = req.body;
+
+      const job = new Job({
+          title,
+          description,
+          requirements,
+          type,
+          salaryRange: {
+              min: salaryRange.min,
+              max: salaryRange.max
+          },
+          workLocation,
+          role,
+          department,
+          employmentType,
+          remote,
+          benefits,
+          companyCulture,
+          applicationDeadline: new Date(applicationDeadline), // Convert date string to Date object
+          experienceLevel,
+          educationLevel,
+          industry,
+          keywords,
+          contactEmail,
+          companyWebsite,
+          jobResponsibilities,
+          languagesRequired
+      });
+
+      await job.save();
+      res.status(201).send(job);
+  } catch (error) {
+      res.status(400).send({ error: error.message });
   }
 });
 
