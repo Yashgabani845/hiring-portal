@@ -4,7 +4,6 @@ const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
 const Company = require('./models/Company');
@@ -95,7 +94,6 @@ app.post('/api/users/signin', async (req, res) => {
 });
 
 
-
 app.post('/api/jobs', async (req, res) => {
   console.log('Request Body:', req.body); 
   try {
@@ -103,7 +101,6 @@ app.post('/api/jobs', async (req, res) => {
           title,
           description,
           requirements,
-          postedBy,
           type,
           salaryRange,
           workLocation,
@@ -121,13 +118,24 @@ app.post('/api/jobs', async (req, res) => {
           contactEmail,
           companyWebsite,
           jobResponsibilities,
-          languagesRequired
+          languagesRequired,
+          ownerEmail 
       } = req.body;
+
+      if (!ownerEmail) {
+          return res.status(400).json({ error: 'Owner email is required' });
+      }
+
+      const company = await Company.findOne({ owner: ownerEmail });
+      if (!company) {
+          return res.status(404).json({ error: 'Company not found for the given owner email' });
+      }
 
       const job = new Job({
           title,
           description,
           requirements,
+          postedBy: company._id,
           type,
           salaryRange: {
               min: salaryRange.min,
@@ -157,7 +165,6 @@ app.post('/api/jobs', async (req, res) => {
       res.status(400).send({ error: error.message });
   }
 });
-
 app.post('/api/company',  async (req, res) => {
   try {
     console.log("Received request body:", req.body);

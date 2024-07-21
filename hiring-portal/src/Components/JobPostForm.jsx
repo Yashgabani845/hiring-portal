@@ -40,27 +40,33 @@ const JobPostForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        const ownerEmail = localStorage.getItem('userEmail');
+    
         try {
-            const response = await axios.post('http://localhost:5000/api/jobs', jobDetails);
+            const response = await axios.post('http://localhost:5000/api/jobs', {
+                ...jobDetails,
+                ownerEmail 
+            });
+    
             console.log('Job posted successfully:', response.data);
         } catch (error) {
             console.error('Failed to post job:', error.response.data);
         }
     };
+    
 
     const skillsOptions = [
         { value: 'JavaScript', label: 'JavaScript' },
         { value: 'React', label: 'React' },
         { value: 'Node.js', label: 'Node.js' },
         { value: 'CSS', label: 'CSS' },
-        // Add more skill options as needed
     ];
 
     const benefitsOptions = [
         { value: 'Health Insurance', label: 'Health Insurance' },
         { value: 'Provident Fund', label: 'Provident Fund' },
         { value: 'Food Provided', label: 'Food Provided' },
-        // Add more benefit options as needed
     ];
 
     return (
