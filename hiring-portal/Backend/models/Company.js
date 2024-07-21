@@ -15,7 +15,8 @@ const companySchema = new mongoose.Schema({
     linkedin: { type: String },
     facebook: { type: String },
     twitter: { type: String }
-  }
+  },
+  owner: { type: String}
 });
 
 module.exports = mongoose.model('Company', companySchema);

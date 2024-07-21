@@ -13,7 +13,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-
+app.use(express.urlencoded({extended:true}))
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
@@ -94,24 +94,7 @@ app.post('/api/users/signin', async (req, res) => {
   }
 });
 
-app.post('/api/users/logout', (req, res) => {
-  if (req.session.user) {
-    const email = req.session.user.email;
 
-    req.session.destroy(err => {
-      if (err) {
-        console.error('Error during logout:', err);
-        return res.status(500).json({ message: 'Error during logout', error: err });
-      }
-
-      console.info(`User logged out: ${email}`);
-      res.json({ message: 'Logout successful' });
-    });
-  } else {
-    console.warn('Logout attempt without an active session');
-    res.status(400).json({ message: 'No active session' });
-  }
-});
 
 app.post('/api/jobs', async (req, res) => {
   console.log('Request Body:', req.body); 
@@ -216,6 +199,71 @@ app.get('/api/users/profile', async (req, res) => {
     res.status(500).json({ message: 'Error fetching user profile', error });
   }
 });
+
+app.post('/api/company', async (req, res) => {
+  try {
+    console.log("Received request body:", req.body);
+
+    const {
+      name,
+      description,
+      industry,
+      location,
+      website,
+      email,
+      phone,
+      establishedYear,
+      employeesCount,
+      linkedin,
+      facebook,
+      twitter,
+      ownerEmail 
+    } = req.body;
+
+    if (!ownerEmail) {
+      return res.status(400).json({ error: 'Owner email is required' });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { email: ownerEmail },
+      { role: 'owner' },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const newCompany = new Company({
+      name,
+      description,
+      industry,
+      location,
+      website,
+      email,
+      phone,
+      logo: null,
+      establishedYear,
+      employeesCount,
+      socialMediaLinks: {
+        linkedin,
+        facebook,
+        twitter
+      },
+      owner: ownerEmail 
+    });
+
+    const result = await newCompany.save();
+    console.log('Company saved:', result);
+
+    res.status(201).json({ message: 'Company registered successfully', company: result });
+
+  } catch (error) {
+    console.error('Error saving company:', error);
+    res.status(500).json({ message: 'Error registering company', error });
+  }
+});
+
 
 
 const PORT = process.env.PORT || 5000;

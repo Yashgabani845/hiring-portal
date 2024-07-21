@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../CSS/profile.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
@@ -28,6 +30,12 @@ const Profile = () => {
     }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+        navigate('/signin');
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
@@ -42,6 +50,7 @@ const Profile = () => {
         <img src={profileDetails.avatar} alt="Avatar" className="profile-avatar" />
         <h1 className="profile-name">{name}</h1>
         <p className="profile-email">{email}</p>
+        <button className="logout-button" onClick={handleLogout}>Logout</button> {}
       </div>
       <div className="profile-details">
         <section className="profile-section">

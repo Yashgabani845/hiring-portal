@@ -23,24 +23,28 @@ const CompanyRegistration = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    const ownerEmail = localStorage.getItem('userEmail'); 
+  
     try {
-      const response = await axios.post('http://localhost:5000/api/company', formData, {
+      const response = await axios.post('http://localhost:5000/api/company', {
+        ...formData,
+        ownerEmail 
+      }, {
         headers: {
           'Content-Type': 'application/json',
         }
       });
-
+  
       console.log('Response:', response.data);
-      // Handle successful response (e.g., show a success message, redirect, etc.)
     } catch (error) {
       console.error('Error:', error);
-      // Handle error (e.g., show an error message)
     }
   };
+  
+  
 
   const industryOptions = [
     { value: 'technology', label: 'Technology' },
