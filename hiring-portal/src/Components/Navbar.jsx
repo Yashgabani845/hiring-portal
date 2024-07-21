@@ -1,37 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from 'axios';
 import "../CSS/navbar.css";
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
-import logo from "../logo.png"
+import logo from "../logo.png";
+
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+ 
+
   return (
     <div className="navbar">
-      <div className="logo"><img className="logoimg" src={logo} alt="" /></div>
+      <div className="logo"><img className="logoimg" src={logo} alt="Logo" /></div>
       <div className="icons">
         <div className="icon home">
           <HomeIcon />
-          <a href=""><span>Home</span></a>
+          <Link to="/"><span>Home</span></Link>
         </div>
         <div className="icon jobs">
           <WorkIcon />
-          <a href="/jobcard"> <span>Jobs</span></a>
+          <Link to="/jobcard"><span>Jobs</span></Link>
         </div>
         <div className="icon aboutus">
           <InfoIcon />
-          <a href=""> <span>About</span></a>
+          <Link to="/about"><span>About</span></Link>
         </div>
         <div className="icon login">
-          <LoginIcon />
-          <a href="/signup"> <span>Login</span></a>
+          {isLoggedIn ? (
+            <>
+              <AccountCircleIcon />
+              <Link to="/profile"><span>Profile</span></Link>
+            </>
+          ) : (
+            <>
+              <LoginIcon />
+              <Link to="/signup"><span>Login</span></Link>
+            </>
+          )}
         </div>
       </div>
       <div className="posting">
-      <span>Employer/Post Job   </span>
+        <span>Employer/Post Job</span>
         <LaunchIcon className="posting-icon" />
-        
       </div>
     </div>
   );

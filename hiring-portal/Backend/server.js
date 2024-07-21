@@ -4,6 +4,7 @@ const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
 const Company = require('./models/Company');
@@ -12,7 +13,11 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 app.use(bodyParser.json());
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -59,34 +64,58 @@ app.post('/api/users/signup', async (req, res) => {
   }
 });
 
-
 app.post('/api/users/signin', async (req, res) => {
   try {
     const { email, password, rememberMe } = req.body;
     
     const user = await User.findOne({ email });
     if (!user) {
+      console.warn(`Sign in failed: invalid email - ${email}`);
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      console.warn(`Sign in failed: incorrect password - ${email}`);
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: rememberMe ? '30d' : '1d' } 
+      { expiresIn: rememberMe ? '30d' : '1d' }
     );
+    req.session.user = {
+      id: user._id,
+      email: user.email
+    };
 
-    res.json({ message: 'Sign in successful', token });
+    console.info(`User signed in: ${req.session.user.email}`);
+    res.json({  token });
   } catch (error) {
     console.error('Error during sign in:', error);
     res.status(500).json({ message: 'Error during sign in', error });
   }
 });
 
+app.post('/api/users/logout', (req, res) => {
+  if (req.session.user) {
+    const email = req.session.user.email;
+
+    req.session.destroy(err => {
+      if (err) {
+        console.error('Error during logout:', err);
+        return res.status(500).json({ message: 'Error during logout', error: err });
+      }
+
+      console.info(`User logged out: ${email}`);
+      res.json({ message: 'Logout successful' });
+    });
+  } else {
+    console.warn('Logout attempt without an active session');
+    res.status(400).json({ message: 'No active session' });
+  }
+});
 
 app.post('/api/jobs', async (req, res) => {
   console.log('Request Body:', req.body); 

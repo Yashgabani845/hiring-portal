@@ -26,12 +26,10 @@ const VideoMeeting = () => {
     };
 
     const handleEndCall = () => {
-        // End call logic
         setIsInCall(false);
     };
 
     const handleStartCall = () => {
-        // Start call logic
         setIsInCall(true);
     };
 
