@@ -165,6 +165,29 @@ app.post('/api/jobs', async (req, res) => {
       res.status(400).send({ error: error.message });
   }
 });
+
+app.get('/api/jobs', async (req, res) => {
+  try {
+      const jobs = await Job.find().populate('postedBy');
+      res.status(200).json(jobs);
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+});
+app.get('/api/jobs/:id', async (req, res) => {
+  try {
+    console.log("job called")
+    console.log(req)
+      const job = await Job.findById(req.params.id);
+      console.log(job)
+      if (!job) {
+          return res.status(404).json({ error: 'Job not found' });
+      }
+      res.status(200).json(job);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+});
 app.post('/api/company',  async (req, res) => {
   try {
     console.log("Received request body:", req.body);

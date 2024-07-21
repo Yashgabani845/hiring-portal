@@ -56,9 +56,7 @@ button {
   font-size: 16px;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
+
 
 .extra-options {
   text-align: center;

@@ -1,9 +1,12 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import axios from 'axios';
+
 import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase } from "react-icons/fa";
 import "../CSS/job.css"
-// Styled Components
 const JobPage = styled.div`
     display: flex;
     justify-content: center;
@@ -115,96 +118,44 @@ const ApplyButton = styled.button`
 
 const Job = () => {
     const { id } = useParams();
-    const jobDetails = {
-        id: id,
-        title: "UK Healthcare Recruiter (Freshers/Graduates can apply)",
-        company: "Ims People Possible",
-        location: "Ahmedabad, Gujarat",
-        salary: "Up to ₹30,000 a month",
-        type: "Full-time",
-        shift: ["Day shift", "UK shift", "Monday to Friday"],
-        benefits: ["Food provided", "Health insurance", "Provident Fund"],
-        description: `
-            Greetings for the day!
-            IMS Group is urgently hiring for International Recruiters!!
-            Kindly find below the job description!
-            ...
-        `,
-        responsibilities: [
-            "Sourcing candidates through various channels",
-            "Conducting interviews",
-            "Coordinating with clients",
-            "Maintaining candidate database"
-        ],
-        requirements: [
-            "Good communication skills",
-            "Bachelor's degree",
-            "Experience in recruitment is a plus"
-        ],
-        skills: [
-            "Communication",
-            "Time management",
-            "Organizational skills"
-        ]
-    };
+    const [jobDetails, setJobDetails] = useState(null);
 
-    const recommendedJobs = [
-        {
-            id: 2,
-            title: "Software Developer",
-            company: "Tech Solutions",
-            location: "Mumbai, Maharashtra",
-            salary: "₹50,000 a month",
-            type: "Full-time",
-        },
-        {
-            id: 3,
-            title: "Marketing Specialist",
-            company: "Creative Minds",
-            location: "Delhi, Delhi",
-            salary: "₹40,000 a month",
-            type: "Part-time",
-        },
-        {
-            id: 4,
-            title: "Graphic Designer",
-            company: "Design Hub",
-            location: "Bengaluru, Karnataka",
-            salary: "₹35,000 a month",
-            type: "Full-time",
-        },
-    ];
+    useEffect(() => {
+        const fetchJobDetails = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
+                setJobDetails(response.data);
+            } catch (error) {
+                console.error("Error fetching job details:", error);
+            }
+        };
+
+        fetchJobDetails();
+    }, [id]);
+
+    if (!jobDetails) return <p>Loading...</p>;
 
     return (
         <JobPage>
             <JobContainer>
                 <RecommendedJobs>
-                    <JobHeading>Recommended Jobs</JobHeading>
-                    {recommendedJobs.map((job) => (
-                        <JobCard key={job.id}>
-                            <h3>{job.title}</h3>
-                            <p><FaBriefcase /> {job.company}</p>
-                            <p><FaMapMarkerAlt /> {job.location}</p>
-                            <p><FaDollarSign /> {job.salary}</p>
-                            <p>{job.type}</p>
-                        </JobCard>
-                    ))}
+                    {/* Recommended Jobs Section */}
                 </RecommendedJobs>
                 <CurrentJob>
                     <JobTitle>{jobDetails.title}</JobTitle>
-                    <JobCompany>{jobDetails.company}</JobCompany>
-                    <JobLocation><FaMapMarkerAlt /> {jobDetails.location}</JobLocation>
-                    <JobSalary><FaDollarSign /> {jobDetails.salary}</JobSalary>
+                    <JobCompany>{jobDetails.postedBy}</JobCompany>
+                    <JobLocation><FaMapMarkerAlt /> {jobDetails.workLocation}</JobLocation>
+                    <JobSalary><FaDollarSign /> {jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</JobSalary>
                     <ApplyButton>Apply Now</ApplyButton>
                     <div>
                         <JobHeading>Job Details</JobHeading>
-                        <JobDetail><FaDollarSign /> Pay: {jobDetails.salary}</JobDetail>
-                        <JobDetail><FaBriefcase /> Job Type: {jobDetails.type}</JobDetail>
-                        <JobDetail><FaRegClock /> Shift and Schedule: {jobDetails.shift.join(", ")}</JobDetail>
-                        <JobDetail><FaMapMarkerAlt /> Location: {jobDetails.location}</JobDetail>
+                        <JobDetail><FaDollarSign /> Pay: {jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</JobDetail>
+                        <JobDetail><FaBriefcase /> Job Type: {jobDetails.employmentType}</JobDetail>
+                        <JobDetail><FaRegClock /> Shift and Schedule: {jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</JobDetail>
+                        <JobDetail><FaMapMarkerAlt /> Location: {jobDetails.workLocation}</JobDetail>
                         <JobSubheading>Responsibilities</JobSubheading>
                         <JobDetailsList>
-                            {jobDetails.responsibilities.map((resp, index) => (
+                            {jobDetails.jobResponsibilities.map((resp, index) => (
                                 <JobDetailItem key={index}>{resp}</JobDetailItem>
                             ))}
                         </JobDetailsList>
@@ -214,12 +165,7 @@ const Job = () => {
                                 <JobDetailItem key={index}>{req}</JobDetailItem>
                             ))}
                         </JobDetailsList>
-                        <JobSubheading>Skills</JobSubheading>
-                        <JobDetailsList>
-                            {jobDetails.skills.map((skill, index) => (
-                                <JobDetailItem key={index}>{skill}</JobDetailItem>
-                            ))}
-                        </JobDetailsList>
+                        
                         <JobSubheading>Benefits</JobSubheading>
                         <JobDetailsList>
                             {jobDetails.benefits.map((benefit, index) => (

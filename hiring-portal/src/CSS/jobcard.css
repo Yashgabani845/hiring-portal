@@ -60,5 +60,8 @@
     font-weight: 600;
     
 }
-
+.viewjob button :hover{
+    background-color: white;
+    color: #275DF5;
+}
 
