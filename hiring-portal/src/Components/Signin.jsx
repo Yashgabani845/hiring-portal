@@ -19,11 +19,13 @@ const SignIn = () => {
         },
         body: JSON.stringify({ email, password, rememberMe }),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         console.log('Sign in successful:', data);
-        navigate('/')
+        localStorage.setItem('userEmail', data.email);
+        localStorage.setItem('token', data.token); 
+        navigate('/');
       } else {
         console.error('Sign in failed:', data.message);
       }
@@ -31,6 +33,7 @@ const SignIn = () => {
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <div className="signin-container">

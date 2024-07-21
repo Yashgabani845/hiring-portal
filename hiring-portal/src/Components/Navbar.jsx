@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import "../CSS/navbar.css";
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
@@ -13,7 +12,10 @@ import logo from "../logo.png";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
- 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); 
+  }, []);
 
   return (
     <div className="navbar">

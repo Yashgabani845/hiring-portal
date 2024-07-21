@@ -69,6 +69,7 @@ app.post('/api/users/signin', async (req, res) => {
     const { email, password, rememberMe } = req.body;
     
     const user = await User.findOne({ email });
+    console.log(user);
     if (!user) {
       console.warn(`Sign in failed: invalid email - ${email}`);
       return res.status(400).json({ message: 'Invalid email or password' });
@@ -85,13 +86,8 @@ app.post('/api/users/signin', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: rememberMe ? '30d' : '1d' }
     );
-    req.session.user = {
-      id: user._id,
-      email: user.email
-    };
-
-    console.info(`User signed in: ${req.session.user.email}`);
-    res.json({  token });
+    
+    res.json({ token, email: user.email });
   } catch (error) {
     console.error('Error during sign in:', error);
     res.status(500).json({ message: 'Error during sign in', error });
@@ -209,6 +205,18 @@ app.post('/api/company',  async (req, res) => {
     res.status(500).json({ message: 'Error registering company', error });
   }
 });
+app.get('/api/users/profile', async (req, res) => {
+  try {
+    const { email } = req.query;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    res.status(500).json({ message: 'Error fetching user profile', error });
+  }
+});
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
