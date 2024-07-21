@@ -188,36 +188,7 @@ app.get('/api/jobs/:id', async (req, res) => {
       res.status(500).json({ error: error.message });
   }
 });
-app.post('/api/company',  async (req, res) => {
-  try {
-    console.log("Received request body:", req.body);
 
-    const newCompany = new Company({
-      name: req.body.name,
-      description: req.body.description,
-      industry: req.body.industry,
-      location: req.body.location,
-      website: req.body.website,
-      email: req.body.email,
-      phone: req.body.phone,
-      logo: null, 
-      establishedYear: req.body.establishedYear,
-      employeesCount: req.body.employeesCount,
-      socialMediaLinks: {
-        linkedin: req.body.linkedin,
-        facebook: req.body.facebook,
-        twitter: req.body.twitter,
-      }
-    });
-
-    const result = await newCompany.save();
-    console.log('Company saved:', result);
-    res.status(201).json({ message: 'Company registered successfully', company: result });
-  } catch (error) {
-    console.error('Error saving company:', error);
-    res.status(500).json({ message: 'Error registering company', error });
-  }
-});
 app.get('/api/users/profile', async (req, res) => {
   try {
     const { email } = req.query;

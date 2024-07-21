@@ -17,6 +17,7 @@ import VideoMeeting from './Components/VideoMeeting';
 import CompanyRegistration from './Components/CompanyRegistration';
 import Profile from './Components/Profile';
 import SignIn from './Components/Signin';
+import UploadedJobs from './Components/UploadedJobs';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/company" element={<CompanyRegistration/>}/>  
         <Route path="/profile" element={<Profile/>}/>    
         <Route path="/signin" element={<SignIn/>}/> 
+        <Route path='/uploadedjobs' element={<UploadedJobs/>}/>
    </Routes>
    </Router>
   );

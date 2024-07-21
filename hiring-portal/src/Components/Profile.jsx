@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../CSS/profile.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
+import profilepic from "../profile.jpg"
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -33,7 +34,7 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
-        navigate('/signin');
+    navigate('/signin');
   };
 
   if (loading) return <p>Loading...</p>;
@@ -41,16 +42,19 @@ const Profile = () => {
   if (!user) return <p>No user data found</p>;
 
   const {
-    name, email, profileDetails, location, locationPreferences, expectedSalary, jobType, jobTitle, resume
+    name, email, profileDetails, location, locationPreferences, expectedSalary, jobType, jobTitle, resume, role
   } = user;
 
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <img src={profileDetails.avatar} alt="Avatar" className="profile-avatar" />
+        <img src={profilepic} alt="Avatar" className="profile-avatar" />
         <h1 className="profile-name">{name}</h1>
         <p className="profile-email">{email}</p>
-        <button className="logout-button" onClick={handleLogout}>Logout</button> {}
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+        {role === 'owner' && (
+          <button className="manage-jobs-button" onClick={() => navigate('/owner')}>Manage Jobs</button>
+        )}
       </div>
       <div className="profile-details">
         <section className="profile-section">

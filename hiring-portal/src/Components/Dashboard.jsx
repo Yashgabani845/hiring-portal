@@ -1,6 +1,14 @@
 import React from 'react';
-import "../CSS/dashboard.css";
+import { useNavigate } from 'react-router-dom';
+import '../CSS/dashboard.css';
+
 const Dashboard = () => {
+    const navigate = useNavigate();
+
+    const handleViewJobs = () => {
+        navigate('/uploadedjobs');
+    };
+
     return (
         <div className="employer-dashboard">
             <h1>Employer Dashboard</h1>
@@ -18,7 +26,7 @@ const Dashboard = () => {
 
                 <div className="card">
                     <h2>Uploaded Jobs</h2>
-                    <button>View Jobs</button>
+                    <button onClick={handleViewJobs}>View Jobs</button>
                 </div>
             </div>
 
