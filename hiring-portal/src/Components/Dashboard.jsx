@@ -8,6 +8,9 @@ const Dashboard = () => {
     const handleViewJobs = () => {
         navigate('/uploadedjobs');
     };
+    const handleAssesment = ()=>{
+        navigate('/createtest');
+    }
 
     return (
         <div className="employer-dashboard">
@@ -43,7 +46,7 @@ const Dashboard = () => {
 
                 <div className="card">
                     <h2>Create Assessment Test</h2>
-                    <button>Create Test</button>
+                    <button  onClick={handleAssesment} >Create Test</button>
                 </div>
             </div>
 

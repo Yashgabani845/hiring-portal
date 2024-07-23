@@ -27,6 +27,7 @@ const Jobgrid = () => {
                     comlogo={comlogo} 
                     id={job._id}
                     key={job._id}
+                    company={job.postedBy} 
                     rating={"⭐4.5/5.0"} 
                     reviews={"100+ reviews"}
                     role={job.role}
