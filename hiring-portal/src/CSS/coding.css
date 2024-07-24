@@ -75,7 +75,7 @@
 .editor-actions {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
 }
 
 .editor-actions button {
@@ -87,6 +87,7 @@
     background-color: #007bff;
     color: #fff;
     transition: background-color 0.3s ease;
+    margin: 0 10px;
 }
 
 .editor-actions button:hover {
@@ -94,12 +95,13 @@
 }
 
 .testcases {
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
     height: 200px;
     overflow-y: auto;
+    margin: 20px 0;
 }
 
 .testcases h3 {
