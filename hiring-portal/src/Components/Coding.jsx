@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-javascript';
-import 'ace-builds/src-noconflict/mode-python';
-import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/mode-csharp';
-import 'ace-builds/src-noconflict/theme-github';
 import '../CSS/coding.css';
+import Editor from "@monaco-editor/react";
 
 const Coding = () => {
     const [language, setLanguage] = useState('javascript');
@@ -22,6 +16,23 @@ const Coding = () => {
 
     const submitCode = () => {
         alert('Code submitted!');
+    };
+
+    const getMode = (language) => {
+        switch (language) {
+            case 'javascript':
+                return 'javascript';
+            case 'python':
+                return 'python';
+            case 'java':
+                return 'text/x-java';
+            case 'c_cpp':
+                return 'text/x-c++src';
+            case 'csharp':
+                return 'text/x-csharp';
+            default:
+                return 'javascript';
+        }
     };
 
     return (
@@ -44,25 +55,32 @@ const Coding = () => {
             <div className="code-editor">
                 <div className="editor-header">
                     <label>
-                        Language:
+                    Language:
                         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                             <option value="javascript">JavaScript</option>
                             <option value="python">Python</option>
                             <option value="java">Java</option>
-                            <option value="c_cpp">C/C++</option>
+                            <option value="cpp">C/C++</option>
                             <option value="csharp">C#</option>
                         </select>
                     </label>
                 </div>
-                <div className="ace-editor">
-                    <AceEditor
-                        mode={language}
-                        theme="github"
-                        value={code}
-                        onChange={(newCode) => setCode(newCode)}
-                        name="code-editor"
-                        editorProps={{ $blockScrolling: true }}
+                <div className="monaco-editor">
+                    <Editor
                         height="400px"
+                        language={language}
+                        theme="vs-light"
+                        value={code}
+                        onChange={(newValue) => setCode(newValue)}
+                        options={{
+                            inlineSuggest: true,
+                            fontSize: "16px",
+                            formatOnType: true,
+                            autoClosingBrackets: true,
+                            minimap: {
+                                enabled: false
+                            }
+                        }}
                     />
                 </div>
                 <div className="editor-actions">
