@@ -1,0 +1,168 @@
+.assessment-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .assessment-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .assessment-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .progress-bar-filler {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.3s;
+  }
+  
+  .questions-preview {
+    margin-top: 20px;
+  }
+  
+  .question-preview {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+  }
+  
+ 
+  .global-fields {
+    margin-bottom: 20px;
+  }
+  
+  .step-container {
+    margin-bottom: 20px;
+  }
+  
+  .added-questions {
+    margin-top: 20px;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px; /* Adjusted width for a more compact modal */
+    max-height: 80%; /* Limits height to prevent excessive scrolling */
+    overflow-y: auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    position: relative;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem; /* Increased font size for better readability */
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .modal-close {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .modal-close:hover {
+    color: #000; /* Darker color on hover */
+  }
+  
+  .modal-body {
+    margin-bottom: 20px;
+  }
+  
+  .modal-body label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .modal-body input,
+  .modal-body textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 15px; /* Spacing between fields */
+    box-sizing: border-box; /* Ensures padding is included in width */
+  }
+  
+  .modal-body input:focus,
+  .modal-body textarea:focus {
+    border-color: #007bff; /* Border color on focus */
+    outline: none;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Spacing between buttons */
+  }
+  
+  .modal-buttons button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .modal-buttons button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+  }
+  
+  .modal-buttons button.secondary {
+    background-color: #6c757d;
+  }
+  
+  .modal-buttons button.secondary:hover {
+    background-color: #5a6268; 
+  }
+  

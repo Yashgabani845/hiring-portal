@@ -16,7 +16,7 @@ import Profile from './Components/Profile';
 import SignIn from './Components/Signin';
 import UploadedJobs from './Components/UploadedJobs';
 import Coding from './Components/Coding';
-import CreateTest from './Components/CreateTest';
+import CreateAssessment from './Components/createTest';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -36,7 +36,7 @@ function App() {
         <Route path="/signin" element={<SignIn/>}/> 
         <Route path='/uploadedjobs' element={<UploadedJobs/>}/>
         <Route path='/code' element={<Coding/>}/>
-        <Route path= '/test' element={<CreateTest/>}/>
+        <Route path= '/test' element={<CreateAssessment/>}/>
    </Routes>
    </Router>
   );
