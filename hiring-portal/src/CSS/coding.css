@@ -72,27 +72,8 @@
     margin-bottom: 20px;
 }
 
-.editor-actions {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 20px 0;
-}
 
-.editor-actions button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    transition: background-color 0.3s ease;
-    margin: 0 10px;
-}
 
-.editor-actions button:hover {
-    background-color: #0056b3;
-}
 
 .testcases {
     padding: 20px;
@@ -113,4 +94,45 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     color: #555;
+}
+
+
+.editor-action{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.run,
+.submit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, filter 0.3s ease; /* Added filter transition */
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.run {
+  background-color: #f0f0f0; /* Light gray background for Run button */
+  color: #333; /* Dark gray text */
+  filter: blur(1px); /* Blur effect */
+}
+
+.submit {
+  background-color: #4caf50; /* Green background for Submit button */
+  color: white; /* White text */
+}
+
+.run:hover {
+  filter: none; /* Remove blur on hover */
+  background-color: #e0e0e0; /* Lighter gray background on hover */
+}
+
+.submit:hover {
+  background-color: #45a049; /* Darker green background on hover */
 }

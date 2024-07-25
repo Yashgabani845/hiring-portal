@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../CSS/coding.css';
 import Editor from "@monaco-editor/react";
+import Button from '@mui/material/Button';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const Coding = () => {
     const [language, setLanguage] = useState('javascript');
@@ -18,22 +20,6 @@ const Coding = () => {
         alert('Code submitted!');
     };
 
-    const getMode = (language) => {
-        switch (language) {
-            case 'javascript':
-                return 'javascript';
-            case 'python':
-                return 'python';
-            case 'java':
-                return 'text/x-java';
-            case 'c_cpp':
-                return 'text/x-c++src';
-            case 'csharp':
-                return 'text/x-csharp';
-            default:
-                return 'javascript';
-        }
-    };
 
     return (
         <div className="coding-interface">
@@ -84,8 +70,24 @@ const Coding = () => {
                     />
                 </div>
                 <div className="editor-actions">
-                    <button type="button" onClick={runCode}>Run</button>
-                    <button type="button" onClick={submitCode}>Submit</button>
+                <>
+      <Button
+        variant="outlined"
+        onClick={runCode}
+        style={{ marginRight: '10px' }}
+        startIcon={<PlayArrowIcon />}
+      >
+        Run
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={submitCode}
+      >
+        Submit
+      </Button>
+    </>
+
                 </div>
                 <div className="testcases">
                     <h3>Output</h3>

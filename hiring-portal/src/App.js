@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-
 import Homepage from './Components/Homepage';
 import HeroSection from './Components/HeroSection';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,7 +9,6 @@ import Jobpage from './Components/Jobpage';
 import Job from './Components/Job';
 import Dashboard from './Components/Dashboard';
 import AdminDashboard from './Components/AdminDashboard';
-
 import JobPostForm from './Components/JobPostForm';
 import VideoMeeting from './Components/VideoMeeting';
 import CompanyRegistration from './Components/CompanyRegistration';
@@ -18,6 +16,7 @@ import Profile from './Components/Profile';
 import SignIn from './Components/Signin';
 import UploadedJobs from './Components/UploadedJobs';
 import Coding from './Components/Coding';
+import CreateTest from './Components/CreateTest';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -37,6 +36,7 @@ function App() {
         <Route path="/signin" element={<SignIn/>}/> 
         <Route path='/uploadedjobs' element={<UploadedJobs/>}/>
         <Route path='/code' element={<Coding/>}/>
+        <Route path= '/test' element={<CreateTest/>}/>
    </Routes>
    </Router>
   );

@@ -4,6 +4,9 @@
     text-align: center;
     padding: 100px 20px;
     height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
   
   .hero-content {
@@ -35,7 +38,6 @@
     width: fit-content;
     padding-right: 15px;
     height: 65px;
-    margin-left: 66%;
     box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
   }
   
@@ -56,6 +58,7 @@
     font-size: 17px;
     outline: none;
     transition: all 0.3s ease;
+    background-color: transparent;
   }
   
   .search:focus {
