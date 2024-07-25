@@ -1,5 +1,7 @@
   import React, { useState } from "react";
   import "../CSS/test.css"
+  import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; 
   const CreateAssessment = () => {
     const [formData, setFormData] = useState({
       jobId: "",
@@ -27,6 +29,15 @@
     const handleModalSave = () => {
       handleModalClose();
     };
+    const Descriptionchange = (value) => {
+      setCurrentQuestion(prevState => ({
+        ...prevState,
+        codingQuestion: {
+          ...prevState.codingQuestion,
+          problemDescription: value
+        }
+      }));
+    };
     const handleCodingQuestionChange = (e) => {
       const { name, value } = e.target;
       setCurrentQuestion((prevQuestion) => ({
@@ -37,6 +48,7 @@
         },
       }));
     };
+  
   
     const handleExampleChange = (index, e) => {
       const newExamples = [...currentQuestion.codingQuestion.examples];
@@ -109,6 +121,7 @@
         ...prevFormData,
         questions: [...prevFormData.questions, currentQuestion],
       }));
+
       setCurrentQuestion({
         type: "coding",
         codingQuestion: {
@@ -153,14 +166,14 @@
               <h3>Title</h3>
               <input
                 type="text"
+                className="qtitle"
                 value={currentQuestion.codingQuestion.title}
                 onChange={handleCodingQuestionChange}
                 name="title"
-                style={{ width: "100%", padding: "5px" }}
               />
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -169,18 +182,18 @@
           return (
             <div>
               <h3>Problem Description</h3>
-              <textarea
-                value={currentQuestion.codingQuestion.problemDescription}
-                onChange={handleCodingQuestionChange}
-                name="problemDescription"
-                style={{ width: "100%", padding: "5px", minHeight: "100px" }}
-              />
+              <ReactQuill
+        value={currentQuestion.codingQuestion.problemDescription}
+        onChange={Descriptionchange}
+        theme="snow"
+        placeholder="Enter problem description"
+      />
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-                  Previous
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                &laquo; Previous
                 </button>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -200,15 +213,15 @@
                   />
                 </div>
               ))}
-              <button type="button" onClick={addConstraint} style={{ padding: "5px", marginTop: "10px" }}>
+              <button type="button" className="addbtn" onClick={addConstraint} style={{ padding: "5px", marginTop: "10px" }}>
                 Add Constraint
               </button>
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-                  Previous
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                &laquo; Previous 
                 </button>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button"  className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -251,15 +264,15 @@
                   />
                 </div>
               ))}
-              <button type="button" onClick={addExample} style={{ padding: "5px", marginTop: "10px" }}>
+              <button type="button" className="addbtn" onClick={addExample} style={{ padding: "5px", marginTop: "10px" }}>
                 Add Example
               </button>
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-                  Previous
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                &laquo; Previous
                 </button>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -293,15 +306,18 @@
                   />
                 </div>
               ))}
-              <button type="button" onClick={addTestCase} style={{ padding: "5px", marginTop: "10px" }}>
+              <button type="button" className="addbtn" onClick={addTestCase} style={{ padding: "5px", marginTop: "10px" }}>
                 Add Test Case
               </button>
+              <button type="button" className="prevbtn"  style={{ padding: "5px", marginTop: "10px",marginLeft:"10px" }}>
+              Upload file
+              </button>
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-                  Previous
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                &laquo;  Previous
                 </button>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -317,11 +333,11 @@
                 style={{ width: "100%", padding: "5px", minHeight: "100px" }}
               />
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-                  Previous
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                &laquo; Previous
                 </button>
-                <button type="button" onClick={nextStep} style={{ padding: "10px" }}>
-                  Next
+                <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+                  Next &raquo;
                 </button>
               </div>
             </div>
@@ -338,10 +354,10 @@
                 style={{ width: "100%", padding: "5px" }}
               />
               <div style={{ marginTop: "20px" }}>
-                <button type="button" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
+                <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
                   Previous
                 </button>
-                <button type="button" onClick={addQuestion} style={{ padding: "10px" }}>
+                <button type="button" className="addbtn" onClick={addQuestion} style={{ padding: "10px" }}>
                   Add Question
                 </button>
               </div>
@@ -355,28 +371,37 @@
     return (
       <div className="assessment-container">
         <h2>Create Assessment</h2>
+        <hr />
         <form onSubmit={handleSubmit}>
           <div className="global-fields">
             <label>Overall Time (in minutes):</label>
             <input
               type="number"
+              className="timeinput"
               value={formData.overallTime}
               onChange={(e) => setFormData({ ...formData, overallTime: e.target.value })}
-              style={{ width: "100%", padding: "5px" }}
+              
             />
             <label>Max Marks:</label>
             <input
               type="number"
+              className="marksinput"
               value={formData.maxMarks}
               onChange={(e) => setFormData({ ...formData, maxMarks: e.target.value })}
-              style={{ width: "100%", padding: "5px" }}
+             
             />
           </div>
           <div className="step-container">
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${((currentStep - 1) / 6) * 100}%` }}
+            ></div>
+          </div>
             {renderStep()}
           </div>
-          <button type="submit" style={{ padding: "10px", marginTop: "20px" }}>
-            Submit
+          <button type="submit" className="submitbtn" style={{ padding: "10px", marginTop: "20px" }}>
+            Submit 
           </button>
         </form>
         <div className="added-questions">
@@ -430,6 +455,7 @@
                 ))}
                 <button
                   type="button"
+                  className="addbtn"
                   onClick={() => {
                     const newConstraints = [...modalData.codingQuestion.constraints, ""];
                     setModalData({ ...modalData, codingQuestion: { ...modalData.codingQuestion, constraints: newConstraints } });
@@ -479,6 +505,7 @@
                 ))}
                 <button
                   type="button"
+                  className="addbtn"
                   onClick={() => {
                     const newExamples = [...modalData.codingQuestion.examples, { input: "", output: "", explanation: "" }];
                     setModalData({ ...modalData, codingQuestion: { ...modalData.codingQuestion, examples: newExamples } });
@@ -518,6 +545,7 @@
                 ))}
                 <button
                   type="button"
+                  className="addbtn"
                   onClick={() => {
                     const newTestCases = [...modalData.codingQuestion.testCases, { input: "", output: "" }];
                     setModalData({ ...modalData, codingQuestion: { ...modalData.codingQuestion, testCases: newTestCases } });
