@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
 const Company = require('./models/Company');
-
+const http = require('http');
+const socketIo = require('socket.io');
 require('dotenv').config();
 
 const app = express();
@@ -265,9 +266,45 @@ app.post('/api/company', async (req, res) => {
   }
 });
 
+//websocket part4
+const io = require('socket.io')(5001, {
+  cors: {
+      origin: "http://localhost:3000", 
+      methods: ["GET", "POST"]
+  }
+});
+
+io.on('connection', socket => {
+  console.log('User connected:', socket.id);
+
+  socket.on('offer', offer => {
+      console.log('Received offer from', socket.id);
+      socket.broadcast.emit('offer', offer);
+  });
+
+  socket.on('answer', answer => {
+      console.log('Received answer from', socket.id);
+      socket.broadcast.emit('answer', answer);
+  });
+
+  socket.on('candidate', candidate => {
+      console.log('Received candidate from', socket.id);
+      socket.broadcast.emit('candidate', candidate);
+  });
+
+  socket.on('disconnect', () => {
+      console.log('User disconnected:', socket.id);
+  });
+});
+
 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+
+
+
