@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
 const Company = require('./models/Company');
+const Assessment = require('./models/Assesment')
 const http = require('http');
 const socketIo = require('socket.io');
 require('dotenv').config();
@@ -150,8 +151,6 @@ app.post('/api/jobs', async (req, res) => {
           benefits,
           companyCulture,
           applicationDeadline: new Date(applicationDeadline), 
-          experienceLevel,
-          educationLevel,
           industry,
           keywords,
           contactEmail,
@@ -161,6 +160,7 @@ app.post('/api/jobs', async (req, res) => {
       });
 
       await job.save();
+      console.log('data saved')
       res.status(201).send(job);
   } catch (error) {
       res.status(400).send({ error: error.message });
@@ -169,7 +169,19 @@ app.post('/api/jobs', async (req, res) => {
 
 app.get('/api/jobs', async (req, res) => {
   try {
-      const jobs = await Job.find().populate('postedBy');
+      const email = req.query.email; 
+      console.log(email,"i fonud it")
+      if (!email) {
+          return res.status(400).json({ error: 'Email is required' });
+      }
+      
+      const user = await User.findOne({ email:email });
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+      const comobj = await Company.find({ owner:email });
+      const jobs= await Job.find({ postedBy:comobj });
       res.status(200).json(jobs);
   } catch (error) {
       res.status(400).json({ error: error.message });
@@ -266,34 +278,73 @@ app.post('/api/company', async (req, res) => {
   }
 });
 
-//websocket part4
-const io = require('socket.io')(5001, {
-  cors: {
-      origin: "http://localhost:3000", 
-      methods: ["GET", "POST"]
+app.post('/api/test', async (req, res) => {
+  try {
+    const { jobId, overallTime, maxMarks, questions } = req.body;
+const job = Job.findOne({jobId:jobId});
+const createdBy = Company.findOne({owner:jobId})
+
+    const newAssessment = new Assessment({
+      job,
+      createdBy,
+      overallTime,
+      maxMarks,
+      questions,
+      
+    });
+
+    const savedAssessment = await newAssessment.save();
+
+    res.status(201).json(savedAssessment);
+  } catch (error) {
+    console.error('Error creating assessment:', error);
+    res.status(500).json({ message: 'Failed to create assessment', error });
   }
 });
 
-io.on('connection', socket => {
-  console.log('User connected:', socket.id);
 
-  socket.on('offer', offer => {
-      console.log('Received offer from', socket.id);
-      socket.broadcast.emit('offer', offer);
-  });
+const io = require('socket.io')(5001, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+});
 
-  socket.on('answer', answer => {
-      console.log('Received answer from', socket.id);
-      socket.broadcast.emit('answer', answer);
-  });
+const users = new Set();
 
-  socket.on('candidate', candidate => {
-      console.log('Received candidate from', socket.id);
-      socket.broadcast.emit('candidate', candidate);
+io.on('connection', (socket) => {
+  console.log('New user connected:', socket.id);
+
+  socket.on('join', (data) => {
+    const { userName, roomId } = data;
+    users.add({ id: socket.id, userName, roomId });
+    socket.join(roomId);
+    io.to(roomId).emit('user-joined', { userName });
+    io.to(roomId).emit('update-user-list', Array.from(users).filter(user => user.roomId === roomId).map(user => user.userName));
   });
 
   socket.on('disconnect', () => {
-      console.log('User disconnected:', socket.id);
+    const user = Array.from(users).find(user => user.id === socket.id);
+    if (user) {
+      users.delete(user);
+      io.to(user.roomId).emit('user-left', { userName: user.userName });
+      io.to(user.roomId).emit('update-user-list', Array.from(users).filter(u => u.roomId === user.roomId).map(u => u.userName));
+    }
+  });
+
+  socket.on('candidate', (data) => {
+    const { candidate, roomId } = data;
+    socket.broadcast.to(roomId).emit('candidate', data);
+  });
+
+  socket.on('offer', (data) => {
+    const { offer, roomId } = data;
+    socket.broadcast.to(roomId).emit('offer', data);
+  });
+
+  socket.on('answer', (data) => {
+    const { answer, roomId } = data;
+    socket.broadcast.to(roomId).emit('answer', data);
   });
 });
 

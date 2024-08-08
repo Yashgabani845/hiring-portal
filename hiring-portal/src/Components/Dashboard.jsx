@@ -11,6 +11,9 @@ const Dashboard = () => {
     const handleAssesment = ()=>{
         navigate('/createtest');
     }
+    const handlecreatejob=()=>{
+        navigate('/postjob');
+    }
 
     return (
         <div className="employer-dashboard">
@@ -19,12 +22,12 @@ const Dashboard = () => {
             <div className="card-section">
                 <div className="card">
                     <h2>Create New Job</h2>
-                    <button>Create Job</button>
+                    <button onClick={handlecreatejob}>Create Job</button>
                 </div>
 
                 <div className="card">
                     <h2>Edit Previous Jobs</h2>
-                    <button>Edit Jobs</button>
+                    <button >Edit Jobs</button>
                 </div>
 
                 <div className="card">
@@ -41,7 +44,7 @@ const Dashboard = () => {
 
                 <div className="card">
                     <h2>Schedule Interview</h2>
-                    <button>Schedule</button>
+                    <button >Schedule</button>
                 </div>
 
                 <div className="card">

@@ -3,8 +3,9 @@
   import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
   const CreateAssessment = () => {
+    const ownerEmail = localStorage.getItem('userEmail'); 
     const [formData, setFormData] = useState({
-      jobId: "",
+      jobId: ownerEmail,
       questions: [],
       overallTime: 0,
       maxMarks: 0,
@@ -137,9 +138,28 @@ import 'react-quill/dist/quill.snow.css';
       setCurrentStep(1);
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
       console.log(formData);
+  
+      try {
+        const response = await fetch('http://localhost:5000/api/test', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+  
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Assessment created successfully:', data);
+        } else {
+          console.error('Error creating assessment:', data.message);
+        }
+      } catch (error) {
+        console.error('Network error:', error);
+      }
     };
   
     const nextStep = () => {
@@ -163,10 +183,11 @@ import 'react-quill/dist/quill.snow.css';
         case 1:
           return (
             <div>
-              <h3>Title</h3>
+              <h3>Question titles</h3>
               <input
                 type="text"
                 className="qtitle"
+                placeholder=" Ex: Two Sum"
                 value={currentQuestion.codingQuestion.title}
                 onChange={handleCodingQuestionChange}
                 name="title"
@@ -400,7 +421,7 @@ import 'react-quill/dist/quill.snow.css';
           </div>
             {renderStep()}
           </div>
-          <button type="submit" className="submitbtn" style={{ padding: "10px", marginTop: "20px" }}>
+          <button type="submit" onClick={handleSubmit} className="submitbtn" style={{ padding: "10px", marginTop: "20px" }}>
             Submit 
           </button>
         </form>
