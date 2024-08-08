@@ -64,7 +64,7 @@ const Job = () => {
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
                                     <button 
                                         className="view-button"  
-                                        onClick={() => navigate(`/job/${job._id}`)}  // Navigate to job details page
+                                        onClick={() => navigate(`/job/${job._id}`)} 
                                     >
                                         View
                                     </button>
@@ -108,7 +108,9 @@ const Job = () => {
                         <div><FaEye /> Impressions: {jobDetails.impressions}</div>
                         <div><FaUsers /> Applied: {jobDetails.applied}</div>
                     </div>
-                    <button className="apply-button">Apply Now</button>
+                    <button className="apply-button" onClick={()=>{
+                        navigate("/application")
+                    }} >Apply Now</button>
                 </div>
             </div>
         </div>

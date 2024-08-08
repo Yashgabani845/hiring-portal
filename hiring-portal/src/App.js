@@ -19,6 +19,7 @@ import Coding from './Components/Coding';
 import CreateAssessment from './Components/createTest';
 import Video from './Components/Video';
 import ManageJobs from './Components/Managejob';
+import ApplicationForm from './Components/ApplicationForm';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/manage-assesment/:jobId' element={<CreateAssessment />} />
         <Route path='/videocalling' element={<Video/>}/>
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
+        <Route path="/application" element={<ApplicationForm/>}/>
         </Routes>
    </Router>
   );
