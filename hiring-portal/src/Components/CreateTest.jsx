@@ -1,11 +1,23 @@
-  import React, { useState } from "react";
+  import React, { useState,useEffect } from "react";
+  import {Navigate, useNavigate,useParams} from "react-router-dom"
   import "../CSS/test.css"
   import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
   const CreateAssessment = () => {
+    const { jobId } = useParams(); 
+    const [job, setJob] = useState(null);
+    useEffect(() => {
+      fetch(`http://localhost:5000/api/jobs/${jobId}`)
+          .then(response => response.json())
+          .then(data => setJob(data))
+          .catch(error => console.error('Error fetching job:', error));
+  }, [jobId]);
+
+    const navigate=useNavigate();
     const ownerEmail = localStorage.getItem('userEmail'); 
     const [formData, setFormData] = useState({
-      jobId: ownerEmail,
+      jobId: jobId,
+      owner:ownerEmail,
       questions: [],
       overallTime: 0,
       maxMarks: 0,

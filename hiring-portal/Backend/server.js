@@ -202,6 +202,24 @@ app.get('/api/jobs/:id', async (req, res) => {
   }
 });
 
+app.put('/api/jobs/:id', async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    const updateData = req.body;
+
+    const updatedJob = await Job.findByIdAndUpdate(jobId, updateData, { new: true });
+
+    if (!updatedJob) {
+      return res.status(404).json({ error: 'Job not found' });
+    }
+
+    res.status(200).json(updatedJob);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 app.get('/api/users/profile', async (req, res) => {
   try {
     const { email } = req.query;
@@ -277,20 +295,22 @@ app.post('/api/company', async (req, res) => {
     res.status(500).json({ message: 'Error registering company', error });
   }
 });
-
 app.post('/api/test', async (req, res) => {
   try {
-    const { jobId, overallTime, maxMarks, questions } = req.body;
-const job = Job.findOne({jobId:jobId});
-const createdBy = Company.findOne({owner:jobId})
+    const { jobId, overallTime, maxMarks, questions, ownerEmail } = req.body;
+console.log(jobId,overallTime,maxMarks,questions,ownerEmail)
+    // Find the company based on ownerEmail
+    const company = await Company.findOne({ owner: ownerEmail });
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
+    }
 
     const newAssessment = new Assessment({
-      job,
-      createdBy,
+      jobId:jobId,
+      createdBy: company._id, 
       overallTime,
       maxMarks,
-      questions,
-      
+      questions
     });
 
     const savedAssessment = await newAssessment.save();
