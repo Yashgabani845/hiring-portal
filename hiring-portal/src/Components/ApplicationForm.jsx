@@ -8,8 +8,19 @@ const ApplicationForm = ({ jobId, applicantId }) => {
     coverLetter: "",
     mobileNumber: "",
     email: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    instituteName: "",
+    type: "",
+    course: "",
+    courseSpecialization: "",
+    graduatingYear: "",
+    courseDuration: "",
+    countryOfResidence: "",
+    cv: "",
     education: [{ degree: "", university: "", cgpa: "" }],
-    experience: [{ company: "", role: "", duration: "" }],
+    experience: { company: "", role: "", duration: "" },
     skills: [""],
   });
 
@@ -26,30 +37,14 @@ const ApplicationForm = ({ jobId, applicantId }) => {
     setFormData({ ...formData, education: newEducation });
   };
 
-  const handleExperienceChange = (index, e) => {
+  const handleExperienceChange = (e) => {
     const { name, value } = e.target;
-    const newExperience = formData.experience.map((exp, expIndex) =>
-      expIndex === index ? { ...exp, [name]: value } : exp
-    );
-    setFormData({ ...formData, experience: newExperience });
+    setFormData({ ...formData, experience: { ...formData.experience, [name]: value } });
   };
 
-  const addEducationField = () => {
-    setFormData({
-      ...formData,
-      education: [...formData.education, { degree: "", university: "", cgpa: "" }],
-    });
-  };
-
-  const addExperienceField = () => {
-    setFormData({
-      ...formData,
-      experience: [...formData.experience, { company: "", role: "", duration: "" }],
-    });
-  };
-
-  const addSkill = () => {
-    setFormData({ ...formData, skills: [...formData.skills, ""] });
+  const handleSkillChange = (e) => {
+    const { value } = e.target;
+    setFormData({ ...formData, skills: [value] });
   };
 
   const handleSubmit = async (e) => {
@@ -73,13 +68,8 @@ const ApplicationForm = ({ jobId, applicantId }) => {
       <h2>Apply for the Job</h2>
       
       <div className="form-group">
-        <label>Resume URL:</label>
-        <input type="text" name="resume" value={formData.resume} onChange={handleInputChange} required />
-      </div>
-      
-      <div className="form-group">
-        <label>Cover Letter:</label>
-        <textarea name="coverLetter" value={formData.coverLetter} onChange={handleInputChange} />
+        <label>Email:</label>
+        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
       </div>
 
       <div className="form-group">
@@ -88,59 +78,70 @@ const ApplicationForm = ({ jobId, applicantId }) => {
       </div>
 
       <div className="form-group">
-        <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
+        <label>First Name:</label>
+        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
       </div>
 
-      <div className="education-section">
-        <h3>Education</h3>
-        {formData.education.map((edu, index) => (
-          <div key={index} className="form-group">
-            <label>Degree:</label>
-            <input type="text" name="degree" value={edu.degree} onChange={(e) => handleEducationChange(index, e)} required />
-
-            <label>University:</label>
-            <input type="text" name="university" value={edu.university} onChange={(e) => handleEducationChange(index, e)} required />
-
-            <label>CGPA:</label>
-            <input type="number" name="cgpa" value={edu.cgpa} onChange={(e) => handleEducationChange(index, e)} required />
-          </div>
-        ))}
-        <button type="button" onClick={addEducationField}>Add More Education</button>
+      <div className="form-group">
+        <label>Last Name (if applicable):</label>
+        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} />
       </div>
 
-      <div className="experience-section">
-        <h3>Experience</h3>
-        {formData.experience.map((exp, index) => (
-          <div key={index} className="form-group">
-            <label>Company:</label>
-            <input type="text" name="company" value={exp.company} onChange={(e) => handleExperienceChange(index, e)} required />
-
-            <label>Role:</label>
-            <input type="text" name="role" value={exp.role} onChange={(e) => handleExperienceChange(index, e)} required />
-
-            <label>Duration:</label>
-            <input type="text" name="duration" value={exp.duration} onChange={(e) => handleExperienceChange(index, e)} required />
-          </div>
-        ))}
-        <button type="button" onClick={addExperienceField}>Add More Experience</button>
+      <div className="form-group">
+        <label>Gender:</label>
+        <select name="gender" value={formData.gender} onChange={handleInputChange} required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
       </div>
 
-      <div className="skills-section">
-        <h3>Skills</h3>
-        {formData.skills.map((skill, index) => (
-          <div key={index} className="form-group">
-            <label>Skill:</label>
-            <input type="text" value={skill} onChange={(e) => {
-              const newSkills = formData.skills.map((sk, skIndex) => skIndex === index ? e.target.value : sk);
-              setFormData({ ...formData, skills: newSkills });
-            }} />
-          </div>
-        ))}
-        <button type="button" onClick={addSkill}>Add More Skills</button>
+      <div className="form-group">
+        <label>Institute Name:</label>
+        <input type="text" name="instituteName" value={formData.instituteName} onChange={handleInputChange} required />
       </div>
 
-      <button type="submit" className="submit-button">Submit Application</button>
+      <div className="form-group">
+        <label>Type:</label>
+        <input type="text" name="type" value={formData.type} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Course:</label>
+        <input type="text" name="course" value={formData.course} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Course Specialization:</label>
+        <input type="text" name="courseSpecialization" value={formData.courseSpecialization} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Graduating Year:</label>
+        <input type="number" name="graduatingYear" value={formData.graduatingYear} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Course Duration:</label>
+        <input type="text" name="courseDuration" value={formData.courseDuration} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Country of Residence:</label>
+        <input type="text" name="countryOfResidence" value={formData.countryOfResidence} onChange={handleInputChange} required />
+      </div>
+
+      <div className="form-group">
+        <label>Resume URL:</label>
+        <input type="text" name="resume" value={formData.resume} onChange={handleInputChange} required />
+      </div>
+      
+      <div className="form-group">
+        <label>CV URL (optional):</label>
+        <input type="text" name="cv" value={formData.cv} onChange={handleInputChange} />
+      </div>
+      <button type="submit" className="submit-btn">Submit Application</button>
     </form>
   );
 };

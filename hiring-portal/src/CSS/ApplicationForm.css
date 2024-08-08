@@ -1,17 +1,18 @@
 .application-form {
-    width: 100%;
-    max-width: 600px;
+    width: 80%;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
   }
   
-  .application-form h2, .application-form h3 {
+  .application-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
     color: #333;
-    margin-bottom: 15px;
   }
   
   .form-group {
@@ -22,32 +23,56 @@
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #555;
   }
   
-  .form-group input, .form-group textarea {
+  .form-group input,
+  .form-group textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
   }
   
-  .skills-section, .education-section, .experience-section {
+  .form-group input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  .form-group input[type="number"]::-webkit-inner-spin-button,
+  .form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .submit-btn {
+    display: inline-block;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #009688;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .submit-btn:hover {
+    opacity: 0.9;
+  }
+  
+  .education-section,
+  .experience-section,
+  .skills-section {
     margin-bottom: 20px;
   }
   
-
-  
-  .submit-button {
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  button[type="button"] {
-    margin-top: 10px;
-    background-color: #28a745;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #218838;
+  .education-section h3,
+  .experience-section h3,
+  .skills-section h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #444;
   }
   
