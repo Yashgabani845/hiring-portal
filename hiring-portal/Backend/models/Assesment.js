@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
 
-// Define the entire structure within the assessmentSchema
 const assessmentSchema = new mongoose.Schema({
-  jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' }, // Optional
+  jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' }, 
   questions: [{
-    type: { type: String, enum: ['coding'] }, // Can add more types if needed
+    type: { type: String, enum: ['coding'] }, 
     questionText: { type: String },
-    options: [String], // For non-coding questions, if any
-    correctAnswer: String, // For non-coding questions, if any
-
-    // Coding-specific fields
+    options: [String], 
+    correctAnswer: String, 
     codingQuestion: {
       title: { type: String },
       problemDescription: { type: String },
@@ -26,9 +23,9 @@ const assessmentSchema = new mongoose.Schema({
       codingSolution: String
     }
   }],
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' }, // Optional
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' }, 
   results: [{
-    applicantId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Optional
+    applicantId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     score: Number,
     answers: [String]
   }],

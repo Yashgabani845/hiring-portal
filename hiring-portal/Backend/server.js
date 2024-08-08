@@ -164,9 +164,15 @@ app.post('/api/jobs', async (req, res) => {
       res.status(201).send(job);
   } catch (error) {
       res.status(400).send({ error: error.message });
-  }
+  } 
 });
-
+app.get('/api/job',async (req,res)=>{
+ try{ const jobs= await Job.find();
+  res.status(200).json(jobs);
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
+})
 app.get('/api/jobs', async (req, res) => {
   try {
       const email = req.query.email; 
@@ -199,6 +205,18 @@ app.get('/api/jobs/:id', async (req, res) => {
       res.status(200).json(job);
   } catch (error) {
       res.status(500).json({ error: error.message });
+  }
+});
+app.get('/api/companies/:id', async (req, res) => {
+  try {
+      const company = await Company.findById(req.params.id);
+      if (!company) {
+          return res.status(404).json({ error: 'Company not found' });
+      }
+      res.json(company);
+  } catch (error) {
+      console.error('Error fetching company:', error);
+      res.status(500).json({ error: 'Server error' });
   }
 });
 

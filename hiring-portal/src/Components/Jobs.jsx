@@ -4,7 +4,6 @@ import '../CSS/newJobCard.css';
 
 const Jobs = ({ job }) => {
     const navigate = useNavigate();
-
     const handleEditClick = () => {
         navigate(`/managejobs/${job._id}`);
     };
