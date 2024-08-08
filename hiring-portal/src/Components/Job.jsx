@@ -1,124 +1,16 @@
-
 import React, { useEffect, useState } from "react";
-
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import axios from 'axios';
-
-import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase } from "react-icons/fa";
-import "../CSS/job.css"
-const JobPage = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f2f2f2;
-`;
-
-const JobContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    gap: 20px;
-`;
-
-const RecommendedJobs = styled.div`
-    width: 48%;
-`;
-
-const CurrentJob = styled.div`
-    width: 48%;
-`;
-
-const JobCard = styled.div`
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    
-    &:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transform: translateY(-5px);
-    }
-`;
-
-const JobTitle = styled.h1`
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
-`;
-
-const JobHeading = styled.h2`
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: #333;
-`;
-
-const JobSubheading = styled.h3`
-    font-size: 1.4em;
-    margin-top: 20px;
-    color: #333;
-`;
-
-const JobDetailsList = styled.ul`
-    list-style-type: disc;
-    padding-left: 20px;
-    color: #555;
-`;
-
-const JobDetailItem = styled.li`
-    margin-bottom: 8px;
-`;
-
-const JobDetail = styled.p`
-    margin-bottom: 15px;
-    color: #555;
-`;
-
-const JobCompany = styled.p`
-    font-size: 1.3em;
-    color: #555;
-    margin-bottom: 10px;
-`;
-
-const JobLocation = styled.p`
-    font-size: 1.3em;
-    color: #555;
-    margin-bottom: 10px;
-`;
-
-const JobSalary = styled.p`
-    font-size: 1.3em;
-    color: #555;
-    margin-bottom: 10px;
-`;
-
-const ApplyButton = styled.button`
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 1em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    
-    &:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-    }
-`;
+import { useParams,useNavigate } from "react-router-dom";
+import axios from "axios";
+import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase, FaUsers, FaEye, FaCalendarAlt } from "react-icons/fa";
+import "../CSS/job.css"; 
+import logo from "../logo.png"
+import Navbar from "./Navbar";
 
 const Job = () => {
+    const navigate=useNavigate();
     const { id } = useParams();
     const [jobDetails, setJobDetails] = useState(null);
+    const [recommendedJobs, setRecommendedJobs] = useState([]);
 
     useEffect(() => {
         const fetchJobDetails = async () => {
@@ -130,54 +22,96 @@ const Job = () => {
             }
         };
 
+        const fetchRecommendedJobs = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/job`);
+                setRecommendedJobs(response.data);
+            } catch (error) {
+                console.error("Error fetching recommended jobs:", error);
+            }
+        };
+
         fetchJobDetails();
+        fetchRecommendedJobs();
     }, [id]);
+    const calculateTimeLeft = (deadline) => {
+        const now = new Date();
+        const deadlineDate = new Date(deadline);
+        const timeLeft = deadlineDate - now;
+
+        if (timeLeft <= 0) return "00:00:00";
+
+        const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeLeft / 1000) % 60);
+
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
 
     if (!jobDetails) return <p>Loading...</p>;
 
     return (
-        <JobPage>
-            <JobContainer>
-                <RecommendedJobs>
-                    {/* Recommended Jobs Section */}
-                </RecommendedJobs>
-                <CurrentJob>
-                    <JobTitle>{jobDetails.title}</JobTitle>
-                    <JobCompany>{jobDetails.postedBy}</JobCompany>
-                    <JobLocation><FaMapMarkerAlt /> {jobDetails.workLocation}</JobLocation>
-                    <JobSalary><FaDollarSign /> {jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</JobSalary>
-                    <ApplyButton>Apply Now</ApplyButton>
-                    <div>
-                        <JobHeading>Job Details</JobHeading>
-                        <JobDetail><FaDollarSign /> Pay: {jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</JobDetail>
-                        <JobDetail><FaBriefcase /> Job Type: {jobDetails.employmentType}</JobDetail>
-                        <JobDetail><FaRegClock /> Shift and Schedule: {jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</JobDetail>
-                        <JobDetail><FaMapMarkerAlt /> Location: {jobDetails.workLocation}</JobDetail>
-                        <JobSubheading>Responsibilities</JobSubheading>
-                        <JobDetailsList>
-                            {jobDetails.jobResponsibilities.map((resp, index) => (
-                                <JobDetailItem key={index}>{resp}</JobDetailItem>
-                            ))}
-                        </JobDetailsList>
-                        <JobSubheading>Requirements</JobSubheading>
-                        <JobDetailsList>
-                            {jobDetails.requirements.map((req, index) => (
-                                <JobDetailItem key={index}>{req}</JobDetailItem>
-                            ))}
-                        </JobDetailsList>
-                        
-                        <JobSubheading>Benefits</JobSubheading>
-                        <JobDetailsList>
-                            {jobDetails.benefits.map((benefit, index) => (
-                                <JobDetailItem key={index}>{benefit}</JobDetailItem>
-                            ))}
-                        </JobDetailsList>
-                        <JobSubheading>Full Job Description</JobSubheading>
-                        <JobDetail>{jobDetails.description}</JobDetail>
+        <div className="job-page">
+            <div className="job-container">
+                <div className="recommendation-section">
+                    <h2>Recommended Jobs</h2>
+                    <div className="recommended-job-grid">
+                        {recommendedJobs.map((job, index) => (
+                            <div key={index} className="recommended-job-card">
+                                <img src={logo} alt={`${job.title} logo`} className="job-logo" />
+                                <div>
+                                    <h3>{job.title}</h3>
+                                    <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
+                                    <button 
+                                        className="view-button"  
+                                        onClick={() => navigate(`/job/${job._id}`)}  // Navigate to job details page
+                                    >
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                </CurrentJob>
-            </JobContainer>
-        </JobPage>
+                </div>
+
+                <div className="job-section">
+                    <h1 className="job-title">{jobDetails.title}</h1>
+                    <div className="job-detail-section">
+                        <h2><FaBriefcase /> Job Type</h2>
+                        <p>{jobDetails.employmentType}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2><FaUsers /> Experience</h2>
+                        <p>{jobDetails.experienceLevel}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2><FaMapMarkerAlt /> Job Location</h2>
+                        <p>{jobDetails.workLocation}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2><FaDollarSign /> Salary</h2>
+                        <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2><FaRegClock /> Work Details</h2>
+                        <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2><FaCalendarAlt /> Application Deadline</h2>
+                        <p>{jobDetails.applicationDeadline}</p>
+                    </div>
+                    <div className="job-detail-section">
+                        <h2>Job Description</h2>
+                        <p>{jobDetails.description}</p>
+                    </div>
+                    <div className="job-impressions-section">
+                        <div><FaEye /> Impressions: {jobDetails.impressions}</div>
+                        <div><FaUsers /> Applied: {jobDetails.applied}</div>
+                    </div>
+                    <button className="apply-button">Apply Now</button>
+                </div>
+            </div>
+        </div>
     );
 };
 
