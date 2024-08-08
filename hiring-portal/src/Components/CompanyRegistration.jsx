@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../CSS/company.css';
 import Select from 'react-select';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const CompanyRegistration = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -39,6 +40,7 @@ const CompanyRegistration = () => {
       });
   
       console.log('Response:', response.data);
+      navigate("/owner")
     } catch (error) {
       console.error('Error:', error);
     }

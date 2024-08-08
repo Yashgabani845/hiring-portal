@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import '../CSS/jobpostform.css';
-
+import { useNavigate } from 'react-router-dom';
 const JobPostForm = () => {
+    const navigate = useNavigate()
     const [jobDetails, setJobDetails] = useState({
         title: '',
         description: '',
         requirements: [],
-        postedBy: '60d2b2cbb57f1e3c4a0fbc8e', // Example company ID, replace with actual ID
+        postedBy: '',
         type: 'native',
         salaryRange: { min: '', max: '' },
         workLocation: '',
@@ -50,6 +51,7 @@ const JobPostForm = () => {
             });
     
             console.log('Job posted successfully:', response.data);
+            navigate("/owner")
         } catch (error) {
             console.error('Failed to post job:', error.response.data);
         }
