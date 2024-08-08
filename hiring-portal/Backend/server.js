@@ -410,6 +410,25 @@ app.post('/api/applications', async (req, res) => {
     res.status(500).json({ message: "Failed to submit application.", error });
   }
 });
+app.get('/api/applications/:jobId', async (req, res) => {
+  const { jobId } = req.params;
+
+  try {
+      // Fetch applications for the specific job and populate applicant details
+      const applications = await Application.find({ jobId }).populate('applicantId', 'name email profileDetails');
+
+      if (!applications || applications.length === 0) {
+          return res.status(404).json({ message: 'No applications found for this job' });
+      }
+
+      res.json(applications);
+  } catch (error) {
+      console.error('Error fetching applications:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 const io = require('socket.io')(5001, {
   cors: {
     origin: "http://localhost:3000",
