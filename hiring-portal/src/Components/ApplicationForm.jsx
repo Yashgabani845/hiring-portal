@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../CSS/ApplicationForm.css";
+import { useLocation } from "react-router-dom";
+const ApplicationForm = () => {
 
-const ApplicationForm = ({ jobId, applicantId }) => {
+  const location = useLocation();
+  const { jobId, emailcurrent } = location.state || {};
+  console.log(emailcurrent)
   const [formData, setFormData] = useState({
     resume: "",
     coverLetter: "",
@@ -29,38 +33,35 @@ const ApplicationForm = ({ jobId, applicantId }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleEducationChange = (index, e) => {
-    const { name, value } = e.target;
-    const newEducation = formData.education.map((edu, eduIndex) =>
-      eduIndex === index ? { ...edu, [name]: value } : edu
-    );
-    setFormData({ ...formData, education: newEducation });
-  };
-
-  const handleExperienceChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, experience: { ...formData.experience, [name]: value } });
-  };
-
-  const handleSkillChange = (e) => {
-    const { value } = e.target;
-    setFormData({ ...formData, skills: [value] });
-  };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const applicationData = {
       ...formData,
       jobId,
-      applicantId,
+      emailcurrent,
     };
     try {
-      const response = await axios.post("http://localhost:5000/api/applications", applicationData);
-      alert("Application submitted successfully!");
+      const response = await fetch("http://localhost:5000/api/applications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(applicationData),
+      });
+    
+      if (response.ok) {
+        alert("Application submitted successfully!");
+      } else {
+        const errorData = await response.json();
+        console.error("Error submitting application:", errorData);
+        alert("Failed to submit application.");
+      }
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Failed to submit application.");
     }
+    
   };
 
   return (

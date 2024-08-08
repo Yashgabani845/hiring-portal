@@ -8,6 +8,8 @@ const Job = require('./models/Job');
 const User = require('./models/User'); 
 const Company = require('./models/Company');
 const Assessment = require('./models/Assesment')
+const Application = require('./models/Application');
+
 const http = require('http');
 const socketIo = require('socket.io');
 require('dotenv').config();
@@ -341,6 +343,73 @@ console.log(jobId,overallTime,maxMarks,questions,ownerEmail)
 });
 
 
+app.post('/api/applications', async (req, res) => {
+  console.log("got request")
+  try {
+    const {
+      resume,
+      cv,
+      mobileNumber,
+      email,
+      firstName,
+      lastName,
+      gender,
+      instituteName,
+      type,
+      course,
+      courseSpecialization,
+      graduatingYear,
+      courseDuration,
+      countryOfResidence,
+      education,
+      experience,
+      skills,
+      jobId,
+      emailcurrent,
+    } = req.body;
+
+    if (!resume || !mobileNumber || !email || !firstName || !gender || !instituteName || !type || !course || !graduatingYear || !courseDuration || !countryOfResidence) {
+      return res.status(400).json({ message: "Please fill all required fields." });
+    }
+    console.log(emailcurrent)
+    const applicant = await User.findOne({ email: emailcurrent });
+
+    if (!applicant) {
+      return res.status(404).json({ message: "Applicant not found." });
+    }
+
+    const applicantId = applicant._id;
+
+    const newApplication = new Application({
+      resume,
+      cv,
+      mobileNumber,
+      email,
+      firstName,
+      lastName,
+      gender,
+      instituteName,
+      type,
+      course,
+      courseSpecialization,
+      graduatingYear,
+      courseDuration,
+      countryOfResidence,
+      education,
+      experience,
+      skills,
+      jobId,
+      applicantId,
+    });
+
+    const savedApplication = await newApplication.save();
+
+    res.status(201).json({ message: "Application submitted successfully!", application: savedApplication });
+  } catch (error) {
+    console.error("Error submitting application:", error);
+    res.status(500).json({ message: "Failed to submit application.", error });
+  }
+});
 const io = require('socket.io')(5001, {
   cors: {
     origin: "http://localhost:3000",

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase, FaUsers, FaEye, FaCalendarAlt } from "react-icons/fa";
-import "../CSS/job.css"; 
+import "../CSS/job.css";
 import logo from "../logo.png"
-import Navbar from "./Navbar";
 
 const Job = () => {
-    const navigate=useNavigate();
+    const userEmail = localStorage.getItem('userEmail');
+
+    const navigate = useNavigate();
     const { id } = useParams();
     const [jobDetails, setJobDetails] = useState(null);
     const [recommendedJobs, setRecommendedJobs] = useState([]);
@@ -62,9 +63,9 @@ const Job = () => {
                                 <div>
                                     <h3>{job.title}</h3>
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
-                                    <button 
-                                        className="view-button"  
-                                        onClick={() => navigate(`/job/${job._id}`)} 
+                                    <button
+                                        className="view-button"
+                                        onClick={() => navigate(`/job/${job._id}`)}
                                     >
                                         View
                                     </button>
@@ -108,9 +109,18 @@ const Job = () => {
                         <div><FaEye /> Impressions: {jobDetails.impressions}</div>
                         <div><FaUsers /> Applied: {jobDetails.applied}</div>
                     </div>
-                    <button className="apply-button" onClick={()=>{
-                        navigate("/application")
-                    }} >Apply Now</button>
+                    <button
+  className="apply-button"
+  onClick={() => {
+    navigate("/application", {
+      state: { jobId: jobDetails, emailcurrent: userEmail },
+    });
+  }}
+>
+  Apply Now
+</button>
+
+
                 </div>
             </div>
         </div>
