@@ -344,10 +344,12 @@ app.post('/api/test', async (req, res) => {
     res.status(500).json({ message: 'Failed to create assessment', error });
   }
 });
+const nodemailer = require('nodemailer');
 
-
+// Your existing code...
 app.post('/api/applications', async (req, res) => {
-  console.log("got request")
+  console.log("Got request");
+
   try {
     const {
       resume,
@@ -374,7 +376,8 @@ app.post('/api/applications', async (req, res) => {
     if (!resume || !mobileNumber || !email || !firstName || !gender || !instituteName || !type || !course || !graduatingYear || !courseDuration || !countryOfResidence) {
       return res.status(400).json({ message: "Please fill all required fields." });
     }
-    console.log(emailcurrent)
+    
+    console.log(emailcurrent);
     const applicant = await User.findOne({ email: emailcurrent });
 
     if (!applicant) {
@@ -407,12 +410,41 @@ app.post('/api/applications', async (req, res) => {
 
     const savedApplication = await newApplication.save();
 
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      auth: {
+          user: 'dejah.marquardt@ethereal.email',
+          pass: 'YudW3MucWBgUmqp3Yn'
+      }
+  });
+
+    const job = await Job.findById(jobId);
+    const jobTitle = job.title; 
+
+    const mailOptions = {
+      from: 'gabaniyash846@gmail.com', 
+      to: emailcurrent, 
+      subject: 'Job Application Confirmation',
+      text: `Dear ${firstName} ${lastName},\n\nYour application for the job "${jobTitle}" has been successfully submitted.\n\nThank you for applying!\n\nBest regards,\nYour Company Name`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).json({ message: "Failed to send confirmation email.", error });
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
     res.status(201).json({ message: "Application submitted successfully!", application: savedApplication });
   } catch (error) {
     console.error("Error submitting application:", error);
     res.status(500).json({ message: "Failed to submit application.", error });
   }
 });
+
 app.get('/api/applications/:jobId', async (req, res) => {
   const { jobId } = req.params;
 
