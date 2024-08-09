@@ -12,6 +12,7 @@ const Application = require('./models/Application');
 
 const http = require('http');
 const socketIo = require('socket.io');
+const Assesment = require('./models/Assesment');
 require('dotenv').config();
 
 const app = express();
@@ -317,13 +318,15 @@ app.post('/api/company', async (req, res) => {
 });
 app.post('/api/test', async (req, res) => {
   try {
-    const { jobId, overallTime, maxMarks, questions, ownerEmail } = req.body;
-console.log(jobId,overallTime,maxMarks,questions,ownerEmail)
-    // Find the company based on ownerEmail
-    const company = await Company.findOne({ owner: ownerEmail });
+    
+    const { jobId, overallTime, maxMarks, questions, owner } = req.body;
+    console.log(owner)
+    const company = await Company.findOne({ owner: owner });
+    console.log(company)
     if (!company) {
       return res.status(404).json({ error: 'Company not found' });
     }
+    console.log(jobId,overallTime,maxMarks,questions,owner)
 
     const newAssessment = new Assessment({
       jobId:jobId,
@@ -334,7 +337,7 @@ console.log(jobId,overallTime,maxMarks,questions,ownerEmail)
     });
 
     const savedAssessment = await newAssessment.save();
-
+    console.log("assesment saved")
     res.status(201).json(savedAssessment);
   } catch (error) {
     console.error('Error creating assessment:', error);
@@ -414,7 +417,6 @@ app.get('/api/applications/:jobId', async (req, res) => {
   const { jobId } = req.params;
 
   try {
-      // Fetch applications for the specific job and populate applicant details
       const applications = await Application.find({ jobId }).populate('applicantId', 'name email profileDetails');
 
       if (!applications || applications.length === 0) {
@@ -425,6 +427,35 @@ app.get('/api/applications/:jobId', async (req, res) => {
   } catch (error) {
       console.error('Error fetching applications:', error);
       res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.get('/api/assessments/:jobId',async (req,res)=>{
+  const { jobId } = req.params;
+  try {
+    const assessments = await Assessment.find({ jobId });
+
+    if (assessments.length === 0) {
+        return res.status(404).json({ message: 'No assessments found for this job' });
+    }
+
+    res.status(200).json(assessments);
+} catch (error) {
+    console.error('Error fetching assessments:', error);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
+}
+
+})
+app.get('/api/assessmen/:id', async (req, res) => {
+  try {
+      const assessment = await Assessment.findById(req.params.id);
+      console.log(assessment)
+      if (!assessment) {
+          return res.status(404).json({ message: 'Assessment not found' });
+      }
+      res.json(assessment);
+  } catch (error) {
+      res.status(500).json({ message: 'Server Error' });
   }
 });
 
@@ -480,8 +511,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-
-
-
-

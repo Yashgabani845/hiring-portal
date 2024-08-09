@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../CSS/coding.css';
 import Editor from "@monaco-editor/react";
 import Button from '@mui/material/Button';
@@ -9,6 +10,27 @@ const Coding = () => {
     const [code, setCode] = useState('');
     const [output, setOutput] = useState('');
     const [testResult, setTestResult] = useState('');
+    const [assessment, setAssessment] = useState(null); 
+    useEffect(() => {
+        const fetchAssessment = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/assessmen/66b6734a83c639090792d0c2');
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                setAssessment(data);
+            } catch (error) {
+                console.error('Error fetching assessment:', error);
+                setAssessment(null);  // Optionally handle error state
+            }
+        };
+
+        fetchAssessment();
+    }, []);
+    
 
     const runCode = () => {
         const passed = Math.random() > 0.5;
@@ -20,82 +42,89 @@ const Coding = () => {
         alert('Code submitted!');
     };
 
-
     return (
         <div className="coding-interface">
-            <div className="code-desc">
-                <h2>Problem Title</h2>
-                <p><strong>Description:</strong> Sort the names based on heights in descending order.</p>
-                <p><strong>Constraints:</strong></p>
-                <ul>
-                    <li>n == names.length == heights.length</li>
-                    <li>1 = 10<sup>5</sup></li>
-                    <li>names[i] consists of lower and upper case English letters</li>
-                    <li>All the values of heights are distinct</li>
-                </ul>
-                <p><strong>Input Format:</strong> Two arrays, names and heights.</p>
-                <p><strong>Output Format:</strong> Sorted array of names in descending order of heights.</p>
-                <p><strong>Example Test Case 1:</strong> Input: names = ["Mary","John","Emma"], heights = [180,165,170]. Output: ["Mary","Emma","John"]</p>
-                <p><strong>Example Test Case 2:</strong> Input: names = ["Alice","Bob","Bob"], heights = [155,185,150]. Output: ["Bob","Alice","Bob"]</p>
-            </div>
-            <div className="code-editor">
-                <div className="editor-header">
-                    <label>
-                    Language:
-                        <select value={language} onChange={(e) => setLanguage(e.target.value)}>
-                            <option value="javascript">JavaScript</option>
-                            <option value="python">Python</option>
-                            <option value="java">Java</option>
-                            <option value="cpp">C/C++</option>
-                            <option value="csharp">C#</option>
-                        </select>
-                    </label>
-                </div>
-                <div className="monaco-editor">
-                    <Editor
-                        height="400px"
-                        language={language}
-                        theme="vs-light"
-                        value={code}
-                        onChange={(newValue) => setCode(newValue)}
-                        options={{
-                            inlineSuggest: true,
-                            fontSize: "16px",
-                            formatOnType: true,
-                            autoClosingBrackets: true,
-                            minimap: {
-                                enabled: false
-                            }
-                        }}
-                    />
-                </div>
-                <div className="editor-actions">
+            {assessment ? (
                 <>
-      <Button
-        variant="outlined"
-        onClick={runCode}
-        style={{ marginRight: '10px' }}
-        startIcon={<PlayArrowIcon />}
-      >
-        Run
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={submitCode}
-      >
-        Submit
-      </Button>
-    </>
-
-                </div>
-                <div className="testcases">
-                    <h3>Output</h3>
-                    <pre>{output}</pre>
-                    <h3>Test Result</h3>
-                    <pre>{testResult}</pre>
-                </div>
-            </div>
+                    <div className="code-desc">
+                        <h2>{assessment.questions[0].codingQuestion.title}</h2>
+                        <p><strong>Description:</strong> {assessment.questions[0].codingQuestion.problemDescription}</p>
+                        <p><strong>Constraints:</strong></p>
+                        <ul>
+                            {assessment.questions[0].codingQuestion.constraints.map((constraint, index) => (
+                                <li key={index}>{constraint}</li>
+                            ))}
+                        </ul>
+                        <p><strong>Examples:</strong></p>
+                        {assessment.questions[0].codingQuestion.examples.map((example, index) => (
+                            <div key={index}>
+                                <p><strong>Input:</strong> {example.input}</p>
+                                <p><strong>Output:</strong> {example.output}</p>
+                                {example.explanation && <p><strong>Explanation:</strong> {example.explanation}</p>}
+                            </div>
+                        ))}
+                    </div>
+                    <div className="code-editor">
+                        <div className="editor-header">
+                            <label>
+                                Language:
+                                <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                    <option value="cpp">C/C++</option>
+                                    <option value="csharp">C#</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div className="monaco-editor">
+                            <Editor
+                                height="400px"
+                                language={language}
+                                theme="vs-light"
+                                value={code}
+                                onChange={(newValue) => setCode(newValue)}
+                                options={{
+                                    inlineSuggest: true,
+                                    fontSize: "16px",
+                                    formatOnType: true,
+                                    autoClosingBrackets: true,
+                                    minimap: {
+                                        enabled: false
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className="editor-actions">
+                            <>
+                                <Button
+                                    variant="outlined"
+                                    onClick={runCode}
+                                    style={{ marginRight: '10px' }}
+                                    startIcon={<PlayArrowIcon />}
+                                >
+                                    Run
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={submitCode}
+                                >
+                                    Submit
+                                </Button>
+                            </>
+                        </div>
+                        <div className="testcases">
+                            <h3>Output</h3>
+                            <pre>{output}</pre>
+                            <h3>Test Result</h3>
+                            <pre>{testResult}</pre>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <p>Loading assessment...</p>
+            )}
         </div>
     );
 };
