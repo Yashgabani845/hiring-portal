@@ -112,11 +112,8 @@ app.post('/api/jobs', async (req, res) => {
           department,
           employmentType,
           remote,
-          benefits,
           companyCulture,
           applicationDeadline,
-          experienceLevel,
-          educationLevel,
           industry,
           keywords,
           contactEmail,
@@ -150,7 +147,6 @@ app.post('/api/jobs', async (req, res) => {
           department,
           employmentType,
           remote,
-          benefits,
           companyCulture,
           applicationDeadline: new Date(applicationDeadline), 
           industry,
@@ -382,7 +378,6 @@ app.post('/api/applications', async (req, res) => {
 
     const applicantId = applicant._id;
 
-    // Create new application
     const newApplication = new Application({
       resume,
       cv,

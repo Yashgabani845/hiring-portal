@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import '../CSS/jobpostform.css';
 import { useNavigate } from 'react-router-dom';
+import options from './skills.json'; 
+import '../CSS/jobpostform.css';
+
 const JobPostForm = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [jobDetails, setJobDetails] = useState({
         title: '',
         description: '',
@@ -17,11 +19,8 @@ const JobPostForm = () => {
         department: '',
         employmentType: 'full-time',
         remote: false,
-        benefits: [],
         companyCulture: '',
         applicationDeadline: '',
-        experienceLevel: '',
-        educationLevel: '',
         industry: '',
         keywords: [],
         contactEmail: '',
@@ -41,35 +40,21 @@ const JobPostForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const ownerEmail = localStorage.getItem('userEmail');
-    
+
         try {
             const response = await axios.post('http://localhost:5000/api/jobs', {
                 ...jobDetails,
                 ownerEmail 
             });
-    
+
             console.log('Job posted successfully:', response.data);
-            navigate("/owner")
+            navigate("/owner");
         } catch (error) {
             console.error('Failed to post job:', error.response.data);
         }
     };
-    
-
-    const skillsOptions = [
-        { value: 'JavaScript', label: 'JavaScript' },
-        { value: 'React', label: 'React' },
-        { value: 'Node.js', label: 'Node.js' },
-        { value: 'CSS', label: 'CSS' },
-    ];
-
-    const benefitsOptions = [
-        { value: 'Health Insurance', label: 'Health Insurance' },
-        { value: 'Provident Fund', label: 'Provident Fund' },
-        { value: 'Food Provided', label: 'Food Provided' },
-    ];
 
     return (
         <div className="job-post-form-container">
@@ -99,7 +84,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="requirements"
-                        options={skillsOptions}
+                        options={options} 
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={handleSelectChange}
@@ -177,17 +162,7 @@ const JobPostForm = () => {
                         onChange={(e) => setJobDetails({ ...jobDetails, remote: e.target.checked })}
                     />
                 </label>
-                <label>
-                    Benefits:
-                    <Select
-                        isMulti
-                        name="benefits"
-                        options={benefitsOptions}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                        onChange={handleSelectChange}
-                    />
-                </label>
+               
                 <label>
                     Company Culture:
                     <input
@@ -207,24 +182,6 @@ const JobPostForm = () => {
                     />
                 </label>
                 <label>
-                    Experience Level:
-                    <input
-                        type="text"
-                        name="experienceLevel"
-                        value={jobDetails.experienceLevel}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Education Level:
-                    <input
-                        type="text"
-                        name="educationLevel"
-                        value={jobDetails.educationLevel}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
                     Industry:
                     <input
                         type="text"
@@ -238,7 +195,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="keywords"
-                        options={skillsOptions}
+                        options={options}s
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={handleSelectChange}
@@ -268,7 +225,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="jobResponsibilities"
-                        options={skillsOptions}
+                        options={options} 
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={handleSelectChange}
@@ -279,7 +236,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="languagesRequired"
-                        options={skillsOptions}
+                        options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={handleSelectChange}

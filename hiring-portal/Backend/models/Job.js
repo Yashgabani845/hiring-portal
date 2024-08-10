@@ -18,7 +18,6 @@
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     remote: { type: Boolean, default: false },
-    benefits: [String], 
     companyCulture: { type: String },
     applicationDeadline: { type: Date }, 
     experienceLevel: { type: String, enum: ['internship', 'entry-level', 'mid-level', 'senior-level'] }, 
