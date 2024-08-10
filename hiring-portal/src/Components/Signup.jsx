@@ -2,6 +2,8 @@
   import Select from 'react-select';
   import "../CSS/signup.css";
   import axios from 'axios';
+  import skillsOptions from './skills.json'; 
+  import jobOptions from './jobs.json'; 
 
   import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +26,6 @@
       experience: "",
       resume: null,
       address: "",
-      languages: [],
       degree: "",
       university: "",
       cgpa: "",
@@ -46,14 +47,7 @@
           pastJobs: [],
           pastJobDetails: ""
         });
-      } else if (name === "languages") {
-        const selectedLanguages = Array.from(options)
-          .filter(option => option.selected)
-          .map(option => option.value);
-        setFormData({
-          ...formData,
-          languages: selectedLanguages
-        });
+      
       } else {
         setFormData({
           ...formData,
@@ -63,9 +57,12 @@
     };
 
     const handleSkillsChange = (selectedOptions) => {
-      const skills = selectedOptions ? selectedOptions.map(option => option.value) : [];
-      setFormData({ ...formData, skills });
+      setFormData({
+        ...formData,
+        skills: selectedOptions.map(option => option.value)
+      });
     };
+    
 
     const nextStep = () => {
       setStep(step + 1);
@@ -94,14 +91,7 @@
     };
   
   
-
-    const skillsOptions = [
-      { value: 'JavaScript', label: 'JavaScript' },
-      { value: 'React', label: 'React' },
-      { value: 'Node.js', label: 'Node.js' },
-      { value: 'CSS', label: 'CSS' },
-      { value: 'HTML', label: 'HTML' }
-    ];
+ 
 
     return (
       <div className="signupform">
@@ -157,52 +147,55 @@
             </div>
           )}
           {step === 3 && (
-            <div>
-              <h2>Salary Range and Job Type</h2>
-              <label>
-                Expected Salary Range:
-                <input
-                  type="text"
-                  name="expectedSalary"
-                  className="signupinput"
-                  value={formData.expectedSalary}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <label>
-                Job Type:
-                <select
-                  name="jobType"
-                  className="signupinput"
-                  value={formData.jobType}
-                  onChange={handleChange}
-                >
-                  <option value="">Select Job Type</option>
-                  <option value="part-time">Part-time</option>
-                  <option value="full-time">Full-time</option>
-                </select>
-              </label>
-              <br />
-              <label>
-                Job Title:
-                <input
-                  type="text"
-                  name="jobTitle"
-                  className="signupinput"
-                  value={formData.jobTitle}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <button type="button" onClick={prevStep}>
-                Previous
-              </button>
-              <button type="button" onClick={nextStep}>
-                Next
-              </button>
-            </div>
-          )}
+  <div>
+    <h2>Salary Range and Job Type</h2>
+    <label>
+      Expected Salary   (in  &#8377;):
+      <input
+        type="text"
+        name="expectedSalary"
+        className="signupinput"
+        value={formData.expectedSalary}
+        onChange={handleChange}
+      />
+    </label>
+    <br />
+    <label>
+      Job Type:
+      <select
+        name="jobType"
+        className="signupinput"
+        value={formData.jobType}
+        onChange={handleChange}
+      >
+        <option value="">Select Job Type</option>
+        <option value="part-time">Part-time</option>
+        <option value="full-time">Full-time</option>
+      </select>
+    </label>
+    <br />
+    <label>
+      Job Title:
+      <Select
+        name="jobTitle"
+        options={jobOptions}
+        className="basic-single"
+        classNamePrefix="select"
+        onChange={(selectedOption) =>
+          setFormData({ ...formData, jobTitle: selectedOption.value })
+        }
+        value={jobOptions.find(option => option.value === formData.jobTitle)}
+      />
+    </label>
+    <br />
+    <button type="button" onClick={prevStep}>
+      Previous
+    </button>
+    <button type="button" onClick={nextStep}>
+      Next
+    </button>
+  </div>
+)}
           {step === 4 && (
             <div>
               <h2>Personal and Professional Information</h2>
@@ -253,14 +246,15 @@
               <label>
                 Skills:
                 <Select
-                  isMulti
-                  name="skills"
-                  options={skillsOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  value={skillsOptions.filter(option => formData.skills.includes(option.value))}
-                  onChange={handleSkillsChange}
-                />
+  isMulti
+  name="skills"
+  options={skillsOptions}
+  className="basic-multi-select"
+  classNamePrefix="select"
+  onChange={handleSkillsChange}
+  value={skillsOptions.filter(option => formData.skills.includes(option.value))}
+/>
+
               </label>
               <br />
               <label>
@@ -281,21 +275,7 @@
                   onChange={handleChange}
                 ></textarea>
               </label>
-              <br />
-              <label>
-                Languages:
-                <select
-                  name="languages"
-                  className="signupinput"
-                  multiple
-                  value={formData.languages}
-                  onChange={handleChange}
-                >
-                  <option value="English">English</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="French">French</option>
-                </select>
-              </label>
+              
               <br />
               <label>
                 Are you a fresher?

@@ -116,7 +116,6 @@ const Shortlist = () => {
                                                         <strong>Constraints:</strong> {question.codingQuestion.constraints.join(', ')}
                                                     </>
                                                 )}
-                                                {/* Add more conditionals if you have other question types */}
                                             </li>
                                         ))}
                                     </ul>

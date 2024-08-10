@@ -30,7 +30,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 app.post('/api/users/signup', async (req, res) => {
   try {
-    const { name, email, password, location, locationPreferences, expectedSalary, jobType, jobTitle, techStack, skills, experience, address, languages, degree, university, cgpa, pastJobs, pastJobDetails } = req.body;
+    const { name, email, password, location, locationPreferences, expectedSalary, jobType, jobTitle, techStack, skills, address, degree, university, cgpa, pastJobs, pastJobDetails } = req.body;
 
     console.log("Received data", req.body);
 
@@ -49,7 +49,6 @@ app.post('/api/users/signup', async (req, res) => {
         experience: pastJobs,
         skills,
         address,
-        languages,
         techStack
       },
       location,
@@ -373,10 +372,11 @@ app.post('/api/applications', async (req, res) => {
       emailcurrent,
     } = req.body;
 
+    // Validate required fields
     if (!resume || !mobileNumber || !email || !firstName || !gender || !instituteName || !type || !course || !graduatingYear || !courseDuration || !countryOfResidence) {
       return res.status(400).json({ message: "Please fill all required fields." });
     }
-    
+
     console.log(emailcurrent);
     const applicant = await User.findOne({ email: emailcurrent });
 
@@ -386,6 +386,7 @@ app.post('/api/applications', async (req, res) => {
 
     const applicantId = applicant._id;
 
+    // Create new application
     const newApplication = new Application({
       resume,
       cv,
@@ -410,38 +411,46 @@ app.post('/api/applications', async (req, res) => {
 
     const savedApplication = await newApplication.save();
 
+    // Setup email transport
     const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
+      service: 'gmail',  // Updated to use 'gmail' service instead of 'host'
       auth: {
-          user: 'dejah.marquardt@ethereal.email',
-          pass: 'YudW3MucWBgUmqp3Yn'
-      }
-  });
+        user: 'gabaniyash846@gmail.com',
+        pass: 'frtkmvbebchjfile',
+      },
+    });
 
     const job = await Job.findById(jobId);
-    const jobTitle = job.title; 
+    const jobTitle = job.title;
 
     const mailOptions = {
-      from: 'gabaniyash846@gmail.com', 
-      to: emailcurrent, 
+      from: 'gabaniyash846@gmail.com',
+      to: emailcurrent,
       subject: 'Job Application Confirmation',
       text: `Dear ${firstName} ${lastName},\n\nYour application for the job "${jobTitle}" has been successfully submitted.\n\nThank you for applying!\n\nBest regards,\nYour Company Name`,
     };
 
+    // Send email and handle response accordingly
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error("Error sending email:", error);
-        return res.status(500).json({ message: "Failed to send confirmation email.", error });
+        // Even though email fails, the application is already saved, so you might want to notify the client but still return success for the application submission
+        return res.status(201).json({
+          message: "Application submitted successfully, but failed to send confirmation email.",
+          application: savedApplication,
+          emailError: error.message,
+        });
       } else {
         console.log('Email sent: ' + info.response);
+        return res.status(201).json({
+          message: "Application submitted successfully and confirmation email sent.",
+          application: savedApplication,
+        });
       }
     });
-
-    res.status(201).json({ message: "Application submitted successfully!", application: savedApplication });
   } catch (error) {
     console.error("Error submitting application:", error);
-    res.status(500).json({ message: "Failed to submit application.", error });
+    return res.status(500).json({ message: "Failed to submit application.", error });
   }
 });
 
