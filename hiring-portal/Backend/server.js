@@ -314,21 +314,22 @@ app.post('/api/company', async (req, res) => {
 app.post('/api/test', async (req, res) => {
   try {
     
-    const { jobId, overallTime, maxMarks, questions, owner } = req.body;
+    const { jobId, maxMarks, questions, owner,endTime,startTime } = req.body;
     console.log(owner)
     const company = await Company.findOne({ owner: owner });
     console.log(company)
     if (!company) {
       return res.status(404).json({ error: 'Company not found' });
     }
-    console.log(jobId,overallTime,maxMarks,questions,owner)
+    console.log(jobId,maxMarks,questions,owner)
 
     const newAssessment = new Assessment({
       jobId:jobId,
       createdBy: company._id, 
-      overallTime,
       maxMarks,
-      questions
+      questions,
+      startTime,
+      endTime
     });
 
     const savedAssessment = await newAssessment.save();

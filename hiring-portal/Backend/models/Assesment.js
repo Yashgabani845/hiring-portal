@@ -29,8 +29,9 @@ const assessmentSchema = new mongoose.Schema({
     score: Number,
     answers: [String]
   }],
-  overallTime: { type: Number },
   maxMarks: { type: Number },
+  startTime: { type: Date, required: true }, 
+  endTime: { type: Date, required: true },  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });

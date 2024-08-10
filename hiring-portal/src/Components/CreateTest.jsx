@@ -21,6 +21,8 @@ import 'react-quill/dist/quill.snow.css';
       questions: [],
       overallTime: 0,
       maxMarks: 0,
+      startTime:"",
+      endTime:""
     });
   
     const [currentQuestion, setCurrentQuestion] = useState({
@@ -407,14 +409,7 @@ import 'react-quill/dist/quill.snow.css';
         <hr />
         <form onSubmit={handleSubmit}>
           <div className="global-fields">
-            <label>Overall Time (in minutes):</label>
-            <input
-              type="number"
-              className="timeinput"
-              value={formData.overallTime}
-              onChange={(e) => setFormData({ ...formData, overallTime: e.target.value })}
-              
-            />
+           
             <label>Max Marks:</label>
             <input
               type="number"
@@ -423,6 +418,20 @@ import 'react-quill/dist/quill.snow.css';
               onChange={(e) => setFormData({ ...formData, maxMarks: e.target.value })}
              
             />
+             <label>Start Time:</label>
+    <input
+      type="datetime-local"
+      value={formData.startTime}
+      onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+      required
+    />
+    <label>End Time:</label>
+    <input
+      type="datetime-local"
+      value={formData.endTime}
+      onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+      required
+    />
           </div>
           <div className="step-container">
           <div className="progress-bar">

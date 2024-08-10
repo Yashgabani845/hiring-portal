@@ -21,6 +21,7 @@ const Coding = () => {
     const [assessment, setAssessment] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [remainingTime, setRemainingTime] = useState(null);
+    const [isTestActive, setIsTestActive] = useState(false); // To track if the test is currently active
     const intervalRef = useRef(null);
 
     useEffect(() => {
@@ -32,6 +33,17 @@ const Coding = () => {
                 }
                 const data = await response.json();
                 setAssessment(data);
+
+                const currentTime = new Date();
+                const testStartTime = new Date(data.startTime); 
+                const testEndTime = new Date(data.endTime); 
+
+                if (currentTime >= testStartTime && currentTime <= testEndTime) {
+                    setIsTestActive(true);
+                } else {
+                    setIsTestActive(false);
+                }
+
             } catch (error) {
                 console.error('Error fetching assessment:', error);
                 setAssessment(null);
@@ -42,31 +54,26 @@ const Coding = () => {
     }, [assessmentId]);
 
     useEffect(() => {
-        if (assessment) {
-            const savedStartTime = localStorage.getItem('startTime');
-            const startTime = savedStartTime ? new Date(savedStartTime) : new Date();
-
-            if (!savedStartTime) {
-                localStorage.setItem('startTime', startTime);
-            }
-
+        if (assessment && isTestActive) {
+            const endTime = new Date(assessment.endTime);
+    
             intervalRef.current = setInterval(() => {
                 const currentTime = new Date();
-                const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-                const remaining = assessment.overallTime * 60 - elapsedTime;
-
+                const remaining = Math.floor((endTime - currentTime) / 1000);
+    
                 if (remaining <= 0) {
                     clearInterval(intervalRef.current);
                     localStorage.removeItem('startTime');
-                    navigate('/')
+                    navigate('/');
                 } else {
                     setRemainingTime(remaining);
                 }
             }, 1000);
+    
+            return () => clearInterval(intervalRef.current);
         }
-
-        return () => clearInterval(intervalRef.current);
-    }, [assessment, navigate]);
+    }, [assessment, isTestActive, navigate]);
+    
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -95,6 +102,25 @@ const Coding = () => {
             setCurrentQuestion(currentQuestion - 1);
         }
     };
+
+    if (!isTestActive) {
+        return (
+            <div className="coding-interface">
+                {assessment ? (
+                    <div className="test-inactive">
+                        <h2>This test was scheduled to be conducted between:</h2>
+                        <p><strong>Start Time:</strong> {new Date(assessment.startTime).toLocaleString()}</p>
+                        <p><strong>End Time:</strong> {new Date(assessment.endTime).toLocaleString()}</p>
+                        <Button variant="contained" color="primary" onClick={() => navigate('/')}>
+                            Go Back to Homepage
+                        </Button>
+                    </div>
+                ) : (
+                    <p>Loading assessment...</p>
+                )}
+            </div>
+        );
+    }
 
     return (
         <div className="coding-interface">
