@@ -9,7 +9,6 @@ const applicationSchema = new mongoose.Schema({
   lastName: { type: String },
   gender: { type: String, required: true, enum: ['male', 'female', 'other'] },
   instituteName: { type: String, required: true },
-  course: { type: String, required: true },
   graduatingYear: { type: Number, required: true },
   courseDuration: { type: String, required: true },
   countryOfResidence: { type: String, required: true },
