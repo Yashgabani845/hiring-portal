@@ -35,18 +35,19 @@ const Job = () => {
         fetchJobDetails();
         fetchRecommendedJobs();
     }, [id]);
+    const now = new Date();
+
     const calculateTimeLeft = (deadline) => {
-        const now = new Date();
         const deadlineDate = new Date(deadline);
         const timeLeft = deadlineDate - now;
 
         if (timeLeft <= 0) return "00:00:00";
-
+        const days=Math.floor((timeLeft / (1000 * 60 * 60)) /24)
         const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
         const seconds = Math.floor((timeLeft / 1000) % 60);
 
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        return `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
     if (!jobDetails) return <p>Loading...</p>;
