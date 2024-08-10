@@ -35,5 +35,4 @@ const assessmentSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now }
 });
 
-// Exporting the Assessment Model
 module.exports = mongoose.model('Assessment', assessmentSchema);

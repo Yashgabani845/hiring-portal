@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/ApplicationForm.css";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
+import Courses from "./course.json";
+import countryData from "./country.json";
+import collegesData from "./colleges.json";
+
 const ApplicationForm = () => {
+  const navigate = useNavigate()
+  const [countryCodes, setCountryCodes] = useState([]);
+  const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
+  const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
 
   const location = useLocation();
   const { jobId, emailcurrent } = location.state || {};
-  console.log(emailcurrent)
+  console.log(emailcurrent);
+
   const [formData, setFormData] = useState({
     resume: "",
     coverLetter: "",
@@ -16,9 +25,7 @@ const ApplicationForm = () => {
     lastName: "",
     gender: "",
     instituteName: "",
-    type: "",
     course: "",
-    courseSpecialization: "",
     graduatingYear: "",
     courseDuration: "",
     countryOfResidence: "",
@@ -28,12 +35,28 @@ const ApplicationForm = () => {
     skills: [""],
   });
 
+  useEffect(() => {
+    const codes = countryData.map(country => ({
+      name: country.name,
+      code: country.dial_code,
+      emoji: country.emoji
+    }));
+    setCountryCodes(codes);
+
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  
+  const handleCountryChange = (e) => {
+    const selectedCode = e.target.value;
+    const selectedCountry = countryCodes.find(country => country.code === selectedCode);
+    setSelectedCountryCode(selectedCode);
+    setCountryEmoji(selectedCountry.emoji);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const applicationData = {
@@ -52,6 +75,7 @@ const ApplicationForm = () => {
     
       if (response.ok) {
         alert("Application submitted successfully!");
+        navigate(`/`)
       } else {
         const errorData = await response.json();
         console.error("Error submitting application:", errorData);
@@ -61,7 +85,6 @@ const ApplicationForm = () => {
       console.error("Error submitting application:", error);
       alert("Failed to submit application.");
     }
-    
   };
 
   return (
@@ -70,22 +93,44 @@ const ApplicationForm = () => {
       
       <div className="form-group">
         <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
+        <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" required />
       </div>
 
       <div className="form-group">
-        <label>Mobile Number:</label>
-        <input type="text" name="mobileNumber" value={formData.mobileNumber} onChange={handleInputChange} required />
+        <div className="fgn">
+          <div className="form-group-code">
+            <label>Country Code:</label>
+            <select name="countryCode" value={selectedCountryCode} onChange={handleCountryChange} required>
+              {countryCodes.map((country, index) => (
+                <option key={index} value={country.code}>
+                  {country.emoji} ({country.code})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group-number">
+            <label>Mobile Number:</label>
+            <input
+              type="text"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleInputChange}
+              placeholder="Enter your mobile number"
+              required
+            />
+          </div>
+        </div>
       </div>
 
       <div className="form-group">
         <label>First Name:</label>
-        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
+        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" required />
       </div>
 
       <div className="form-group">
         <label>Last Name (if applicable):</label>
-        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} />
+        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" />
       </div>
 
       <div className="form-group">
@@ -100,48 +145,57 @@ const ApplicationForm = () => {
 
       <div className="form-group">
         <label>Institute Name:</label>
-        <input type="text" name="instituteName" value={formData.instituteName} onChange={handleInputChange} required />
-      </div>
+        <select name="instituteName" value={formData.college} onChange={handleInputChange} required>
+          <option value="">Select College</option>
+          {collegesData.map((college, index) => (
+            <option key={index} value={college.college}>{college.college}</option>
+          ))}
+        </select> </div>
 
-      <div className="form-group">
-        <label>Type:</label>
-        <input type="text" name="type" value={formData.type} onChange={handleInputChange} required />
-      </div>
+     
 
       <div className="form-group">
         <label>Course:</label>
-        <input type="text" name="course" value={formData.course} onChange={handleInputChange} required />
-      </div>
-
-      <div className="form-group">
-        <label>Course Specialization:</label>
-        <input type="text" name="courseSpecialization" value={formData.courseSpecialization} onChange={handleInputChange} required />
+        <select name="course" value={formData.course} onChange={handleInputChange} required>
+          <option value="">Select Course</option>
+          {Courses.map((course, index) => (
+            <option key={index} value={course}>{course}</option>
+          ))}
+        </select>
       </div>
 
       <div className="form-group">
         <label>Graduating Year:</label>
-        <input type="number" name="graduatingYear" value={formData.graduatingYear} onChange={handleInputChange} required />
+        <input type="number" name="graduatingYear" value={formData.graduatingYear} onChange={handleInputChange} placeholder="Enter your graduating year" required />
       </div>
 
       <div className="form-group">
         <label>Course Duration:</label>
-        <input type="text" name="courseDuration" value={formData.courseDuration} onChange={handleInputChange} required />
+        <input type="text" name="courseDuration" value={formData.courseDuration} onChange={handleInputChange} placeholder="Enter course duration" required />
       </div>
 
       <div className="form-group">
         <label>Country of Residence:</label>
-        <input type="text" name="countryOfResidence" value={formData.countryOfResidence} onChange={handleInputChange} required />
+        <select name="countryOfResidence" value={formData.countryOfResidence} onChange={handleInputChange} required>
+          <option value="">Select Country</option>
+          {countryData.map((country, index) => (
+            <option key={index} value={country.name}>{country.name}</option>
+          ))}
+        </select>
       </div>
+
+ 
 
       <div className="form-group">
         <label>Resume URL:</label>
-        <input type="text" name="resume" value={formData.resume} onChange={handleInputChange} required />
+        <input type="text" name="resume" value={formData.resume} onChange={handleInputChange} placeholder="Enter resume URL" required />
       </div>
       
       <div className="form-group">
         <label>CV URL (optional):</label>
-        <input type="text" name="cv" value={formData.cv} onChange={handleInputChange} />
+        <input type="text" name="cv" value={formData.cv} onChange={handleInputChange} placeholder="Enter CV URL (optional)" />
       </div>
+      
       <button type="submit" className="submit-btn">Submit Application</button>
     </form>
   );

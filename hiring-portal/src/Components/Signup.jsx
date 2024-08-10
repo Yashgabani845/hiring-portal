@@ -3,7 +3,7 @@
   import "../CSS/signup.css";
   import axios from 'axios';
   import skillsOptions from './skills.json'; 
-  import jobOptions from './jobs.json'; 
+  import jobOptions from './upJobs.json'; 
 
   import { useNavigate } from 'react-router-dom';
 

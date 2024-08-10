@@ -1,0 +1,23 @@
+[
+    {
+      "name": "United States",
+      "dial_code": "+1",
+      "emoji": "🇺🇸"
+    },
+    {
+      "name": "India",
+      "dial_code": "+91",
+      "emoji": "🇮🇳"
+    },
+    {
+      "name": "Pakistan",
+      "dial_code": "+92",
+      "emoji": "🇵🇰"
+    },
+    {
+      "name": "Sri Lanka",
+      "dial_code": "+94",
+      "emoji": "🇱🇰"
+    }
+  ]
+  

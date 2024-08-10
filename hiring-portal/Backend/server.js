@@ -345,7 +345,6 @@ app.post('/api/test', async (req, res) => {
 });
 const nodemailer = require('nodemailer');
 
-// Your existing code...
 app.post('/api/applications', async (req, res) => {
   console.log("Got request");
 
@@ -359,9 +358,7 @@ app.post('/api/applications', async (req, res) => {
       lastName,
       gender,
       instituteName,
-      type,
       course,
-      courseSpecialization,
       graduatingYear,
       courseDuration,
       countryOfResidence,
@@ -372,8 +369,7 @@ app.post('/api/applications', async (req, res) => {
       emailcurrent,
     } = req.body;
 
-    // Validate required fields
-    if (!resume || !mobileNumber || !email || !firstName || !gender || !instituteName || !type || !course || !graduatingYear || !courseDuration || !countryOfResidence) {
+    if (!resume || !mobileNumber || !email || !firstName || !gender || !instituteName || !course || !graduatingYear || !courseDuration || !countryOfResidence) {
       return res.status(400).json({ message: "Please fill all required fields." });
     }
 
@@ -396,10 +392,8 @@ app.post('/api/applications', async (req, res) => {
       lastName,
       gender,
       instituteName,
-      type,
       course,
-      courseSpecialization,
-      graduatingYear,
+       graduatingYear,
       courseDuration,
       countryOfResidence,
       education,

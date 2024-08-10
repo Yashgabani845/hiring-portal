@@ -75,4 +75,13 @@
     font-size: 20px;
     color: #444;
   }
-  
+  .fgn{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    }
+    .form-group-number input{
+      width: 300px;
+      padding: 8px;
+      border-radius: 4px;
+    }
