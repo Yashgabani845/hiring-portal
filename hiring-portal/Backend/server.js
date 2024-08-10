@@ -30,7 +30,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 app.post('/api/users/signup', async (req, res) => {
   try {
-    const { name, email, password, location, locationPreferences, expectedSalary, jobType, jobTitle, techStack, skills, address, degree, university, cgpa, pastJobs, pastJobDetails } = req.body;
+    const { name, email, password, location, locationPreferences, expectedSalary,resume, jobType, jobTitle, techStack, skills, address, degree, university, cgpa, pastJobs, pastJobDetails } = req.body;
 
     console.log("Received data", req.body);
 
@@ -55,7 +55,8 @@ app.post('/api/users/signup', async (req, res) => {
       locationPreferences,
       expectedSalary,
       jobType,
-      jobTitle
+      jobTitle,
+      resume
     });
 
     await newUser.save();

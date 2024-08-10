@@ -6,7 +6,9 @@
   import jobOptions from './upJobs.json'; 
 
   import { useNavigate } from 'react-router-dom';
-
+  import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+  import { storage } from '../firebase/firebase';
+  
   const Signup = () => {
     const navigate = useNavigate();
 
@@ -34,9 +36,32 @@
     });
 
     const handleChange = (e) => {
-      const { name, value, type, checked, options } = e.target;
+      const { name, value, type, checked, files } = e.target;
 
-      if (type === "checkbox") {
+      if (name === "resume" && files[0]) {
+       
+        const file = files[0];
+        const storageRef = ref(storage, `resume/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+    
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+          },
+          (error) => {
+            console.error("Upload failed:", error);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log(downloadURL)
+              setFormData((prevData) => ({
+                ...prevData,
+                resume: downloadURL,
+              }));
+            });
+          }
+        );
+      } else if (type === "checkbox") {
         setIsFresher(checked);
         setFormData({
           ...formData,
@@ -47,7 +72,6 @@
           pastJobs: [],
           pastJobDetails: ""
         });
-      
       } else {
         setFormData({
           ...formData,
@@ -55,6 +79,7 @@
         });
       }
     };
+    
 
     const handleSkillsChange = (selectedOptions) => {
       setFormData({
@@ -72,23 +97,22 @@
       setStep(step - 1);
     };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      console.log(formData); 
-      try {
-        const response = await axios.post('http://localhost:5000/api/users/signup', formData, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error submitting form:', error.response.data);
+   const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log(formData);
+  try {
+    const response = await axios.post('http://localhost:5000/api/users/signup', formData, {
+      headers: {
+        'Content-Type': 'application/json'
       }
+    });
+    console.log(response.data);
+    navigate('/signin');
+  } catch (error) {
+    console.error('Error submitting form:', error.response.data);
+  }
+};
 
-          navigate('/signin');
-
-    };
   
   
  
@@ -256,7 +280,7 @@
 />
 
               </label>
-              <br />
+              <br />  
               <label>
                 Upload Resume:
                 <input

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useParams to extract URL parameters
+import { useParams, useNavigate } from 'react-router-dom'; 
 import Editor from "@monaco-editor/react";
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -12,7 +12,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import '../CSS/coding.css';
 
 const Coding = () => {
-    const { assessmentId } = useParams(); // Extract the assessmentId from the URL
+    const { assessmentId } = useParams();
     const navigate = useNavigate();
     const [language, setLanguage] = useState('javascript');
     const [code, setCode] = useState('');
@@ -21,7 +21,7 @@ const Coding = () => {
     const [assessment, setAssessment] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [remainingTime, setRemainingTime] = useState(null);
-    const [isTestActive, setIsTestActive] = useState(false); // To track if the test is currently active
+    const [isTestActive, setIsTestActive] = useState(false); 
     const intervalRef = useRef(null);
 
     useEffect(() => {
