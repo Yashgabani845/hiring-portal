@@ -1,5 +1,13 @@
 .coding-interface {
     display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.codingarea{
+    display: flex;
     flex-direction: row;
     width: 90%;
     margin: 20px auto;
@@ -8,7 +16,6 @@
     border-radius: 10px;
     overflow: hidden;
 }
-
 .code-desc {
     width: 50%;
     padding: 20px;

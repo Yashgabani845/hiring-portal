@@ -1,33 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useParams to extract URL parameters
 import Editor from "@monaco-editor/react";
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import QuizIcon from '@mui/icons-material/Quiz';
+import CodeIcon from '@mui/icons-material/Code';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import '../CSS/coding.css';
 
 const Coding = () => {
-    const navigate=useNavigate();
+    const { assessmentId } = useParams(); // Extract the assessmentId from the URL
+    const navigate = useNavigate();
     const [language, setLanguage] = useState('javascript');
     const [code, setCode] = useState('');
     const [output, setOutput] = useState('');
     const [testResult, setTestResult] = useState('');
     const [assessment, setAssessment] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [remainingTime, setRemainingTime] = useState(null); 
+    const [remainingTime, setRemainingTime] = useState(null);
     const intervalRef = useRef(null);
 
-    
     useEffect(() => {
         const fetchAssessment = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/assessmen/66b73e699415ab907813ec6a');
+                const response = await fetch(`http://localhost:5000/api/assessmen/${assessmentId}`); // Use assessmentId from URL
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 setAssessment(data);
-
             } catch (error) {
                 console.error('Error fetching assessment:', error);
                 setAssessment(null);
@@ -35,7 +39,8 @@ const Coding = () => {
         };
 
         fetchAssessment();
-    }, []);
+    }, [assessmentId]);
+
     useEffect(() => {
         if (assessment) {
             const savedStartTime = localStorage.getItem('startTime');
@@ -47,7 +52,7 @@ const Coding = () => {
 
             intervalRef.current = setInterval(() => {
                 const currentTime = new Date();
-                const elapsedTime = Math.floor((currentTime - startTime) / 1000); // in seconds
+                const elapsedTime = Math.floor((currentTime - startTime) / 1000);
                 const remaining = assessment.overallTime * 60 - elapsedTime;
 
                 if (remaining <= 0) {
@@ -61,7 +66,7 @@ const Coding = () => {
         }
 
         return () => clearInterval(intervalRef.current);
-    }, [assessment]);
+    }, [assessment, navigate]);
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -96,97 +101,104 @@ const Coding = () => {
             {assessment ? (
                 <>
                     <div className="timer">
-                        <h2>Time Remaining: {formatTime(remainingTime)}</h2>
+                        <h2><AccessTimeIcon /> Time Remaining: {formatTime(remainingTime)}</h2>
+                        <h2><QuizIcon /> Question {currentQuestion + 1} of {assessment.questions.length}</h2>
                     </div>
-                    <div className="code-desc">
-                        <h2>{assessment.questions[currentQuestion].codingQuestion.title}</h2>
-                        <p><strong>Description:</strong> {assessment.questions[currentQuestion].codingQuestion.problemDescription}</p>
-                        <p><strong>Constraints:</strong></p>
-                        <ul>
-                            {assessment.questions[currentQuestion].codingQuestion.constraints.map((constraint, index) => (
-                                <li key={index}>{constraint}</li>
+                    <div className="codingarea">
+                        <div className="code-desc">
+                            <h2> {assessment.questions[currentQuestion].codingQuestion.title}</h2>
+                            <p><strong> Description:</strong> {assessment.questions[currentQuestion].codingQuestion.problemDescription}</p>
+                            <p><strong> Constraints:</strong></p>
+                            <ul>
+                                {assessment.questions[currentQuestion].codingQuestion.constraints.map((constraint, index) => (
+                                    <li key={index}>{constraint}</li>
+                                ))}
+                            </ul>
+                            <p><strong> Examples:</strong></p>
+                            {assessment.questions[currentQuestion].codingQuestion.examples.map((example, index) => (
+                                <div key={index} className="example-section">
+                                    <p><strong>Input:</strong> {example.input}</p>
+                                    <p><strong>Output:</strong> {example.output}</p>
+                                    {example.explanation && <p><strong>Explanation:</strong> {example.explanation}</p>}
+                                </div>
                             ))}
-                        </ul>
-                        <p><strong>Examples:</strong></p>
-                        {assessment.questions[currentQuestion].codingQuestion.examples.map((example, index) => (
-                            <div key={index}>
-                                <p><strong>Input:</strong> {example.input}</p>
-                                <p><strong>Output:</strong> {example.output}</p>
-                                {example.explanation && <p><strong>Explanation:</strong> {example.explanation}</p>}
+                        </div>
+                        <div className="code-editor">
+                            <div className="editor-header">
+                                <label>
+                                    Language:
+                                    <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+                                        <option value="javascript">JavaScript</option>
+                                        <option value="python">Python</option>
+                                        <option value="java">Java</option>
+                                        <option value="cpp">C/C++</option>
+                                        <option value="csharp">C#</option>
+                                    </select>
+                                </label>
                             </div>
-                        ))}
-                    </div>
-                    <div className="code-editor">
-                        <div className="editor-header">
-                            <label>
-                                Language:
-                                <select value={language} onChange={(e) => setLanguage(e.target.value)}>
-                                    <option value="javascript">JavaScript</option>
-                                    <option value="python">Python</option>
-                                    <option value="java">Java</option>
-                                    <option value="cpp">C/C++</option>
-                                    <option value="csharp">C#</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div className="monaco-editor">
-                            <Editor
-                                height="400px"
-                                language={language}
-                                theme="vs-light"
-                                value={code}
-                                onChange={(newValue) => setCode(newValue)}
-                                options={{
-                                    inlineSuggest: true,
-                                    fontSize: "16px",
-                                    formatOnType: true,
-                                    autoClosingBrackets: true,
-                                    minimap: {
-                                        enabled: false
-                                    }
-                                }}
-                            />
-                        </div>
-                        <div className="editor-actions">
-                            <>
+                            <div className="monaco-editor">
+                                <Editor
+                                    height="400px"
+                                    language={language}
+                                    theme="vs-light"
+                                    value={code}
+                                    onChange={(newValue) => setCode(newValue)}
+                                    options={{
+                                        inlineSuggest: true,
+                                        fontSize: "16px",
+                                        formatOnType: true,
+                                        autoClosingBrackets: true,
+                                        minimap: {
+                                            enabled: false
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <div className="editor-actions">
+                                <>
+                                    <Button
+                                        variant="outlined"
+                                        onClick={runCode}
+                                        style={{ marginRight: '10px' }}
+                                        startIcon={<PlayArrowIcon />}
+                                    >
+                                        Run
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={submitCode}
+                                        startIcon={<CheckCircleOutlineIcon />}
+                                    >
+                                        Submit
+                                    </Button>
+                                </>
+                            </div>
+                            <div className="testcases">
+                                <h3><CodeIcon /> Output</h3>
+                                <pre>{output}</pre>
+                                <h3><CheckCircleOutlineIcon /> Test Result</h3>
+                                <pre>{testResult}</pre>
+                            </div>
+                            <div className="question-navigation">
                                 <Button
-                                    variant="outlined"
-                                    onClick={runCode}
-                                    style={{ marginRight: '10px' }}
-                                    startIcon={<PlayArrowIcon />}
+                                    variant="contained"
+                                    onClick={previousQuestion}
+                                    disabled={currentQuestion === 0}
+                                    startIcon={<NavigateBeforeIcon />}
                                 >
-                                    Run
+                                    Previous
                                 </Button>
                                 <Button
                                     variant="contained"
-                                    color="primary"
-                                    onClick={submitCode}
+                                    onClick={nextQuestion}
+                                    disabled={currentQuestion === assessment.questions.length - 1}
+                                    endIcon={<NavigateNextIcon />}
+                                    style={{ marginLeft: '10px' }}
                                 >
-                                    Submit
+                                    Next
                                 </Button>
-                            </>
-                        </div>
-                        <div className="testcases">
-                            <h3>Output</h3>
-                            <pre>{output}</pre>
-                            <h3>Test Result</h3>
-                            <pre>{testResult}</pre>
-                        </div>
-                        <div className="question-navigation">
-                            <Button
-                                variant="contained"
-                                onClick={previousQuestion}
-                                disabled={currentQuestion === 0}
-                            >
-                                Previous
-                            </Button>
-                            <Button
-                                variant="contained"
-                                onClick={nextQuestion}
-                                disabled={currentQuestion === assessment.questions.length - 1}
-                            >
-                                Next
-                            </Button>
+                            </div>
                         </div>
                     </div>
                 </>
