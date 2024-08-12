@@ -87,10 +87,28 @@ const Coding = () => {
         setTestResult(passed ? 'All test cases passed' : 'Some test cases failed');
     };
 
-    const submitCode = () => {
-        alert('Code submitted!');
+    const submitCode = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/compile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    language,
+                    code,
+                    input: 'hello' 
+                }),
+            });
+    
+            const data = await response.json();
+            setOutput(data.output);
+        } catch (error) {
+            console.error('Error submitting code:', error);
+            setOutput('Error submitting code.');
+        }
     };
-
+    
     const nextQuestion = () => {
         if (currentQuestion < assessment.questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);

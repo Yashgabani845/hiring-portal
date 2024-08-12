@@ -9,6 +9,8 @@ const User = require('./models/User');
 const Company = require('./models/Company');
 const Assessment = require('./models/Assesment')
 const Application = require('./models/Application');
+const compilex = require('compilex');
+
 
 const http = require('http');
 const socketIo = require('socket.io');
@@ -490,7 +492,51 @@ app.get('/api/assessmen/:id', async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
   }
 });
+app.use(bodyParser.json());
 
+const options = { stats: true }; // Stats option is used to display compilex logs
+compilex.init(options);
+
+app.post('/compile', function(req, res) {
+  const { language, code, input } = req.body;
+  console.log(language,code,input);
+  let envData = { OS: "windows" ,options: { timeout: 10000 }};
+
+  switch (language) {
+      case "cpp":
+          envData.cmd = "g++"; 
+          compilex.compileCPPWithInput(envData, code, input, (data) => {
+              if (data.error) {
+                  res.json({ error: data.error });
+              } else {
+                console.log(data.output);
+                  res.json({ output: data.output });
+             
+              }
+          });
+          break;
+      case "java":
+          compilex.compileJavaWithInput(envData, code, input, (data) => {
+              if (data.error) {
+                  res.json({ error: data.error });
+              } else {
+                  res.json({ output: data.output });
+              }
+          });
+          break;
+      case "python":
+          compilex.compilePythonWithInput(envData, code, input, (data) => {
+              if (data.error) {
+                  res.json({ error: data.error });
+              } else {
+                  res.json({ output: data.output });
+              }
+          });
+          break;
+      default:
+          res.json({ error: "Language not supported" });
+  }
+});
 
 const io = require('socket.io')(5001, {
   cors: {

@@ -18,6 +18,7 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "codemirror": "^5.65.17",
+    "compilex": "^0.7.4",
     "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
