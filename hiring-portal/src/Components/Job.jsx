@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase, FaUsers, FaEye, FaCalendarAlt } from "react-icons/fa";
 import "../CSS/job.css";
-import logo from "../logo.png"
+import logo from "../logo.png";
 
 const Job = () => {
     const userEmail = localStorage.getItem('userEmail');
@@ -12,16 +12,22 @@ const Job = () => {
     const { id } = useParams();
     const [jobDetails, setJobDetails] = useState(null);
     const [recommendedJobs, setRecommendedJobs] = useState([]);
+    const [companyDetails, setCompanyDetails] = useState(null);
 
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
                 setJobDetails(response.data);
+
+                const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
+                setCompanyDetails(companyResponse.data);
             } catch (error) {
                 console.error("Error fetching job details:", error);
             }
         };
+
+        
 
         const fetchRecommendedJobs = async () => {
             try {
@@ -35,6 +41,16 @@ const Job = () => {
         fetchJobDetails();
         fetchRecommendedJobs();
     }, [id]);
+    const joblogo = async (id) => {
+        try {
+          
+            const companyResponse = await axios.get(`http://localhost:5000/api/companies/${id}`);
+            console.log(companyResponse.data.logo)
+           return companyResponse.data.logo.toString();
+        } catch (error) {
+            console.error("Error fetching job details:", error);
+        }
+    };
     const now = new Date();
 
     const calculateTimeLeft = (deadline) => {
@@ -42,7 +58,7 @@ const Job = () => {
         const timeLeft = deadlineDate - now;
 
         if (timeLeft <= 0) return "00:00:00";
-        const days=Math.floor((timeLeft / (1000 * 60 * 60)) /24)
+        const days = Math.floor((timeLeft / (1000 * 60 * 60)) / 24);
         const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
         const seconds = Math.floor((timeLeft / 1000) % 60);
@@ -50,7 +66,7 @@ const Job = () => {
         return `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    if (!jobDetails) return <p>Loading...</p>;
+    if (!jobDetails || !companyDetails) return <p>Loading...</p>;
 
     return (
         <div className="job-page">
@@ -60,7 +76,7 @@ const Job = () => {
                     <div className="recommended-job-grid">
                         {recommendedJobs.map((job, index) => (
                             <div key={index} className="recommended-job-card">
-                                <img src={logo} alt={`${job.title} logo`} className="job-logo" />
+                                <img src={joblogo(job.postedBy).toString() || logo} alt={`${job.title} logo`} className="job-logo" />
                                 <div>
                                     <h3>{job.title}</h3>
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
@@ -78,6 +94,7 @@ const Job = () => {
 
                 <div className="job-section">
                     <h1 className="job-title">{jobDetails.title}</h1>
+                    <img src={companyDetails.logo} alt={`${companyDetails.name} logo`} className="company-logo" />
                     <div className="job-detail-section">
                         <h2><FaBriefcase /> Job Type</h2>
                         <p>{jobDetails.employmentType}</p>
@@ -111,17 +128,15 @@ const Job = () => {
                         <div><FaUsers /> Applied: {jobDetails.applied}</div>
                     </div>
                     <button
-  className="apply-button"
-  onClick={() => {
-    navigate("/application", {
-      state: { jobId: jobDetails, emailcurrent: userEmail },
-    });
-  }}
->
-  Apply Now
-</button>
-
-
+                        className="apply-button"
+                        onClick={() => {
+                            navigate("/application", {
+                                state: { jobId: jobDetails._id, emailcurrent: userEmail },
+                            });
+                        }}
+                    >
+                        Apply Now
+                    </button>
                 </div>
             </div>
         </div>

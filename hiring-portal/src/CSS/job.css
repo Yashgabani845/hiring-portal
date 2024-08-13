@@ -5,6 +5,12 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f2f2f2;
 }
+.company-logo {
+    width: 100px;  
+    height: 100px;
+    object-fit: contain; 
+    margin-bottom: 20px; 
+}
 
 .job-container {
     display: flex;

@@ -50,9 +50,7 @@ const Shortlist = () => {
 
     const handleAssessmentSubmit = () => {
         if (selectedAssessment) {
-            // Handle the submission logic for all applicants or a group
             console.log(`Selected Assessment for all applicants: ${selectedAssessment}`);
-            // Close the modal after submission
             setShowModal(false);
         }
     };

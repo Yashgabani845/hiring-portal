@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Jobcard from "./Jobcard";
 import axios from 'axios';
-import comlogo from "../logo.png"
 import "../CSS/jobgrid.css";
 
 const Jobgrid = () => {
@@ -10,8 +9,17 @@ const Jobgrid = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/job');
-                setJobs(response.data);
+                const jobResponse = await axios.get('http://localhost:5000/api/job');
+                const jobsWithLogos = await Promise.all(
+                    jobResponse.data.map(async (job) => {
+                        const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
+                        return {
+                            ...job,
+                            logo: companyResponse.data.logo, // Assuming the company data contains a `logo` field
+                        };
+                    })
+                );
+                setJobs(jobsWithLogos);
             } catch (error) {
                 console.error("Error fetching jobs:", error);
             }
@@ -24,7 +32,7 @@ const Jobgrid = () => {
         <div className="jobgrid">
             {jobs.map((job) => (
                 <Jobcard
-                    comlogo={comlogo} 
+                    comlogo={job.logo} 
                     id={job._id}
                     key={job._id}
                     company={job.postedBy} 

@@ -268,7 +268,8 @@ app.post('/api/company', async (req, res) => {
       linkedin,
       facebook,
       twitter,
-      ownerEmail 
+      ownerEmail,
+      logo
     } = req.body;
 
     if (!ownerEmail) {
@@ -293,7 +294,7 @@ app.post('/api/company', async (req, res) => {
       website,
       email,
       phone,
-      logo: null,
+      logo,
       establishedYear,
       employeesCount,
       socialMediaLinks: {
