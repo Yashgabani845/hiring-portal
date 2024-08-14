@@ -4,7 +4,7 @@ import axios from 'axios';
 import "../CSS/jobgrid.css";
 
 const Jobgrid = () => {
-    const [jobs, setJobs] = useState([]);
+    const [jobsWithLogos, setJobs] = useState([]);
 
     useEffect(() => {
         const fetchJobs = async () => {
@@ -15,7 +15,7 @@ const Jobgrid = () => {
                         const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
                         return {
                             ...job,
-                            logo: companyResponse.data.logo, // Assuming the company data contains a `logo` field
+                            logo: companyResponse.data.logo, 
                         };
                     })
                 );
@@ -30,7 +30,7 @@ const Jobgrid = () => {
 
     return (
         <div className="jobgrid">
-            {jobs.map((job) => (
+            {jobsWithLogos.map((job) => (
                 <Jobcard
                     comlogo={job.logo} 
                     id={job._id}
