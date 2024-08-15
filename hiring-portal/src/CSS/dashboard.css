@@ -1,119 +1,122 @@
-.employer-dashboard {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
-.employer-dashboard h1 {
+
+
+.notification-icon {
+    color: #4e9ff5;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sidebaro {
+    width: 250px;
+    background-color: #ffffff;
+    color: #343a40;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-title {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.project-title h1 {
+    font-size: 1rem;
+    color: #007bff;
+    margin: 0;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.project-title h1:hover{
+    font-size: 1rem;
+    background-color: #ededee;
+    border-radius: 15px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.sidebaro ul {
+    list-style-type: none;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.sidebaro li {
+    padding: 10px 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebaro li:hover {
+    background-color: #cacaca;
+}
+
+.sidebaro li.active {
+    background-color: #4e9ff5;
+    color: #ffffff;
+}
+
+.sidebaro li svg {
+    margin-right: 10px;
+}
+
+.company-name {
+    text-align: center;
+    font-size: 14px;
+    color: #6c757d;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f7fa;
+    overflow-y: auto;
+}
+
+.content-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.content-section h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
     color: #333;
 }
 
-.card-section {
-    display: flex;
-    justify-content: space-between;
+.content-section p {
+    font-size: 16px;
+    color: #555;
     margin-bottom: 20px;
 }
 
-.card {
-    flex: 1;
-    margin: 0 10px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.card h2 {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.card button {
-    padding: 10px 20px;
+.content-section button {
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
+    padding: 10px 20px;
     cursor: pointer;
+    font-size: 14px;
     transition: background-color 0.3s ease;
 }
 
-.card button:hover {
+.content-section button:hover {
     background-color: #0056b3;
-}
-
-.filter-section {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.filter-section h2 {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.filter-section .form-group {
-    margin-bottom: 15px;
-}
-
-.filter-section label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.filter-section input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.filter-section button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.filter-section button:hover {
-    background-color: #218838;
-}
-
-.statistics-section {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.statistics-section h2 {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.statistics-section button {
-    padding: 10px 20px;
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.statistics-section button:hover {
-    background-color: #5a6268;
 }

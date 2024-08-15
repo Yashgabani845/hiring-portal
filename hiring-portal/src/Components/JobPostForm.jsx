@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import options from './skills.json'; 
 import '../CSS/jobpostform.css';
 
 const JobPostForm = () => {
-    const navigate = useNavigate();
     const [jobDetails, setJobDetails] = useState({
         title: '',
         description: '',
@@ -50,9 +50,10 @@ const JobPostForm = () => {
             });
 
             console.log('Job posted successfully:', response.data);
-            navigate("/owner");
+            toast.success('Job posted successfully!');
         } catch (error) {
             console.error('Failed to post job:', error.response.data);
+            toast.error('Failed to post job. Please try again.');
         }
     };
 
@@ -195,7 +196,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="keywords"
-                        options={options}s
+                        options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={handleSelectChange}
@@ -244,9 +245,9 @@ const JobPostForm = () => {
                 </label>
                 <button type="submit">Post Job</button>
             </form>
+            <ToastContainer />
         </div>
     );
 };
 
 export default JobPostForm;
-    

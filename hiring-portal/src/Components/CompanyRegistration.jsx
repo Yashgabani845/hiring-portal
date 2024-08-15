@@ -42,7 +42,6 @@ const CompanyRegistration = () => {
       uploadTask.on(
         'state_changed',
         (snapshot) => {
-          // Progress handling (optional)
         },
         (error) => {
           console.error('Upload error:', error);
