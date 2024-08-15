@@ -16,7 +16,7 @@ import Profile from './Components/Profile';
 import SignIn from './Components/Signin';
 import UploadedJobs from './Components/UploadedJobs';
 import Coding from './Components/Coding';
-import CreateAssessment from './Components/createTest';
+import CreateAssessment from './Components/CreateTest';
 import Video from './Components/Video';
 import ManageJobs from './Components/Managejob';
 import ApplicationForm from './Components/ApplicationForm';

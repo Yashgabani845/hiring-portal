@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';  
 
 import "../CSS/navbar.css";
@@ -13,14 +13,17 @@ import logo from "../logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeTab, setActiveTab] = useState('/');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); 
-  }, []);
+    setActiveTab(location.pathname); // Set active tab based on current location
+  }, [location.pathname]);
+
   const handlePostJob = () => {
-   
     const email = localStorage.getItem('userEmail');
     if (email) {
       axios.get('http://localhost:5000/api/users/profile', {
@@ -28,11 +31,7 @@ const Navbar = () => {
       })
       .then(response => {
         const { role } = response.data;
-        if (role === 'owner') {
-          navigate("/owner");
-        } else {
-          navigate("/owner");
-        }
+        navigate("/owner");
       })
       .catch(error => {
         console.error('Error fetching user profile:', error);
@@ -40,33 +39,32 @@ const Navbar = () => {
     } 
   }
 
-
   return (
     <div className="navbar">
       <div className="logo"><img className="logoimg" src={logo} alt="Logo" /></div>
       <div className="icons">
-        <div className="icon home">
+        <div className={`icon home ${activeTab === '/' ? 'active' : ''}`}>
           <HomeIcon />
-          <Link to="/"><span>Home</span></Link>
+          <Link to="/" onClick={() => setActiveTab('/')}><span>Home</span></Link>
         </div>
-        <div className="icon jobs">
+        <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
           <WorkIcon />
-          <Link to="/jobcard"><span>Jobs</span></Link>
+          <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><span>Jobs</span></Link>
         </div>
-        <div className="icon aboutus">
+        <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
           <InfoIcon />
-          <Link to="/about"><span>About</span></Link>
+          <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
         </div>
-        <div className="icon login">
+        <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
           {isLoggedIn ? (
             <>
               <AccountCircleIcon />
-              <Link to="/profile"><span>Profile</span></Link>
+              <Link to="/profile" onClick={() => setActiveTab('/profile')}><span>Profile</span></Link>
             </>
           ) : (
             <>
               <LoginIcon />
-              <Link to="/signin"><span>Login</span></Link>
+              <Link to="/signin" onClick={() => setActiveTab('/signin')}><span>Login</span></Link>
             </>
           )}
         </div>

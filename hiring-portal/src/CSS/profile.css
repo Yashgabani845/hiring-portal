@@ -1,147 +1,137 @@
-:root {
-    --primary-color: #007bff;
-    --secondary-color: #555;
-    --background-color: #fff;
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
-    --font-family: 'Roboto', sans-serif;
-}
-
-body {
-    margin: 0;
-    font-family: var(--font-family);
-    background-color: #f8f9fa;
-}
-
 .profile-container {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 40px auto;
     padding: 20px;
-    background-color: var(--background-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
+    border-radius: 12px;
+font-family:sans-serif;}
 
 .profile-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #f1f1f1;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    gap: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
 }
 
 .profile-avatar {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--primary-color);
-}
-
-.profile-name {
-    font-size: 2em;
-    color: #333;
-    margin: 0;
-}
-
-.profile-email {
-    font-size: 1.2em;
-    color: var(--secondary-color);
-    margin: 5px 0;
-}
-
-.logout-button, .manage-jobs-button {
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-left: auto;
-}
-
-
-
-.profile-details {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.profile-section {
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-.profile-section h2 {
-    font-size: 1.6em;
-    color: #333;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
 }
 
-.profile-section p {
-    font-size: 1em;
-    color: var(--secondary-color);
-    line-height: 1.6;
+.profile-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 5px;
 }
 
-.education-info, .experience-info {
-    padding: 10px 0;
+.profile-email {
+    font-size: 18px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+.logout-button,
+.manage-jobs-button {
+    padding: 9px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.experience-list, .skills-list, .languages-list {
+.logout-button:hover,
+.manage-jobs-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.manage-jobs-button {
+    background-color: #ffffff;
+    color: #007bff;
+    border: 2px solid #007bff;
+    margin-right: 0; 
+}
+
+.manage-jobs-button:hover {
+    background-color: #e7f1ff;
+    color: #0056b3;
+    border-color: #0056b3;
+    transform: scale(1.05);
+}
+
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.profile-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #007bff;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #343a40;
+    margin: 0;
+}
+
+p {
+    margin: 5px 0;
+    color: #495057;
+}
+
+.skills-list,
+.languages-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.experience-item, .skill-item, .language-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+.skills-list .skill-item,
+.languages-list .language-item {
+  background-color: #e9ecef;
+  border-radius: 20px;
+  padding: 8px 12px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 8px;
 }
 
 .resume-link {
-    color: var(--primary-color);
+    color: #007bff;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .resume-link:hover {
     text-decoration: underline;
-}
-
-/* Adding transitions and hover effects */
-.profile-container {
-    transition: transform 0.3s ease-in-out;
-}
-
-.profile-container:hover {
-    transform: translateY(-5px);
-}
-
-.profile-avatar {
-    transition: border-color 0.3s ease-in-out;
-}
-
-.profile-avatar:hover {
-    border-color: darken(var(--primary-color), 10%);
-}
-
-.logout-button, .manage-jobs-button {
-    transition: background-color 0.3s ease-in-out;
-}
-
-
-.profile-section {
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-.profile-section:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

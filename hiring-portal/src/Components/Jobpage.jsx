@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from 'react-select';
 import Jobgrid from "./JobGrid";
+import Navbar from "./Navbar"
 import "../CSS/jobpage.css";
 
 const Jobpage = () => {
@@ -60,6 +61,7 @@ const Jobpage = () => {
     };
 
     return (
+        <><Navbar />
         <div className="jobpage">
             <div className="sidebar">
                 <h2>Filters</h2>
@@ -115,8 +117,7 @@ const Jobpage = () => {
                         value={selectedLocations}
                         onChange={handleLocationChange}
                         className="location-select"
-                        placeholder="Select locations"
-                    />
+                        placeholder="Select locations" />
                 </div>
                 <div className="filter">
                     <label>
@@ -137,7 +138,7 @@ const Jobpage = () => {
             <div className="mainarea">
                 <Jobgrid />
             </div>
-        </div>
+        </div></>
     );
 };
 
