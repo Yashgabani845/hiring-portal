@@ -43,6 +43,21 @@
 .code-desc ul li {
     margin-bottom: 5px;
 }
+.testcase-passed {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.testcase-failed {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
 .code-editor {
     width: 50%;

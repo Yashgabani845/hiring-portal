@@ -89,6 +89,8 @@ const Coding = () => {
 
     const submitCode = async () => {
         try {
+            const testcases = assessment.questions[currentQuestion].codingQuestion.testCases;
+            console.log(testcases);
             const response = await fetch('http://localhost:5000/compile', {
                 method: 'POST',
                 headers: {
@@ -97,17 +99,57 @@ const Coding = () => {
                 body: JSON.stringify({
                     language,
                     code,
-                    input: 'hello' 
+                    testcases
                 }),
             });
     
             const data = await response.json();
-            setOutput(data.output);
+            let results = Array.isArray(data) ? data : [];
+    
+            if (data.error) {
+                setOutput('Error: ' + data.error);
+                setTestResult([]);
+                return;
+            }
+    
+            let passedCount = 0;
+            let failedCount = 0;
+            let resultsToDisplay = [];
+    
+            results.forEach((result) => {
+                if (result.passed) {
+                    passedCount++;
+                } else {
+                    failedCount++;
+                }
+            });
+    
+            if (failedCount > 0) {
+                resultsToDisplay = results.filter(result => !result.passed);
+            } else {
+                resultsToDisplay = results.slice(0, 2);
+            }
+    
+            setOutput(`Passed: ${data.index}/${testcases.length}`);
+            setTestResult(
+                resultsToDisplay.map((result, index) => (
+                    <div key={index} className={result.passed ? 'testcase-passed' : 'testcase-failed'}>
+                        <p><strong>Test Case {index + 1}:</strong></p>
+                        <p><strong>Input:</strong> {result.input}</p>
+                        <p><strong>Expected Output:</strong> {result.expectedOutput}</p>
+                        <p><strong>Output:</strong> {result.output}</p>
+                        <p>{result.passed ? 'Passed' : 'Failed'}</p>
+                    </div>
+                ))
+            );
         } catch (error) {
             console.error('Error submitting code:', error);
             setOutput('Error submitting code.');
+            setTestResult([]);
         }
     };
+    
+    
     
     const nextQuestion = () => {
         if (currentQuestion < assessment.questions.length - 1) {
@@ -151,7 +193,10 @@ const Coding = () => {
                     <div className="codingarea">
                         <div className="code-desc">
                             <h2> {assessment.questions[currentQuestion].codingQuestion.title}</h2>
-                            <p><strong> Description:</strong> {assessment.questions[currentQuestion].codingQuestion.problemDescription}</p>
+                            <div>
+        <p><strong>Description:</strong></p>
+        <div dangerouslySetInnerHTML={{ __html: assessment.questions[currentQuestion].codingQuestion.problemDescription }} />
+        </div>
                             <p><strong> Constraints:</strong></p>
                             <ul>
                                 {assessment.questions[currentQuestion].codingQuestion.constraints.map((constraint, index) => (
@@ -175,7 +220,7 @@ const Coding = () => {
                                         <option value="javascript">JavaScript</option>
                                         <option value="python">Python</option>
                                         <option value="java">Java</option>
-                                        <option value="cpp">C/C++</option>
+                                        <option value="cpp">C++</option>
                                         <option value="csharp">C#</option>
                                     </select>
                                 </label>
@@ -219,11 +264,12 @@ const Coding = () => {
                                 </>
                             </div>
                             <div className="testcases">
-                                <h3><CodeIcon /> Output</h3>
-                                <pre>{output}</pre>
-                                <h3><CheckCircleOutlineIcon /> Test Result</h3>
-                                <pre>{testResult}</pre>
-                            </div>
+    <h3><CodeIcon /> Output</h3>
+    <pre>{output}</pre>
+    <h3><CheckCircleOutlineIcon /> Test Result</h3>
+    <div>{testResult}</div>
+</div>
+
                             <div className="question-navigation">
                                 <Button
                                     variant="contained"

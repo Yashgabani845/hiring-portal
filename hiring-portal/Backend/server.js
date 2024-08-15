@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
+const { exec } = require('child_process')
 const bodyParser = require('body-parser');
 const Job = require('./models/Job');
 const User = require('./models/User'); 
@@ -169,6 +170,7 @@ app.post('/api/jobs', async (req, res) => {
 });
 app.get('/api/job',async (req,res)=>{
  try{ const jobs= await Job.find();
+  
   res.status(200).json(jobs);
 } catch (error) {
     res.status(400).json({ error: error.message });
@@ -494,50 +496,88 @@ app.get('/api/assessmen/:id', async (req, res) => {
   }
 });
 app.use(bodyParser.json());
-
-const options = { stats: true }; // Stats option is used to display compilex logs
+const options = { stats: true }; 
 compilex.init(options);
 
 app.post('/compile', function(req, res) {
-  const { language, code, input } = req.body;
-  console.log(language,code,input);
-  let envData = { OS: "windows" ,options: { timeout: 10000 }};
+    const { language, code, testcases } = req.body;
+    let envData = { OS: "windows", options: { timeout: 10000 } };
+    let results = [];
+    let failed = false; 
 
-  switch (language) {
-      case "cpp":
-          envData.cmd = "g++"; 
-          compilex.compileCPPWithInput(envData, code, input, (data) => {
-              if (data.error) {
-                  res.json({ error: data.error });
-              } else {
-                console.log(data.output);
-                  res.json({ output: data.output });
-             
-              }
-          });
-          break;
-      case "java":
-          compilex.compileJavaWithInput(envData, code, input, (data) => {
-              if (data.error) {
-                  res.json({ error: data.error });
-              } else {
-                  res.json({ output: data.output });
-              }
-          });
-          break;
-      case "python":
-          compilex.compilePythonWithInput(envData, code, input, (data) => {
-              if (data.error) {
-                  res.json({ error: data.error });
-              } else {
-                  res.json({ output: data.output });
-              }
-          });
-          break;
-      default:
-          res.json({ error: "Language not supported" });
-  }
+    const executeTestCase = (index) => {
+        if (index >= testcases.length) {
+            res.json(results.slice(0, 2));
+            return;
+        }
+
+        const { input, output } = testcases[index];
+        let compileFunc;
+
+        switch (language) {
+            case "cpp":
+                envData.cmd = "g++";
+                compileFunc = compilex.compileCPPWithInput;
+                break;
+            case "java":
+                compileFunc = compilex.compileJavaWithInput;
+                break;
+            case "python":
+                compileFunc = compilex.compilePythonWithInput;
+                break;
+            default:
+                res.json({ error: "Language not supported" });
+                return;
+        }
+
+        compileFunc(envData, code, input, (data) => {
+            if (data.error) {
+                results.push({
+                    input,
+                    expectedOutput: output,
+                    output: data.error,
+                    passed: false,
+                    index
+                });
+                failed = true; 
+                res.json({
+                    input,
+                    expectedOutput: output,
+                    output: data.error,
+                    passed: false,
+                    index
+                });
+                return; 
+            } else {
+                const passed = data.output.trim() === output.trim();
+                results.push({
+                    input,
+                    expectedOutput: output,
+                    output: data.output,
+                    passed,
+                    index
+                });
+
+                if (!passed) {
+                    failed = true; 
+                    res.json({
+                        input,
+                        expectedOutput: output,
+                        output: data.output,
+                        passed: false,
+                        index
+                    });
+                    return; 
+                }
+            }
+
+            executeTestCase(index + 1);
+        });
+    };
+
+    executeTestCase(0);
 });
+
 
 const io = require('socket.io')(5001, {
   cors: {

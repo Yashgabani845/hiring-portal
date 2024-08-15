@@ -63,7 +63,51 @@ import 'react-quill/dist/quill.snow.css';
         },
       }));
     };
-  
+    const parseTestCases = (fileContent) => {
+  const lines = fileContent.split('\n');
+  const testCases = [];
+
+  let input = '';
+  let output = '';
+
+  lines.forEach((line) => {
+    if (line.startsWith('input:')) {
+      input = line.replace('input:', '').trim();
+    } else if (line.startsWith('output:')) {
+      output = line.replace('output:', '').trim();
+      if (input && output) {
+        testCases.push({ input, output });
+        input = ''; // Reset input for the next pair
+        output = ''; // Reset output for the next pair
+      }
+    }
+  });
+
+  return testCases;
+};
+
+    const handleFileUpload = (e) => {
+      const file = e.target.files[0];
+    
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const fileContent = event.target.result;
+          const testCases = parseTestCases(fileContent);
+    
+          // Update the state with the parsed test cases
+          setCurrentQuestion((prev) => ({
+            ...prev,
+            codingQuestion: {
+              ...prev.codingQuestion,
+              testCases: testCases,
+            },
+          }));
+        };
+        reader.readAsText(file);
+      }
+    };
+    
   
     const handleExampleChange = (index, e) => {
       const newExamples = [...currentQuestion.codingQuestion.examples];
@@ -344,9 +388,13 @@ import 'react-quill/dist/quill.snow.css';
               <button type="button" className="addbtn" onClick={addTestCase} style={{ padding: "5px", marginTop: "10px" }}>
                 Add Test Case
               </button>
-              <button type="button" className="prevbtn"  style={{ padding: "5px", marginTop: "10px",marginLeft:"10px" }}>
-              Upload file
-              </button>
+              <input
+  type="file"
+  className="prevbtn"
+  style={{ padding: "5px", marginTop: "10px", marginLeft: "10px" }}
+  onChange={handleFileUpload}
+/>
+
               <div style={{ marginTop: "20px" }}>
                 <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
                 &laquo;  Previous
