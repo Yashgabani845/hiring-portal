@@ -71,6 +71,33 @@ app.post('/api/users/signup', async (req, res) => {
   }
 });
 
+app.get('/api/jobs/search', async (req, res) => {
+  const { keywords, location } = req.query;
+
+  try {
+    const query = {};
+
+    if (keywords) {
+      query.$or = [
+        { title: new RegExp(keywords, 'i') },
+        { description: new RegExp(keywords, 'i') },
+        { requirements: { $in: [new RegExp(keywords, 'i')] } },
+        { role: new RegExp(keywords, 'i') },
+        { department: new RegExp(keywords, 'i') },
+        { industry: new RegExp(keywords, 'i') },
+      ];
+    }
+
+    if (location) {
+      query.workLocation = new RegExp(location, 'i');
+    }
+
+    const jobs = await Job.find(query);
+    res.json(jobs);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching jobs', error });
+  }
+});
 app.post('/api/users/signin', async (req, res) => {
   try {
     const { email, password, rememberMe } = req.body;
@@ -579,51 +606,6 @@ app.post('/compile', function(req, res) {
     executeTestCase(0);
 });
 
-
-const io = require('socket.io')(5001, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
-  }
-});
-
-const users = new Set();
-
-io.on('connection', (socket) => {
-  console.log('New user connected:', socket.id);
-
-  socket.on('join', (data) => {
-    const { userName, roomId } = data;
-    users.add({ id: socket.id, userName, roomId });
-    socket.join(roomId);
-    io.to(roomId).emit('user-joined', { userName });
-    io.to(roomId).emit('update-user-list', Array.from(users).filter(user => user.roomId === roomId).map(user => user.userName));
-  });
-
-  socket.on('disconnect', () => {
-    const user = Array.from(users).find(user => user.id === socket.id);
-    if (user) {
-      users.delete(user);
-      io.to(user.roomId).emit('user-left', { userName: user.userName });
-      io.to(user.roomId).emit('update-user-list', Array.from(users).filter(u => u.roomId === user.roomId).map(u => u.userName));
-    }
-  });
-
-  socket.on('candidate', (data) => {
-    const { candidate, roomId } = data;
-    socket.broadcast.to(roomId).emit('candidate', data);
-  });
-
-  socket.on('offer', (data) => {
-    const { offer, roomId } = data;
-    socket.broadcast.to(roomId).emit('offer', data);
-  });
-
-  socket.on('answer', (data) => {
-    const { answer, roomId } = data;
-    socket.broadcast.to(roomId).emit('answer', data);
-  });
-});
 
 
 

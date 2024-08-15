@@ -94,3 +94,42 @@
     width: fit-content;
     align-self: center;
   }
+  .search-results {
+    margin-top: 10px;
+    max-height: 250px; 
+    overflow-y: auto;
+    width: 650px; 
+    background-color: #f9f9f9;
+    border-radius: 6px;
+  }
+  
+  .job-item {
+    padding: 8px 12px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .job-item:last-child {
+    border-bottom: none; 
+  }
+  
+  .job-item h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+  }
+  
+ 
+  
+  .job-item:hover {
+    background-color: #e0e0e0;
+  }
+  
