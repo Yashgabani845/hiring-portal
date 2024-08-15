@@ -31,7 +31,7 @@ const Navbar = () => {
         if (role === 'owner') {
           navigate("/owner");
         } else {
-          navigate("/company");
+          navigate("/owner");
         }
       })
       .catch(error => {

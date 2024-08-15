@@ -33,6 +33,8 @@ function App() {
         <Route path='/jobcard' element={<Jobpage />}/>
         <Route path="/job/:id" element={<Job/>} />
         <Route path="/owner" element={<Employer/>}/>
+        <Route path="/ownerside" element={<Dashboard/>}/>
+
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path="/video" element={<VideoMeeting/>}/>

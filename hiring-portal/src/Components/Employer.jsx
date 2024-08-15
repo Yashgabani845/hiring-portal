@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../CSS/employer.css'; 
 import Navbar from "../Components/Navbar"
 import Footer from "../Components/Footer"
@@ -8,10 +8,51 @@ import employer3 from "../employer3.png"
 import emp1 from "../emp1.jpg"
 import emp2 from "../emp2.jpg"
 import emp3 from "../emp3.jpg"
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Employer = () => {
+    const navigate = useNavigate();
+    const [buttonText, setButtonText] = useState('Register');
+
+    useEffect(() => {
+        const email = localStorage.getItem('userEmail');
+        if (email) {
+            axios.get('http://localhost:5000/api/users/profile', {
+                params: { email }
+            })
+            .then(response => {
+                const { role } = response.data;
+                if (role === 'owner') {
+                    setButtonText('My Dashboard');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user profile:', error);
+            });
+        } 
+    }, []);
+
+    const handlePostJob = () => {
+        const email = localStorage.getItem('userEmail');
+        if (email) {
+            axios.get('http://localhost:5000/api/users/profile', {
+                params: { email }
+            })
+            .then(response => {
+                const { role } = response.data;
+                if (role === 'owner') {
+                    navigate("/ownerside");
+                } else {
+                    navigate("/company");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user profile:', error);
+            });
+        }
+    };
     return (
         <div className="employer">
             <Navbar/>
@@ -28,7 +69,7 @@ const Employer = () => {
                             <h2>Shortlisting <hr /></h2>
                             </div> </center>
                             <center>    <p>Join us and start hiring the best talent today!</p>
-                            <button className='regcom'>Register </button>
+                            <button className='regcom' onClick={handlePostJob}>{buttonText}</button>
                             </center>
                 </div>
                 <div className="image-section">

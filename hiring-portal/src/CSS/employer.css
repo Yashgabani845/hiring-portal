@@ -70,7 +70,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: 100px;
+    width: fit-content;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
 }
