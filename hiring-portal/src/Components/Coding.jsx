@@ -90,22 +90,25 @@ const Coding = () => {
     const submitCode = async () => {
         try {
             const testcases = assessment.questions[currentQuestion].codingQuestion.testCases;
+            const question = assessment.questions[currentQuestion].codingQuestion;
             console.log(testcases);
+            const email = localStorage.getItem('userEmail')
             const response = await fetch('http://localhost:5000/compile', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    question,
                     language,
                     code,
-                    testcases
+                    testcases,
+                    email
                 }),
             });
     
             const data = await response.json();
             let results = Array.isArray(data) ? data : [];
-    
             if (data.error) {
                 setOutput('Error: ' + data.error);
                 setTestResult([]);
@@ -115,7 +118,6 @@ const Coding = () => {
             let passedCount = 0;
             let failedCount = 0;
             let resultsToDisplay = [];
-    
             results.forEach((result) => {
                 if (result.passed) {
                     passedCount++;
@@ -123,7 +125,6 @@ const Coding = () => {
                     failedCount++;
                 }
             });
-    
             if (failedCount > 0) {
                 resultsToDisplay = results.filter(result => !result.passed);
             } else {
@@ -298,5 +299,4 @@ const Coding = () => {
         </div>
     );
 };
-
 export default Coding;

@@ -500,7 +500,8 @@ const options = { stats: true };
 compilex.init(options);
 
 app.post('/compile', function(req, res) {
-    const { language, code, testcases } = req.body;
+    const { question,language, code, testcases,email } = req.body;
+    const user = User.findOne({email:email})
     let envData = { OS: "windows", options: { timeout: 10000 } };
     let results = [];
     let failed = false; 

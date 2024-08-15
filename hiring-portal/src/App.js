@@ -21,6 +21,7 @@ import Video from './Components/Video';
 import ManageJobs from './Components/Managejob';
 import ApplicationForm from './Components/ApplicationForm';
 import Shortlist from './Components/Shortlist';
+import Employer from './Components/Employer';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -31,7 +32,7 @@ function App() {
         <Route path='/signup' element={<Signup />}/>
         <Route path='/jobcard' element={<Jobpage />}/>
         <Route path="/job/:id" element={<Job/>} />
-        <Route path="/owner" element={<Dashboard/>}/>
+        <Route path="/owner" element={<Employer/>}/>
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path="/video" element={<VideoMeeting/>}/>

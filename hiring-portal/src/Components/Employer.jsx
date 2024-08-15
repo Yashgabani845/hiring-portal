@@ -1,10 +1,129 @@
-import React from "react";
-import "../employer.css"
-const Employer=()=>{
+import React from 'react';
+import '../CSS/employer.css'; 
+import Navbar from "../Components/Navbar"
+import Footer from "../Components/Footer"
+import employer1 from "../employer.png"
+import employer2 from "../employer2.jpg"
+import employer3 from "../employer3.png"
+import emp1 from "../emp1.jpg"
+import emp2 from "../emp2.jpg"
+import emp3 from "../emp3.jpg"
+
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+const Employer = () => {
     return (
         <div className="employer">
-            
+            <Navbar/>
+
+            <section className="main-section">
+                <div className="main-content">
+                <center>  <div className="slogan">
+                        <h1> Partner in Hiring Excellence</h1>
+                        <p>Empowering employers with cutting-edge tools for efficient hiring.</p>
+                    </div></center>
+                    <center>   <div className="services">
+                            <h2>Job Posting <hr /></h2>
+                            <h2>Assessment <hr /></h2>
+                            <h2>Shortlisting <hr /></h2>
+                            </div> </center>
+                            <center>    <p>Join us and start hiring the best talent today!</p>
+                            <button className='regcom'>Register </button>
+                            </center>
+                </div>
+                <div className="image-section">
+                        <img src={employer1}  classname="emp1" alt="Hiring" />
+                    </div>
+            </section>
+
+            <section className="quality-job-management">
+                <div className="top-div">
+                    <h5>OUR SERVICES & PRODUCTS</h5>
+                    <h2>Hire According to Your Preference Across the Globe</h2>
+                </div>
+                <div className="bottom-div">
+    <div className="qleft-div">
+       <center> <img src={employer2} className='emp2' alt="Quality Job Management" />
+    </center>   </div>
+    <div className="qright-div">
+        <div className="quality-grid">
+            <div className="quality-item">
+                <i className="fas fa-stopwatch icon blue-icon"></i>
+                <p>Easy to Post Jobs</p>
+            </div>
+            <div className="quality-item">
+                <i className="fas fa-dollar-sign icon blue-icon"></i>
+                <p>Free</p>
+            </div>
+            <div className="quality-item">
+                <i className="fas fa-smile icon blue-icon"></i>
+                <p>No Limit on Jobs</p>
+            </div>
+            <div className="quality-item">
+                <i className="fas fa-chart-line icon blue-icon"></i>
+                <p>Reach to Most People</p>
+            </div>
         </div>
-    )
-}
+    </div>
+</div>
+
+            </section>
+
+            <section className="shortlisting">
+    <div className="left-div">
+        <h2>Efficient Shortlisting Candidates</h2>
+<p> </p>        <div className="feature-grid">
+            <div className="feature-item">
+                <i className="fas fa-university icon blue-icon"></i>
+                <p>Shortlist Based on College</p>
+            </div>
+            <div className="feature-item">
+                <i className="fas fa-file-alt icon blue-icon"></i>
+                <p>Shortlist Based on Resume</p>
+            </div>
+            <div className="feature-item">
+                <i className="fas fa-genderless icon blue-icon"></i>
+                <p>Gender-based Shortlisting</p>
+            </div>
+            <div className="feature-item">
+                <i className="fas fa-envelope icon blue-icon"></i>
+                <p>Contact via Email</p>
+            </div>
+            <div className="feature-item">
+                <i className="fas fa-mail-bulk icon blue-icon"></i>
+                <p>Automatic Mail System</p>
+            </div>
+        </div>
+    </div>
+    <div className="right-div">
+        <img src={employer3} className='emp3' alt="Shortlisting" />
+    </div>
+</section>
+
+            <section className="whats-new">
+                <h2>What's New</h2>
+                <div className="card-grid">
+                    <div className="card">
+                        <img src={emp1} alt="Shortlisting Candidates" />
+                        <h3>Shortlisting Candidates</h3>
+                        <p>Based on your requirements.</p>
+                    </div>
+                    <div className="card">
+                        <img src={emp3} alt="Online Coding Rounds" />
+                        <h3>Online Coding Rounds</h3>
+                        <p>Host coding rounds on our platform.</p>
+                    </div>
+                    <div className="card">
+                        <img src= {emp2} alt="Mailing System" />
+                        <h3>Mailing System</h3>
+                        <p>Automate mail for each round activity.</p>
+                    </div>
+                </div>
+            </section>
+
+          <Footer/>
+        </div>
+    );
+};
+
 export default Employer;

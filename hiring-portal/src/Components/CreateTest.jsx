@@ -77,8 +77,8 @@ import 'react-quill/dist/quill.snow.css';
       output = line.replace('output:', '').trim();
       if (input && output) {
         testCases.push({ input, output });
-        input = ''; // Reset input for the next pair
-        output = ''; // Reset output for the next pair
+        input = ''; 
+        output = ''; 
       }
     }
   });
