@@ -30,47 +30,62 @@ const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-app.post('/api/users/signup', async (req, res) => {
-  try {
-    const { name, email, password, location, locationPreferences, expectedSalary,resume, jobType, jobTitle, techStack, skills, address, degree, university, cgpa, pastJobs, pastJobDetails } = req.body;
-
-    console.log("Received data", req.body);
-
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'Name, email, and password are required' });
+  app.post('/api/users/signup', async (req, res) => {
+    try {
+      const { 
+        name, 
+        email, 
+        password, 
+        location, 
+        locationPreferences, 
+        expectedSalary, 
+        resume, 
+        jobType, 
+        jobTitle, 
+        techStack, 
+        skills, 
+        address, 
+        degree, 
+        university, 
+        cgpa, 
+        experience, 
+        pastJobs, 
+        isFresher 
+      } = req.body;
+  
+      if (!name || !email || !password) {
+        return res.status(400).json({ message: 'Name, email, and password are required' });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const newUser = new User({
+        name,
+        email,
+        password: hashedPassword,
+        profileDetails: {
+          education: !isFresher ? { degree, university, cgpa } : undefined,
+          skills,
+          address,
+          techStack,
+          pastJobs: !isFresher && pastJobs.length > 0 ? pastJobs : undefined  
+        },
+        location,
+        locationPreferences,
+        expectedSalary,
+        jobType,
+        jobTitle,
+        resume
+      });
+  
+      await newUser.save();
+  
+      res.status(201).json({ message: 'User created successfully' });
+    } catch (error) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ message: 'Error creating user', error });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      name,
-      email,
-      password: hashedPassword,
-      profileDetails: {
-        education: { degree, university, cgpa },
-        experience: pastJobs,
-        skills,
-        address,
-        techStack
-      },
-      location,
-      locationPreferences,
-      expectedSalary,
-      jobType,
-      jobTitle,
-      resume
-    });
-
-    await newUser.save();
-
-    res.status(201).json({ message: 'User created successfully' });
-  } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).json({ message: 'Error creating user', error });
-  }
-});
-
+  });
 app.get('/api/jobs/search', async (req, res) => {
   const { keywords, location } = req.query;
 

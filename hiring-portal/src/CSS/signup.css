@@ -1,10 +1,11 @@
+/* Container Styling */
 .signupform {
-  width: 400px;
+  width: 45%;
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   font-family: 'Arial', sans-serif;
 }
@@ -13,13 +14,16 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: #333;
 }
 
 .signupform h2 {
   margin-bottom: 15px;
   font-size: 20px;
-  color: #555;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #918b8b;
+  
 }
 
 .signupform p {
@@ -30,9 +34,9 @@
 
 .signupform label {
   display: block;
-  margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 15px;
   color: #555;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .signupform input[type="text"],
@@ -42,13 +46,14 @@
 .signupform textarea {
   width: calc(100% - 12px);
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 15px;
   box-sizing: border-box;
   font-size: 14px;
   color: #333;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .signupform input[type="text"]:focus,
@@ -58,8 +63,11 @@
 .signupform textarea:focus {
   border-color: #007BFF;
   outline: none;
+  margin-top: 5px;
+  box-shadow: 0 0 1px rgba(0, 123, 255, 0.5);
 }
 
+/* Custom Input Field Class */
 .signupform .signupinput {
   width: calc(100% - 12px);
   padding: 10px;
@@ -69,41 +77,119 @@
   box-sizing: border-box;
   font-size: 14px;
   color: #333;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .signupform .signupinput:focus {
   border-color: #007BFF;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Fresher or Experience Divs */
+.signupform .fresher-experience {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.signupform .fresher-experience div {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.signupform .fresher-experience .selected {
+  border-color: #007BFF;
+  background-color: #e7f0ff;
+}
+
+.signupform input[type="file"] {
+  
+}
+
+.signupform label[for="resume-upload"] {
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.signupform label[for="resume-upload"]:hover {
+  background-color: #0056b3;
+}
+
+.signupform .resume-info {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+}
+
+/* Add Job Button */
+.signupform .add-job-button {
+  display: flex;
+  align-items: center;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.signupform .add-job-button:hover {
+  background-color: #0056b3;
+}
+
+.signupform .add-job-button .icon {
+  margin-right: 5px;
 }
 
 .signupform button {
   display: inline-block;
-  width: calc(50% - 12px);
+  width: fit-content;
   padding: 10px;
   margin-top: 10px;
-  border: none;
+  border: 2px solid #007BFF; /* Blue outline */
   border-radius: 5px;
-  background-color: #007BFF;
-  color: white;
+  background-color: transparent; /* Transparent background */
+  color: #007BFF; /* Blue text color */
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .signupform button:hover {
-  background-color: #0056b3;
+  background-color: #d7dee6; /* Blue background on hover */
 }
 
 .signupform button:disabled {
-  background-color: #ccc;
+  border: 2px solid #ccc;
+  background-color: transparent;
+  color: #ccc;
   cursor: not-allowed;
 }
+
+
 
 .signupform button + button {
   margin-left: 10px;
 }
 
+/* Step Indicator Styling */
 .signupform .step-indicator {
   display: flex;
   justify-content: space-between;
@@ -121,6 +207,7 @@
   background-color: #007BFF;
 }
 
+/* Skills Select */
 .signupform .basic-multi-select {
   width: 100%;
 }
@@ -129,7 +216,8 @@
   margin-bottom: 10px;
 }
 
-a{
+/* Anchor Tag Styling */
+a {
   text-decoration: none;
-  color:#555;
+  color: #555;
 }

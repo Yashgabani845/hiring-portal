@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../CSS/profile.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
-import profilepic from "../profile.jpg"
+import profilepic from "../profile.jpg";
 import Navbar from './Navbar';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WorkIcon from '@mui/icons-material/Work';
@@ -80,12 +80,34 @@ const Profile = () => {
               </div>
             ) : <p>No education details available.</p>}
           </section>
-          <section className="profile-section">
-            <div className="section-header">
-              <WorkIcon className="section-icon" />
-              <h2>Experience</h2>
-            </div>
-            {profileDetails.experience.length > 0 ? (
+
+          {/* Show Past Jobs if available */}
+          {profileDetails.pastJobs && profileDetails.pastJobs.length > 0 && (
+            <section className="profile-section">
+              <div className="section-header">
+                <WorkIcon className="section-icon" />
+                <h2>Past Jobs</h2>
+              </div>
+              <ul className="experience-list">
+                {profileDetails.pastJobs.map((job, index) => (
+                  <li key={index} className="experience-item">
+                    <p><strong>Company:</strong> {job.company}</p>
+                    <p><strong>Role:</strong> {job.role}</p>
+                    <p><strong>Duration:</strong> {job.duration}</p>
+                    <p><strong>Details:</strong> {job.details}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Show Experience if no Past Jobs available */}
+          {!profileDetails.pastJobs || profileDetails.pastJobs.length === 0 && profileDetails.experience && profileDetails.experience.length > 0 && (
+            <section className="profile-section">
+              <div className="section-header">
+                <WorkIcon className="section-icon" />
+                <h2>Experience</h2>
+              </div>
               <ul className="experience-list">
                 {profileDetails.experience.map((exp, index) => (
                   <li key={index} className="experience-item">
@@ -96,8 +118,9 @@ const Profile = () => {
                   </li>
                 ))}
               </ul>
-            ) : <p>No experience details available.</p>}
-          </section>
+            </section>
+          )}
+
           <section className="profile-section">
             <div className="section-header">
               <SettingsIcon className="section-icon" />
@@ -111,6 +134,7 @@ const Profile = () => {
               </ul>
             ) : <p>No skills listed.</p>}
           </section>
+
           <section className="profile-section">
             <div className="section-header">
               <LocationOnIcon className="section-icon" />
@@ -118,6 +142,7 @@ const Profile = () => {
             </div>
             <p>{profileDetails.address}</p>
           </section>
+
           <section className="profile-section">
             <div className="section-header">
               <ContactMailIcon className="section-icon" />
@@ -131,6 +156,7 @@ const Profile = () => {
               </ul>
             ) : <p>No languages listed.</p>}
           </section>
+
           <section className="profile-section">
             <div className="section-header">
               <MoreHorizIcon className="section-icon" />

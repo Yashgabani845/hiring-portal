@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const experienceSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema({
   company: { type: String, required: true },
   role: { type: String, required: true },
   duration: { type: String, required: true },
@@ -17,7 +17,7 @@ const profileDetailsSchema = new mongoose.Schema({
   bio: { type: String },
   avatar: { type: String },
   education: educationSchema,
-  experience: [experienceSchema],
+  pastJobs: [jobSchema], // Add pastJobs field
   skills: [String],
   address: { type: String },
   languages: [String],
