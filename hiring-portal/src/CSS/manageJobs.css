@@ -41,6 +41,9 @@
     font-family: 'Arial', sans-serif;
     font-size: 14px;
 }
+.form-group input[checkbox]{
+    padding: 0;
+}
 
 .form-group textarea {
     resize: vertical;
@@ -71,6 +74,10 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     font-family: 'Arial', sans-serif;
+}
+.ch{
+    height: 5px;
+    width: 5px;
 }
 
 .form-actions button:hover {

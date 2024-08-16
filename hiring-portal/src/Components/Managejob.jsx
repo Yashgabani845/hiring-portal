@@ -95,7 +95,7 @@ const ManageJobs = () => {
                 </div>
                 <div className="form-group half-width">
                     <label>Remote:</label>
-                    <input type="checkbox" name="remote" checked={job.remote || false} onChange={(e) => handleInputChange({ target: { name: 'remote', value: e.target.checked } })} />
+                    <input type="checkbox" name="remote" className='ch' checked={job.remote || false} onChange={(e) => handleInputChange({ target: { name: 'remote', value: e.target.checked } })} />
                 </div>
                 
                 <div className="form-group half-width">
@@ -137,6 +137,7 @@ const ManageJobs = () => {
             <div className="job-actions">
                 <button onClick={() => navigate(`/shortlist/${job._id}`)}>Shortlist Candidates</button>
                 <button onClick={() => navigate(`/manage-assesment/${job._id}`)}>Take Assessment</button>
+                <button onClick={() => navigate(`/assessment-results/${job._id}`)}>See Assessment Results</button>
             </div>
             <ToastContainer />
         </div>

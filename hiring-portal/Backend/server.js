@@ -86,6 +86,25 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
       res.status(500).json({ message: 'Error creating user', error });
     }
   });
+  app.delete('/api/applications/:id', async (req, res) => {
+    const applicationId = req.params.id;
+
+    try {
+        const deletedApplication = await Application.findByIdAndDelete(applicationId);
+
+        if (!deletedApplication) {
+            return res.status(404).json({ message: 'Application not found' });
+        }
+
+        res.status(200).json({ message: 'Application deleted successfully' });
+        console.log("appplication del;eted")
+    } catch (error) {
+        console.error('Error deleting application:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
 app.get('/api/jobs/search', async (req, res) => {
   const { keywords, location } = req.query;
 
@@ -620,7 +639,55 @@ app.post('/compile', function(req, res) {
 
     executeTestCase(0);
 });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gabaniyash846@gmail.com',
+    pass: 'frtkmvbebchjfile',
+  },
+});
 
+// Endpoint to send assessment emails
+app.post('/api/assessments/send', async (req, res) => {
+  const { jobId, assessmentId } = req.body;
+
+  try {
+    // Fetch job, assessment, and applicants
+    const job = await Job.findById(jobId);
+    const assessment = await Assessment.findById(assessmentId);
+    const applications = await Application.find({ jobId });
+
+    const jobTitle = job.title;
+    const startTime = new Date(assessment.startTime).toLocaleString();
+    const endTime = new Date(assessment.endTime).toLocaleString();
+    const assessmentLink = `http://localhost:3000/code/${assessmentId}`;
+
+    // Send email to each applicant
+    for (const application of applications) {
+      const email = application.email;
+      console.log('Email:', email);
+      console.log('Job Title:', jobTitle);
+      console.log('Start Time:', startTime);
+      console.log('End Time:', endTime);
+      console.log('Assessment Link:', assessmentLink);
+      const mailOptions = {
+        from: 'gabaniyash846@gmail.com',
+        to: email,
+        subject: `Assessment for ${jobTitle} - ${startTime} to ${endTime}`,
+        text: `Dear Applicant,\n\nYou have an assessment scheduled for the job "${jobTitle}" from ${startTime} to ${endTime}.\n\nPlease complete the assessment using the following link: ${assessmentLink}\n\nBest regards,\nYour Company Name`,
+      };
+   
+
+
+      await transporter.sendMail(mailOptions);
+    }
+    console.log("sended email")
+    res.status(200).json({ message: 'Assessment emails sent successfully.' });
+  } catch (error) {
+    console.error('Error sending emails:', error);
+    res.status(500).json({ message: 'Error sending emails', error: error.message });
+  }
+});
 
 
 

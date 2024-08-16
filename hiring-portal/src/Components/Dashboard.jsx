@@ -81,9 +81,7 @@ const Dashboard = () => {
                         <FontAwesomeIcon icon={faChartBar} /> Statistics
                     </li>
                 </ul>
-                <div className="company-name">
-                    <p>Your Company Name</p>
-                </div>
+               
             </aside>
             <main className="content">
                 {renderContent()}
