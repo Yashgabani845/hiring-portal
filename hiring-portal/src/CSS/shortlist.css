@@ -1,11 +1,9 @@
-/* General Container Styles */
 .shortlist-container {
     padding: 20px;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
 }
 
-/* Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -43,7 +41,6 @@
     background-color: #0056b3;
 }
 
-/* Tooltip Styles */
 .tooltip-container {
     position: relative;
     display: inline-block;
@@ -138,69 +135,82 @@ h1 {
     text-decoration: underline;
 }
 
-/* Applicant Actions Styles */
 .applicant-actions {
     margin-top: 15px;
     display: flex;
-    justify-content: space-between;
+    gap:5px
 }
 
 .applicant-actions button {
     padding: 8px 12px;
     border-radius: 4px;
+    outline: none;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
+    font-weight: 700;
     gap: 5px;
 }
 
 .applicant-actions button:nth-child(1) {
     background-color: #007bff;
     color: white;
+    outline: none;
+    border: none;
 }
 
 .applicant-actions button:nth-child(1):hover {
     background-color: #0056b3;
+    outline: none;
+    border: none;
 }
 
 .applicant-actions button:nth-child(2) {
     background-color: #28a745;
+    outline: none;
+    border: none;
     color: white;
 }
 
 .applicant-actions button:nth-child(2):hover {
     background-color: #218838;
+    outline: none;
+    border: none;
 }
 
 .applicant-actions button:nth-child(3) {
     background-color: #dc3545;
+    outline: none;
+    border: none;
     color: white;
 }
 
 .applicant-actions button:nth-child(3):hover {
     background-color: #c82333;
+    outline: none;
+    border: none;
 }
 
-/* Global Round Button Styles */
 .global-round-button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #ff7f50;
+    background-color: #2969c9;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 700;
     transition: background-color 0.3s ease;
 }
 
 .global-round-button:hover {
-    background-color: #e67300;
+    background-color: #007fe6;
 }
 
-/* Modal Styles */
 .ReactModal__Overlay {
     background-color: rgba(0, 0, 0, 0.75) !important;
 }
@@ -248,7 +258,6 @@ h1 {
     margin-top: 10px;
 }
 
-/* Assessment Options Styles */
 .assessment-options {
     display: flex;
     flex-direction: column;
@@ -322,7 +331,6 @@ h1 {
     border-left: 2px solid #4e9ff5;
 }
 
-/* Adjustments for Buttons */
 .submit-button {
     margin-top: 20px;
     padding: 10px 20px;

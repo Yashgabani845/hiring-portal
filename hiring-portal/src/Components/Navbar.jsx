@@ -20,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); 
-    setActiveTab(location.pathname); // Set active tab based on current location
+    setActiveTab(location.pathname); 
   }, [location.pathname]);
 
   const handlePostJob = () => {

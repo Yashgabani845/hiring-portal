@@ -8,8 +8,8 @@
     type: { type: String, enum: ['native', 'external'], required: true },
     applications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Application' }],
     salaryRange: {
-      min: { type: Number, required: true },
-      max: { type: Number, required: true }
+      min: { type: Number },
+      max: { type: Number }
     },
     workLocation: { type: String, required: true },
     role: { type: String, required: true },
@@ -20,14 +20,14 @@
     remote: { type: Boolean, default: false },
     companyCulture: { type: String },
     applicationDeadline: { type: Date }, 
-    experienceLevel: { type: String, enum: ['internship', 'entry-level', 'mid-level', 'senior-level'] }, 
-    educationLevel: { type: String, enum: ['high school', 'associate', 'bachelor', 'master', 'doctorate'] },
     industry: { type: String }, 
     keywords: [String],
     contactEmail: { type: String, required: true }, 
     companyWebsite: { type: String }, 
     jobResponsibilities: [String], 
     languagesRequired: [String],
+    link:{ type: String},
+    comlogo: {type: String}
   });
 
   module.exports = mongoose.model('Job', jobSchema);

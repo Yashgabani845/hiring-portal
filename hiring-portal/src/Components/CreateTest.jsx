@@ -95,7 +95,6 @@ import 'react-quill/dist/quill.snow.css';
           const fileContent = event.target.result;
           const testCases = parseTestCases(fileContent);
     
-          // Update the state with the parsed test cases
           setCurrentQuestion((prev) => ({
             ...prev,
             codingQuestion: {

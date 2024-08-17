@@ -26,7 +26,8 @@ const JobPostForm = () => {
         contactEmail: '',
         companyWebsite: '',
         jobResponsibilities: [],
-        languagesRequired: []
+        languagesRequired: [],
+        link:null
     });
 
     const handleChange = (e) => {

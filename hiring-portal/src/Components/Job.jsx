@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase, FaUsers, FaEye, FaCalendarAlt } from "react-icons/fa";
+import {
+    FaRegClock, FaMapMarkerAlt, FaDollarSign, FaBriefcase,
+    FaUsers, FaEye, FaCalendarAlt
+} from "react-icons/fa";
 import "../CSS/job.css";
 import logo from "../logo.png";
 
 const Job = () => {
     const userEmail = localStorage.getItem('userEmail');
-
     const navigate = useNavigate();
     const { id } = useParams();
     const [jobDetails, setJobDetails] = useState(null);
@@ -20,19 +22,19 @@ const Job = () => {
                 const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
                 setJobDetails(response.data);
 
-                const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
-                setCompanyDetails(companyResponse.data);
+                if (response.data.postedBy) {
+                    const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
+                    setCompanyDetails(companyResponse.data);
+                }
             } catch (error) {
                 console.error("Error fetching job details:", error);
             }
         };
 
-        
-
         const fetchRecommendedJobs = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/job`);
-                setRecommendedJobs(response.data);
+                setRecommendedJobs(response.data.slice(0, 5));  // Fetch only 5 recommended jobs
             } catch (error) {
                 console.error("Error fetching recommended jobs:", error);
             }
@@ -41,19 +43,9 @@ const Job = () => {
         fetchJobDetails();
         fetchRecommendedJobs();
     }, [id]);
-    const joblogo = async (id) => {
-        try {
-          
-            const companyResponse = await axios.get(`http://localhost:5000/api/companies/${id}`);
-            console.log(companyResponse.data.logo)
-           return companyResponse.data.logo.toString();
-        } catch (error) {
-            console.error("Error fetching job details:", error);
-        }
-    };
-    const now = new Date();
 
     const calculateTimeLeft = (deadline) => {
+        const now = new Date();
         const deadlineDate = new Date(deadline);
         const timeLeft = deadlineDate - now;
 
@@ -68,6 +60,98 @@ const Job = () => {
 
     if (!jobDetails || !companyDetails) return <p>Loading...</p>;
 
+    const renderJobDetails = () => {
+        if (jobDetails.type === "external") {
+            return (
+                <>
+                    {jobDetails.title && <h1 className="job-title">{jobDetails.title}</h1>}
+                    {jobDetails.comlogo && <img src={jobDetails.comlogo} alt="Company Logo" className="company-logo" />}
+                    {jobDetails.employmentType && (
+                        <div className="job-detail-section">
+                            <h2><FaBriefcase /> Job Type</h2>
+                            <p>{jobDetails.employmentType}</p>
+                        </div>
+                    )}
+                    {jobDetails.experienceLevel && (
+                        <div className="job-detail-section">
+                            <h2><FaUsers /> Experience</h2>
+                            <p>{jobDetails.experienceLevel}</p>
+                        </div>
+                    )}
+                    {jobDetails.workLocation && (
+                        <div className="job-detail-section">
+                            <h2><FaMapMarkerAlt /> Job Location</h2>
+                            <p>{jobDetails.workLocation}</p>
+                        </div>
+                    )}
+                    {jobDetails.salaryRange && (
+                        <div className="job-detail-section">
+                            <h2><FaDollarSign /> Salary</h2>
+                            <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
+                        </div>
+                    )}
+                    {jobDetails.shift && jobDetails.shift.length > 0 && (
+                        <div className="job-detail-section">
+                            <h2><FaRegClock /> Work Details</h2>
+                            <p>{jobDetails.shift.join(", ")}</p>
+                        </div>
+                    )}
+                    {jobDetails.applicationDeadline && (
+                        <div className="job-detail-section">
+                            <h2><FaCalendarAlt /> Application Deadline</h2>
+                            <p>{jobDetails.applicationDeadline}</p>
+                        </div>
+                    )}
+                    {jobDetails.description && (
+                        <div className="job-detail-section">
+                            <h2>Job Description</h2>
+                            <p>{jobDetails.description}</p>
+                        </div>
+                    )}
+                </>
+            );
+        }
+
+        return (
+            <>
+                <h1 className="job-title">{jobDetails.title}</h1>
+                <img src={companyDetails.logo || logo} alt={`${companyDetails.name} logo`} className="company-logo" />
+                <div className="job-detail-section">
+                    <h2><FaBriefcase /> Job Type</h2>
+                    <p>{jobDetails.employmentType}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2><FaUsers /> Experience</h2>
+                    <p>{jobDetails.experienceLevel}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2><FaMapMarkerAlt /> Job Location</h2>
+                    <p>{jobDetails.workLocation}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2><FaDollarSign /> Salary</h2>
+                    <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2><FaRegClock /> Work Details</h2>
+                    <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2><FaCalendarAlt /> Application Deadline</h2>
+                    <p>{jobDetails.applicationDeadline}</p>
+                </div>
+                <div className="job-detail-section">
+                    <h2>Job Description</h2>
+                    <p>{jobDetails.description}</p>
+                </div>
+                <div className="job-impressions-section">
+                    <div><FaEye /> Impressions: {jobDetails.impressions}</div>
+                    <div><FaUsers /> Applied: {jobDetails.applied}</div>
+                </div>
+            </>
+        );
+    };
+
     return (
         <div className="job-page">
             <div className="job-container">
@@ -76,7 +160,7 @@ const Job = () => {
                     <div className="recommended-job-grid">
                         {recommendedJobs.map((job, index) => (
                             <div key={index} className="recommended-job-card">
-                                <img src={joblogo(job.postedBy).toString() || logo} alt={`${job.title} logo`} className="job-logo" />
+                                <img src={job.comlogo || logo} alt={`${job.title} logo`} className="job-logo" />
                                 <div>
                                     <h3>{job.title}</h3>
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
@@ -93,46 +177,17 @@ const Job = () => {
                 </div>
 
                 <div className="job-section">
-                    <h1 className="job-title">{jobDetails.title}</h1>
-                    <img src={companyDetails.logo} alt={`${companyDetails.name} logo`} className="company-logo" />
-                    <div className="job-detail-section">
-                        <h2><FaBriefcase /> Job Type</h2>
-                        <p>{jobDetails.employmentType}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2><FaUsers /> Experience</h2>
-                        <p>{jobDetails.experienceLevel}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2><FaMapMarkerAlt /> Job Location</h2>
-                        <p>{jobDetails.workLocation}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2><FaDollarSign /> Salary</h2>
-                        <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2><FaRegClock /> Work Details</h2>
-                        <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2><FaCalendarAlt /> Application Deadline</h2>
-                        <p>{jobDetails.applicationDeadline}</p>
-                    </div>
-                    <div className="job-detail-section">
-                        <h2>Job Description</h2>
-                        <p>{jobDetails.description}</p>
-                    </div>
-                    <div className="job-impressions-section">
-                        <div><FaEye /> Impressions: {jobDetails.impressions}</div>
-                        <div><FaUsers /> Applied: {jobDetails.applied}</div>
-                    </div>
+                    {renderJobDetails()}
                     <button
                         className="apply-button"
                         onClick={() => {
-                            navigate("/application", {
-                                state: { jobId: jobDetails._id, emailcurrent: userEmail },
-                            });
+                            if (jobDetails.type === "external") {
+                                window.location.href = jobDetails.link;
+                            } else {
+                                navigate("/application", {
+                                    state: { jobId: jobDetails._id, emailcurrent: userEmail },
+                                });
+                            }
                         }}
                     >
                         Apply Now

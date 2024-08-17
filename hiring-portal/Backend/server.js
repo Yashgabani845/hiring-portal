@@ -14,8 +14,7 @@ const compilex = require('compilex');
 
 
 const http = require('http');
-const socketIo = require('socket.io');
-const Assesment = require('./models/Assesment');
+
 require('dotenv').config();
 
 const app = express();
@@ -162,73 +161,101 @@ app.post('/api/users/signin', async (req, res) => {
   }
 });
 
-
 app.post('/api/jobs', async (req, res) => {
-  console.log('Request Body:', req.body); 
   try {
-      const {
-          title,
-          description,
-          requirements,
-          type,
-          salaryRange,
-          workLocation,
-          role,
-          department,
-          employmentType,
-          remote,
-          companyCulture,
-          applicationDeadline,
-          industry,
-          keywords,
-          contactEmail,
-          companyWebsite,
-          jobResponsibilities,
-          languagesRequired,
-          ownerEmail 
-      } = req.body;
+    const {
+      title,
+      description,
+      requirements,
+      type,
+      salaryRange,
+      workLocation,
+      role,
+      department,
+      employmentType,
+      remote,
+      companyCulture,
+      applicationDeadline,
+      industry,
+      keywords,
+      contactEmail,
+      companyWebsite,
+      jobResponsibilities,
+      languagesRequired,
+      ownerEmail,
+      link,
+      companyLogo
+    } = req.body;
 
-      if (!ownerEmail) {
-          return res.status(400).json({ error: 'Owner email is required' });
+    console.log('Received job data:', req.body);
+
+    if (!ownerEmail) {
+      return res.status(400).json({ error: 'Owner email is required' });
+    }
+
+    if (!title || !description || !role) {
+      return res.status(400).json({ error: 'Title, description, and role are required fields' });
+    }
+
+
+
+    if (applicationDeadline && isNaN(Date.parse(applicationDeadline))) {
+      return res.status(400).json({ error: 'Invalid application deadline date' });
+    }
+
+    const company = await Company.findOne({ owner: ownerEmail });
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found for the given owner email' });
+    }
+
+    const jobData = {
+      title,
+      description,
+      requirements,
+      postedBy: company._id,
+      type,
+     
+      workLocation,
+      role,
+      department,
+      employmentType,
+      remote,
+      companyCulture,
+      applicationDeadline: applicationDeadline ? new Date(applicationDeadline) : null,
+      industry,
+      keywords,
+      contactEmail,
+      companyWebsite,
+      jobResponsibilities,
+      languagesRequired
+    };
+
+    if (link) {
+      jobData.link = link;
+    }
+
+    if (companyLogo) {
+      jobData.comlogo = companyLogo;
+    }
+    if(salaryRange){
+     jobData.salaryRange={
+        min: salaryRange.min,
+        max: salaryRange.max
       }
+    }
 
-      const company = await Company.findOne({ owner: ownerEmail });
-      if (!company) {
-          return res.status(404).json({ error: 'Company not found for the given owner email' });
-      }
+    const job = new Job(jobData);
+    await job.save();
+    console.log('Job saved successfully');
+    res.status(201).send(job);
 
-      const job = new Job({
-          title,
-          description,
-          requirements,
-          postedBy: company._id,
-          type,
-          salaryRange: {
-              min: salaryRange.min,
-              max: salaryRange.max
-          },
-          workLocation,
-          role,
-          department,
-          employmentType,
-          remote,
-          companyCulture,
-          applicationDeadline: new Date(applicationDeadline), 
-          industry,
-          keywords,
-          contactEmail,
-          companyWebsite,
-          jobResponsibilities,
-          languagesRequired
-      });
-
-      await job.save();
-      console.log('data saved')
-      res.status(201).send(job);
   } catch (error) {
-      res.status(400).send({ error: error.message });
-  } 
+    console.error('Error saving job:', error);
+    res.status(400).send({ error: error.message });
+  }
 });
+
+
 app.get('/api/job',async (req,res)=>{
  try{ const jobs= await Job.find();
   
@@ -510,7 +537,23 @@ app.post('/api/applications', async (req, res) => {
     return res.status(500).json({ message: "Failed to submit application.", error });
   }
 });
+app.get('/api/company', async (req, res) => {
+  try {
+      const companies = await Company.find();
+      res.status(200).json(companies);
+  } catch (error) {
+      res.status(500).json({ message: 'Error fetching companies', error });
+  }
+});
 
+app.get('/api/users', async (req, res) => {
+  try {
+      const users = await User.find();
+      res.status(200).json(users);
+  } catch (error) {
+      res.status(500).json({ message: 'Error fetching users', error });
+  }
+});
 app.get('/api/applications/:jobId', async (req, res) => {
   const { jobId } = req.params;
 
