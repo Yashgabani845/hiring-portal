@@ -11,7 +11,7 @@ const Company = require('./models/Company');
 const Assessment = require('./models/Assesment')
 const Application = require('./models/Application');
 const compilex = require('compilex');
-
+const Result = require('./models/Result');
 
 const http = require('http');
 
@@ -214,7 +214,6 @@ app.post('/api/jobs', async (req, res) => {
       requirements,
       postedBy: company._id,
       type,
-     
       workLocation,
       role,
       department,
@@ -603,85 +602,142 @@ app.use(bodyParser.json());
 const options = { stats: true }; 
 compilex.init(options);
 
-app.post('/compile', function(req, res) {
-    const { question,language, code, testcases,email } = req.body;
-    const user = User.findOne({email:email})
-    let envData = { OS: "windows", options: { timeout: 10000 } };
+app.post('/compile', async (req, res) => {
+    const { question, language, code, testcases, email, assessmentId } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+
+    let envData = { OS: 'windows', options: { timeout: 10000 } };
     let results = [];
-    let failed = false; 
 
-    const executeTestCase = (index) => {
-        if (index >= testcases.length) {
-            res.json(results.slice(0, 2));
-            return;
-        }
-
-        const { input, output } = testcases[index];
-        let compileFunc;
-
-        switch (language) {
-            case "cpp":
-                envData.cmd = "g++";
-                compileFunc = compilex.compileCPPWithInput;
-                break;
-            case "java":
-                compileFunc = compilex.compileJavaWithInput;
-                break;
-            case "python":
-                compileFunc = compilex.compilePythonWithInput;
-                break;
-            default:
-                res.json({ error: "Language not supported" });
-                return;
-        }
-
-        compileFunc(envData, code, input, (data) => {
-            if (data.error) {
-                results.push({
-                    input,
-                    expectedOutput: output,
-                    output: data.error,
-                    passed: false,
-                    index
-                });
-                failed = true; 
-                res.json({
-                    input,
-                    expectedOutput: output,
-                    output: data.error,
-                    passed: false,
-                    index
-                });
-                return; 
-            } else {
-                const passed = data.output.trim() === output.trim();
-                results.push({
-                    input,
-                    expectedOutput: output,
-                    output: data.output,
-                    passed,
-                    index
-                });
-
-                if (!passed) {
-                    failed = true; 
-                    res.json({
-                        input,
-                        expectedOutput: output,
-                        output: data.output,
-                        passed: false,
-                        index
-                    });
-                    return; 
-                }
-            }
-
-            executeTestCase(index + 1);
+    let result = await Result.findOne({ applicantId: user._id, assessmentId: assessmentId });
+    if (!result) {
+        result = new Result({
+            assessmentId: assessmentId,
+            applicantId: user._id,
+            score: 0,
+            answers: [],
+            feedback: '',
+            status: 'not submitted'
         });
-    };
+    }
 
-    executeTestCase(0);
+    const executeTestCase = async (index) => {
+      if (index >= testcases.length) {
+          await result.save();
+          return res.json(results.slice(0, 2));
+      }
+  
+      const { input, output } = testcases[index];
+      let compileFunc;
+  
+      switch (language) {
+          case 'cpp':
+              envData.cmd = 'g++';
+              compileFunc = compilex.compileCPPWithInput;
+              break;
+          case 'java':
+              compileFunc = compilex.compileJavaWithInput;
+              break;
+          case 'python':
+              compileFunc = compilex.compilePythonWithInput;
+              break;
+          default:
+              await result.save();
+              return res.json({ error: 'Language not supported' });
+      }
+  
+      compileFunc(envData, code, input, async (data) => {
+          if (data.error) {
+              results.push({
+                  input,
+                  expectedOutput: output,
+                  output: data.error,
+                  passed: false,
+                  index
+              });
+              failed = true;
+              await result.save();
+              return res.json({
+                  input,
+                  expectedOutput: output,
+                  output: data.error,
+                  passed: false,
+                  index
+              });
+          } else {
+              const passed = data.output.trim() == output.trim();
+              results.push({
+                  input,
+                  expectedOutput: output,
+                  output: data.output,
+                  passed,
+                  index
+              });
+  
+              if (!passed) {
+                  failed = true;
+                  await result.save();
+                  return res.json({
+                      input,
+                      expectedOutput: output,
+                      output: data.output,
+                      passed: false,
+                      index
+                  });
+              }
+          }
+  
+          executeTestCase(index + 1); 
+      });
+  };
+  
+  executeTestCase(0);
+  
 });
+
+app.post('/endtest', async (req, res) => {
+  const { email, assessmentId } = req.body;
+  const user = await User.findOne({ email: email });
+  
+  if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+  }
+
+  const result = await Result.findOne({ applicantId: user._id, assessmentId: assessmentId });
+  if (!result) {
+      return res.status(404).json({ error: 'Result not found' });
+  }
+
+  result.status = 'submitted';
+  result.save()
+      .then(() => res.json({ message: 'Test ended and result submitted' }))
+      .catch((error) => res.status(500).json({ error: 'Error updating result' }));
+});
+app.get('/result/:email/:assessmentId', async (req, res) => {
+  const { email, assessmentId } = req.params;
+
+  try {
+      const user = await User.findOne({ email: email });
+      if (!user) {
+          return res.status(404).json({ error: "User not found" });
+      }
+
+      const result = await Result.findOne({ applicantId: user._id, assessmentId: assessmentId });
+if(result.status==="submitted"){
+  res.json(result || { submitted: true, answers: [] });
+}else{
+      res.json( { submitted: false, answers: [] });}
+  } catch (error) {
+      console.error('Error in result endpoint:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -690,12 +746,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Endpoint to send assessment emails
 app.post('/api/assessments/send', async (req, res) => {
   const { jobId, assessmentId } = req.body;
 
   try {
-    // Fetch job, assessment, and applicants
     const job = await Job.findById(jobId);
     const assessment = await Assessment.findById(assessmentId);
     const applications = await Application.find({ jobId });
@@ -705,7 +759,6 @@ app.post('/api/assessments/send', async (req, res) => {
     const endTime = new Date(assessment.endTime).toLocaleString();
     const assessmentLink = `http://localhost:3000/code/${assessmentId}`;
 
-    // Send email to each applicant
     for (const application of applications) {
       const email = application.email;
       console.log('Email:', email);

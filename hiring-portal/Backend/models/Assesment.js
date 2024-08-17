@@ -24,11 +24,6 @@ const assessmentSchema = new mongoose.Schema({
     }
   }],
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' }, 
-  results: [{
-    applicantId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    score: Number,
-    answers: [String]
-  }],
   maxMarks: { type: Number },
   startTime: { type: Date, required: true }, 
   endTime: { type: Date, required: true },  

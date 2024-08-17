@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; 
+import { useParams, useNavigate } from 'react-router-dom';
 import Editor from "@monaco-editor/react";
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -21,13 +21,15 @@ const Coding = () => {
     const [assessment, setAssessment] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [remainingTime, setRemainingTime] = useState(null);
-    const [isTestActive, setIsTestActive] = useState(false); 
+    const [isTestActive, setIsTestActive] = useState(false);
+    const [isTestSubmitted, setIsTestSubmitted] = useState(false); 
+
     const intervalRef = useRef(null);
 
     useEffect(() => {
         const fetchAssessment = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/assessmen/${assessmentId}`); // Use assessmentId from URL
+                const response = await fetch(`http://localhost:5000/api/assessmen/${assessmentId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -44,6 +46,10 @@ const Coding = () => {
                     setIsTestActive(false);
                 }
 
+                const resultResponse = await fetch(`http://localhost:5000/result/${localStorage.getItem('userEmail')}/${assessmentId}`);
+                const resultData = await resultResponse.json();
+                setIsTestSubmitted(resultData.status==="submitted");
+
             } catch (error) {
                 console.error('Error fetching assessment:', error);
                 setAssessment(null);
@@ -54,26 +60,48 @@ const Coding = () => {
     }, [assessmentId]);
 
     useEffect(() => {
-        if (assessment && isTestActive) {
+        if (assessment && isTestActive && !isTestSubmitted) {
             const endTime = new Date(assessment.endTime);
-    
+
             intervalRef.current = setInterval(() => {
                 const currentTime = new Date();
                 const remaining = Math.floor((endTime - currentTime) / 1000);
-    
+
                 if (remaining <= 0) {
                     clearInterval(intervalRef.current);
                     localStorage.removeItem('startTime');
-                    navigate('/');
+                    endTest(); 
                 } else {
                     setRemainingTime(remaining);
                 }
             }, 1000);
-    
+
             return () => clearInterval(intervalRef.current);
         }
-    }, [assessment, isTestActive, navigate]);
-    
+    }, [assessment, isTestActive, isTestSubmitted, navigate]);
+
+    const endTest = async () => {
+        try {
+            const email = localStorage.getItem('userEmail');
+            const response = await fetch('http://localhost:5000/endtest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    assessmentId
+                }),
+            });
+
+            const data = await response.json();
+            console.log(data.message);
+            navigate('/'); 
+        } catch (error) {
+            console.error('Error ending test:', error);
+        }
+    };
+
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -103,10 +131,11 @@ const Coding = () => {
                     language,
                     code,
                     testcases,
-                    email
+                    email,
+                    assessmentId
                 }),
             });
-    
+
             const data = await response.json();
             let results = Array.isArray(data) ? data : [];
             if (data.error) {
@@ -114,7 +143,7 @@ const Coding = () => {
                 setTestResult([]);
                 return;
             }
-    
+
             let passedCount = 0;
             let failedCount = 0;
             let resultsToDisplay = [];
@@ -130,7 +159,7 @@ const Coding = () => {
             } else {
                 resultsToDisplay = results.slice(0, 2);
             }
-    
+
             setOutput(`Passed: ${data.index}/${testcases.length}`);
             setTestResult(
                 resultsToDisplay.map((result, index) => (
@@ -149,9 +178,9 @@ const Coding = () => {
             setTestResult([]);
         }
     };
-    
-    
-    
+
+
+
     const nextQuestion = () => {
         if (currentQuestion < assessment.questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
@@ -163,6 +192,20 @@ const Coding = () => {
             setCurrentQuestion(currentQuestion - 1);
         }
     };
+
+    if (isTestSubmitted) {
+        return (
+            <div className="coding-interface">
+                <div className="test-submitted">
+                    <h2>Thank you for your submission!</h2>
+                    <p>Your test has been successfully submitted. You will be informed of the next steps via email.</p>
+                    <Button variant="contained" color="primary" onClick={() => navigate('/')}>
+                        Go Back to Homepage
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 
     if (!isTestActive) {
         return (
@@ -183,21 +226,22 @@ const Coding = () => {
         );
     }
 
+   
     return (
         <div className="coding-interface">
             {assessment ? (
                 <>
-                    <div className="timer">
+                    <center>  <div className="timer">
                         <h2><AccessTimeIcon /> Time Remaining: {formatTime(remainingTime)}</h2>
                         <h2><QuizIcon /> Question {currentQuestion + 1} of {assessment.questions.length}</h2>
-                    </div>
+                    </div></center>
                     <div className="codingarea">
                         <div className="code-desc">
                             <h2> {assessment.questions[currentQuestion].codingQuestion.title}</h2>
                             <div>
-        <p><strong>Description:</strong></p>
-        <div dangerouslySetInnerHTML={{ __html: assessment.questions[currentQuestion].codingQuestion.problemDescription }} />
-        </div>
+                                <p><strong>Description:</strong></p>
+                                <div dangerouslySetInnerHTML={{ __html: assessment.questions[currentQuestion].codingQuestion.problemDescription }} />
+                            </div>
                             <p><strong> Constraints:</strong></p>
                             <ul>
                                 {assessment.questions[currentQuestion].codingQuestion.constraints.map((constraint, index) => (
@@ -245,31 +289,38 @@ const Coding = () => {
                                 />
                             </div>
                             <div className="editor-actions">
-                                <>
-                                    <Button
-                                        variant="outlined"
-                                        onClick={runCode}
-                                        style={{ marginRight: '10px' }}
-                                        startIcon={<PlayArrowIcon />}
-                                    >
-                                        Run
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={submitCode}
-                                        startIcon={<CheckCircleOutlineIcon />}
-                                    >
-                                        Submit
-                                    </Button>
-                                </>
+                                <Button
+                                    variant="outlined"
+                                    onClick={runCode}
+                                    style={{ marginRight: '10px' }}
+                                    startIcon={<PlayArrowIcon />}
+                                >
+                                    Run
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={submitCode}
+                                    startIcon={<CheckCircleOutlineIcon />}
+                                >
+                                    Submit
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={endTest}
+                                    style={{ marginLeft: '10px' }}
+                                >
+                                    End Test
+                                </Button>
                             </div>
+
                             <div className="testcases">
-    <h3><CodeIcon /> Output</h3>
-    <pre>{output}</pre>
-    <h3><CheckCircleOutlineIcon /> Test Result</h3>
-    <div>{testResult}</div>
-</div>
+                                <h3><CodeIcon /> Output</h3>
+                                <pre>{output}</pre>
+                                <h3><CheckCircleOutlineIcon /> Test Result</h3>
+                                <div>{testResult}</div>
+                            </div>
 
                             <div className="question-navigation">
                                 <Button
