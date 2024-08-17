@@ -5,7 +5,6 @@ import "../CSS/jobgrid.css";
 
 const Jobgrid = () => {
     const [jobsWithLogos, setJobs] = useState([]);
-
     useEffect(() => {
         const fetchJobs = async () => {
             try {
@@ -32,7 +31,7 @@ const Jobgrid = () => {
         <div className="jobgrid">
             {jobsWithLogos.map((job) => (
                 <Jobcard
-                    comlogo={job.logo} 
+                    comlogo={job.comlogo||job.logo} 
                     id={job._id}
                     key={job._id}
                     company={job.postedBy} 

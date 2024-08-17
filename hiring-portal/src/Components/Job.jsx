@@ -6,7 +6,7 @@ import {
     FaUsers, FaEye, FaCalendarAlt
 } from "react-icons/fa";
 import "../CSS/job.css";
-import logo from "../logo.png";
+import logo from "../company.png";
 
 const Job = () => {
     const userEmail = localStorage.getItem('userEmail');
@@ -15,34 +15,69 @@ const Job = () => {
     const [jobDetails, setJobDetails] = useState(null);
     const [recommendedJobs, setRecommendedJobs] = useState([]);
     const [companyDetails, setCompanyDetails] = useState(null);
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
                 setJobDetails(response.data);
+                console.log("Job details fetched:", response.data);
 
                 if (response.data.postedBy) {
                     const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
                     setCompanyDetails(companyResponse.data);
+                    console.log("Company details fetched:", companyResponse.data);
                 }
             } catch (error) {
                 console.error("Error fetching job details:", error);
+                setError("Failed to fetch job details.");
+            } finally {
+                setLoading(false);
             }
         };
 
         const fetchRecommendedJobs = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/job`);
-                setRecommendedJobs(response.data.slice(0, 5));  // Fetch only 5 recommended jobs
+                const jobsWithCompanyLogos = await Promise.all(response.data.map(async (job) => {
+                    try {
+                        if(job.type==="native"){
+                        const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
+                        return {
+                            
+                            ...job,
+                            comlogo: companyResponse.data.logo
+                        };}
+                        else{
+                            return {
+                                ...job
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Error fetching company details:", err);
+                        return job; 
+                    }
+                }));
+                const jobsWithoutClogo = jobsWithCompanyLogos.map(({ clogo, ...job }) => job);
+                setRecommendedJobs(jobsWithoutClogo.slice(0, 7));
+                console.log("Recommended jobs fetched:", jobsWithoutClogo);
             } catch (error) {
                 console.error("Error fetching recommended jobs:", error);
+                setError("Failed to fetch recommended jobs.");
             }
         };
 
         fetchJobDetails();
         fetchRecommendedJobs();
     }, [id]);
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     const calculateTimeLeft = (deadline) => {
         const now = new Date();
@@ -158,9 +193,12 @@ const Job = () => {
                 <div className="recommendation-section">
                     <h2>Recommended Jobs</h2>
                     <div className="recommended-job-grid">
-                        {recommendedJobs.map((job, index) => (
+                        {
+                            
+
+                        recommendedJobs.map((job, index) => (
                             <div key={index} className="recommended-job-card">
-                                <img src={job.comlogo || logo} alt={`${job.title} logo`} className="job-logo" />
+                                <img src={job.comlogo } alt={`${job.title} logo`} className="job-logo" />
                                 <div>
                                     <h3>{job.title}</h3>
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
