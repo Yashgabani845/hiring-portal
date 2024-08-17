@@ -627,6 +627,7 @@ app.post('/compile', async (req, res) => {
 
     const executeTestCase = async (index) => {
       if (index >= testcases.length) {
+        result.answers.push({code , results})
           await result.save();
           return res.json(results.slice(0, 2));
       }
@@ -646,6 +647,9 @@ app.post('/compile', async (req, res) => {
               compileFunc = compilex.compilePythonWithInput;
               break;
           default:
+
+            result.answers.push({code , results})
+
               await result.save();
               return res.json({ error: 'Language not supported' });
       }
@@ -660,6 +664,8 @@ app.post('/compile', async (req, res) => {
                   index
               });
               failed = true;
+              result.answers.push({code , results})
+
               await result.save();
               return res.json({
                   input,
@@ -680,6 +686,8 @@ app.post('/compile', async (req, res) => {
   
               if (!passed) {
                   failed = true;
+                  result.answers.push({code , results})
+
                   await result.save();
                   return res.json({
                       input,
@@ -727,7 +735,7 @@ app.get('/result/:email/:assessmentId', async (req, res) => {
       }
 
       const result = await Result.findOne({ applicantId: user._id, assessmentId: assessmentId });
-if(result.status==="submitted"){
+if(result && result.status==="submitted"){
   res.json(result || { submitted: true, answers: [] });
 }else{
       res.json( { submitted: false, answers: [] });}
