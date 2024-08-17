@@ -5,10 +5,10 @@ const Interview = () => {
     return (
         <div className="interview">
             <div className="itext-part">
-                <div className="ititle">Seamless online interview Tools </div>
+                <div className="ititle">Shortlisting and Mailing </div>
                 <div className="islogan">Single platform for whole interview process</div>
                 <div className="viewbtn">
-                    <button className="btn">View More</button>
+                    <button className="btn">Explore More</button>
                 </div>
             </div>
 

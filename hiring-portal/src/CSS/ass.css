@@ -1,0 +1,52 @@
+/* ass.css */
+
+.assessment-detail-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .result-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button-group {
+    margin-top: 15px;
+  }
+  
+  .button-group button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .button-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  .details-section {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  
+  pre {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  
+  .result-detail {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  

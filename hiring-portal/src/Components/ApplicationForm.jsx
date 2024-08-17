@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/ApplicationForm.css";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ApplicationForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [countryCodes, setCountryCodes] = useState([]);
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
   const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
@@ -42,7 +44,6 @@ const ApplicationForm = () => {
       emoji: country.emoji
     }));
     setCountryCodes(codes);
-
   }, []);
 
   const handleInputChange = (e) => {
@@ -72,18 +73,18 @@ const ApplicationForm = () => {
         },
         body: JSON.stringify(applicationData),
       });
-    
+
       if (response.ok) {
-        alert("Application submitted successfully!");
-        navigate(`/`)
+        toast.success("Application submitted successfully!");
+        navigate(`/`);
       } else {
         const errorData = await response.json();
         console.error("Error submitting application:", errorData);
-        alert("Failed to submit application.");
+        toast.error(`Failed to submit application: ${errorData.message}`);
       }
     } catch (error) {
       console.error("Error submitting application:", error);
-      alert("Failed to submit application.");
+      toast.error("Failed to submit application.");
     }
   };
 

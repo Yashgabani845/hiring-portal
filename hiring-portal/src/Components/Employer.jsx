@@ -73,7 +73,7 @@ const Employer = () => {
                             </center>
                 </div>
                 <div className="image-section">
-                        <img src={employer1}  classname="emp1" alt="Hiring" />
+                        <img src={employer1}  classname="emp1" alt="Hiring" loading='lazy' />
                     </div>
             </section>
 
@@ -142,7 +142,7 @@ const Employer = () => {
 </section>
 
             <section className="whats-new">
-                <h2>What's New</h2>
+               <center><h2>What's New</h2></center> 
                 <div className="card-grid">
                     <div className="card">
                         <img src={emp1} alt="Shortlisting Candidates" />

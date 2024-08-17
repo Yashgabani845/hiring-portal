@@ -22,6 +22,8 @@ import ManageJobs from './Components/Managejob';
 import ApplicationForm from './Components/ApplicationForm';
 import Shortlist from './Components/Shortlist';
 import Employer from './Components/Employer';
+import AssessmentResults from './Components/AssesmentResult';
+import AssessmentResultDetail from './Components/AssessmentResultDetails';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -34,7 +36,6 @@ function App() {
         <Route path="/job/:id" element={<Job/>} />
         <Route path="/owner" element={<Employer/>}/>
         <Route path="/ownerside" element={<Dashboard/>}/>
-
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path="/video" element={<VideoMeeting/>}/>
@@ -48,6 +49,8 @@ function App() {
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
         <Route path="/application" element={<ApplicationForm/>}/>
         <Route path='/shortlist/:jobId' element={<Shortlist/>}/>
+        <Route path='/assessment-results/:jobId' element={<AssessmentResults/>}/>
+        <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail/>}/>
         </Routes>
    </Router>
   );

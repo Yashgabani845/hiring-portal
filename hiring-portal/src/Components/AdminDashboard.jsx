@@ -36,7 +36,7 @@ const AdminDashboard = () => {
         type: 'external',
         link: '',
         companyLogo: '' ,
-        ownerEmail:'gabaniyash847@gmail.com'
+        ownerEmail:'admin@gmail.com'
     });
     const [selectedData, setSelectedData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);

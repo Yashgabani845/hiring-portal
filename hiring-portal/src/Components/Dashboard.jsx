@@ -3,54 +3,52 @@ import '../CSS/dashboard.css';
 import Jobpost from "./JobPostForm";
 import Managejob from "./Managejob";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faEdit, faEye, faFilter, faChartBar, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faEdit, faEye, faFilter, faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import Jobs from './Jobs';
 import UploadedJobs from './UploadedJobs';
+import csoon from "../csoon.jpg"
 const Dashboard = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState('create-job');
-    const handlehome=()=>{
+
+    const handlehome = () => {
         navigate("/");
     }
+
     const renderContent = () => {
-        
         switch (activeSection) {
             case 'create-job':
                 return (
                     <div className="content-section">
-                      <Jobpost />
+                        <Jobpost />
                     </div>
                 );
             case 'edit-jobs':
                 return (
                     <div className="content-section">
-                      <UploadedJobs />
+                        <UploadedJobs />
                     </div>
                 );
             case 'view-jobs':
                 return (
                     <div className="content-section">
-                      <UploadedJobs />
+                        <UploadedJobs />
                     </div>
                 );
             case 'filter-jobs':
                 return (
-                    <div className="content-section">
+                    <div className="content-section notice-container">
+                        <img src={csoon} alt="Coming Soon" className="coming-soon-image" />
                         <h2>Filter Jobs</h2>
-                        <form>
-                            <input type="text" placeholder="Role" />
-                            <input type="text" placeholder="Salary Range" />
-                            <button type="submit">Apply Filters</button>
-                        </form>
+                        <p>This feature is coming very soon!</p>
                     </div>
                 );
             case 'statistics':
                 return (
-                    <div className="content-section">
+                    <div className="content-section notice-container">
+                        <img src={csoon} alt="Coming Soon" className="coming-soon-image" />
                         <h2>Platform Statistics</h2>
-                        <p>Analyze the performance of your postings.</p>
-                        <button>View Statistics</button>
+                        <p>This feature is coming very soon!</p>
                     </div>
                 );
             default:
@@ -81,7 +79,6 @@ const Dashboard = () => {
                         <FontAwesomeIcon icon={faChartBar} /> Statistics
                     </li>
                 </ul>
-               
             </aside>
             <main className="content">
                 {renderContent()}

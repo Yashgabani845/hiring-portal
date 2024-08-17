@@ -32,7 +32,7 @@ const MiddleView = () => {
                 </div>
             </div>
             <div className="jobimg">
-                <img src={jobimg} alt="jobs" />
+                <img src={jobimg} alt="jobs"  loading="lazy" />
             </div>
         </div>
     );

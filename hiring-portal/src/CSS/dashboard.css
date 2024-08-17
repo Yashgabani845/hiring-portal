@@ -105,6 +105,21 @@
     color: #555;
     margin-bottom: 20px;
 }
+.notice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top:  15%;
+    padding: 20px;
+}
+
+.coming-soon-image {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
 
 .content-section button {
     background-color: #007bff;

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/profile.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
-import profilepic from "../profile.jpg";
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import profilepic from '../profile.jpg';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
@@ -11,32 +9,51 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import '../CSS/profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [appLoading, setAppLoading] = useState(true);
+  const [appError, setAppError] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const email = localStorage.getItem('userEmail');
-    
-    if (email) {
-      axios.get(`http://localhost:5000/api/users/profile`, {
-        params: { email }
-      })
-      .then(response => {
-        setUser(response.data);
-        setLoading(false);
-      })
-      .catch(err => {
+    const fetchUserProfile = async () => {
+      try {
+        const email = localStorage.getItem('userEmail');
+        if (email) {
+          // Fetch user profile
+          const response = await fetch(`http://localhost:5000/api/users/profile?email=${encodeURIComponent(email)}`);
+          if (!response.ok) throw new Error('Failed to fetch user profile');
+          const userData = await response.json();
+          setUser(userData);
+
+          // Fetch applications
+          const applicantId = userData._id; // Assuming applicantId is part of user data
+          const appsResponse = await fetch(`http://localhost:5000/api/applicationss/${applicantId}`);
+          if (!appsResponse.ok) throw new Error('Failed to fetch applications');
+          const appsData = await appsResponse.json();
+          setApplications(appsData);
+
+          setLoading(false);
+          setAppLoading(false);
+        } else {
+          setError('No email found in localStorage');
+          setLoading(false);
+          setAppLoading(false);
+        }
+      } catch (err) {
         setError(err.message);
         setLoading(false);
-      });
-    } else {
-      setError('No email found in localStorage');
-      setLoading(false);
-    }
+        setAppLoading(false);
+      }
+    };
+
+    fetchUserProfile();
   }, []);
 
   const handleLogout = () => {
@@ -45,7 +62,7 @@ const Profile = () => {
     navigate('/signin');
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading profile...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
 
@@ -101,8 +118,7 @@ const Profile = () => {
             </section>
           )}
 
-          {/* Show Experience if no Past Jobs available */}
-          {!profileDetails.pastJobs || profileDetails.pastJobs.length === 0 && profileDetails.experience && profileDetails.experience.length > 0 && (
+          {(!profileDetails.pastJobs || profileDetails.pastJobs.length === 0) && profileDetails.experience && profileDetails.experience.length > 0 && (
             <section className="profile-section">
               <div className="section-header">
                 <WorkIcon className="section-icon" />
@@ -169,6 +185,25 @@ const Profile = () => {
             <p><strong>Job Title:</strong> {jobTitle}</p>
             {resume && <p><a href={resume} className="resume-link" target="_blank" rel="noopener noreferrer">View Resume</a></p>}
           </section>
+
+          {/* Display applications only if available */}
+          {applications.length > 0 && (
+            <section className="profile-section">
+              <div className="section-header">
+                <h2>Applications</h2>
+              </div>
+              {appLoading ? <p>Loading applications...</p> : appError ? <p>Error: {appError}</p> : (
+                <ul className="applications-list">
+                  {applications.map(app => (
+                    <li key={app._id} className="application-item">
+                      <p><strong>Job Title:</strong> {app.jobId.title}</p>
+                      <p><strong>Resume:</strong> <a href={app.resume} target="_blank" rel="noopener noreferrer">View Resume</a></p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )}
         </div>
       </div>
     </>

@@ -26,19 +26,32 @@
 .rate {
     display: flex;
     flex-direction: row;
-    align-items: center;
+  
 }
 
 .rating {
-    font-size: 14px;
+    font-size: 0.95rem;
     font-weight: 600;
     color: #333;
-    margin-right: 20px;
+    margin-right: 20px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
 }
+.rating span{
+    margin-top: 3px;
+}
+.department {
+    font-size: 0.95rem;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.department span{
+    margin-top: 3px;
 
-.review {
-    font-size: 14px;
-    color: #777;
 }
 
 .jobrole {

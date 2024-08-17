@@ -94,9 +94,9 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
         if (!deletedApplication) {
             return res.status(404).json({ message: 'Application not found' });
         }
-
+        console.log("appplication deleted")
         res.status(200).json({ message: 'Application deleted successfully' });
-        console.log("appplication del;eted")
+       
     } catch (error) {
         console.error('Error deleting application:', error);
         res.status(500).json({ message: 'Server error' });
@@ -746,6 +746,7 @@ if(result && result.status==="submitted"){
 });
 
 
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -753,6 +754,91 @@ const transporter = nodemailer.createTransport({
     pass: 'frtkmvbebchjfile',
   },
 });
+app.post('/api/hire', async (req, res) => {
+  const { applicantId, jobId } = req.body;
+  try {
+    console.log('Applicant ID:', applicantId, 'Job ID:', jobId);
+   
+    // Find the assessment using jobId
+    const ass = await Assessment.findById(jobId);
+    console.log('Assessment:', ass);
+
+    if (!ass) {
+      return res.status(404).json({ message: 'Assessment not found' });
+    }
+
+    const actualJobId = ass.jobId;
+    console.log('Actual Job ID:', actualJobId);
+
+    // Find the application using applicantId and actualJobId
+    const application = await Application.findOne({ applicantId, jobId: actualJobId });
+    console.log('Application:', application);
+
+    if (!application) {
+      return res.status(404).json({ message: 'Application not found' });
+    }
+
+    // Prepare email options
+    const mailOptions = {
+      from: 'gabaniyash846@gmail.com',
+      to: application.email,
+      subject: 'Congratulations! You are Hired',
+      text: `Dear ${application.firstName},\n\nWe are pleased to inform you that you have been hired for the job associated with ID: ${jobId}.\n\nBest Regards,\nYour Company`
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    // Delete the application document if it exists
+    if (application) {
+      await Application.deleteOne({ _id: application._id });
+    }
+
+    // Delete the result document if it exists
+    const result = await Result.findOne({ applicantId });
+    if (result) {
+      await Result.deleteOne({ applicantId });
+    }
+
+    res.status(200).json({ message: 'Applicant hired, email sent, and result deleted' });
+  } catch (error) {
+    console.error('Error:', error.message); // Log the error message
+    res.status(500).json({ message: error.message });
+  }
+});
+app.post('/api/reject', async (req, res) => {
+  const { applicantId, jobId } = req.body;
+
+  try {
+    const application = await Application.findOne({ applicantId, jobId });
+
+    if (!application) {
+      return res.status(404).json({ message: 'Application not found' });
+    }
+
+    // Prepare email options
+    const mailOptions = {
+      from: 'gabaniyash846@gmail.com',
+      to: application.email,
+      subject: 'Application Status: Rejected',
+      text: `Dear ${application.firstName},\n\nWe regret to inform you that your application for the job associated with ID: ${jobId} has been rejected.\n\nBest Regards,\nYour Company`
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    // Delete the application document if it exists
+    if (application) {
+      await Application.deleteOne({ _id: application._id });
+    }
+
+    res.status(200).json({ message: 'Applicant rejected and email sent' });
+  } catch (error) {
+    console.error('Error in rejecting application:', error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 app.post('/api/assessments/send', async (req, res) => {
   const { jobId, assessmentId } = req.body;
@@ -792,8 +878,36 @@ app.post('/api/assessments/send', async (req, res) => {
     res.status(500).json({ message: 'Error sending emails', error: error.message });
   }
 });
+app.get('/api/applicationss/:applicantId', async (req, res) => {
+  try {
+    const { applicantId } = req.params;
+    console.log(applicantId)
+    const applications = await Application.find({ applicantId }).populate('jobId').exec();
+    console.log(applications)
+    if (applications && applications.length > 0) {
+      res.status(200).json(applications);
+    } else {
+      res.status(200).json([]);
 
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
+app.get('/api/results/:assessmentId', async (req, res) => {
+  try {
+    const assessmentId = req.params.assessmentId;
+    console.log("i got asssesment",assessmentId)
+    const results = await Result.find({ assessmentId: assessmentId }).populate('applicantId', 'name email'); 
+    console.log(results)
+    res.status(200).json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  } 
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

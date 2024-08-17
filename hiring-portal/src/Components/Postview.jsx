@@ -1,6 +1,6 @@
 import React from "react";
 import "../CSS/postview.css";
-import postImg from "../postjobs.png";
+import postImg from "../3rdone.jpg";
 
 const PostView = () => {
     return (

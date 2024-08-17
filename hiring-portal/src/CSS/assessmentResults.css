@@ -1,0 +1,40 @@
+.assessment-results {
+    padding: 20px;
+}
+
+.result-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.result-card h2 {
+    margin-top: 0;
+}
+
+.question {
+    margin-top: 15px;
+}
+
+.coding-details pre {
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.assbtn {
+    background-color: #4e9ff5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.assbtn:hover {
+    background-color: #3e8fd1;
+}

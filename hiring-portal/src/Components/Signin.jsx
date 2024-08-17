@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import "../CSS/signin.css";
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../CSS/signin.css";
 import jobImage from '../job_search.png'; // Replace with the actual path to your image
-import logo from '../logo.png'
+import logo from '../logo.png';
+
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -26,24 +29,27 @@ const SignIn = () => {
         console.log('Sign in successful:', data);
         localStorage.setItem('userEmail', data.email);
         localStorage.setItem('token', data.token);
+        toast.success('Sign in successful!');
         navigate('/');
       } else {
         console.error('Sign in failed:', data.message);
+        toast.error(`Sign in failed: ${data.message}`);
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error('An error occurred. Please try again.');
     }
   };
 
   return (
     <div className="bg">
-
       <div className="signin-page">
-
-        <center><div className="welcom1">
-          <h1>Welcome to </h1>
-          <img src={logo} alt="" />
-        </div></center>
+        <center>
+          <div className="welcom1">
+            <h1>Welcome to</h1>
+            <img src={logo} alt="Logo" />
+          </div>
+        </center>
         <div className="signin-data">
           <div className="signin-image">
             <img src={jobImage} alt="Job Portal" />
@@ -90,6 +96,7 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

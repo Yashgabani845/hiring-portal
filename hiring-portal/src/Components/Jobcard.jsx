@@ -1,8 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { IoLocationOutline } from "react-icons/io5";
+import { MdWorkOutline } from "react-icons/md";
+import { FcDepartment } from "react-icons/fc";
+import styled from 'styled-components';
+
 import "../CSS/jobcard.css";
 
-const Jobcard = ({ id, comlogo, company, rating, reviews, role }) => {
+// Styled components for icons
+const LocationIcon = styled(IoLocationOutline)`
+    font-size: 20px;
+    margin-right: 3px;
+        padding-top:2px;
+
+`;
+
+const WorkIcon = styled(MdWorkOutline)`
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 3px;
+        margin-top:2px;
+
+`;
+
+const DepartmentIcon = styled(FcDepartment)`
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 3px;
+    margin-top:2px;
+`;
+
+const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
     const [companyName, setCompanyName] = useState("");
 
     useEffect(() => {
@@ -26,10 +54,16 @@ const Jobcard = ({ id, comlogo, company, rating, reviews, role }) => {
     return (
         <div className="jobcard">
             <div className="joblogo"><img src={comlogo} alt="company logo" /></div>
-            <div className="comname">{companyName}</div> 
+            <div className="comname">{companyName}</div>
             <div className="rate">
-                <div className="rating">{rating}</div>
-                <div className="review">{reviews}</div>
+                <div className="rating">
+                    <LocationIcon />
+                   <span>{worklocation}</span> 
+                </div>
+                <div className="department">
+                    <WorkIcon />
+                    <span>   {department}</span> 
+                </div>
             </div>
             <div className="jobrole">{role}</div>
             <div className="viewjob">
