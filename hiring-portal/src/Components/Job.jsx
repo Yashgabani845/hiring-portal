@@ -196,7 +196,15 @@ const Job = () => {
                     {renderJobDetails()}
                     <button
                         className="apply-button"
-                        onClick={() => navigate(`/apply/${id}`)}
+                        onClick={() => {
+                            if (jobDetails.type === "external") {
+                                window.location.href = jobDetails.link;
+                            } else {
+                                navigate("/application", {
+                                    state: { jobId: jobDetails._id, emailcurrent: userEmail },
+                                });
+                            }
+                        }}
                     >
                         Apply Now
                     </button>

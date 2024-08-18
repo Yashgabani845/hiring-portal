@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../CSS/ApplicationForm.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase/firebase"; 
 import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "../CSS/ApplicationForm.css";
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
@@ -16,7 +17,6 @@ const ApplicationForm = () => {
 
   const location = useLocation();
   const { jobId, emailcurrent } = location.state || {};
-  console.log(emailcurrent);
 
   const [formData, setFormData] = useState({
     resume: "",
@@ -36,6 +36,9 @@ const ApplicationForm = () => {
     experience: { company: "", role: "", duration: "" },
     skills: [""],
   });
+
+  const [uploading, setUploading] = useState(false); // State to manage uploading process
+  const [filesUploaded, setFilesUploaded] = useState({ resume: false, cv: true }); // Track file upload completion
 
   useEffect(() => {
     const codes = countryData.map(country => ({
@@ -58,6 +61,39 @@ const ApplicationForm = () => {
     setCountryEmoji(selectedCountry.emoji);
   };
 
+  const handleFileUpload = async (file, fieldName) => {
+    if (!file) return;
+    setUploading(true);
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // You can add progress handling here if needed
+      },
+      (error) => {
+        console.error("File upload error:", error);
+        toast.error(`Failed to upload ${fieldName}: ${error.message}`);
+        setUploading(false);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setFormData((prevData) => ({ ...prevData, [fieldName]: downloadURL }));
+          setFilesUploaded((prevState) => ({ ...prevState, [fieldName]: true }));
+          toast.success(`${fieldName} uploaded successfully!`);
+          setUploading(false);
+        });
+      }
+    );
+  };
+
+  const handleFileChange = (e, fieldName) => {
+    const file = e.target.files[0];
+    setFilesUploaded((prevState) => ({ ...prevState, [fieldName]: false })); // Mark file as not uploaded
+    handleFileUpload(file, fieldName);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const applicationData = {
@@ -65,6 +101,7 @@ const ApplicationForm = () => {
       jobId,
       emailcurrent,
     };
+
     try {
       const response = await fetch("http://localhost:5000/api/applications", {
         method: "POST",
@@ -87,6 +124,8 @@ const ApplicationForm = () => {
       toast.error("Failed to submit application.");
     }
   };
+
+  const allFilesUploaded = filesUploaded.resume && filesUploaded.cv; // Check if all required files are uploaded
 
   return (
     <form className="application-form" onSubmit={handleSubmit}>
@@ -153,8 +192,6 @@ const ApplicationForm = () => {
           ))}
         </select> </div>
 
-     
-
       <div className="form-group">
         <label>Course:</label>
         <select name="course" value={formData.course} onChange={handleInputChange} required>
@@ -185,19 +222,29 @@ const ApplicationForm = () => {
         </select>
       </div>
 
- 
+      <div className="form-group">
+        <label>Resume (Upload File):</label>
+        <input
+          type="file"
+          accept=".pdf,.doc,.docx"
+          onChange={(e) => handleFileChange(e, "resume")}
+          required
+        />
+      </div>
+      
+      <div className="form-group">
+        <label>CV (Upload File, optional):</label>
+        <input
+          type="file"
+          accept=".pdf,.doc,.docx"
+          onChange={(e) => handleFileChange(e, "cv")}
+        />
+      </div>
 
-      <div className="form-group">
-        <label>Resume URL:</label>
-        <input type="text" name="resume" value={formData.resume} onChange={handleInputChange} placeholder="Enter resume URL" required />
-      </div>
-      
-      <div className="form-group">
-        <label>CV URL (optional):</label>
-        <input type="text" name="cv" value={formData.cv} onChange={handleInputChange} placeholder="Enter CV URL (optional)" />
-      </div>
-      
-      <button type="submit" className="submit-btn">Submit Application</button>
+      <button type="submit" className="submit-btn" disabled={uploading || !allFilesUploaded}>
+        {uploading ? "Uploading..." : "Submit Application"}
+      </button>
+      <ToastContainer />
     </form>
   );
 };

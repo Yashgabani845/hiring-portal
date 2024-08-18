@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../CSS/signin.css";
@@ -15,6 +15,11 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+if(email==="admin@gmail.com" && password==="admin"){
+  navigate('/admin');
+}
+else{
+
     try {
       const response = await fetch('http://localhost:5000/api/users/signin', {
         method: 'POST',
@@ -39,7 +44,7 @@ const SignIn = () => {
       console.error('Error:', error);
       toast.error('An error occurred. Please try again.');
     }
-  };
+  };}
 
   return (
     <div className="bg">
