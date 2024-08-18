@@ -112,7 +112,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/users/signup', formData, {
+      const response = await axios.post('https://hirebackend-1.onrender.com/api/users/signup', formData, {
         headers: {
           'Content-Type': 'application/json'
         }

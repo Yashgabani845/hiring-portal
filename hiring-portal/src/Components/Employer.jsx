@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../CSS/employer.css'; 
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import employer1 from "../employer.png";
 import employer2 from "../employer2.jpg";
 import employer3 from "../employer3.png";
@@ -21,7 +21,7 @@ const Employer = () => {
     useEffect(() => {
         const email = localStorage.getItem('userEmail');
         if (email) {
-            axios.get('http://localhost:5000/api/users/profile', {
+            axios.get('https://hirebackend-1.onrender.com/api/users/profile', {
                 params: { email }
             })
             .then(response => {
@@ -39,7 +39,7 @@ const Employer = () => {
     const handlePostJob = () => {
         const email = localStorage.getItem('userEmail');
         if (email) {
-            axios.get('http://localhost:5000/api/users/profile', {
+            axios.get('https://hirebackend-1.onrender.com/api/users/profile', {
                 params: { email }
             })
             .then(response => {

@@ -1,137 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import '../CSS/ass.css'; 
+import { useParams, useNavigate } from 'react-router-dom';
+import "../CSS/assessmentResults.css";
 
-const AssessmentResultDetail = () => {
-  const { assessmentId } = useParams();
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [viewDetails, setViewDetails] = useState({}); 
+const AssessmentResults = () => {
+  const { jobId } = useParams();
+  const [assessments, setAssessments] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchResults = async () => {
+    const fetchAssessments = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/results/${assessmentId}`);
-        
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        const response = await fetch(`https://hirebackend-1.onrender.com/api/assessments/${jobId}`);
         const data = await response.json();
-        console.log(data)
-        setResults(data); 
+        setAssessments(data);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        console.error('Error fetching assessments:', error);
       }
     };
 
-    fetchResults();
-  }, [assessmentId]);
+    fetchAssessments();
+  }, [jobId]);
 
-  if (loading) {
-    return <p>Loading assessment details...</p>;
-  }
-
-  if (error) {
-    return <p>Error fetching result: {error}</p>;
-  }
-
-  if (results.length === 0) {
-    return <p>There is no Results till now </p>;
-  }
-
-  const handleViewDetails = (index) => {
-    setViewDetails(prevState => ({
-      ...prevState,
-      [index]: !prevState[index] 
-    }));
-  };
-
-  const handleHire = async (applicantId, jobId) => {
-
-    try {
-      const response = await fetch('http://localhost:5000/api/hire', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ applicantId, jobId }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to hire the applicant');
-      }
-  
-      alert('Applicant hired and email sent');
-    } catch (error) {
-      alert(`Error: ${error.message}`);
-    }
-  };
-  
-  const handleReject = async (applicantId, jobId) => {
-    try {
-      const response = await fetch('http://localhost:5000/api/reject', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ applicantId, jobId }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to reject the applicant');
-      }
-  
-      alert('Applicant rejected and email sent');
-    } catch (error) {
-      alert(`Error: ${error.message}`);
-    }
+  const viewResultHandler = (assessmentId) => {
+    navigate(`/assessment-results/result/${assessmentId}`);
   };
 
   return (
-    <div className="assessment-detail-container">
-      <h2>Assessment Results</h2>
-      {results.map((result, index) => (
-        
-        <div key={index} className="result-card">
-          <h3>Application {index + 1}</h3>
-          <p><strong>Applicant Name:</strong> {result.applicantId?.name || 'N/A'}</p>
-          <p><strong>Applicant Email:</strong> {result.applicantId?.email || 'N/A'}</p>
-          <p><strong>Status:</strong> {result.status || 'N/A'}</p>
-
-          <div className="button-group">
-            <button  className='assbtn' onClick={() => handleViewDetails(index)}>
-              {viewDetails[index] ? 'Hide Details' : 'View Details'}
-            </button>
-            <button className='assbtn' onClick={() => handleHire(result.applicantId, result.assessmentId)}>Hire</button>
-            <button  className='assbtn' onClick={() => handleReject(result.applicantId, result.assessmentId)}>Reject</button>
-          </div>
-
-          {viewDetails[index] && result.answers && result.answers.length > 0 && (
-            <div className="details-section">
-              {result.answers.map((answer, ansIndex) => {
-                const passedTestCases = answer.results ? answer.results.filter(res => res.passed).length : 0;
-
-                return (
-                  <div key={ansIndex} className="answer-section">
-                    <h4>Code:</h4>
-                    <pre>{answer.code || 'N/A'}</pre>
-                    <p><strong>Passed Test Cases:</strong> {passedTestCases || 0}</p>
-                    {answer.results && answer.results.length > 0 && (
-                      <div className="result-detail">
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+    <div className="assessment-results-container">
+      <h2 className="title">Assessment Results</h2>
+      {assessments.length > 0 ? (
+        <div className="results-list">
+          {assessments.map(assessment => (
+            <div key={assessment._id} className="result-card">
+              <div className="result-details">
+                <h3>{assessment.questions[0]?.codingQuestion?.title}</h3>
+                <p><strong>Max Marks:</strong> {assessment.maxMarks}</p>
+                <p><strong>Start Time:</strong> {new Date(assessment.startTime).toLocaleString()}</p>
+                <p><strong>End Time:</strong> {new Date(assessment.endTime).toLocaleString()}</p>
+              </div>
+              <button className="view-result-btn" onClick={() => viewResultHandler(assessment._id)}>
+                View Result
+              </button>
             </div>
-          )}
+          ))}
         </div>
-      ))}
+      ) : (
+        <p className="no-results">No assessments found for this job.</p>
+      )}
     </div>
   );
 };
 
-export default AssessmentResultDetail;
+export default AssessmentResults;

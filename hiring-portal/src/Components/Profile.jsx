@@ -27,14 +27,14 @@ const Profile = () => {
         const email = localStorage.getItem('userEmail');
         if (email) {
           // Fetch user profile
-          const response = await fetch(`http://localhost:5000/api/users/profile?email=${encodeURIComponent(email)}`);
+          const response = await fetch(`https://hirebackend-1.onrender.com/api/users/profile?email=${encodeURIComponent(email)}`);
           if (!response.ok) throw new Error('Failed to fetch user profile');
           const userData = await response.json();
           setUser(userData);
 
           // Fetch applications
           const applicantId = userData._id; // Assuming applicantId is part of user data
-          const appsResponse = await fetch(`http://localhost:5000/api/applicationss/${applicantId}`);
+          const appsResponse = await fetch(`https://hirebackend-1.onrender.com/api/applicationss/${applicantId}`);
           if (!appsResponse.ok) throw new Error('Failed to fetch applications');
           const appsData = await appsResponse.json();
           setApplications(appsData);
@@ -98,7 +98,6 @@ const Profile = () => {
             ) : <p>No education details available.</p>}
           </section>
 
-          {/* Show Past Jobs if available */}
           {profileDetails.pastJobs && profileDetails.pastJobs.length > 0 && (
             <section className="profile-section">
               <div className="section-header">
@@ -186,7 +185,6 @@ const Profile = () => {
             {resume && <p><a href={resume} className="resume-link" target="_blank" rel="noopener noreferrer">View Resume</a></p>}
           </section>
 
-          {/* Display applications only if available */}
           {applications.length > 0 && (
             <section className="profile-section">
               <div className="section-header">

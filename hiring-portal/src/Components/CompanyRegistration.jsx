@@ -63,7 +63,7 @@ const CompanyRegistration = () => {
     const ownerEmail = localStorage.getItem('userEmail');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/company', {
+      const response = await axios.post('https://hirebackend-1.onrender.com/api/company', {
         ...formData,
         ownerEmail,
       }, {

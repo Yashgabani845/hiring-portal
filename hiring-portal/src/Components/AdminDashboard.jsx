@@ -63,7 +63,7 @@ const AdminDashboard = () => {
 
     const fetchData = async (endpoint, setter) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/${endpoint}`);
+            const response = await fetch(`https://hirebackend-1.onrender.com/api/${endpoint}`);
             const data = await response.json();
             setter(data);
         } catch (error) {
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
         console.log(JSON.stringify(jobForm, null, 2));
         
         try {
-            const response = await fetch('http://localhost:5000/api/jobs', {
+            const response = await fetch('https://hirebackend-1.onrender.com/api/jobs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -235,20 +235,17 @@ const AdminDashboard = () => {
         { value: 'JavaScript', label: 'JavaScript' },
         { value: 'Python', label: 'Python' },
         { value: 'Java', label: 'Java' },
-        // Add more language options here
     ];
 
     const jobResponsibilitiesOptions = [
         { value: 'Developing applications', label: 'Developing applications' },
         { value: 'Team collaboration', label: 'Team collaboration' },
-        // Add more job responsibility options here
     ];
 
     const keywordsOptions = [
         { value: 'Frontend', label: 'Frontend' },
         { value: 'Backend', label: 'Backend' },
         { value: 'Fullstack', label: 'Fullstack' },
-        // Add more keyword options here
     ];
     const renderContent = () => {
         const sections = {

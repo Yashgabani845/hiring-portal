@@ -21,7 +21,7 @@ const Shortlist = () => {
     useEffect(() => {
         const fetchApplications = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/applications/${jobId}`);
+                const response = await fetch(`https://hirebackend-1.onrender.com/api/applications/${jobId}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setApplications(data);
@@ -37,7 +37,7 @@ const Shortlist = () => {
 
     const fetchAssessments = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/assessments/${jobId}`);
+            const response = await fetch(`https://hirebackend-1.onrender.com/api/assessments/${jobId}`);
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
             setAssessments(data);
@@ -48,7 +48,7 @@ const Shortlist = () => {
 
     const fetchAssessmentDetails = async (assessmentId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/assessmen/${assessmentId}`);
+            const response = await fetch(`https://hirebackend-1.onrender.com/api/assessmen/${assessmentId}`);
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
             setAssessmentDetails(data);
@@ -74,7 +74,7 @@ const Shortlist = () => {
     const handleAssessmentSubmit = async () => {
         if (selectedAssessment) {
             try {
-                await fetch('http://localhost:5000/api/assessments/send', {
+                await fetch('https://hirebackend-1.onrender.com/api/assessments/send', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const Shortlist = () => {
 
     const handleRejectSubmit = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/applications/${selectedApplication._id}`, {
+            const response = await fetch(`https://hirebackend-1.onrender.com/api/applications/${selectedApplication._id}`, {
                 method: 'DELETE',
             });
 

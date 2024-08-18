@@ -12,7 +12,7 @@ const UploadedJobs = () => {
         const email = localStorage.getItem('userEmail');
         
         if (email) {
-            axios.get(`http://localhost:5000/api/jobs`, {
+            axios.get(`https://hirebackend-1.onrender.com/api/jobs`, {
                 params: { email }
             })
             .then(response => {
