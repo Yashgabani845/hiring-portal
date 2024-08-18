@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/middleview.css";
 import jobimg from "../jobs.png";
+import LazyLoad from 'react-lazyload';
 
 const roles = [
     { role: "Software Developer", jobs: 38 },
@@ -20,19 +21,21 @@ const MiddleView = () => {
         <div className="middleview">
             <div className="text-part">
                 <h1>Discover Jobs Across Popular Roles</h1>
-                <p>Select a role and we'll show you relevant jobs for it!</p>
+            <center>   <p>Select a role and we'll show you relevant jobs for it!</p></center> 
                 <div className="roles-carousel">
                     <div className="roles-list">
                         {roles.map((item, index) => (
                             <div className="role" key={index}>
-                                <span>{item.role}</span> <span className="job-count">{item.jobs} jobs  </span>
+                                <span>{item.role}</span> <span className="job-count">jobs</span>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
             <div className="jobimg">
-                <img src={jobimg} alt="jobs"  loading="lazy" />
+                <LazyLoad height={200} offset={100} once>
+                    <img src={jobimg} alt="jobs" className="job-image" loading="lazy" />
+                </LazyLoad>
             </div>
         </div>
     );

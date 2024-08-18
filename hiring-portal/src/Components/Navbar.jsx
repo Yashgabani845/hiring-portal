@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';  
+import LazyLoad from 'react-lazyload';
 
 import "../CSS/navbar.css";
 import HomeIcon from "@mui/icons-material/Home";
@@ -41,7 +42,11 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="logo"><img className="logoimg" src={logo} alt="Logo" /></div>
+      <div className="logo">
+        <LazyLoad height={40} offset={100} once>
+          <img className="logoimg" src={logo} alt="Logo" />
+        </LazyLoad>
+      </div>
       <div className="icons">
         <div className={`icon home ${activeTab === '/' ? 'active' : ''}`}>
           <HomeIcon />
@@ -70,8 +75,8 @@ const Navbar = () => {
         </div>
       </div>
       <div className="posting">
-      <span onClick={handlePostJob}>Employer/Post Job</span>
-      <LaunchIcon className="posting-icon" />
+        <span onClick={handlePostJob}>Employer/Post Job</span>
+        <LaunchIcon className="posting-icon" />
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ const AssessmentResultDetail = () => {
   }
 
   if (results.length === 0) {
-    return <p>No result data found</p>;
+    return <p>There is no Results till now </p>;
   }
 
   const handleViewDetails = (index) => {

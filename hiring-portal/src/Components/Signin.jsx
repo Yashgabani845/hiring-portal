@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../CSS/signin.css";
 import jobImage from '../job_search.png'; // Replace with the actual path to your image
 import logo from '../logo.png';
+import { ClipLoader } from 'react-spinners'; // Import the spinner
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -12,42 +13,48 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(true); // Loader state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-if(email==="admin@gmail.com" && password==="admin"){
-  navigate('/admin');
-}
-else{
+   
+      try {
+        const response = await fetch('http://localhost:5000/api/users/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password, rememberMe }),
+        });
 
-    try {
-      const response = await fetch('http://localhost:5000/api/users/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password, rememberMe }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log('Sign in successful:', data);
-        localStorage.setItem('userEmail', data.email);
-        localStorage.setItem('token', data.token);
-        toast.success('Sign in successful!');
-        navigate('/');
-      } else {
-        console.error('Sign in failed:', data.message);
-        toast.error(`Sign in failed: ${data.message}`);
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Sign in successful:', data);
+          localStorage.setItem('userEmail', data.email);
+          localStorage.setItem('token', data.token);
+          toast.success('Sign in successful!');
+          if(email === "admin@gmail.com" && password === "admin") {
+            navigate('/admin');
+          } else{
+          navigate('/');
+}        } else {
+          console.error('Sign in failed:', data.message);
+          toast.error(`Sign in failed: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        toast.error('An error occurred. Please try again.');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('An error occurred. Please try again.');
-    }
-  };}
+    
+  };
 
   return (
     <div className="bg">
+      {loadingImage && (
+        <div className="loader-overlay">
+          <ClipLoader color="#3498db" loading={loadingImage} size={50} />
+        </div>
+      )}
       <div className="signin-page">
         <center>
           <div className="welcom1">
@@ -57,7 +64,13 @@ else{
         </center>
         <div className="signin-data">
           <div className="signin-image">
-            <img src={jobImage} alt="Job Portal" />
+            <img
+              src={jobImage}
+              alt="Job Portal"
+              onLoad={() => setLoadingImage(false)}
+              onError={() => setLoadingImage(false)}
+              style={{ display: loadingImage ? 'none' : 'block' }} 
+            />
           </div>
           <div className="signin-form">
             <h2>Sign In</h2>

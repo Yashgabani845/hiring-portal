@@ -97,17 +97,8 @@ font-family:sans-serif;}
     color: #007bff;
 }
 
-h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #343a40;
-    margin: 0;
-}
 
-p {
-    margin: 5px 0;
-    color: #495057;
-}
+
 
 .skills-list,
 .languages-list {

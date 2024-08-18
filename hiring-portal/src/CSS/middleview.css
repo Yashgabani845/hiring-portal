@@ -24,7 +24,9 @@
 .text-part p {
     font-size: 1.2em;
     color: #666;
+    width: fit-content;
 }
+
 
 .roles-carousel {
     display: flex;

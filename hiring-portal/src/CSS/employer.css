@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
+    width: fit-content;
 }
 
 .image-section img, .emp2 {
@@ -45,6 +46,25 @@
 .image-section {
     margin-right: 15%;
 }
+
+/* Loader styles */
+.spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Light background to cover content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure loader is above all other content */
+}
+
+.spinner .clip-loader {
+    border-color: #4e9ff5; /* Spinner color */
+}
+
 
 .services h2 {
     font-size: 0.9rem;
@@ -61,7 +81,6 @@
     cursor: pointer;
 }
 
-/* Button Styles */
 .regcom {
     padding: 10px 20px;
     background-color: transparent;

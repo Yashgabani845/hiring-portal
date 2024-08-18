@@ -1,135 +1,176 @@
 .hero-section {
-    position: relative;
-    color: #000000;
-    text-align: center;
-    padding: 100px 20px;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .hero-content {
-    max-width: 600px;
-    margin: auto;
-    position: relative;
-    z-index: 1;
-  }
-  
+  position: relative;
+  color: #000000;
+  text-align: center;
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 90%;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}
+
+.hero-content p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  margin-top: 20px;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
+  flex-wrap: wrap;
+}
+
+.searchdiv {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 5px 10px; 
+}
+
+.search {
+  height: 40px;
+  border-radius: 16px;
+  padding-left: 40px; 
+  border: none;
+  font-size: 17px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  max-width: 100%;
+}
+
+.search-icon,
+.location-icon {
+  position: absolute;
+  left: 10px; 
+  color: #000000;
+}
+
+.searchbtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0564c9;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.seprate {
+  font-size: x-large;
+  color: #565353;
+  opacity: 0.3;
+  font-weight: 100;
+  margin: 0 10px;
+}
+
+.search-results {
+  margin-top: 20px;
+  max-height: 250px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 650px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.job-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.job-item h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.job-item p {
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+}
+
+.job-item:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
   .hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    font-family:sans-serif
+    font-size: 28px;
   }
-  
-  .hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-  
+
   .search-bar {
-    margin-top: 30px;
-    display: flex;
-    max-width: fit-content;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    border-radius: 8px;
-    width: fit-content;
-    padding-right: 15px;
-    height: 65px;
-    box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
+    flex-direction: column;
+    padding: 15px;
   }
-  
-  .searchdiv {
-    display: flex;
-    align-items: center;
-    position: relative;
-    margin: 0 10px; 
-    border: none;
-    
-  }
-  
-  .search {
-    height: 40px;
-    border-radius: 16px;
-    padding-left: 40px; 
-    border: none;
-    font-size: 17px;
-    outline: none;
-    transition: all 0.3s ease;
-    background-color: transparent;
-  }
-  
-  .search:focus {
-    border-color: #80bdff;
-  }
-  
-  .search-icon,
-  .location-icon {
-    position: absolute;
-    left: 10px; 
-    color: #000000;
-  }
-  
+
   .searchbtn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0564c9;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-    font-weight: 600;
-
+    margin-top: 15px;
   }
-  .seprate{
-    font-size: x-large;
-    color: #565353;
- opacity: 0.3;
- font-weight: 100;
-  }
-  center{
-    width: fit-content;
-    align-self: center;
-  }
+  
   .search-results {
-    margin-top: 10px;
-    max-height: 250px; 
-    overflow-y: auto;
-    width: 650px; 
-    background-color: #f9f9f9;
-    border-radius: 6px;
+    max-width: 90%;
   }
-  
-  .job-item {
-    padding: 8px 12px;
-    margin: 0;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #ddd;
+}
 
-    align-items: center;  
-    transition: background-color 0.3s ease;
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 24px;
   }
-  
-  .job-item:last-child {
-    border-bottom: none; 
+
+  .hero-content p {
+    font-size: 14px;
   }
-  
+
+  .search-bar {
+    padding: 10px;
+  }
+
+  .search {
+    font-size: 15px;
+    height: 35px;
+    padding-left: 35px;
+  }
+
+  .searchbtn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
   .job-item h3 {
-    font-size: 16px;
-    margin: 0;
-    color: #333;
-    font-weight: 600;
+    font-size: 14px;
   }
-  
- 
-  
-  .job-item:hover {
-    background-color: #e0e0e0;
+
+  .job-item p {
+    font-size: 12px;
   }
-  
+}

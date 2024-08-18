@@ -3,6 +3,7 @@
   import "../CSS/test.css"
   import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
+import { toast, ToastContainer } from "react-toastify";
   const CreateAssessment = () => {
     const { jobId } = useParams(); 
     const [job, setJob] = useState(null);
@@ -211,8 +212,10 @@ import 'react-quill/dist/quill.snow.css';
         const data = await response.json();
         if (response.ok) {
           console.log('Assessment created successfully:', data);
+          navigate('/ownerside')
         } else {
           console.error('Error creating assessment:', data.message);
+          toast.error("failed to upload job follow the credentials")
         }
       } catch (error) {
         console.error('Network error:', error);
@@ -669,8 +672,9 @@ import 'react-quill/dist/quill.snow.css';
               </div>
             </div>
           </div>
-        )}
+        )}   <ToastContainer/>
       </div>
+   
     );
   };
   

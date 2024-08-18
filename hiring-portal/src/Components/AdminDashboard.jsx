@@ -41,6 +41,19 @@ const AdminDashboard = () => {
     const [selectedData, setSelectedData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [logo, setLogo] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail === 'admin@gmail.com') {
+            setIsAdmin(true);
+            fetchEmployers();
+            fetchCandidates();
+            fetchJobs();
+        } else {
+            setIsAdmin(false);
+        }
+    }, []);
 
     useEffect(() => {
         fetchEmployers();
@@ -259,6 +272,14 @@ const AdminDashboard = () => {
             </div>
         );
     };
+    if (!isAdmin) {
+        return (
+            <div className="admin-dashboard">
+                <h1>Page Not Found</h1>
+            </div>
+        );
+    }
+
 
     return (
         <div className="admin-dashboard">

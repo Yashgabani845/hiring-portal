@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import "../CSS/assessmentResults.css"
+import "../CSS/assessmentResults.css";
+
 const AssessmentResults = () => {
   const { jobId } = useParams();
   const [assessments, setAssessments] = useState([]);
@@ -25,24 +26,26 @@ const AssessmentResults = () => {
   };
 
   return (
-    <div>
-      <h2>Assessment Results for Job ID: {jobId}</h2>
+    <div className="assessment-results-container">
+      <h2 className="title">Assessment Results</h2>
       {assessments.length > 0 ? (
-        <ul>
+        <div className="results-list">
           {assessments.map(assessment => (
-            <li key={assessment._id}>
-              <div>
+            <div key={assessment._id} className="result-card">
+              <div className="result-details">
                 <h3>{assessment.questions[0]?.codingQuestion?.title}</h3>
-                <p>Max Marks: {assessment.maxMarks}</p>
-                <p>Start Time: {new Date(assessment.startTime).toLocaleString()}</p>
-                <p>End Time: {new Date(assessment.endTime).toLocaleString()}</p>
-                <button onClick={() => viewResultHandler(assessment._id)}>View Result</button>
+                <p><strong>Max Marks:</strong> {assessment.maxMarks}</p>
+                <p><strong>Start Time:</strong> {new Date(assessment.startTime).toLocaleString()}</p>
+                <p><strong>End Time:</strong> {new Date(assessment.endTime).toLocaleString()}</p>
               </div>
-            </li>
+              <button className="view-result-btn" onClick={() => viewResultHandler(assessment._id)}>
+                View Result
+              </button>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
-        <p>No assessments found for this job.</p>
+        <p className="no-results">No assessments found for this job.</p>
       )}
     </div>
   );

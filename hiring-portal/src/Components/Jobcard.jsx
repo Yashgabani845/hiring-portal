@@ -4,6 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdWorkOutline } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import styled from 'styled-components';
+import defaultlogo from '../company.png'
 
 import "../CSS/jobcard.css";
 
@@ -53,7 +54,7 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
 
     return (
         <div className="jobcard">
-            <div className="joblogo"><img src={comlogo} alt="company logo" /></div>
+            <div className="joblogo"><img src={comlogo ||defaultlogo} alt="company logo" /></div>
             <div className="comname">{companyName}</div>
             <div className="rate">
                 <div className="rating">

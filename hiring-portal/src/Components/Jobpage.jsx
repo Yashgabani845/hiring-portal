@@ -99,33 +99,7 @@ const Jobpage = () => {
                             <input type="radio" name="remoteOption" value="false" onChange={handleFilterChange} /> On-site
                         </label>
                     </div>
-                    <div className="filter">
-                        <label>Salary Range:</label>
-                        <div className="salary-range">
-                            <input
-                                type="number"
-                                name="salaryRangeMin"
-                                min="0"
-                                step="1000"
-                                placeholder="Min"
-                                onChange={(e) => setFilters(prevFilters => ({
-                                    ...prevFilters,
-                                    salaryRange: { ...prevFilters.salaryRange, min: e.target.value }
-                                }))}
-                            />
-                            <input
-                                type="number"
-                                name="salaryRangeMax"
-                                min="0"
-                                step="1000"
-                                placeholder="Max"
-                                onChange={(e) => setFilters(prevFilters => ({
-                                    ...prevFilters,
-                                    salaryRange: { ...prevFilters.salaryRange, max: e.target.value }
-                                }))}
-                            />
-                        </div>
-                    </div>
+                    
                     <div className="filter">
                         <label>
                             Field:
