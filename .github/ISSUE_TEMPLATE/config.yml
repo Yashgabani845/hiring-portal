@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: https://github.com/hiring-portal/issues/new?template=bug_report.md
+    about: Report a bug to help improve the project.
+  - name: Feature Request
+    url: https://github.com/hiring-portal/issues/new?template=feature_request.md
+    about: Suggest a new feature.
