@@ -8,7 +8,7 @@
 
 - **Frontend:** React, Redux
 - **Backend:** Node.js, Express.js
-- **Storage:** Firebase
+- **Storage:** Firebase-Clous
 - **Database:** MongoDB
 - **Authentication:** JWT (JSON Web Tokens)
 - **Styling:** CSS, Bootstrap, Material UI
