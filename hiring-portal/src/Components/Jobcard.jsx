@@ -37,7 +37,7 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
     useEffect(() => {
         const fetchCompany = async () => {
             try {
-                const response = await fetch(`https://hirebackend-1.onrender.com/api/companies/${company}`);
+                const response = await fetch(`http://localhost:5000/api/companies/${company}`);
                 if (response.ok) {
                     const data = await response.json();
                     setCompanyName(data.name);

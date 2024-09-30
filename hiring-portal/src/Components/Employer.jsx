@@ -21,7 +21,7 @@ const Employer = () => {
     useEffect(() => {
         const email = localStorage.getItem('userEmail');
         if (email) {
-            axios.get('https://hirebackend-1.onrender.com/api/users/profile', {
+            axios.get('http://localhost:5000/api/users/profile', {
                 params: { email }
             })
             .then(response => {
@@ -39,7 +39,7 @@ const Employer = () => {
     const handlePostJob = () => {
         const email = localStorage.getItem('userEmail');
         if (email) {
-            axios.get('https://hirebackend-1.onrender.com/api/users/profile', {
+            axios.get('http://localhost:5000/api/users/profile', {
                 params: { email }
             })
             .then(response => {

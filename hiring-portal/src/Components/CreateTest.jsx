@@ -8,7 +8,7 @@ const CreateAssessment = () => {
   const { jobId } = useParams(); 
   const [job, setJob] = useState(null);
   useEffect(() => {
-    fetch(`https://hirebackend-1.onrender.com/api/jobs/${jobId}`)
+    fetch(`http://localhost:5000/api/jobs/${jobId}`)
         .then(response => response.json())
         .then(data => setJob(data))
         .catch(error => console.error('Error fetching job:', error));

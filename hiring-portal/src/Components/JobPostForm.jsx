@@ -45,7 +45,7 @@ const JobPostForm = () => {
         const ownerEmail = localStorage.getItem('userEmail');
 
         try {
-            const response = await axios.post('https://hirebackend-1.onrender.com/api/jobs', {
+            const response = await axios.post('http://localhost:5000/api/jobs', {
                 ...jobDetails,
                 ownerEmail 
             });

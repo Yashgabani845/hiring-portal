@@ -37,8 +37,8 @@ const ApplicationForm = () => {
     skills: [""],
   });
 
-  const [uploading, setUploading] = useState(false); // State to manage uploading process
-  const [filesUploaded, setFilesUploaded] = useState({ resume: false, cv: true }); // Track file upload completion
+  const [uploading, setUploading] = useState(false); 
+  const [filesUploaded, setFilesUploaded] = useState({ resume: false, cv: true }); 
 
   useEffect(() => {
     const codes = countryData.map(country => ({
@@ -103,7 +103,7 @@ const ApplicationForm = () => {
     };
 
     try {
-      const response = await fetch("https://hirebackend-1.onrender.com/api/applications", {
+      const response = await fetch("http://localhost:5000/api/applications", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

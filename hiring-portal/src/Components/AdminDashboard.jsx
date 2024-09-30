@@ -63,7 +63,7 @@ const AdminDashboard = () => {
 
     const fetchData = async (endpoint, setter) => {
         try {
-            const response = await fetch(`https://hirebackend-1.onrender.com/api/${endpoint}`);
+            const response = await fetch(`http://localhost:5000/api/${endpoint}`);
             const data = await response.json();
             setter(data);
         } catch (error) {
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
         console.log(JSON.stringify(jobForm, null, 2));
         
         try {
-            const response = await fetch('https://hirebackend-1.onrender.com/api/jobs', {
+            const response = await fetch('http://localhost:5000/api/jobs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

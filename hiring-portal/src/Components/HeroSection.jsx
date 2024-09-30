@@ -14,7 +14,7 @@ const HeroSection = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://hirebackend-1.onrender.com/api/jobs/search?keywords=${encodeURIComponent(keywords)}&location=${encodeURIComponent(location)}`, {
+      const response = await fetch(`http://localhost:5000/api/jobs/search?keywords=${encodeURIComponent(keywords)}&location=${encodeURIComponent(location)}`, {
         method: 'GET',
       });
 

@@ -29,7 +29,7 @@ const Coding = () => {
     useEffect(() => {
         const fetchAssessment = async () => {
             try {
-                const response = await fetch(`https://hirebackend-1.onrender.com/api/assessmen/${assessmentId}`);
+                const response = await fetch(`http://localhost:5000/api/assessmen/${assessmentId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -46,7 +46,7 @@ const Coding = () => {
                     setIsTestActive(false);
                 }
 
-                const resultResponse = await fetch(`https://hirebackend-1.onrender.com/result/${localStorage.getItem('userEmail')}/${assessmentId}`);
+                const resultResponse = await fetch(`http://localhost:5000/result/${localStorage.getItem('userEmail')}/${assessmentId}`);
                 const resultData = await resultResponse.json();
                 setIsTestSubmitted(resultData.status==="submitted");
 
@@ -83,7 +83,7 @@ const Coding = () => {
     const endTest = async () => {
         try {
             const email = localStorage.getItem('userEmail');
-            const response = await fetch('https://hirebackend-1.onrender.com/endtest', {
+            const response = await fetch('http://localhost:5000/endtest', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const Coding = () => {
             const question = assessment.questions[currentQuestion].codingQuestion;
             console.log(testcases);
             const email = localStorage.getItem('userEmail')
-            const response = await fetch('https://hirebackend-1.onrender.com/compile', {
+            const response = await fetch('http://localhost:5000/compile', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

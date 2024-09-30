@@ -10,7 +10,7 @@ const AssessmentResults = () => {
   useEffect(() => {
     const fetchAssessments = async () => {
       try {
-        const response = await fetch(`https://hirebackend-1.onrender.com/api/assessments/${jobId}`);
+        const response = await fetch(`http://localhost:5000/api/assessments/${jobId}`);
         const data = await response.json();
         setAssessments(data);
       } catch (error) {

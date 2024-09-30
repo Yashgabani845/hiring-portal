@@ -22,11 +22,11 @@ const Job = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
-                const response = await axios.get(`https://hirebackend-1.onrender.com/api/jobs/${id}`);
+                const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
                 setJobDetails(response.data);
 
                 if (response.data.postedBy) {
-                    const companyResponse = await axios.get(`https://hirebackend-1.onrender.com/api/companies/${response.data.postedBy}`);
+                    const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
                     setCompanyDetails(companyResponse.data);
                 }
             } catch (error) {
@@ -38,11 +38,11 @@ const Job = () => {
 
         const fetchRecommendedJobs = async () => {
             try {
-                const response = await axios.get(`https://hirebackend-1.onrender.com/api/job`);
+                const response = await axios.get(`http://localhost:5000/api/job`);
                 const jobsWithCompanyLogos = await Promise.all(response.data.map(async (job) => {
                     try {
                         if (job.type === "native") {
-                            const companyResponse = await axios.get(`https://hirebackend-1.onrender.com/api/companies/${job.postedBy}`);
+                            const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
                             return {
                                 ...job,
                                 comlogo: companyResponse.data.logo

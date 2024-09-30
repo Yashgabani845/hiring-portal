@@ -13,7 +13,7 @@ const ManageJobs = () => {
     useEffect(() => {
         const fetchJob = async () => {
             try {
-                const response = await fetch(`https://hirebackend-1.onrender.com/api/jobs/${jobId}`);
+                const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -36,7 +36,7 @@ const ManageJobs = () => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(`https://hirebackend-1.onrender.com/api/jobs/${jobId}`, {
+            const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
