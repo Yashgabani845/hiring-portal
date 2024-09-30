@@ -1,7 +1,8 @@
 
+
 # HireHub
 
-**HireHub** is a comprehensive hiring portal built using the MERN stack (MongoDB, Express.js, React, Node.js). It provides a platform for job seekers to browse and apply for jobs, for employers to manage job postings and candidate shortlisting, and for admins to oversee the platform's operations.
+**HireHub** is a comprehensive hiring portal built using the MERN stack (MongoDB, Express.js, React, Node.js). It provides a platform for job seekers to browse and apply for jobs, employers to manage job postings and candidate shortlisting, and admins to oversee the platform's operations.
 
 ## Technologies Used
 
@@ -14,93 +15,131 @@
 
 ## Features
 
-### Login/Signup
+### For Job Seekers:
+- **Apply for Jobs:** Browse job listings and apply directly.
+- **Receive Email Notifications:** Get automatic email notifications on application status.
+- **Coding Assessments:** Complete integrated coding tests within the platform, with built-in code compilation and instant feedback.
+- **Secure Link Management:** Ensures data integrity and protection for coding assessments.
 
-![Screenshot (14)](https://github.com/user-attachments/assets/96b2d2d7-c289-4f8b-9671-a588f07d9c4c)
-![Screenshot (15)](https://github.com/user-attachments/assets/5b41da4e-6179-4ce3-ac46-ce065a482ae0)
+### For Employers:
+- **Company Registration:** Register your company and manage your profile.
+- **Manage Job Postings:** Create, edit, and manage job listings through a user-friendly dashboard.
+- **Create Coding Assessments:** Set up coding tests for candidates and define evaluation criteria.
+- **Assessment Results:** Review detailed reports of coding tests and manage results effectively.
 
-
-Secure user authentication using JSON Web Tokens. Users can log in or sign up to access their dashboard and other features.
-
-### Professional Frontend
-![Screenshot (2)](https://github.com/user-attachments/assets/f29a6bd3-ae01-4dc3-9c1d-d48461833389)
-![Screenshot (7)](https://github.com/user-attachments/assets/8da3613a-2afc-4a04-9b01-e151488108f1)
-![Screenshot (6)](https://github.com/user-attachments/assets/1be68a0e-0a8a-4c0d-8d5b-dec50a56489a)
-![Screenshot (3)](https://github.com/user-attachments/assets/48b3ff8a-333a-4b33-a9f7-f71659bfab19)
-
-
-A sleek and professional frontend design ensures a user-friendly experience with modern UI components and smooth interactions.
-
-### For Users
-
-#### Apply for a Job
-![Screenshot (13)](https://github.com/user-attachments/assets/66344e1d-7745-4681-aaf9-2f7afd4f7562)
-
-
-Browse through job listings and apply directly through the platform. Users can view detailed job descriptions and submit their applications.
-
-#### Receive Mail
-
-
-Automatic email notifications keep users informed about the status of their job applications and other important updates.
-
-#### Give Coding Assessment
-
-![Screenshot (16)](https://github.com/user-attachments/assets/e984a758-c0e6-4b8c-924f-c822b5340614)
-
-Integrated coding assessments are available for job applications. Users can complete and submit coding tests directly through the platform.
-
-#### Write Coding Assessment with Consistent Timing
-
-The platform ensures consistent timing for coding assessments, providing a fair evaluation process for all candidates.
-A built-in code compiler allows users to test their code within the platform. It supports various programming languages and provides instant feedback.
-
-#### Strict Link Management of Coding Assessments and Security Testing
-The platform maintains strict link management for coding assessments and performs security testing to ensure data integrity and protection.
-
-#### Company Registration
-
-![Company Registration](https://example.com/screenshots/company-registration.png)
-
-Companies can register and manage their profiles, including adding information about their organization and job postings.
-
-#### Management of Job Postings
-
-![Screenshot (8)](https://github.com/user-attachments/assets/7ee4c641-a7ac-4ffe-aec1-247ea167db29)
-
-Employers can create, edit, and manage their job listings. The dashboard provides an intuitive interface for job management.
-
-#### Create Assessments
-
-![Create Assessments](https://example.com/screenshots/create-assessments.png)
-
-Employers can set up coding assessments for candidates, specifying the requirements and evaluation criteria.
-
-#### Assessment Result Management
-
-![Screenshot (10)](https://github.com/user-attachments/assets/22051334-d375-4a33-8434-a4de14ab64d1)
-![Screenshot (9)](https://github.com/user-attachments/assets/52f6ecf3-9771-4ad3-9bfb-660d293abc7f)
-
-
-Manage and review the results of coding assessments. Employers can view detailed reports and make informed hiring decisions.
-
-## Upcoming Features
-
-- **Interview Scheduling:** Implementing WebRTC for real-time video interviews between candidates and employers.
-- **Advanced Search Filters:** Enhanced job search with filters by location, experience, and more.
-- **Notifications:** Real-time notifications for job application status, interview schedules, etc.
-
-
-![Screenshot (12) - Copy](https://github.com/user-attachments/assets/b172fc0f-49f8-419b-9512-315587921861)
-
-## Contact
-
-For any inquiries or feedback, please reach out to:
-
-- **Name:** Yash Gabani
-- **Email:** [gabaniyash846@gmail.com](mailto:gabaniyash846@gmail.com)
-- **GitHub:** [Yashgabani845](https://github.com/Yashgabani845)
+### Upcoming Features:
+- **Interview Scheduling:** Real-time video interviews using WebRTC.
+- **Advanced Search Filters:** Filter jobs by location, experience, and more.
+- **Real-time Notifications:** Get updates for job applications, interviews, etc.
 
 ---
 
-Feel free to adjust the URLs and descriptions as needed.
+## Setup Instructions
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Yashgabani845/hiring-portal.git
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd hiring-portal
+   ```
+
+3. **Install frontend dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the frontend server:**
+
+   ```bash
+   npm start
+   ```
+
+5. **Open a new terminal and navigate to the backend directory:**
+
+   ```bash
+   cd backend
+   ```
+
+6. **Start the backend server:**
+
+   ```bash
+   node server.js
+   ```
+
+7. **Access the deployed project:**  
+   [HireHub Deployed Version](https://main--hirehub07.netlify.app/)
+
+---
+
+## Directory Structure
+
+Here is an overview of the project's directory structure:
+
+```
+hiring-portal/
+│
+├── backend/               # Contains all backend code
+│   └── server.js          # Node.js backend entry point
+│
+├── public/                # Public files (HTML, images, etc.)
+│
+├── src/                   # Frontend source files
+│   ├── components/        # React components
+│   ├── css/               # Styling files
+│   ├── firebase/          # Firebase configuration
+│   └── App.js             # Main React component
+│
+└── package.json           # Dependencies for the project
+```
+
+---
+
+## Contribution Guidelines
+
+We welcome contributions from the community! To contribute, please follow these guidelines:
+
+1. **Fork the repository** and clone it locally.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Commit your changes** with a clear message:
+   ```bash
+   git commit -m "Add feature/your-feature-name"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Open a Pull Request (PR)** and describe your changes in detail.
+
+---
+
+### Issue Reporting
+
+If you encounter any bugs or have feature requests, please follow this format when opening an issue:
+
+- **Issue Title:** A concise and descriptive title.
+- **Description:** Clear and detailed description of the issue or feature request.
+- **Steps to Reproduce (if applicable):** Detailed steps to reproduce the issue.
+- **Expected Behavior:** What you expected to happen.
+- **Actual Behavior:** What actually happened.
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+Feel free to contribute, suggest features, or report issues to improve **HireHub**!
+
