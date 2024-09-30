@@ -2,6 +2,9 @@
 name: Bug Report
 about: Report a bug to help us improve
 title: "[Bug] Your Bug Title"
+labels: ''
+assignees: ''
+
 ---
 
 **Describe the bug**

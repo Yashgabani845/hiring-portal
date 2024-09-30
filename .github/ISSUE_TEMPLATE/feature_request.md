@@ -2,6 +2,8 @@
 name: Feature Request
 about: Suggest an idea for this project
 title: "[Feature] Your Feature Title"
+labels: ''
+assignees: ''
 
 ---
 
