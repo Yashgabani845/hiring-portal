@@ -49,7 +49,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="logo">
         <LazyLoad height={40} offset={100} once>
-          <img className="logoimg" src={logo} alt="Logo" />
+          <Link to={'/'} > <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
       </div>
       <div className="icons">
