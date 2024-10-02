@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from "./Navbar";
 import "../CSS/signin.css";
 import jobImage from '../job_search.png'; // Replace with the actual path to your image
 import logo from '../logo.png';
+
 import { ClipLoader } from 'react-spinners'; // Import the spinner
 
 const SignIn = () => {
+ 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -49,7 +53,9 @@ const SignIn = () => {
   };
 
   return (
+    
     <div className="bg">
+      <Navbar />
       {loadingImage && (
         <div className="loader-overlay">
           <ClipLoader color="#3498db" loading={loadingImage} size={50} />
