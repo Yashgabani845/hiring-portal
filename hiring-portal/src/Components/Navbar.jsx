@@ -17,11 +17,16 @@ const Navbar = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState('/');
+  const [hideElements, setHideElements] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); 
     setActiveTab(location.pathname); 
+
+    // Hide elements on specific routes (e.g., /signin, /signup)
+    const routesToHideElements = ['/signin', '/signup']; // Add the routes where you want to hide elements
+    setHideElements(routesToHideElements.includes(location.pathname));
   }, [location.pathname]);
 
   const handlePostJob = () => {
@@ -38,7 +43,7 @@ const Navbar = () => {
         console.error('Error fetching user profile:', error);
       });
     } 
-  }
+  };
 
   return (
     <div className="navbar">
@@ -52,34 +57,43 @@ const Navbar = () => {
           <HomeIcon />
           <Link to="/" onClick={() => setActiveTab('/')}><span>Home</span></Link>
         </div>
-        <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
-          <WorkIcon />
-          <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><span>Jobs</span></Link>
-        </div>
-        <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
-          <InfoIcon />
-          <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
-        </div>
-        <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
-          {isLoggedIn ? (
-            <>
-              <AccountCircleIcon />
-              <Link to="/profile" onClick={() => setActiveTab('/profile')}><span>Profile</span></Link>
-            </>
-          ) : (
-            <>
-              <LoginIcon />
-              <Link to="/signin" onClick={() => setActiveTab('/signin')}><span>Login</span></Link>
-            </>
-          )}
-        </div>
+        {!hideElements && (
+          <>
+            <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
+              <WorkIcon />
+              <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><span>Jobs</span></Link>
+            </div>
+            <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
+              <InfoIcon />
+              <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
+            </div>
+            <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
+              {isLoggedIn ? (
+                <>
+                  <AccountCircleIcon />
+                  <Link to="/profile" onClick={() => setActiveTab('/profile')}><span>Profile</span></Link>
+                </>
+              ) : (
+                <>
+                  <LoginIcon />
+                  <Link to="/signin" onClick={() => setActiveTab('/signin')}><span>Login</span></Link>
+                </>
+              )}
+            </div>
+          </>
+        )}
       </div>
-      <div className="posting">
-        <span onClick={handlePostJob}>Employer/Post Job</span>
-        <LaunchIcon className="posting-icon" />
-      </div>
+      {!hideElements && (
+        <div className="posting">
+          <span onClick={handlePostJob}>Employer/Post Job</span>
+          <LaunchIcon className="posting-icon" />
+        </div>
+      )}
     </div>
   );
 };
 
 export default Navbar;
+
+
+
