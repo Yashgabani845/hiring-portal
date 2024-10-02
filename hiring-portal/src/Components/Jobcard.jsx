@@ -52,24 +52,6 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
     }, [company]);
 
     return (
-        // <div className="jobcard">
-        //     <div className="joblogo"><img src={comlogo || defaultlogo} alt="company logo" /></div>
-        //     <div className="comname">{companyName}</div>
-        //     <div className="rate">
-        //         <div className="rating">
-        //             <LocationIcon />
-        //             <span>{worklocation}</span>
-        //         </div>
-        //         <div className="department">
-        //             <WorkIcon />
-        //             <span>   {department}</span>
-        //         </div>
-        //     </div>
-        //     <div className="jobrole">{role}</div>
-        //     <div className="viewjob">
-        //         <Link to={`/job/${id}`}><button>View Job</button></Link>
-        //     </div>
-        // </div>
         <Link to={`/job/${id}`}>
             <div className="job-card-container">
                 <div className="job-image-wrapper">
