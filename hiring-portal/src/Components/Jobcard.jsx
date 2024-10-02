@@ -18,7 +18,6 @@ const LocationIcon = styled(IoLocationOutline)`
 
 const WorkIcon = styled(MdWorkOutline)`
     font-size: 20px;
-    margin-left: 10px;
     margin-right: 3px;
         margin-top:2px;
 
@@ -53,24 +52,46 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
     }, [company]);
 
     return (
-        <div className="jobcard">
-            <div className="joblogo"><img src={comlogo ||defaultlogo} alt="company logo" /></div>
-            <div className="comname">{companyName}</div>
-            <div className="rate">
-                <div className="rating">
-                    <LocationIcon />
-                   <span>{worklocation}</span> 
+        // <div className="jobcard">
+        //     <div className="joblogo"><img src={comlogo || defaultlogo} alt="company logo" /></div>
+        //     <div className="comname">{companyName}</div>
+        //     <div className="rate">
+        //         <div className="rating">
+        //             <LocationIcon />
+        //             <span>{worklocation}</span>
+        //         </div>
+        //         <div className="department">
+        //             <WorkIcon />
+        //             <span>   {department}</span>
+        //         </div>
+        //     </div>
+        //     <div className="jobrole">{role}</div>
+        //     <div className="viewjob">
+        //         <Link to={`/job/${id}`}><button>View Job</button></Link>
+        //     </div>
+        // </div>
+        <Link to={`/job/${id}`}>
+            <div className="job-card-container">
+                <div className="job-image-wrapper">
+                    <img src={comlogo || defaultlogo} alt="company logo" className="job-card-image" />
                 </div>
-                <div className="department">
-                    <WorkIcon />
-                    <span>   {department}</span> 
+                <div className="job-card-details">
+                    <div className="job-info">
+                        <span className="company-name-tag">{companyName}</span>
+                        <span className="job-location">
+                            <LocationIcon />
+                            <span>{worklocation}</span>
+                        </span>
+                    </div>
+                    <h3 className="job-card-title">{role}</h3>
+                    <div className="job-extra-info">
+                        <span className="job-department"><WorkIcon /><span>{department}</span></span>
+                        <Link to={`/job/${id}`}><span className="job-view-link">View Job</span></Link>
+                    </div>
                 </div>
             </div>
-            <div className="jobrole">{role}</div>
-            <div className="viewjob">
-                <Link to={`/job/${id}`}><button>View Job</button></Link>
-            </div>
-        </div>
+        </Link>
+
     );
 };
 
