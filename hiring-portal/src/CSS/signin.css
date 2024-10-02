@@ -171,3 +171,52 @@
   justify-content: center;
   z-index: 1000; 
 }
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .signin-page {
+    width: 90%; /* Wider on smaller screens */
+    margin: 10% auto; /* Reduce margin */
+  }
+
+  .signin-data {
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .signin-image {
+    width: 80%; /* Full width on smaller screens */
+    margin: 0 auto;
+  }
+
+  .signin-form {
+    width: 100%; /* Full width on smaller screens */
+  
+  }
+
+  .welcom1 img {
+    height: 40px; /* Adjust logo size */
+  }
+
+  .welcom1 h1 {
+    font-size: large; /* Smaller font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-page {
+    padding: 2%; /* Reduce padding */
+  }
+
+  .signin-form h2 {
+    font-size: 20px; /* Smaller heading */
+  }
+
+  .form-group input {
+    height: 35px; /* Smaller input height */
+  }
+
+  .signin-form button {
+    font-size: 14px; /* Smaller button font size */
+  }
+}
