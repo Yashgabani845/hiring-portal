@@ -63,3 +63,12 @@
 .iimg img:hover {
     transform: scale(1.05);
 }
+@media(max-width:768px){
+    .interview{
+        display: flex;
+        width: 100%;
+        flex-direction: column-reverse;
+        justify-content: center;
+        padding-bottom:5% ;
+    }
+}
