@@ -81,3 +81,16 @@ transform: scale(1.05);
     margin-left: 10%;
     }
     
+    @media (max-width: 768px) {
+       .middleview{
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+       }
+       .text-part{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       }
+    }
