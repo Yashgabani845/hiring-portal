@@ -46,7 +46,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="logo">
+      <div className="hirehublogo">
         <LazyLoad height={40} offset={100} once>
           <Link to={'/'} > <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
