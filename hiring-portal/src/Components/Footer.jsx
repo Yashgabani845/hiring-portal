@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/footer.css";
-import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaGit, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
@@ -9,7 +10,7 @@ const Footer = () => {
                 <div className="footer-column">
                     <h3>Company</h3>
                     <ul>
-                        <li><a href="/">About Us</a></li>
+                        <li><a href="/about">About Us</a></li>
                         <li><a href="/">Careers</a></li>
                         <li><a href="/">Contact Us</a></li>
                     </ul>
@@ -32,11 +33,11 @@ const Footer = () => {
                 <div className="footer-column">
                     <h3>Follow Us</h3>
                     <div className="social-icons">
-                        <a href="/"><FaLinkedin /></a>
-                        <a href="/"><FaTwitter /></a>
-                        <a href=""><FaGithub/></a>
-                        <a href="/"><FaFacebook /></a>
-                        <a href="/"><FaInstagram /></a>
+                        <a href="https://www.linkedin.com/in/yash-gabani-527886258/"><FaLinkedin /></a>
+                        <a href="https://x.com/Hirehub280355"><FaSquareXTwitter /></a>
+                        <a href="https://github.com/Yashgabani845"><FaGithub/></a>
+                        <a href="https://www.instagram.com/yash845_/"><FaFacebook /></a>
+                        <a href="https://www.instagram.com/yash845_/"><FaInstagram /></a>
                     </div>
                 </div>
             </div>
