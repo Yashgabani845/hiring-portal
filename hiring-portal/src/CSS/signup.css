@@ -1,42 +1,48 @@
 /* Container Styling */
 .signupform {
-  width: 45%;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #f9fafc;
   font-family: 'Arial', sans-serif;
+  transition: box-shadow 0.3s;
+}
+
+.signupform:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .signupform h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-family: 'Trebuchet MS', sans-serif;
   color: #333;
 }
 
 .signupform h2 {
   margin-bottom: 15px;
-  font-size: 20px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #918b8b;
-  
+  font-size: 22px;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #666;
+  text-align: left;
 }
 
 .signupform p {
   text-align: center;
   font-size: 14px;
-  color: #777;
+  color: #888;
 }
 
 .signupform label {
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   color: #555;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .signupform input[type="text"],
@@ -44,38 +50,34 @@
 .signupform input[type="password"],
 .signupform select,
 .signupform textarea {
-  width: calc(100% - 12px);
-  padding: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 15px;
+  border-radius: 8px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.signupform input[type="text"]:focus,
-.signupform input[type="email"]:focus,
-.signupform input[type="password"]:focus,
+.signupform input:focus,
 .signupform select:focus,
 .signupform textarea:focus {
   border-color: #007BFF;
   outline: none;
-  margin-top: 5px;
-  box-shadow: 0 0 1px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
 }
 
 /* Custom Input Field Class */
 .signupform .signupinput {
-  width: calc(100% - 12px);
-  padding: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -83,24 +85,29 @@
 .signupform .signupinput:focus {
   border-color: #007BFF;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
 }
 
 /* Fresher or Experience Divs */
 .signupform .fresher-experience {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .signupform .fresher-experience div {
   flex: 1;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   cursor: pointer;
   text-align: center;
   transition: border-color 0.3s, background-color 0.3s;
+  margin-right: 10px;
+}
+
+.signupform .fresher-experience div:last-child {
+  margin-right: 0;
 }
 
 .signupform .fresher-experience .selected {
@@ -108,72 +115,77 @@
   background-color: #e7f0ff;
 }
 
+/* File Upload Styling */
 .signupform input[type="file"] {
-  
 }
 
 .signupform label[for="resume-upload"] {
   display: inline-block;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #007BFF;
+  border-radius: 8px;
   background-color: #007BFF;
   color: white;
   text-align: center;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .signupform label[for="resume-upload"]:hover {
   background-color: #0056b3;
+  border-color: #0056b3;
 }
 
 .signupform .resume-info {
-  font-size: 12px;
+  font-size: 13px;
   color: #555;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 /* Add Job Button */
 .signupform .add-job-button {
   display: flex;
+  justify-content: center;
   align-items: center;
   background-color: #007BFF;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 12px 20px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .signupform .add-job-button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
 .signupform .add-job-button .icon {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .signupform button {
   display: inline-block;
   width: fit-content;
-  padding: 10px;
-  margin-top: 10px;
-  border: 2px solid #007BFF; /* Blue outline */
-  border-radius: 5px;
-  background-color: transparent; /* Transparent background */
-  color: #007BFF; /* Blue text color */
+  padding: 12px 25px;
+  margin-top: 20px;
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #007BFF;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .signupform button:hover {
-  background-color: #d7dee6; /* Blue background on hover */
+  background-color: #007BFF;
+  color: white;
 }
 
 .signupform button:disabled {
@@ -183,10 +195,8 @@
   cursor: not-allowed;
 }
 
-
-
 .signupform button + button {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 /* Step Indicator Styling */
@@ -198,8 +208,9 @@
 
 .signupform .step-indicator div {
   width: 20%;
-  height: 4px;
+  height: 6px;
   background-color: #ccc;
+  border-radius: 3px;
   transition: background-color 0.3s;
 }
 
@@ -213,11 +224,17 @@
 }
 
 .signupform .skills {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* Anchor Tag Styling */
 a {
   text-decoration: none;
-  color: #555;
+  color: #007BFF;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #0056b3;
 }
