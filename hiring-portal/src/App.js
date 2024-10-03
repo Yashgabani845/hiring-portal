@@ -22,6 +22,7 @@ import Shortlist from './Components/Shortlist';
 import Employer from './Components/Employer';
 import AssessmentResults from './Components/AssesmentResult';
 import AssessmentResultDetail from './Components/AssessmentResultDetails';
+import About from './Components/About';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/ownerside" element={<Dashboard/>}/>
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
+        <Route path='/about' element={<About/>}/>
         <Route path="/company" element={<CompanyRegistration/>}/>  
         <Route path="/profile" element={<Profile/>}/>    
         <Route path="/signin" element={<SignIn/>}/> 
