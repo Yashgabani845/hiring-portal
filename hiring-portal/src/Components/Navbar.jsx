@@ -24,8 +24,7 @@ const Navbar = () => {
     setIsLoggedIn(!!token); 
     setActiveTab(location.pathname); 
 
-    // Hide elements on specific routes (e.g., /signin, /signup)
-    const routesToHideElements = ['/signin', '/signup']; // Add the routes where you want to hide elements
+    const routesToHideElements = ['/signin', '/signup']; 
     setHideElements(routesToHideElements.includes(location.pathname));
   }, [location.pathname]);
 

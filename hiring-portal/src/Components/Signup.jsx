@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/firebase';
+import Navbar from "./Navbar";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -129,6 +130,7 @@ const Signup = () => {
   return (
     
     <div className="signupform">
+      <Navbar/>
       <h1>Signup Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="step-indicator">
