@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import "../CSS/job.css";
 import comlogo from "../company.png";
+import Footer from "./Footer";
 
 const Job = () => {
     const userEmail = localStorage.getItem('userEmail');
@@ -51,10 +52,10 @@ const Job = () => {
                             return { ...job };
                         }
                     } catch (err) {
-                        return job; 
+                        return job;
                     }
                 }));
-                
+
                 const validJobs = jobsWithCompanyLogos.filter(job => {
                     return calculateTimeLeft(job.applicationDeadline) !== "00:00:00";
                 });
@@ -105,7 +106,7 @@ const Job = () => {
             return (
                 <>
                     {jobDetails.title && <h1 className="job-title">{jobDetails.title}</h1>}
-                    {  <img src={jobDetails.comlogo || comlogo} alt="Company Logo" className="company-logo" />}
+                    {<img src={jobDetails.comlogo || comlogo} alt="Company Logo" className="company-logo" />}
                     {jobDetails.employmentType && (
                         <div className="job-detail-section">
                             <h2><FaBriefcase /> Job Type</h2>
@@ -154,36 +155,39 @@ const Job = () => {
 
         return (
             <>
+                <div className="job-job-card">
+                    <div className="header">
+                        <div className="company-details">
+                            <h2>{jobDetails.title}</h2>
+                            <div className="name-location">
+                                <p>{companyDetails.name}</p>
+                                <p><FaMapMarkerAlt />{jobDetails.workLocation}</p>
+                            </div>
+                        </div>
+                        <div className="logo">
+                            <img src={companyDetails.logo || comlogo} alt={`${companyDetails.name} logo`} />
+                        </div>
+                    </div>
+                    <div className="pay-benefits">
+                        <p><span className="pay-benefits-details"><FaDollarSign />Salary</span>${jobDetails.salaryRange.min} to ${jobDetails.salaryRange.max} Annually</p>
+                        <p><span className="pay-benefits-details"><FaCalendarAlt /> Deadline</span> {formatDate(jobDetails.applicationDeadline)}</p>
+                        <p><span className="pay-benefits-details"><FaBriefcase /> Type</span> {jobDetails.employmentType}</p>
+                    </div>
+                    <div className="section">
+                        <h3 className="color-font-head">Job Description</h3>
+                        <p>{jobDetails.description}</p>
 
-                <h1 className="job-title">{jobDetails.title}</h1>
-                <img src={companyDetails.logo || comlogo} alt={`${companyDetails.name} logo`} className="company-logo" />
-                <div className="job-detail-section">
-                    <h2><FaBriefcase /> Job Type</h2>
-                    <p>{jobDetails.employmentType}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2><FaUsers /> Experience</h2>
-                    <p>{jobDetails.experienceLevel}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2><FaMapMarkerAlt /> Job Location</h2>
-                    <p>{jobDetails.workLocation}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2><FaDollarSign /> Salary</h2>
-                    <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2><FaRegClock /> Work Details</h2>
-                    <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2><FaCalendarAlt /> Application Deadline</h2>
-                    <p>{formatDate(jobDetails.applicationDeadline)}</p>
-                </div>
-                <div className="job-detail-section">
-                    <h2>Job Description</h2>
-                    <p>{jobDetails.description}</p>
+                    </div>
+                    <div className="section">
+                        <h3 className="color-font-head"><FaRegClock /> Work Details</h3>
+                        <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
+                    </div>
+                    <div className="section">
+                        <h3 className="color-font-head"><FaUsers /> Skills and experience</h3>
+                        <div>
+                            {jobDetails.experienceLevel}
+                        </div>
+                    </div>
                 </div>
             </>
         );
@@ -214,25 +218,24 @@ const Job = () => {
                     <div className="recommended-job-grid">
                         {recommendedJobs.map((job, index) => (
                             <div key={index} className="recommended-job-card">
-                                <img src={job.comlogo || comlogo} alt={`${job.title} logo`} className="job-logo" />
+                                <div className="recommend-image">
+                                    <img src={job.comlogo || comlogo} alt={`${job.title} logo`} className="job-logo" />
+                                </div>
                                 <div>
-                                    <h3>{job.title}</h3>
+                                    <h3 className="recommend-job-title">{job.title}</h3>
                                     <p><FaRegClock /> Time Left: {calculateTimeLeft(job.applicationDeadline)}</p>
-                                    <button
-                                        className="view-button"
-                                        onClick={() => navigate(`/job/${job._id}`)}
-                                    >
-                                        View
-                                    </button>
+                                    <button className="view-button" onClick={() => navigate(`/job/${job._id}`)}>View</button>
                                 </div>
                             </div>
                         ))}
                     </div>
+
+
                 </div>
-
-
             </div>
-        </div></>
+        </div>
+            <Footer />
+        </>
     );
 };
 
