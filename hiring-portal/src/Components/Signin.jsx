@@ -64,7 +64,7 @@ const SignIn = () => {
       <div className="signin-page">
         <center>
           <div className="welcom1">
-            <h1>Welcome to</h1>
+            <h1>Welcome to&nbsp;&nbsp;</h1>
             <img src={logo} alt="Logo" />
           </div>
         </center>
