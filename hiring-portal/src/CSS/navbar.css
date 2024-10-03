@@ -18,14 +18,11 @@
 
 /* Image for logo */
 .logoimg {
-<<<<<<< HEAD
   height: 10vw; /* Responsive height based on viewport width */
   max-height: 65px; /* Ensures the image doesn't get too large */
-=======
   height: 55px;
   max-width: 190px;
   padding-top: 5px;
->>>>>>> a90c5df170036bf3ad249e2cb0fad8854eb65e0c
 }
 
 .icons {
