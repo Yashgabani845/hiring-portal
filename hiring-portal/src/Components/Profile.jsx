@@ -10,6 +10,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import '../CSS/profile.css';
+import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -62,7 +63,13 @@ const Profile = () => {
     navigate('/signin');
   };
 
-  if (loading) return <p>Loading profile...</p>;
+  if (loading) {
+    return (
+      <div className="spinner">
+        <ClipLoader size={50} color="#4e9ff5" />
+      </div>
+    );
+  }
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
 

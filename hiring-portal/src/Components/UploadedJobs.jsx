@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Jobs from './Jobs';
 import '../CSS/uploadedJobs.css';
+import { ClipLoader } from "react-spinners";
+
 
 const UploadedJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -29,7 +31,13 @@ const UploadedJobs = () => {
         }
     }, []);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+        return (
+          <div className="spinner">
+            <ClipLoader size={50} color="#4e9ff5" />
+          </div>
+        );
+      }
     if (error) return <p>Error: {error}</p>;
     if (jobs.length === 0) return <p>No jobs found.</p>;
 

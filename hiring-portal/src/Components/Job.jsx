@@ -9,6 +9,7 @@ import {
 import "../CSS/job.css";
 import comlogo from "../company.png";
 import Footer from "./Footer";
+import { ClipLoader } from "react-spinners";
 
 const Job = () => {
     const userEmail = localStorage.getItem('userEmail');
@@ -94,9 +95,13 @@ const Job = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="loader-container">
+                <ClipLoader color="#4e9ff5" loading={loading} size={50} />
+            </div>
+        );
     }
-
+    
     if (error) {
         return <div>{error}</div>;
     }
