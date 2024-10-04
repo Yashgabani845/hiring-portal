@@ -112,20 +112,13 @@ const Job = () => {
     return `${day}-${month}-${year}`;
   };
 
-  if (loading) {
-    return (
-      <div className="spinner-job">
-        <ClipLoader size={50} color="#4e9ff5" />
-        <div className="spinner-text">
-          <h3>Please Wait...</h3>
-        </div>
-      </div>
-    );
-  }
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+    if (error) {
+        return <div>{error}</div>;
+    }
 
   const renderJobDetails = () => {
     if (jobDetails.type === "external") {

@@ -83,7 +83,7 @@ const Employer = () => {
                 </center>
                 </div>
                 <div className="image-section">
-                    {loading && <div className="spinner"><ClipLoader size={50} /></div>}
+                    {loading && <div className="spinner"><ClipLoader size={50} color="#4e9ff5" /></div>}
                     <img src={employer1} className="emp1" alt="Hiring" loading='lazy' onLoad={handleImageLoad} />
                 </div>
             </section>
@@ -149,7 +149,7 @@ const Employer = () => {
                     </div>
                 </div>
                 <div className="right-div">
-                    {loading && <div className="spinner"><ClipLoader size={50} /></div>}
+                    {loading && <div className="spinner"><ClipLoader size={50} color="#4e9ff5" /></div>}
                     <img src={employer3} className='emp3' alt="Shortlisting" onLoad={handleImageLoad} />
                 </div>
             </section>

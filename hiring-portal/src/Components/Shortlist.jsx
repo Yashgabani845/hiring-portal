@@ -5,6 +5,7 @@ import { FaEye, FaCheck, FaTimes } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS
 import '../CSS/shortlist.css';
+import { ClipLoader } from "react-spinners";
 
 const Shortlist = () => {
     const { jobId } = useParams();
@@ -128,7 +129,13 @@ const Shortlist = () => {
         setShowModal(false);
     };
 
-    if (loading) return <p>Loading applications...</p>;
+    if (loading) {
+        return (
+          <div className="spinner">
+            <ClipLoader size={50} color="#4e9ff5" />
+          </div>
+        );
+      }
 
     if (applications.length === 0) return <p>No applications found for this job.</p>;
 
