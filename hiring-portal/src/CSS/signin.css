@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   background: url("../bg.png") no-repeat center center;
   background-size: cover; /* Ensures the image covers the entire background */
   z-index: -1; /* Positions the background behind the content */
@@ -20,9 +20,10 @@
   padding: 3%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  margin: 15% auto;
+  margin: 2rem auto;
   justify-content: center;
 }
+
 .signin-data {
   display: flex;
   flex-direction: row;
@@ -219,6 +220,7 @@
     font-size: 14px; /* Smaller button font size */
   }
 }
+
 
 /* eye icon css */
 

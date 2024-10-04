@@ -9,6 +9,7 @@ import logo from "../logo.png";
 import { ClipLoader } from "react-spinners"; // Import the spinner
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
 
+
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -49,6 +50,7 @@ const SignIn = () => {
       console.error("Error:", error);
       toast.error("An error occurred. Please try again.");
     }
+
   };
 
   const togglePasswordVisibility = () => {
