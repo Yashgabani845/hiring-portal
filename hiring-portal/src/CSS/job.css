@@ -243,6 +243,24 @@
     font-size: 1.1rem;
 }
 
+.spinner-job {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Light background to cover content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.spinner-text {
+    margin-top: 20px;
+}
+
 .name-location p {
     font-size: 1.2rem;
 }
