@@ -35,14 +35,19 @@
 
 
 .hirehublogo {
-  font-size: 28px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2.5vw; /* Responsive font size based on viewport width */
   font-weight: bold;
   color: #343a40;
 }
 
+/* Image for logo */
 .logoimg {
-  height: 55px;
-  max-width: 190px;
+  height: 10vw; /* Responsive height based on viewport width */
+  max-height: 65px; /* Ensures the image doesn't get too large */
+  /*height: 55px;
+  max-width: 190px;*/
   padding-top: 5px;
 }
 

@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/firebase';
@@ -285,7 +286,7 @@ const Signup = () => {
             </label>
             <br />
             <label>
-              Upload Resume:
+              Upload Resume:&nbsp;&nbsp;
               <input
                 type="file"
                 name="resume"
@@ -304,7 +305,7 @@ const Signup = () => {
             </label>
             <br />
             <label>
-              Are you a fresher?
+              Are you a fresher?&nbsp;&nbsp;
               <input
                 type="checkbox"
                 name="isFresher"

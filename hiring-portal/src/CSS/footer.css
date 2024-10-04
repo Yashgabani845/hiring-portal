@@ -67,9 +67,50 @@ body {
     transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
-    color: #007bff;
+.social-icons .linkedin {
+    /* Add the transition effect */
+    transition: transform 0.3s ease;
 }
+
+.social-icons .linkedin:hover {
+    color: #0072b1;
+    transform:scale(1.2);
+}
+
+.social-icons .github {
+    /* Add the transition effect */
+    transition: transform 0.3s ease;
+}
+.social-icons .github:hover {
+    /* color: #007bff; */
+    transform:scale(1.1);
+}
+
+.social-icons .twitter{
+    /* Add the transition effect */
+    transition: transform 0.3s ease;
+}
+.social-icons .twitter:hover {
+    background:none;
+    color:#1DA1F2;
+    transform:scale(1.2);
+}
+
+.social-icons .facebook:hover {
+    color: #4267B2;
+    transform:scale(1.2);
+}
+
+.social-icons  .instagram {
+    /* Add the transition effect */
+    transition: transform 0.3s ease;
+}
+
+.social-icons .instagram:hover {
+    color: #E1306C;
+    transform:scale(1.2);
+}
+
 
 .footer-bottom {
     margin-top: 20px;
