@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import "../CSS/signin.css";
 import jobImage from "../job_search.png"; // Replace with the actual path to your image
 import logo from "../logo.png";
-
 import { ClipLoader } from "react-spinners"; // Import the spinner
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
+
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true); // Loader state
+  const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +50,11 @@ const SignIn = () => {
       console.error("Error:", error);
       toast.error("An error occurred. Please try again.");
     }
+
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -91,13 +97,18 @@ const SignIn = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password:</label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="password-field">
+                  <input
+                    type={showPassword ? "text" : "password"} // Toggle input type between text and password
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span onClick={togglePasswordVisibility} className="eye-icon">
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </div>
               <button type="submit">Sign In</button>
               <div className="remember-forgot">
