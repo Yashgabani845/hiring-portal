@@ -8,14 +8,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .footer {
     background-color: #342d3b;
     color: #fff;
     padding: 50px 0;
-    width: 100%; 
+    width: 100%;
 }
 
 .footer-container {
@@ -79,6 +79,10 @@ body {
     border-top: 1px solid #555;
 }
 
+.flex {
+    display: flex;
+    width: 50%;
+}
 
 @media (max-width: 768px) {
     .footer-container {
@@ -87,14 +91,20 @@ body {
     }
 
     .footer-column {
-        margin-right: 0; 
+        margin-right: 0;
     }
 
-    .footer-column > h3 {
+    .footer-column>h3 {
         font-size: 1.5rem;
     }
 
     .social-icons {
         justify-content: center;
+    }
+
+    .flex {
+        width: 100%;
+        padding: 20px 40px;
+        text-align: left;
     }
 }
