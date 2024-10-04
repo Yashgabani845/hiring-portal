@@ -43,13 +43,13 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin: 5px 10px; 
+  margin: 5px 10px;
 }
 
 .search {
   height: 40px;
   border-radius: 16px;
-  padding-left: 40px; 
+  padding-left: 40px;
   border: none;
   font-size: 17px;
   outline: none;
@@ -61,7 +61,7 @@
 .search-icon,
 .location-icon {
   position: absolute;
-  left: 10px; 
+  left: 10px;
   color: #000000;
 }
 
@@ -134,12 +134,39 @@
   }
 
   .searchbtn {
-    margin-top: 15px;
+    margin-top: 15px 0px;
+    padding: 0.7rem 3rem;
   }
-  
+
+  .searchbtn:hover {
+    background-color: #0153ab;
+  }
+
   .search-results {
     max-width: 90%;
   }
+
+  .hero-section {
+    padding: 20px;
+  }
+
+  .hero-section center {
+    width: 100%;
+  }
+
+  .searchdiv {
+    width: 90%;
+    border-bottom: 1px solid #bbb;
+    margin: 1rem 0px;
+  }
+
+  .seprate {
+    display: none;
+  }
+
+
+
+
 }
 
 @media (max-width: 480px) {
