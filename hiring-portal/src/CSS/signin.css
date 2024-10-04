@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: fit-content;  background: url('../bg.png') no-repeat center center;
+  height: 100%;
+  background: url("../bg.png") no-repeat center center;
   background-size: cover; /* Ensures the image covers the entire background */
   z-index: -1; /* Positions the background behind the content */
 }
@@ -19,10 +20,11 @@
   padding: 3%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  margin: 15% auto;
+  margin: 2rem auto;
   justify-content: center;
 }
-.signin-data{
+
+.signin-data {
   display: flex;
   flex-direction: row;
   height: fit-content;
@@ -30,33 +32,34 @@
   overflow: hidden;
   background-color: white;
   border-radius: 15px;
-  
+
   justify-content: center;
 }
-.welcom1 img{
+.welcom1 img {
   align-items: center;
   height: 50px;
   margin-bottom: 7px;
-  width:100;
+  width: 100;
 }
-.welcom1{
+.welcom1 {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: fit-content;
 }
-.welcom1 h1{
-  font-size:xx-large;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;}
+.welcom1 h1 {
+  font-size: xx-large;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
 .signin-page::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 70%;
   height: 70%;
   z-index: 0;
-
 }
 
 .signin-image {
@@ -86,7 +89,7 @@
 .signin-form h2 {
   margin-bottom: 20px;
   text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
 }
 
@@ -103,13 +106,12 @@
 
 .form-group input {
   width: 100%;
-  padding: 12px; 
+  padding: 12px;
   border: 1px solid #ccc;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s, box-shadow 0.3s;
-  height:40px;
-  border-radius: 15px; 
-
+  height: 40px;
+  border-radius: 15px;
 }
 
 .form-group input:focus {
@@ -134,7 +136,7 @@
   background-color: #007bff;
   color: white;
   border: none;
-  
+
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
@@ -165,13 +167,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.8); 
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; 
+  z-index: 1000;
 }
-
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
@@ -191,7 +192,6 @@
 
   .signin-form {
     width: 100%; /* Full width on smaller screens */
-  
   }
 
   .welcom1 img {
