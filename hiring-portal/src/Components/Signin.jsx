@@ -1,59 +1,63 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import "../CSS/signin.css";
-import jobImage from '../job_search.png'; // Replace with the actual path to your image
-import logo from '../logo.png';
+import jobImage from "../job_search.png"; // Replace with the actual path to your image
+import logo from "../logo.png";
+import { ClipLoader } from "react-spinners"; // Import the spinner
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
 
-import { ClipLoader } from 'react-spinners'; // Import the spinner
 
 const SignIn = () => {
- 
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true); // Loader state
+  const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-      try {
-        const response = await fetch('http://localhost:5000/api/users/signin', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password, rememberMe }),
-        });
 
-        const data = await response.json();
-        if (response.ok) {
-          console.log('Sign in successful:', data);
-          localStorage.setItem('userEmail', data.email);
-          localStorage.setItem('token', data.token);
-          toast.success('Sign in successful!');
-          if(email === "admin@gmail.com" && password === "admin") {
-            navigate('/admin');
-          } else{
-          navigate('/');
-}        } else {
-          console.error('Sign in failed:', data.message);
-          toast.error(`Sign in failed: ${data.message}`);
+    try {
+      const response = await fetch("http://localhost:5000/api/users/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, rememberMe }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Sign in successful:", data);
+        localStorage.setItem("userEmail", data.email);
+        localStorage.setItem("token", data.token);
+        toast.success("Sign in successful!");
+        if (email === "admin@gmail.com" && password === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
         }
-      } catch (error) {
-        console.error('Error:', error);
-        toast.error('An error occurred. Please try again.');
+      } else {
+        console.error("Sign in failed:", data.message);
+        toast.error(`Sign in failed: ${data.message}`);
       }
-    
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
-    
     <div className="bg">
       <Navbar />
       {loadingImage && (
@@ -75,7 +79,7 @@ const SignIn = () => {
               alt="Job Portal"
               onLoad={() => setLoadingImage(false)}
               onError={() => setLoadingImage(false)}
-              style={{ display: loadingImage ? 'none' : 'block' }} 
+              style={{ display: loadingImage ? "none" : "block" }}
             />
           </div>
           <div className="signin-form">
@@ -93,13 +97,18 @@ const SignIn = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password:</label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="password-field">
+                  <input
+                    type={showPassword ? "text" : "password"} // Toggle input type between text and password
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span onClick={togglePasswordVisibility} className="eye-icon">
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </div>
               <button type="submit">Sign In</button>
               <div className="remember-forgot">
