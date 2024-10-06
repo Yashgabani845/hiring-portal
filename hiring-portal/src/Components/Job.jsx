@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Navbar from "./Navbar";
 import axios from "axios";
 import {
+  FaRegClock,
+  FaMapMarkerAlt,
+  FaDollarSign,
+  FaBriefcase,
+  FaUsers,
+  FaCalendarAlt,
   FaRegClock,
   FaMapMarkerAlt,
   FaDollarSign,
@@ -69,9 +76,9 @@ const Job = () => {
           })
         );
 
-        const validJobs = jobsWithCompanyLogos.filter((job) => {
-          return calculateTimeLeft(job.applicationDeadline) !== "00:00:00";
-        });
+        const validJobs = jobsWithCompanyLogos.filter(
+          (job) => calculateTimeLeft(job.applicationDeadline) !== "00:00:00"
+        );
 
         const randomJobs = validJobs
           .sort(() => 0.5 - Math.random())
@@ -112,13 +119,17 @@ const Job = () => {
     return `${day}-${month}-${year}`;
   };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <ClipLoader color="#4e9ff5" loading={loading} size={50} />
+      </div>
+    );
+  }
 
-    if (error) {
-        return <div>{error}</div>;
-    }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   const renderJobDetails = () => {
     if (jobDetails.type === "external") {
@@ -127,13 +138,11 @@ const Job = () => {
           {jobDetails.title && (
             <h1 className="job-title">{jobDetails.title}</h1>
           )}
-          {
-            <img
-              src={jobDetails.comlogo || comlogo}
-              alt="Company Logo"
-              className="company-logo"
-            />
-          }
+          <img
+            src={jobDetails.comlogo || comlogo}
+            alt="Company Logo"
+            className="company-logo"
+          />
           {jobDetails.employmentType && (
             <div className="job-detail-section">
               <h2>
@@ -195,124 +204,71 @@ const Job = () => {
     }
 
     return (
-      <>
-        <div className="job-job-card">
-          <div className="header">
-            <div className="company-details">
-              <h2>{jobDetails.title}</h2>
-              <div className="name-location">
-                <p>{companyDetails.name}</p>
-                <p>
-                  <FaMapMarkerAlt />
-                  {jobDetails.workLocation}
-                </p>
-              </div>
-            </div>
-            <div className="logo">
-              <img
-                src={companyDetails.logo || comlogo}
-                alt={`${companyDetails.name} logo`}
-              />
+      <div className="job-job-card">
+        <div className="header">
+          <div className="company-details">
+            <h2>{jobDetails.title}</h2>
+            <div className="name-location">
+              <p>{companyDetails.name}</p>
+              <p>
+                <FaMapMarkerAlt /> {jobDetails.workLocation}
+              </p>
             </div>
           </div>
-          <div className="pay-benefits">
-            <p>
-              <span className="pay-benefits-details">
-                <FaDollarSign />
-                Salary
-              </span>
-              ${jobDetails.salaryRange.min} to ${jobDetails.salaryRange.max}{" "}
-              Annually
-            </p>
-            <p>
-              <span className="pay-benefits-details">
-                <FaCalendarAlt /> Deadline
-              </span>{" "}
-              {formatDate(jobDetails.applicationDeadline)}
-            </p>
-            <p>
-              <span className="pay-benefits-details">
-                <FaBriefcase /> Type
-              </span>{" "}
-              {jobDetails.employmentType}
-            </p>
-          </div>
-          <div className="section">
-            <h3 className="color-font-head">Job Description</h3>
-            <p>{jobDetails.description}</p>
-          </div>
-          <div className="section">
-            <h3 className="color-font-head">
-              <FaRegClock /> Work Details
-            </h3>
-            <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
-          </div>
-          <div className="section">
-            <h3 className="color-font-head">
-              <FaUsers /> Skills and experience
-            </h3>
-            <div>{jobDetails.experienceLevel}</div>
+          <div className="logo">
+            <img
+              src={companyDetails.logo || comlogo}
+              alt={`${companyDetails.name} logo`}
+            />
           </div>
         </div>
-      </>
+        <div className="pay-benefits">
+          <p>
+            <span className="pay-benefits-details">
+              <FaDollarSign /> Salary
+            </span>{" "}
+            ${jobDetails.salaryRange.min} to ${jobDetails.salaryRange.max}{" "}
+            Annually
+          </p>
+          <p>
+            <span className="pay-benefits-details">
+              <FaCalendarAlt /> Deadline
+            </span>{" "}
+            {formatDate(jobDetails.applicationDeadline)}
+          </p>
+          <p>
+            <span className="pay-benefits-details">
+              <FaBriefcase /> Type
+            </span>{" "}
+            {jobDetails.employmentType}
+          </p>
+        </div>
+        <div className="section">
+          <h3 className="color-font-head">Job Description</h3>
+          <p>{jobDetails.description}</p>
+        </div>
+        <div className="section">
+          <h3 className="color-font-head">
+            <FaRegClock /> Work Details
+          </h3>
+          <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
+        </div>
+        <div className="section">
+          <h3 className="color-font-head">
+            <FaUsers /> Skills and experience
+          </h3>
+          <div>{jobDetails.experienceLevel}</div>
+        </div>
+      </div>
     );
   };
 
   return (
-    <>
+    <div>
       <Navbar />
-      <div className="job-page">
-        <div className="job-container">
-          <div className="job-section">
-            {renderJobDetails()}
-            <button
-              className="apply-button"
-              onClick={() => {
-                if (jobDetails.type === "external") {
-                  window.location.href = jobDetails.link;
-                } else {
-                  navigate("/application", {
-                    state: { jobId: jobDetails._id, emailcurrent: userEmail },
-                  });
-                }
-              }}
-            >
-              Apply Now
-            </button>
-          </div>
-          <div className="recommendation-section">
-            <h2>Recommended Jobs</h2>
-            <div className="recommended-job-grid">
-              {recommendedJobs.map((job, index) => (
-                <div key={index} className="recommended-job-card">
-                  <div className="recommend-image">
-                    <img
-                      src={job.comlogo || comlogo}
-                      alt={`${job.title} logo`}
-                      className="job-logo"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="recommend-job-title">{job.title}</h3>
-                    <p>
-                      <FaRegClock /> Time Left:{" "}
-                      {calculateTimeLeft(job.applicationDeadline)}
-                    </p>
-                    <button
-                      className="view-button"
-                      onClick={() => navigate(`/job/${job._id}`)}
-                    >
-                      View
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      {renderJobDetails()}
       <Footer />
-    </>
+    </div>
   );
 };
 
