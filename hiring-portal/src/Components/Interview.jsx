@@ -1,5 +1,5 @@
 import React from "react";
-import getty from "../postjobs.png";
+import getty from "../assests/postjobs.png";
 import "../CSS/interview.css"
 const Interview = () => {
     return (

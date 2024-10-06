@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios';  
+import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 
 import "../CSS/navbar.css";
@@ -10,7 +10,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
-import logo from "../logo.png";
+import logo from "../assests/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,10 +21,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); 
-    setActiveTab(location.pathname); 
+    setIsLoggedIn(!!token);
+    setActiveTab(location.pathname);
 
-    const routesToHideElements = ['/signin', '/signup']; 
+    const routesToHideElements = ['/signin', '/signup'];
     setHideElements(routesToHideElements.includes(location.pathname));
   }, [location.pathname]);
 
@@ -34,14 +34,14 @@ const Navbar = () => {
       axios.get('http://localhost:5000/api/users/profile', {
         params: { email }
       })
-      .then(response => {
-        const { role } = response.data;
-        navigate("/owner");
-      })
-      .catch(error => {
-        console.error('Error fetching user profile:', error);
-      });
-    } 
+        .then(response => {
+          const { role } = response.data;
+          navigate("/owner");
+        })
+        .catch(error => {
+          console.error('Error fetching user profile:', error);
+        });
+    }
   };
 
   return (
