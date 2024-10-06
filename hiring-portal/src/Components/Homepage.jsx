@@ -5,6 +5,7 @@ import MiddleView from "./MiddleView";
 import PostView from "./Postview";
 import Footer from "./Footer";
 import Interview from "./Interview";
+import Testimonial from "./Testimonial";
 import { ClipLoader } from "react-spinners";
 
 const Homepage = () => {
@@ -29,6 +30,7 @@ const Homepage = () => {
             <MiddleView />
             <PostView />
             <Interview />
+            <Testimonial/>
             <Footer />
         </div>
     );

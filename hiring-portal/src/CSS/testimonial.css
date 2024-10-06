@@ -1,0 +1,168 @@
+body {
+    background-color: #f9f9f9;
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    
+}
+
+.grid-item-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-left:-.25%;
+    color: #1a202c;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+    
+}
+
+.description {
+    margin-top: 20px;
+    color: #4a5568;
+    font-size:medium;
+    font-weight:400;
+}
+
+.navigation-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.nav-button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #f56565;
+    color: #f56565;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.grid-item-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stars {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.star-icon {
+    color: #48bb78;
+    margin-right: 5px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f56565;
+}
+
+.card-description {
+    margin-top: 20px;
+    color: #4a5568;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.author {
+    margin-top: 20px;
+    color: #2d3748;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .grid-item-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .navigation-buttons {
+        justify-content: center;
+    }
+
+    .card-title {
+        font-size: 1.15rem;
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+    }
+
+    .author {
+        font-size: 0.9rem;
+    }
+}
+
+.see-more-button {
+    padding: 10px 20px;
+    background-color: #0564c9; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .see-more-button:hover {
+    background-color: #0056b3; 
+  }
+  
+
+  
