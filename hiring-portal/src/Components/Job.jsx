@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Navbar from "./Navbar";
 import axios from "axios";
 import {
+  FaRegClock,
+  FaMapMarkerAlt,
+  FaDollarSign,
+  FaBriefcase,
+  FaUsers,
+  FaCalendarAlt,
   FaRegClock,
   FaMapMarkerAlt,
   FaDollarSign,
@@ -28,11 +35,15 @@ const Job = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/jobs/${id}`);
+        const response = await axios.get(
+          `http://localhost:5000/api/jobs/${id}`
+        );
         setJobDetails(response.data);
 
         if (response.data.postedBy) {
-          const companyResponse = await axios.get(`http://localhost:5000/api/companies/${response.data.postedBy}`);
+          const companyResponse = await axios.get(
+            `http://localhost:5000/api/companies/${response.data.postedBy}`
+          );
           setCompanyDetails(companyResponse.data);
         }
       } catch (error) {
@@ -45,25 +56,33 @@ const Job = () => {
     const fetchRecommendedJobs = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/job`);
-        const jobsWithCompanyLogos = await Promise.all(response.data.map(async (job) => {
-          try {
-            if (job.type === "native") {
-              const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
-              return {
-                ...job,
-                comlogo: companyResponse.data.logo,
-              };
-            } else {
-              return { ...job };
+        const jobsWithCompanyLogos = await Promise.all(
+          response.data.map(async (job) => {
+            try {
+              if (job.type === "native") {
+                const companyResponse = await axios.get(
+                  `http://localhost:5000/api/companies/${job.postedBy}`
+                );
+                return {
+                  ...job,
+                  comlogo: companyResponse.data.logo,
+                };
+              } else {
+                return { ...job };
+              }
+            } catch (err) {
+              return job;
             }
-          } catch (err) {
-            return job;
-          }
-        }));
+          })
+        );
 
-        const validJobs = jobsWithCompanyLogos.filter(job => calculateTimeLeft(job.applicationDeadline) !== "00:00:00");
+        const validJobs = jobsWithCompanyLogos.filter(
+          (job) => calculateTimeLeft(job.applicationDeadline) !== "00:00:00"
+        );
 
-        const randomJobs = validJobs.sort(() => 0.5 - Math.random()).slice(0, 5);
+        const randomJobs = validJobs
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 5);
         setRecommendedJobs(randomJobs);
       } catch (error) {
         setError("Failed to fetch recommended jobs.");
@@ -85,13 +104,17 @@ const Job = () => {
     const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
     const seconds = Math.floor((timeLeft / 1000) % 60);
 
-    return `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${days.toString().padStart(2, "0")}:${hours
+      .toString()
+      .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
@@ -103,7 +126,7 @@ const Job = () => {
       </div>
     );
   }
-  
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -112,41 +135,61 @@ const Job = () => {
     if (jobDetails.type === "external") {
       return (
         <>
-          {jobDetails.title && <h1 className="job-title">{jobDetails.title}</h1>}
-          <img src={jobDetails.comlogo || comlogo} alt="Company Logo" className="company-logo" />
+          {jobDetails.title && (
+            <h1 className="job-title">{jobDetails.title}</h1>
+          )}
+          <img
+            src={jobDetails.comlogo || comlogo}
+            alt="Company Logo"
+            className="company-logo"
+          />
           {jobDetails.employmentType && (
             <div className="job-detail-section">
-              <h2><FaBriefcase /> Job Type</h2>
+              <h2>
+                <FaBriefcase /> Job Type
+              </h2>
               <p>{jobDetails.employmentType}</p>
             </div>
           )}
           {jobDetails.experienceLevel && (
             <div className="job-detail-section">
-              <h2><FaUsers /> Experience</h2>
+              <h2>
+                <FaUsers /> Experience
+              </h2>
               <p>{jobDetails.experienceLevel}</p>
             </div>
           )}
           {jobDetails.workLocation && (
             <div className="job-detail-section">
-              <h2><FaMapMarkerAlt /> Job Location</h2>
+              <h2>
+                <FaMapMarkerAlt /> Job Location
+              </h2>
               <p>{jobDetails.workLocation}</p>
             </div>
           )}
           {jobDetails.salaryRange && (
             <div className="job-detail-section">
-              <h2><FaDollarSign /> Salary</h2>
-              <p>{jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}</p>
+              <h2>
+                <FaDollarSign /> Salary
+              </h2>
+              <p>
+                {jobDetails.salaryRange.min} - {jobDetails.salaryRange.max}
+              </p>
             </div>
           )}
           {jobDetails.shift && jobDetails.shift.length > 0 && (
             <div className="job-detail-section">
-              <h2><FaRegClock /> Work Details</h2>
+              <h2>
+                <FaRegClock /> Work Details
+              </h2>
               <p>{jobDetails.shift.join(", ")}</p>
             </div>
           )}
           {jobDetails.applicationDeadline && (
             <div className="job-detail-section">
-              <h2><FaCalendarAlt /> Application Deadline</h2>
+              <h2>
+                <FaCalendarAlt /> Application Deadline
+              </h2>
               <p>{formatDate(jobDetails.applicationDeadline)}</p>
             </div>
           )}
@@ -167,28 +210,53 @@ const Job = () => {
             <h2>{jobDetails.title}</h2>
             <div className="name-location">
               <p>{companyDetails.name}</p>
-              <p><FaMapMarkerAlt /> {jobDetails.workLocation}</p>
+              <p>
+                <FaMapMarkerAlt /> {jobDetails.workLocation}
+              </p>
             </div>
           </div>
           <div className="logo">
-            <img src={companyDetails.logo || comlogo} alt={`${companyDetails.name} logo`} />
+            <img
+              src={companyDetails.logo || comlogo}
+              alt={`${companyDetails.name} logo`}
+            />
           </div>
         </div>
         <div className="pay-benefits">
-          <p><span className="pay-benefits-details"><FaDollarSign /> Salary</span> ${jobDetails.salaryRange.min} to ${jobDetails.salaryRange.max} Annually</p>
-          <p><span className="pay-benefits-details"><FaCalendarAlt /> Deadline</span> {formatDate(jobDetails.applicationDeadline)}</p>
-          <p><span className="pay-benefits-details"><FaBriefcase /> Type</span> {jobDetails.employmentType}</p>
+          <p>
+            <span className="pay-benefits-details">
+              <FaDollarSign /> Salary
+            </span>{" "}
+            ${jobDetails.salaryRange.min} to ${jobDetails.salaryRange.max}{" "}
+            Annually
+          </p>
+          <p>
+            <span className="pay-benefits-details">
+              <FaCalendarAlt /> Deadline
+            </span>{" "}
+            {formatDate(jobDetails.applicationDeadline)}
+          </p>
+          <p>
+            <span className="pay-benefits-details">
+              <FaBriefcase /> Type
+            </span>{" "}
+            {jobDetails.employmentType}
+          </p>
         </div>
         <div className="section">
           <h3 className="color-font-head">Job Description</h3>
           <p>{jobDetails.description}</p>
         </div>
         <div className="section">
-          <h3 className="color-font-head"><FaRegClock /> Work Details</h3>
+          <h3 className="color-font-head">
+            <FaRegClock /> Work Details
+          </h3>
           <p>{jobDetails.shift ? jobDetails.shift.join(", ") : "N/A"}</p>
         </div>
         <div className="section">
-          <h3 className="color-font-head"><FaUsers /> Skills and experience</h3>
+          <h3 className="color-font-head">
+            <FaUsers /> Skills and experience
+          </h3>
           <div>{jobDetails.experienceLevel}</div>
         </div>
       </div>
