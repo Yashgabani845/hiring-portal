@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import Navbar from "./Navbar";
 import axios from "axios";
 import {
-  FaRegClock,
-  FaMapMarkerAlt,
-  FaDollarSign,
-  FaBriefcase,
-  FaUsers,
-  FaCalendarAlt,
   FaRegClock,
   FaMapMarkerAlt,
   FaDollarSign,
