@@ -23,6 +23,7 @@ import Employer from './Components/Employer';
 import AssessmentResults from './Components/AssesmentResult';
 import AssessmentResultDetail from './Components/AssessmentResultDetails';
 import About from './Components/About';
+import Contactus from './Components/Contactus';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/contactus' element={<Contactus/>}/>
         <Route path="/company" element={<CompanyRegistration/>}/>  
         <Route path="/profile" element={<Profile/>}/>    
         <Route path="/signin" element={<SignIn/>}/> 
