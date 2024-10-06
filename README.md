@@ -143,3 +143,13 @@ This project is open source and available under the [MIT License](https://openso
 
 Feel free to contribute, suggest features, or report issues to improve **HireHub**!
 
+
+## 💬 Feedback & Support
+
+If you have any feedback, questions, or issues, feel free to reach out or open a GitHub Issue.
+-**Linkedin:-** https://www.linkedin.com/in/yash-gabani-527886258/
+-**Github:-** https://github.com/Yashgabani845
+
+Feel free to contact us at any of our social media handles incase of issue.
+
+
