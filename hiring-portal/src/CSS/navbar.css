@@ -10,8 +10,10 @@
 }
 
 .hirehublogo {
+
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 28px;
+
   font-weight: bold;
   color: #343a40;
 }
@@ -34,10 +36,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin:  15px;
+  margin: 15px;
   font-size: 19px;
   font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #343a40;
   cursor: pointer;
   position: relative;
@@ -62,7 +64,7 @@
 }
 
 .icon.active span::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -78,7 +80,7 @@
   padding: 10px 20px;
   font-size: 18px;
   font-weight: 400;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #0e0c0c;
   border-radius: 5px;
   cursor: pointer;
@@ -136,5 +138,8 @@
 
   .posting span {
     display: none;
+  }
+  .navbar {
+    padding: 0px !important;  
   }
 }
