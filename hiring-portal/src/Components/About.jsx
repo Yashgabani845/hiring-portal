@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../CSS/about.css";
-import searchimage from "../job_search.jpg";
-import js1 from "../js1.jpg";
-import email from "../email.jpg";
-import result from "../result.png";
-import compile from "../compile1.png";
+import searchimage from "../assests/job_search.jpg";
+import js1 from "../assests/js1.jpg";
+import email from "../assests/email.jpg";
+import result from "../assests/result.png";
+import compile from "../assests/compile1.png";
 
 const About = () => {
   return (

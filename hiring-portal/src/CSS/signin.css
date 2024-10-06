@@ -4,9 +4,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../bg.png") no-repeat center center;
-  background-size: cover; /* Ensures the image covers the entire background */
-  z-index: -1; /* Positions the background behind the content */
+  background: url("../assests/bg.png") no-repeat center center;
+  background-size: cover;
+  z-index: -1;
 }
 
 .signin-page {
@@ -35,23 +35,27 @@
 
   justify-content: center;
 }
+
 .welcom1 img {
   align-items: center;
   height: 50px;
   margin-bottom: 7px;
   width: 100;
 }
+
 .welcom1 {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: fit-content;
 }
+
 .welcom1 h1 {
   font-size: xx-large;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
 .signin-page::before {
   content: "";
   position: absolute;
@@ -177,47 +181,58 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .signin-page {
-    width: 90%; /* Wider on smaller screens */
-    margin: 10% auto; /* Reduce margin */
+    width: 90%;
+    /* Wider on smaller screens */
+    margin: 10% auto;
+    /* Reduce margin */
   }
 
   .signin-data {
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
+    /* Stack elements vertically */
   }
 
   .signin-image {
-    width: 80%; /* Full width on smaller screens */
+    width: 80%;
+    /* Full width on smaller screens */
     margin: 0 auto;
   }
 
   .signin-form {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
+    /* Full width on smaller screens */
   }
 
   .welcom1 img {
-    height: 40px; /* Adjust logo size */
+    height: 40px;
+    /* Adjust logo size */
   }
 
   .welcom1 h1 {
-    font-size: large; /* Smaller font size */
+    font-size: large;
+    /* Smaller font size */
   }
 }
 
 @media (max-width: 480px) {
   .signin-page {
-    padding: 2%; /* Reduce padding */
+    padding: 2%;
+    /* Reduce padding */
   }
 
   .signin-form h2 {
-    font-size: 20px; /* Smaller heading */
+    font-size: 20px;
+    /* Smaller heading */
   }
 
   .form-group input {
-    height: 35px; /* Smaller input height */
+    height: 35px;
+    /* Smaller input height */
   }
 
   .signin-form button {
-    font-size: 14px; /* Smaller button font size */
+    font-size: 14px;
+    /* Smaller button font size */
   }
 }
 
