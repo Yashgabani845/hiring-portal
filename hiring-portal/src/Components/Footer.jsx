@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/footer.css";
-import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaLinkedin,  FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
@@ -41,7 +42,7 @@ const Footer = () => {
                         <h3>Follow Us</h3>
                         <div className="social-icons">
                             <a href="https://www.linkedin.com/in/yash-gabani-527886258/" className="linkedin"><FaLinkedin /></a>
-                            <a href="https://twitter.com/Hirehub280355" className="twitter"><FaTwitter /></a>
+                            <a href="https://twitter.com/Hirehub280355" className="twitter"><FaXTwitter /></a>
                             <a href="https://github.com/Yashgabani845" className="github"> <FaGithub /></a>
                             <a href="https://www.instagram.com/yash845_/" className="instagram"><FaInstagram /></a>
                             <a href="https://www.facebook.com/" className="facebook"><FaFacebook /></a> {/* Assuming you're using this for Facebook */}

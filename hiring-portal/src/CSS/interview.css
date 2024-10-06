@@ -1,74 +1,105 @@
 .interview {
-    display: flex;
-    align-items: center;
-  
-    border-radius: 8px;
+  display: flex;
+  align-items: center;
+
+  border-radius: 8px;
 }
 
 .itext-part {
-    flex: 1;
-    padding-left: 15%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+  flex: 1;
+  padding-left: 15%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .ititle {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .islogan {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #666;
 }
 
 .viewbtn {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .viewbtn .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0564c9;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-    font-weight: 600;
-
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0564c9;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 600;
 }
 
 .viewbtn .btn:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .iimg {
-    flex: 1;
-    display: flex;
-    height: 450px;
-    width: 450px;
+  flex: 1;
+  display: flex;
+  height: 450px;
+  width: 450px;
 }
 
 .iimg img {
-    height: 300px;
-    width: 350px;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 300px;
+  width: 350px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .iimg img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
-@media(max-width:768px){
-    .interview{
-        display: flex;
-        width: 100%;
-        flex-direction: column-reverse;
-        justify-content: center;
-        padding-bottom:5% ;
-    }
+@media (max-width: 768px) {
+  .interview {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 5%;
+    flex-direction: column;
+  }
+  .itext-part {
+    padding: 0px;
+    text-align: center;
+  }
+  .iimg img{
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .interview {
+    flex-direction: column;
+  }
+  .itext-part {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .iimg {
+    width: 100%;
+  }
+  .iimg img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-direction: column-reverse;
+    justify-content: center;
+    padding-bottom: 5%;
+  }
 }
