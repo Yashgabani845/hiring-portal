@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/manageJobs.css';
+import { ClipLoader } from "react-spinners";
+
 
 const ManageJobs = () => {
     const { jobId } = useParams();
@@ -54,8 +56,12 @@ const ManageJobs = () => {
     };
 
     if (loading) {
-        return <p>Loading job details...</p>;
-    }
+        return (
+          <div className="spinner">
+            <ClipLoader size={50} color="#4e9ff5" />
+          </div>
+        );
+      }
 
     if (!job) {
         return <p>Job not found</p>;

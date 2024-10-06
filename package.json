@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "react-spinners": "^0.14.1"
+  }
+}

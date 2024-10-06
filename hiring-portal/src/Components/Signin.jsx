@@ -62,7 +62,7 @@ const SignIn = () => {
       <Navbar />
       {loadingImage && (
         <div className="loader-overlay">
-          <ClipLoader color="#3498db" loading={loadingImage} size={50} />
+          <ClipLoader color="#4e9ff5" loading={loadingImage} size={50} />
         </div>
       )}
       <div className="signin-page">

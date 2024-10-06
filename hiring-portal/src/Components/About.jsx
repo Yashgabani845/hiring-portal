@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../CSS/about.css";
@@ -7,10 +7,24 @@ import js1 from "../js1.jpg";
 import email from "../email.jpg";
 import result from "../result.png";
 import compile from "../compile1.png";
+import { ClipLoader } from "react-spinners";
 
 const About = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
+      {loading && (
+        <div className="spinner">
+          <ClipLoader size={50} color="#4e9ff5" />
+        </div>
+      )}
       <Navbar />
       <div className="about-container">
         <div className="feature-section">
