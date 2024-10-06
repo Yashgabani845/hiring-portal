@@ -35,7 +35,8 @@
   justify-content: center;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.7) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.35) 0px 2px 6px 2px;
   flex-wrap: wrap;
 }
 
@@ -43,13 +44,12 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin: 5px 10px; 
 }
 
 .search {
   height: 40px;
   border-radius: 16px;
-  padding-left: 40px; 
+  padding-left: 40px;
   border: none;
   font-size: 17px;
   outline: none;
@@ -61,7 +61,7 @@
 .search-icon,
 .location-icon {
   position: absolute;
-  left: 10px; 
+  left: 10px;
   color: #000000;
 }
 
@@ -136,7 +136,7 @@
   .searchbtn {
     margin-top: 15px;
   }
-  
+
   .search-results {
     max-width: 90%;
   }
@@ -150,15 +150,30 @@
   .hero-content p {
     font-size: 14px;
   }
-
+  .center {
+    width: 100% !important;
+  }
   .search-bar {
-    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .search {
     font-size: 15px;
     height: 35px;
     padding-left: 35px;
+  }
+  .searchdiv {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgb(141, 141, 141);
+    width: 100%;
+  }
+  .seprate {
+    display: none;
   }
 
   .searchbtn {
