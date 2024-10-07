@@ -1,118 +1,68 @@
-/* Container Styling */
-.signupform {
-  width: 45%;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  font-family: 'Arial', sans-serif;
-}
-
-.signupform h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #333;
-}
-
-.signupform h2 {
-  margin-bottom: 15px;
-  font-size: 20px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #918b8b;
-  
-}
-
-.signupform p {
-  text-align: center;
-  font-size: 14px;
-  color: #777;
-}
-
+/* Accessibility Enhancements */
 .signupform label {
-  display: block;
+  margin-bottom: 5px;
   font-size: 15px;
   color: #555;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.signupform input[type="text"],
-.signupform input[type="email"],
-.signupform input[type="password"],
-.signupform select,
-.signupform textarea {
-  width: calc(100% - 12px);
-  padding: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #333;
-  transition: border-color 0.3s, box-shadow 0.3s;
+/* Validation Styles */
+.signupform input.error {
+  border-color: #dc3545; /* Red border for errors */
 }
 
-.signupform input[type="text"]:focus,
-.signupform input[type="email"]:focus,
-.signupform input[type="password"]:focus,
-.signupform select:focus,
-.signupform textarea:focus {
-  border-color: #007BFF;
+/* Focus Styles */
+.signupform input:focus {
   outline: none;
-  margin-top: 5px;
-  box-shadow: 0 0 1px rgba(0, 123, 255, 0.5);
+  border-color: #0056b3;
 }
 
-/* Custom Input Field Class */
-.signupform .signupinput {
-  width: calc(100% - 12px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #333;
-  transition: border-color 0.3s, box-shadow 0.3s;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signupform {
+    width: 90%; /* Make the form wider on smaller screens */
+  }
 }
 
-.signupform .signupinput:focus {
-  border-color: #007BFF;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+/* Animation for Button Clicks */
+.signupform button:active {
+  transform: scale(0.95); /* Slightly shrink on click */
 }
 
-/* Fresher or Experience Divs */
-.signupform .fresher-experience {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+/* Tooltip Styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
 }
 
-.signupform .fresher-experience div {
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  cursor: pointer;
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
   text-align: center;
-  transition: border-color 0.3s, background-color 0.3s;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.signupform .fresher-experience .selected {
-  border-color: #007BFF;
-  background-color: #e7f0ff;
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
+/* File Input Styles */
 .signupform input[type="file"] {
-  
+  display: none; /* Hide default file input */
 }
 
-.signupform label[for="resume-upload"] {
+.signupform .file-label {
   display: inline-block;
   padding: 10px;
   margin-bottom: 15px;
@@ -120,90 +70,39 @@
   border-radius: 5px;
   background-color: #007BFF;
   color: white;
+  padding: 10px;
   text-align: center;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
 }
 
-.signupform label[for="resume-upload"]:hover {
+.signupform .file-label:hover {
   background-color: #0056b3;
 }
 
-.signupform .resume-info {
-  font-size: 12px;
-  color: #555;
-  text-align: center;
-}
-
-/* Add Job Button */
-.signupform .add-job-button {
-  display: flex;
-  align-items: center;
+/* Submit Button State */
+.signupform button.loading {
   background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.signupform .add-job-button:hover {
-  background-color: #0056b3;
-}
-
-.signupform .add-job-button .icon {
-  margin-right: 5px;
-}
-
-.signupform button {
-  display: inline-block;
-  width: fit-content;
-  padding: 10px;
-  margin-top: 10px;
-  border: 2px solid #007BFF; /* Blue outline */
-  border-radius: 5px;
-  background-color: transparent; /* Transparent background */
-  color: #007BFF; /* Blue text color */
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.signupform button:hover {
-  background-color: #d7dee6; /* Blue background on hover */
-}
-
-.signupform button:disabled {
-  border: 2px solid #ccc;
-  background-color: transparent;
-  color: #ccc;
+  color: #fff;
   cursor: not-allowed;
 }
 
-
-
-.signupform button + button {
-  margin-left: 10px;
-}
-
-/* Step Indicator Styling */
-.signupform .step-indicator {
+/* Progress Indicator */
+.signupform .progress-indicator {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.signupform .step-indicator div {
+.signupform .progress-indicator div {
   width: 20%;
   height: 4px;
   background-color: #ccc;
   transition: background-color 0.3s;
 }
 
-.signupform .step-indicator .active {
+.signupform .progress-indicator .active {
   background-color: #007BFF;
 }
 
@@ -219,5 +118,9 @@
 /* Anchor Tag Styling */
 a {
   text-decoration: none;
-  color: #555;
+  color: #007BFF; /* Blue color for links */
+}
+
+a:hover {
+  text-decoration: underline;
 }

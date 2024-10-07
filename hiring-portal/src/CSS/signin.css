@@ -1,246 +1,55 @@
-.bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../assests/bg.png") no-repeat center center;
-  background-size: cover;
-  z-index: -1;
-}
-
-.signin-page {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-  width: 70%;
-  padding: 3%;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  margin: 2rem auto;
-  justify-content: center;
-}
-
-.signin-data {
-  display: flex;
-  flex-direction: row;
-  height: fit-content;
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-  border-radius: 15px;
-
-  justify-content: center;
-}
-
-.welcom1 img {
-  align-items: center;
-  height: 50px;
-  margin-bottom: 7px;
-  width: 100;
-}
-
-.welcom1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: fit-content;
-}
-
-.welcom1 h1 {
-  font-size: xx-large;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
-
-.signin-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 70%;
-  height: 70%;
-  z-index: 0;
-}
-
-.signin-image {
-  flex: 1;
-  height: 100%;
-  width: 50%;
-  position: relative;
-}
-
-.signin-image img {
-  margin-top: 10%;
-  margin-bottom: 10%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.signin-form {
-  flex: 1;
-  padding: 40px;
-  width: 50%;
-  background: white;
-  position: relative;
-  z-index: 1;
-}
-
-.signin-form h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-family: "Arial", sans-serif;
-  color: #333;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s, box-shadow 0.3s;
-  height: 40px;
-  border-radius: 15px;
-}
-
+/* Accessibility Enhancements */
 .form-group input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
+  border-color: #0056b3; /* Darker focus border */
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Adjusted shadow color */
 }
 
-.remember-me {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+/* Animations for Button Clicks */
+.signin-form button:active {
+  transform: scale(0.98); /* Slightly shrink on click */
 }
 
-.remember-me input {
-  margin-right: 8px;
+/* Improved Loader Styles */
+.loader-overlay .loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
-.signin-form button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  margin-top: 10px;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.signin-form button:hover {
-  background-color: #0056b3;
+/* Error Message Styles */
+.error-message {
+  color: #dc3545; /* Red color for errors */
+  font-size: 14px;
+  margin-top: 5px;
 }
 
-.extra-options {
-  text-align: center;
-  margin-top: 10px;
+/* Password Visibility Toggle */
+.password-field input {
+  padding-right: 40px; /* Adjust padding for icon */
 }
 
-.extra-options a {
-  color: #007bff;
-  text-decoration: none;
+/* Background Gradient */
+.bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assests/bg.png") no-repeat center center;
+  background-size: cover;
 }
 
-.extra-options a:hover {
-  text-decoration: underline;
+/* Form Validation Styles */
+.form-group input.error {
+  border-color: #dc3545; /* Red border for invalid inputs */
 }
 
+/* Smooth Scroll for Loader */
 .loader-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .signin-page {
-    width: 90%;
-    /* Wider on smaller screens */
-    margin: 10% auto;
-    /* Reduce margin */
-  }
-
-  .signin-data {
-    flex-direction: column;
-    /* Stack elements vertically */
-  }
-
-  .signin-image {
-    width: 80%;
-    /* Full width on smaller screens */
-    margin: 0 auto;
-  }
-
-  .signin-form {
-    width: 100%;
-    /* Full width on smaller screens */
-  }
-
-  .welcom1 img {
-    height: 40px;
-    /* Adjust logo size */
-  }
-
-  .welcom1 h1 {
-    font-size: large;
-    /* Smaller font size */
-  }
-}
-
-@media (max-width: 480px) {
-  .signin-page {
-    padding: 2%;
-    /* Reduce padding */
-  }
-
-  .signin-form h2 {
-    font-size: 20px;
-    /* Smaller heading */
-  }
-
-  .form-group input {
-    height: 35px;
-    /* Smaller input height */
-  }
-
-  .signin-form button {
-    font-size: 14px;
-    /* Smaller button font size */
-  }
-}
-
-
-/* eye icon css */
-
-.password-field {
-  position: relative;
+  transition: opacity 0.3s ease;
 }
 
 .eye-icon {
