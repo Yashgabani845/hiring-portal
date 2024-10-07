@@ -4,7 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdWorkOutline } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import styled from 'styled-components';
-import defaultlogo from '../company.png'
+import defaultlogo from '../assests/company.png'
 
 import "../CSS/jobcard.css";
 

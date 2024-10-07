@@ -1,13 +1,17 @@
 .interview {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-
+justify-content: center;
+/* border: 1px solid black; */
   border-radius: 8px;
+  padding:20px 0;
+  gap: 50px;
 }
 
 .itext-part {
-  flex: 1;
-  padding-left: 15%;
+  
+
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
@@ -46,8 +50,10 @@
 }
 
 .iimg {
-  flex: 1;
+ /* border: 1px solid black; */
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 450px;
   width: 450px;
 }

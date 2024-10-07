@@ -16,31 +16,30 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [activeTab, setActiveTab] = useState("/");
+  const [activeTab, setActiveTab] = useState('/');
   const [hideElements, setHideElements] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
     setActiveTab(location.pathname);
 
-    const routesToHideElements = ["/signin", "/signup"];
+    const routesToHideElements = ['/signin', '/signup'];
     setHideElements(routesToHideElements.includes(location.pathname));
   }, [location.pathname]);
 
   const handlePostJob = () => {
-    const email = localStorage.getItem("userEmail");
+    const email = localStorage.getItem('userEmail');
     if (email) {
-      axios
-        .get("http://localhost:5000/api/users/profile", {
-          params: { email },
-        })
-        .then((response) => {
+      axios.get('http://localhost:5000/api/users/profile', {
+        params: { email }
+      })
+        .then(response => {
           const { role } = response.data;
           navigate("/owner");
         })
-        .catch((error) => {
-          console.error("Error fetching user profile:", error);
+        .catch(error => {
+          console.error('Error fetching user profile:', error);
         });
     }
   };
@@ -49,40 +48,23 @@ const Navbar = () => {
     <div className="navbar">
       <div className="hirehublogo">
         <LazyLoad height={40} offset={100} once>
-          <Link to={"/"}>
-            {" "}
-            <img className="logoimg" src={logo} alt="Logo" />{" "}
-          </Link>
+          <Link to={'/'} > <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
       </div>
       <div className="icons">
-        <div className={`icon home ${activeTab === "/" ? "active" : ""}`}>
+        <div className={`icon home ${activeTab === '/' ? 'active' : ''}`}>
           <HomeIcon />
-          <Link to="/" onClick={() => setActiveTab("/")}>
-            <span>Home</span>
-          </Link>
+          <Link to="/" onClick={() => setActiveTab('/')}><span>Home</span></Link>
         </div>
         {!hideElements && (
           <>
-            <div
-              className={`icon jobs ${
-                activeTab === "/jobcard" ? "active" : ""
-              }`}
-            >
+            <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
               <WorkIcon />
-              <Link to="/jobcard" onClick={() => setActiveTab("/jobcard")}>
-                <span>Jobs</span>
-              </Link>
+              <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><span>Jobs</span></Link>
             </div>
-            <div
-              className={`icon aboutus ${
-                activeTab === "/about" ? "active" : ""
-              }`}
-            >
+            <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
               <InfoIcon />
-              <Link to="/about" onClick={() => setActiveTab("/about")}>
-                <span>About</span>
-              </Link>
+              <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
             <div
               className={`icon contactus ${
@@ -102,16 +84,12 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <>
                   <AccountCircleIcon />
-                  <Link to="/profile" onClick={() => setActiveTab("/profile")}>
-                    <span>Profile</span>
-                  </Link>
+                  <Link to="/profile" onClick={() => setActiveTab('/profile')}><span>Profile</span></Link>
                 </>
               ) : (
                 <>
                   <LoginIcon />
-                  <Link to="/signin" onClick={() => setActiveTab("/signin")}>
-                    <span>Login</span>
-                  </Link>
+                  <Link to="/signin" onClick={() => setActiveTab('/signin')}><span>Login</span></Link>
                 </>
               )}
             </div>
@@ -129,3 +107,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+

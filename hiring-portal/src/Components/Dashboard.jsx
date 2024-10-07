@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faEdit, faEye, faFilter, faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import UploadedJobs from './UploadedJobs';
-import csoon from "../csoon.jpg"
+import csoon from "../assests/csoon.jpg"
 const Dashboard = () => {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState('create-job');

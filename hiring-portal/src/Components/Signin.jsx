@@ -4,8 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import "../CSS/signin.css";
-import jobImage from "../job_search.png"; // Replace with the actual path to your image
-import logo from "../logo.png";
+import jobImage from "../assests/job_search.png"; // Replace with the actual path to your image
+import logo from "../assests/logo.png";
 import { ClipLoader } from "react-spinners"; // Import the spinner
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
 

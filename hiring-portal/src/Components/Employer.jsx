@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/employer.css'; 
+import '../CSS/employer.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import employer1 from "../employer.png";
-import employer2 from "../employer2.jpg";
-import employer3 from "../employer3.png";
-import emp1 from "../emp1.jpg";
-import emp2 from "../emp2.jpg";
-import emp3 from "../emp3.jpg";
+import employer1 from "../assests/employer.png";
+import employer2 from "../assests/employer2.jpg";
+import employer3 from "../assests/employer3.png";
+import emp1 from "../assests/emp1.jpg";
+import emp2 from "../assests/emp2.jpg";
+import emp3 from "../assests/emp3.jpg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
@@ -16,7 +16,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const Employer = () => {
     const navigate = useNavigate();
     const [buttonText, setButtonText] = useState('Register');
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const email = localStorage.getItem('userEmail');
@@ -24,16 +24,16 @@ const Employer = () => {
             axios.get('http://localhost:5000/api/users/profile', {
                 params: { email }
             })
-            .then(response => {
-                const { role } = response.data;
-                if (role === 'owner') {
-                    setButtonText('My Dashboard');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching user profile:', error);
-            });
-        } 
+                .then(response => {
+                    const { role } = response.data;
+                    if (role === 'owner') {
+                        setButtonText('My Dashboard');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user profile:', error);
+                });
+        }
     }, []);
 
     const handlePostJob = () => {
@@ -42,17 +42,17 @@ const Employer = () => {
             axios.get('http://localhost:5000/api/users/profile', {
                 params: { email }
             })
-            .then(response => {
-                const { role } = response.data;
-                if (role === 'owner') {
-                    navigate("/ownerside");
-                } else {
-                    navigate("/company");
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching user profile:', error);
-            });
+                .then(response => {
+                    const { role } = response.data;
+                    if (role === 'owner') {
+                        navigate("/ownerside");
+                    } else {
+                        navigate("/company");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user profile:', error);
+                });
         }
     };
 
@@ -62,25 +62,25 @@ const Employer = () => {
 
     return (
         <div className="employer">
-            <Navbar/>
+            <Navbar />
 
             <section className="main-section">
                 <div className="main-content">
-                <center>  
-                    <div className="slogan">
-                        <h1> Partner in Hiring Excellence</h1>
-                        <p>Empowering employers with cutting-edge tools for efficient hiring.</p>
-                    </div>
-                </center>
-                <center>    
-                    <div className="services">
-                        <h2>Job Posting <hr /></h2>
-                        <h2>Assessment <hr /></h2>
-                        <h2>Shortlisting <hr /></h2>
-                    </div>
-                    <p>Join us and start hiring the best talent today!</p>
-                    <button className='regcom' onClick={handlePostJob}>{buttonText}</button>
-                </center>
+                    <center>
+                        <div className="slogan">
+                            <h1> Partner in Hiring Excellence</h1>
+                            <p>Empowering employers with cutting-edge tools for efficient hiring.</p>
+                        </div>
+                    </center>
+                    <center>
+                        <div className="services">
+                            <h2>Job Posting <hr /></h2>
+                            <h2>Assessment <hr /></h2>
+                            <h2>Shortlisting <hr /></h2>
+                        </div>
+                        <p>Join us and start hiring the best talent today!</p>
+                        <button className='regcom' onClick={handlePostJob}>{buttonText}</button>
+                    </center>
                 </div>
                 <div className="image-section">
                     {loading && <div className="spinner"><ClipLoader size={50} /></div>}
@@ -95,9 +95,9 @@ const Employer = () => {
                 </div>
                 <div className="bottom-div">
                     <div className="qleft-div">
-                        <center> 
+                        <center>
                             <img src={employer2} className='emp2' alt="Quality Job Management" onLoad={handleImageLoad} />
-                        </center>   
+                        </center>
                     </div>
                     <div className="qright-div">
                         <div className="quality-grid">
@@ -155,7 +155,7 @@ const Employer = () => {
             </section>
 
             <section className="whats-new">
-                <center><h2>What's New</h2></center> 
+                <center><h2>What's New</h2></center>
                 <div className="card-grid">
                     <div className="card">
                         <img src={emp1} alt="Shortlisting Candidates" onLoad={handleImageLoad} />
@@ -175,7 +175,7 @@ const Employer = () => {
                 </div>
             </section>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 };

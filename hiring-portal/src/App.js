@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './assests/logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import Homepage from './Components/Homepage';
@@ -47,12 +47,12 @@ function App() {
         <Route path='/code/:assessmentId' element={<Coding />} />
         <Route path='/manage-assesment/:jobId' element={<CreateAssessment />} />
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-        <Route path="/application" element={<ApplicationForm/>}/>
-        <Route path='/shortlist/:jobId' element={<Shortlist/>}/>
-        <Route path='/assessment-results/:jobId' element={<AssessmentResults/>}/>
-        <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail/>}/>
-        </Routes>
-   </Router>
+        <Route path="/application" element={<ApplicationForm />} />
+        <Route path='/shortlist/:jobId' element={<Shortlist />} />
+        <Route path='/assessment-results/:jobId' element={<AssessmentResults />} />
+        <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
