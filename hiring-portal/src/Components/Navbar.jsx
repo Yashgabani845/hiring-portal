@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios';
-import LazyLoad from 'react-lazyload';
-
+import axios from "axios";
+import LazyLoad from "react-lazyload";
 import "../CSS/navbar.css";
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LaunchIcon from '@mui/icons-material/Launch';
-import logo from "../assests/logo.png";
+import CallIcon from "@mui/icons-material/Call";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LaunchIcon from "@mui/icons-material/Launch";
+import logo from "../logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -66,7 +66,21 @@ const Navbar = () => {
               <InfoIcon />
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
-            <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
+            <div
+              className={`icon contactus ${
+                activeTab === "/contactus" ? "active" : ""
+              }`}
+            >
+              <CallIcon />
+              <Link to="/contactus" onClick={() => setActiveTab("/about")}>
+                <span>Contact Us</span>
+              </Link>
+            </div>
+            <div
+              className={`icon login ${
+                activeTab === "/profile" ? "active" : ""
+              }`}
+            >
               {isLoggedIn ? (
                 <>
                   <AccountCircleIcon />
