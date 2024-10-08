@@ -30,19 +30,20 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/jobcard' element={<Jobpage />} />
-        <Route path="/job/:id" element={<Job />} />
-        <Route path="/owner" element={<Employer />} />
-        <Route path="/ownerside" element={<Dashboard />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/postjob" element={<JobPostForm />} />
-        <Route path='/about' element={<About />} />
-        <Route path="/company" element={<CompanyRegistration />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path='/uploadedjobs' element={<UploadedJobs />} />
+        <Route path='/' element={<Homepage />}/>
+        <Route path='/signup' element={<Signup />}/>
+        <Route path='/jobcard' element={<Jobpage />}/>
+        <Route path="/job/:id" element={<Job/>} />
+        <Route path="/owner" element={<Employer/>}/>
+        <Route path="/ownerside" element={<Dashboard/>}/>
+        <Route path="/admin" element={<AdminDashboard/>}/>
+        <Route path="/postjob" element ={<JobPostForm/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/contactus' element={<Contactus/>}/>
+        <Route path="/company" element={<CompanyRegistration/>}/>  
+        <Route path="/profile" element={<Profile/>}/>    
+        <Route path="/signin" element={<SignIn/>}/> 
+        <Route path='/uploadedjobs' element={<UploadedJobs/>}/>
         <Route path='/code/:assessmentId' element={<Coding />} />
         <Route path='/manage-assesment/:jobId' element={<CreateAssessment />} />
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
