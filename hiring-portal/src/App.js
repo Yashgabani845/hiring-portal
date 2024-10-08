@@ -23,6 +23,7 @@ import Employer from './Components/Employer';
 import AssessmentResults from './Components/AssesmentResult';
 import AssessmentResultDetail from './Components/AssessmentResultDetails';
 import About from './Components/About';
+import ContactUs from './Components/ContactUs';
 function App() {
   const [test, setTest] = useState(null);
 
@@ -49,6 +50,7 @@ function App() {
         <Route path='/shortlist/:jobId' element={<Shortlist />} />
         <Route path='/assessment-results/:jobId' element={<AssessmentResults />} />
         <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
+        <Route path='/contact' element={<ContactUs/>}/>
       </Routes>
     </Router>
   );

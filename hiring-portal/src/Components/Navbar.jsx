@@ -10,6 +10,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
+import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
 import logo from "../assests/logo.png";
 
 const Navbar = () => {
@@ -48,7 +49,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="hirehublogo">
         <LazyLoad height={40} offset={100} once>
-          <Link to={'/'} > <img className="logoimg" src={logo} alt="Logo" /> </Link>
+          <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
       </div>
       <div className="icons">
@@ -65,6 +66,10 @@ const Navbar = () => {
             <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
               <InfoIcon />
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
+            </div>
+            <div className={`icon contactus ${activeTab === '/contact' ? 'active' : ''}`}>
+              <ContactMailIcon />
+              <Link to="/contact" onClick={() => setActiveTab('/contact')}><span>Contact Us</span></Link>
             </div>
             <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
               {isLoggedIn ? (
@@ -93,6 +98,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
