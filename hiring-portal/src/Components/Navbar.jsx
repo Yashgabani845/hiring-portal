@@ -10,7 +10,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import CallIcon from "@mui/icons-material/Call";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LaunchIcon from "@mui/icons-material/Launch";
-import logo from "../logo.png";
+import logo from "../assests/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
