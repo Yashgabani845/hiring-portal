@@ -74,8 +74,6 @@ To run this project locally, follow these steps:
    node server.js
    ```
 
-7. **Access the deployed project:**  
-   [HireHub Deployed Version](https://main--hirehub07.netlify.app/)
 
 ---
 

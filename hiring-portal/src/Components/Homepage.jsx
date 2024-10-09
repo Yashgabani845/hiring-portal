@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Interview from "./Interview";
 import Testimonial from "./Testimonial";
 import { ClipLoader } from "react-spinners";
+import Faqs from './Faqs'
 
 const Homepage = () => {
     const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const Homepage = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 1000); 
+        }, 1000);
         return () => clearTimeout(timer);
     }, []);
 
@@ -30,7 +31,8 @@ const Homepage = () => {
             <MiddleView />
             <PostView />
             <Interview />
-            <Testimonial/>
+            <Testimonial />
+            <Faqs />
             <Footer />
         </div>
     );
