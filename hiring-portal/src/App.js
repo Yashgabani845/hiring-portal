@@ -40,7 +40,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard/>}/>
         <Route path="/postjob" element ={<JobPostForm/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/contactus' element={<Contactus/>}/>
+        <Route path='/contact' element={<Contactus/>}/>
         <Route path="/company" element={<CompanyRegistration/>}/>  
         <Route path="/profile" element={<Profile/>}/>    
         <Route path="/signin" element={<SignIn/>}/> 
