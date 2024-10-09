@@ -43,6 +43,7 @@
   color: #343a40;
   cursor: pointer;
   position: relative;
+  text-decoration: none;
 }
 
 .icon svg {
@@ -53,6 +54,9 @@
 
 .icon:hover svg {
   color: #007bff;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: #007bff;
 }
 
 .icon span {
