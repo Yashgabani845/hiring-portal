@@ -24,6 +24,7 @@ import AssessmentResults from './Components/AssesmentResult';
 import AssessmentResultDetail from './Components/AssessmentResultDetails';
 import About from './Components/About';
 import Contactus from './Components/Contactus';
+import BackToTop from "./Components/BackToTop.jsx";
 function App() {
   const [test, setTest] = useState(null);
 
@@ -52,6 +53,7 @@ function App() {
         <Route path='/assessment-results/:jobId' element={<AssessmentResults />} />
         <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
       </Routes>
+      <BackToTop />
     </Router>
   );
 }
