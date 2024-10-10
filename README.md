@@ -81,22 +81,23 @@ To run this project locally, follow these steps:
 
 Here is an overview of the project's directory structure:
 
+
+<!-- START_STRUCTURE -->
 ```
-hiring-portal/
-│
-├── backend/               # Contains all backend code
-│   └── server.js          # Node.js backend entry point
-│
-├── public/                # Public files (HTML, images, etc.)
-│
-├── src/                   # Frontend source files
-│   ├── components/        # React components
-│   ├── css/               # Styling files
-│   ├── firebase/          # Firebase configuration
-│   └── App.js             # Main React component
-│
-└── package.json           # Dependencies for the project
+├── hiring-portal
+│   ├── Backend
+│   │   ├── controllers
+│   │   ├── models
+│   │   ├── routes
+│   │   └── temp
+│   ├── public
+│   └── src
+│       ├── CSS
+│       ├── Components
+│       ├── assests
+│       ├── firebase
 ```
+<!-- END_STRUCTURE -->
 
 ---
 
