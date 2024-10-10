@@ -38,7 +38,7 @@ def update_readme(structure):
             content[end_index:]
         )
         
-        with open('Repo-structure.md', 'w') as f:
+        with open('README.md', 'w') as f:
             f.write(new_content)
         print("README.md updated with new structure.")
     else:
