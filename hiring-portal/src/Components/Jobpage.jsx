@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import "../CSS/jobpage.css";
 
 const Jobpage = () => {
+    const [isSidebar, setIsSidebar] = useState(true);
     const [selectedLocations, setSelectedLocations] = useState([]);
     const [filters, setFilters] = useState({
         jobType: [],
@@ -77,11 +78,22 @@ const Jobpage = () => {
         }));
     };
 
+    const toggleSidebar = () => {
+        setIsSidebar(!isSidebar);
+    }
+
     return (
         <>
             <Navbar />
+            {/* sidebar mobile toggle */}
+            <div className="sidebar-toggle" onClick={toggleSidebar}>
+                {isSidebar?"x":"Filters"}
+            </div>
+            {/*  */}
             <div className="jobpage">
-                <div className="sidebar">
+                <div className="sidebar" 
+                    style={{transform: isSidebar?"translateX(0%)":"translateX(-100%"}}
+                >
                     <h2>Filters</h2>
                     <div className="filter">
                         <label>
