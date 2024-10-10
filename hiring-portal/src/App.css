@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Slightly off-white to add subtle contrast with pure white background */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c9c7c7; /* Light gray for a modern, unobtrusive look */
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0; /* Darker gray on hover for a visual cue */
+  border-radius: 12px;
+}
