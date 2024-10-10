@@ -1,31 +1,59 @@
-.shortlist-container {
-    padding: 20px;
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .applicant-card {
+        width: calc(50% - 20px); /* Stack cards on smaller screens */
+    }
+
+    .navbar-search input {
+        width: 100%; /* Full width on small screens */
+    }
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Accessibility Enhancements */
+.navbar-search input:focus,
+.navbar-search button:focus,
+.applicant-actions button:focus {
+    outline: 2px solid #007bff; /* Add focus outline */
 }
 
-.navbar-search {
-    display: flex;
-    align-items: center;
+/* Loading State for Buttons */
+.loading-button {
+    background-color: #cccccc; /* Grey out the button */
+    cursor: not-allowed;
 }
 
-.navbar-search input {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    width: 200px;
+/* Transition Effects */
+.applicant-card {
+    transition: transform 0.3s ease; /* Smooth scale transition */
 }
+
+.applicant-card:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .shortlist-container {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+
+    .navbar {
+        background-color: #333;
+        box-shadow: none; /* Remove shadow in dark mode */
+    }
+
+    .navbar-filters select,
+    .navbar-filters button,
+    .applicant-card {
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #555;
+    }
+
+    .submit-button {
+        background-color: #0056b3; /* Adjust button colors for dark mode */
+    }
 
 .navbar-search button {
     background-color: #007bff;
@@ -41,6 +69,7 @@
     background-color: #0056b3;
 }
 
+/* Tooltip Enhancement */
 .tooltip-container {
     position: relative;
     display: inline-block;
@@ -69,92 +98,12 @@
     opacity: 1;
 }
 
-/* Navbar Filters Styles */
-.navbar-filters {
-    display: flex;
-    gap: 10px;
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-.navbar-filters select,
-.navbar-filters button {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-/* Heading Styles */
-h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-}
-
-/* Applicants List Styles */
-.applicants-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-/* Applicant Card Styles */
-.applicant-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease;
-}
-
-.applicant-card:hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.applicant-card h3 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: #007bff;
-}
-
-.applicant-card p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 14px;
-}
-
-.applicant-card a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.applicant-card a:hover {
-    text-decoration: underline;
-}
-
-.applicant-actions {
-    margin-top: 15px;
-    display: flex;
-    gap:5px
-}
-
-.applicant-actions button {
-    padding: 8px 12px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    gap: 5px;
-}
-
-.applicant-actions button:nth-child(1) {
+::-webkit-scrollbar-thumb {
     background-color: #007bff;
     color: white;
     outline: none;
@@ -249,100 +198,17 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.ReactModal__Content .submit-button:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: #0056b3;
 }
 
-.ReactModal__Content button {
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.assessment-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.assessment-option {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-    position: relative;
-}
-
-.assessment-option:hover {
-    background-color: #e6f7ff;
-}
-
-.assessment-option.selected {
-    background-color: #96eb9b;
-    border-color: #0056b3;
-    color: white;
-}
-
-.assessment-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.assessment-info {
-    margin-left: 40px;
-}
-
-.assessment-info h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.assessment-info p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-/* Assessment Details Styles */
-.assessment-details {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f0f8ff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.question {
-    margin-bottom: 15px;
-}
-
-.question p {
-    margin: 5px 0;
-}
-
-.coding-question {
-    margin-left: 20px;
-    padding-left: 10px;
-    border-left: 2px solid #4e9ff5;
-}
-
-.submit-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4e9ff5;
-    color: #fff;
-    margin-left: 50px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Additional Hover Effects for Applicant Cards */
+.applicant-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px); /* Lift effect on hover */
 }
 
 .submit-button:hover {
     background-color: #357abd;
+}
 }

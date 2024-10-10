@@ -1,23 +1,19 @@
-.take-test {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Accessibility Improvements */
+.navigation button:focus {
+    outline: 2px solid #007bff; /* Blue outline for focused buttons */
 }
 
-.take-test h1 {
-    text-align: center;
-    margin-bottom: 20px;
+/* Error Handling Styles */
+.question textarea.error {
+    border-color: #dc3545; /* Red border for errors */
 }
 
-.timer {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    color: red;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .take-test {
+        width: 90%; /* Make the container wider on smaller screens */
+        padding: 15px; /* Adjust padding */
+    }
 
 .question {
     margin-bottom: 20px;
@@ -27,51 +23,53 @@
     margin-bottom: 10px;
 }
 
-.question label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.question textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.navigation {
-    display: flex;
-    justify-content: space-between;
-}
-
-.navigation button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+/* Question Type Styles */
+.question.multiple-choice {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #007bff;
     border-radius: 5px;
-    cursor: pointer;
+    background-color: #f0f8ff; /* Light blue background */
 }
 
-.navigation button:disabled {
-    background-color: #ccc;
+.question.short-answer {
+    margin-bottom: 20px;
+}
+
+/* Animation for Buttons */
+.navigation button {
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .navigation button:hover:not(:disabled) {
     background-color: #0056b3;
+    transform: scale(1.02); /* Slightly scale on hover */
 }
 
-.run-code-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
+/* Submit Button State */
+.run-code-btn.loading {
+    background-color: #0056b3; /* Change color when loading */
+    cursor: not-allowed; /* Disable cursor */
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
     border-radius: 5px;
-    cursor: pointer;
+    overflow: hidden;
 }
 
-.run-code-btn:hover {
-    background-color: #218838;
+.progress-bar div {
+    height: 5px;
+    background-color: #007bff;
+    width: 0%; /* Dynamic width will be set via JavaScript */
+}
+
+/* Timer Styles */
+.timer {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #dc3545; /* Emphasize timer with red color */
+}
 }

@@ -1,54 +1,51 @@
-.video-meeting-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+/* Accessibility Enhancements */
+.control-btn:focus {
+    outline: 2px dashed #007bff; /* Blue outline for focused buttons */
 }
 
-.name-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Hover Effects for Buttons */
+.control-btn:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
 }
 
-.video-container {
-    margin: 20px;
+.start-call:hover {
+    background-color: darkgreen; /* Darker green on hover */
 }
 
-.controls {
-    display: flex;
+.end-call:hover {
+    background-color: darkred; /* Darker red on hover */
+}
+
+/* Loading State for Buttons */
+.control-btn.loading {
+    background-color: #ccc; /* Greyed out for loading */
+    cursor: not-allowed; /* Disable cursor */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video-meeting-container {
+        padding: 10px; /* Add padding for smaller screens */
+    }
+
+    .video-container {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 400px; /* Limit maximum width */
+    }
+
+    .controls {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+}
+
+/* Error Handling Styles */
+.error-message {
+    color: red;
+    font-weight: bold;
     margin-top: 10px;
 }
 
-.control-btn {
-    margin: 0 5px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.control-btn.on {
-    background-color: green;
-    color: white;
-}
-
-.control-btn.off {
-    background-color: red;
-    color: white;
-}
-
-.start-call {
-    background-color: green;
-    color: white;
-}
-
-.end-call {
-    background-color: red;
-    color: white;
-}
-
+/* User List Improvements */
 .user-list {
     margin-top: 20px;
     text-align: center;
@@ -61,4 +58,28 @@
 
 .user-list li {
     margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Light grey background for users */
+}
+
+.user-list li.empty {
+    color: #aaa; /* Greyed out for empty state */
+}
+
+/* Video Aspect Ratio */
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    background-color: #000; /* Black background for video */
+    border-radius: 8px;
+}
+
+/* Room Name Display */
+.room-name {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+    text-align: center;
 }

@@ -1,62 +1,84 @@
-.uploaded-jobs-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    font-family: 'Arial', sans-serif;
-    font-weight: 400;
+/* Accessibility Enhancements */
+.control-btn:focus {
+    outline: 2px dashed #007bff; /* Blue outline for focused buttons */
 }
 
-.uploaded-jobs-container h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+/* Hover Effects for Buttons */
+.control-btn:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
 }
 
-.jobs-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+.start-call:hover {
+    background-color: darkgreen; /* Darker green on hover */
 }
 
-.job-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; 
-       width: calc(33% - 20px);
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-    font-weight: 400;
+.end-call:hover {
+    background-color: darkred; /* Darker red on hover */
 }
 
-.job-card h2 {
-    font-size: 22px;
-    color: #007bff;
-    margin-bottom: 10px;
+/* Loading State for Buttons */
+.control-btn.loading {
+    background-color: #ccc; /* Greyed out for loading */
+    cursor: not-allowed; /* Disable cursor */
 }
 
-.job-card p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 15px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video-meeting-container {
+        padding: 10px; /* Add padding for smaller screens */
+    }
+
+    .video-container {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 400px; /* Limit maximum width */
+    }
+
+    .controls {
+        flex-direction: column; /* Stack buttons vertically */
+    }
 }
 
-.job-card .apply-button {
-    display: inline-block;      
-    padding: 10px 20px;
-    border: none;
+/* Error Handling Styles */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* User List Improvements */
+.user-list {
+    margin-top: 20px;
+}
+
+.user-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s;
+    background-color: #f0f0f0; /* Light grey background for users */
 }
 
-.job-card .apply-button:hover {
-    background-color: #0056b3;
+.user-list li.empty {
+    color: #aaa; /* Greyed out for empty state */
+}
+
+/* Video Aspect Ratio */
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    background-color: #000; /* Black background for video */
+    border-radius: 8px;
+}
+
+/* Room Name Display */
+.room-name {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+    text-align: center;
 }
