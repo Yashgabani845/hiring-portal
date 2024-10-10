@@ -83,6 +83,20 @@ Here is an overview of the project's directory structure:
 
 
 <!-- START_STRUCTURE -->
+```
+├── hiring-portal
+│   ├── Backend
+│   │   ├── controllers
+│   │   ├── models
+│   │   ├── routes
+│   │   └── temp
+│   ├── public
+│   └── src
+│       ├── CSS
+│       ├── Components
+│       ├── assests
+│       ├── firebase
+```
 <!-- END_STRUCTURE -->
 
 ---

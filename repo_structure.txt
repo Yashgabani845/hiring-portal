@@ -1,12 +1,12 @@
-└── hiring-portal
-    ├── Backend
-    │   ├── controllers
-    │   ├── models
-    │   ├── routes
-    │   └── temp
-    ├── public
-    └── src
-        ├── CSS
-        ├── Components
-        ├── assests
-        ├── firebase
+├── hiring-portal
+│   ├── Backend
+│   │   ├── controllers
+│   │   ├── models
+│   │   ├── routes
+│   │   └── temp
+│   ├── public
+│   └── src
+│       ├── CSS
+│       ├── Components
+│       ├── assests
+│       ├── firebase
