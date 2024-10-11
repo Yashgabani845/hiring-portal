@@ -11,6 +11,27 @@
     height: 100vh;
     box-sizing: border-box;
     overflow-y: auto;
+    /* border: 2px solid red; */
+}
+.sidebar-toggle{
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .sidebar {
+        /* display: none; */
+        transform: translateX(-100%);
+        position: absolute;
+        z-index: 10;
+        transition: all 0.3s ease-in-out;
+    }
+    .sidebar-toggle{
+        letter-spacing: 3px;
+        
+        display: flex;
+        justify-content: center;
+        /* border: 2px solid green; */
+    }
 }
 
 .sidebar h2 {
