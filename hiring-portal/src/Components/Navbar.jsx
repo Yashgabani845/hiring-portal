@@ -10,7 +10,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import CallIcon from "@mui/icons-material/Call";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LaunchIcon from "@mui/icons-material/Launch";
-import logo from "../logo.png";
+import logo from "../assests/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -67,9 +67,8 @@ const Navbar = () => {
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
             <div
-              className={`icon contactus ${
-                activeTab === "/contactus" ? "active" : ""
-              }`}
+              className={`icon contactus ${activeTab === "/contactus" ? "active" : ""
+                }`}
             >
               <CallIcon />
               <Link to="/contactus" onClick={() => setActiveTab("/about")}>
@@ -77,9 +76,8 @@ const Navbar = () => {
               </Link>
             </div>
             <div
-              className={`icon login ${
-                activeTab === "/profile" ? "active" : ""
-              }`}
+              className={`icon login ${activeTab === "/profile" ? "active" : ""
+                }`}
             >
               {isLoggedIn ? (
                 <>
