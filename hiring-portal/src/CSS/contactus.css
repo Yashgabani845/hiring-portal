@@ -1,48 +1,48 @@
 .contact-us {
-  display: flex; /* Use flexbox for horizontal alignment */
-  align-items: flex-start; /* Align items at the start */
-  justify-content: center; /* Center the content */
-  padding: 40px 40px; /* Add padding */
-  max-width: 80vw; /* Limit overall width */
-  margin: 100px auto; /* Center the container */
-  background-color: #f9f9f9; /* Background color */
-  border-radius: 8px; /* Round corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 40px;
+  max-width: 80vw;
+  margin: 100px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .vertical-line {
-  width: 2px; /* Thickness of the line */
-  background-color: #a2a2a2; /* Color of the line */
-  height: auto; /* Full height of the parent container */
-  align-self: stretch; /* Make it stretch full height */
+  width: 2px;
+  background-color: #a2a2a2;
+  height: auto;
+  align-self: stretch;
 }
 
 .container {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping for layout consistency */
-  gap: 50px; /* Space between sections */
+  flex-wrap: nowrap;
+  gap: 50px;
 }
 
 .form-section {
-  padding-right: 20px; /* Space between form and line */
+  padding-right: 20px;
 }
 
 .form-fields {
   display: flex;
-  flex-direction: column; /* Stack fields vertically */
-  gap: 20px; /* Space between fields */
+  flex-direction: column;
+  gap: 20px;
 }
 
 .row1,
 .row2 {
   display: flex;
-  justify-content: space-between; /* Space between inputs */
+  justify-content: space-between;
 }
 
 .field {
   display: flex;
-  flex-direction: column; /* Stack labels and inputs */
-  width: 48%; /* Almost half width for each input */
+  flex-direction: column;
+  width: 48%;
 }
 
 .input,
@@ -50,44 +50,44 @@
   border: 2.5px solid #a2a2a2;
   border-radius: 5px;
   font-size: 16px;
-  padding: 10px; /* Uniform padding */
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Include padding in total width */
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .textarea {
-  height: 200px; /* Initial height */
+  height: 200px;
   width: 500px;
-  max-height: 300px; /* Limit max height */
-  max-width: 600px; /* Limit max height */
-  overflow-y: auto; /* Enable scrolling */
+  max-height: 300px;
+  max-width: 600px;
+  overflow-y: auto;
 }
 
 .btn-wrapper {
   display: flex;
-  justify-content: center; /* Center the button */
+  justify-content: center;
 }
 
 .submit-btn {
-  min-width: 250px; /* Reduced minimum width */
-  height: 50px; /* Height */
-  background-color: #13659b; /* Button color */
-  font-size: 18px; /* Font size */
-  font-weight: 700; /* Font weight */
-  color: white; /* Text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Round corners */
-  margin-top: 20px; /* Space above button */
-  cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.3s; /* Smooth hover effect */
+  min-width: 250px;
+  height: 50px;
+  background-color: #13659b;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-  background-color: rgb(54, 133, 212); /* Darker shade on hover */
+  background-color: rgb(54, 133, 212);
 }
 
 .contact-info {
-  max-width: 400px; /* Limit width for better responsiveness */
+  max-width: 400px;
   display: flex;
   flex-flow: column;
   align-items: flex-start;
@@ -95,14 +95,13 @@
 }
 
 .info-header h2 {
-  font-size: 32px; /* Font size */
-  margin-bottom: 10px; /* Space below header */
-
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
 .subhead {
-  color: #939393; /* Text color */
-  margin-bottom: 20px; /* Space below subhead */
+  color: #939393;
+  margin-bottom: 20px;
 }
 
 .contact-details {
@@ -114,71 +113,77 @@
 .contact-item {
   display: flex;
   gap: 10px;
-  align-items: center; /* Center items vertically */
+  align-items: center;
   margin: 10px;
 }
 
 .contact-icon {
-  width: 30px; /* Fixed width for icons */
-  height: 30px; /* Fixed height for icons */
-  margin-right: 10px; /* Space between icon and text */
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .social-links {
   display: flex;
-    width: 100%;
-  justify-content: space-evenly; /* Space evenly across the container */
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .social-icon {
-  width: 35px; /* Fixed width for social icons */
-  height: 35px; /* Fixed height for social icons */
+  width: 35px;
+  height: 35px;
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
 @media (max-width: 924px) {
   .contact-us {
     margin: auto;
     margin-bottom: 20px;
   }
+
   .container {
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center align items */
+    flex-direction: column;
+    align-items: center;
   }
 
   .form-section {
-    padding-right: 0; /* Remove right padding */
-    width: 100%; /* Full width */
+    padding-right: 0;
+    width: 100%;
   }
 
   .vertical-line {
-    display: none; /* Hide vertical line on small screens */
+    display: none;
   }
 
   .row1,
   .row2 {
-    flex-direction: column; /* Stack inputs vertically on small screens */
+    flex-direction: column;
   }
 
   .field {
-    width: 100%; /* Full width for smaller screens */
+    width: 100%;
   }
 
   .input {
-    width: 80%; /* Set to a percentage for responsiveness */
-    max-width: 100%; /* Ensure it doesn't exceed container */
-    flex-grow: 1; /* Allow inputs to grow and fill available space */
-    margin: 0 auto; /* Center inputs */
+    width: 80%;
+    max-width: 100%;
+    flex-grow: 1;
+    margin: 0 auto;
   }
 
   .textarea {
-    height: auto; /* Allow height to adjust based on content */
+    height: auto;
     width: auto;
   }
 
   .contact-info {
-    max-width: 100%; /* Allow full width for smaller screens */
-    margin-top: 20px; /* Space above contact info */
+    max-width: 100%;
+    margin-top: 20px;
     gap: 30px;
   }
 }
