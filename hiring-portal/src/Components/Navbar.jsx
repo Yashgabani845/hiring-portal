@@ -67,11 +67,21 @@ const Navbar = () => {
               <InfoIcon />
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
-            <div className={`icon contactus ${activeTab === '/contact' ? 'active' : ''}`}>
-              <ContactMailIcon />
-              <Link to="/contact" onClick={() => setActiveTab('/contact')}><span>Contact Us</span></Link>
+<<
+            <div
+              className={`icon contactus ${activeTab === "/contactus" ? "active" : ""
+                }`}
+            >
+              <CallIcon />
+              <Link to="/contactus" onClick={() => setActiveTab("/about")}>
+                <span>Contact Us</span>
+              </Link>
             </div>
-            <div className={`icon login ${activeTab === '/profile' ? 'active' : ''}`}>
+            <div
+              className={`icon login ${activeTab === "/profile" ? "active" : ""
+                }`}
+            >
+
               {isLoggedIn ? (
                 <>
                   <AccountCircleIcon />

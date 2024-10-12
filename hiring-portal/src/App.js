@@ -3,7 +3,9 @@ import './App.css';
 import React, { useState } from 'react';
 import Homepage from './Components/Homepage';
 import HeroSection from './Components/HeroSection';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
 import Signup from './Components/Signup';
 import Jobpage from './Components/Jobpage';
 import Job from './Components/Job';
@@ -25,33 +27,39 @@ import AssessmentResultDetail from './Components/AssessmentResultDetails';
 import About from './Components/About';
 import Contactus from './Components/Contactus';
 import BackToTop from "./Components/BackToTop.jsx";
+
+import NotFound from './Components/NotFound.jsx';
 function App() {
   const [test, setTest] = useState(null);
 
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Homepage />}/>
-        <Route path='/signup' element={<Signup />}/>
-        <Route path='/jobcard' element={<Jobpage />}/>
-        <Route path="/job/:id" element={<Job/>} />
-        <Route path="/owner" element={<Employer/>}/>
-        <Route path="/ownerside" element={<Dashboard/>}/>
-        <Route path="/admin" element={<AdminDashboard/>}/>
-        <Route path="/postjob" element ={<JobPostForm/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/contact' element={<Contactus/>}/>
-        <Route path="/company" element={<CompanyRegistration/>}/>  
-        <Route path="/profile" element={<Profile/>}/>    
-        <Route path="/signin" element={<SignIn/>}/> 
-        <Route path='/uploadedjobs' element={<UploadedJobs/>}/>
-        <Route path='/code/:assessmentId' element={<Coding />} />
-        <Route path='/manage-assesment/:jobId' element={<CreateAssessment />} />
-        <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-        <Route path="/application" element={<ApplicationForm />} />
-        <Route path='/shortlist/:jobId' element={<Shortlist />} />
-        <Route path='/assessment-results/:jobId' element={<AssessmentResults />} />
-        <Route path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
+
+        <Route exact path='/' element={<Homepage />} />
+        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/jobcard' element={<Jobpage />} />
+        <Route exact path="/job/:id" element={<Job />} />
+        <Route exact path="/owner" element={<Employer />} />
+        <Route exact path="/ownerside" element={<Dashboard />} />
+        <Route exact path="/admin" element={<AdminDashboard />} />
+        <Route exact path="/postjob" element={<JobPostForm />} />
+        <Route exact path='/about' element={<About />} />
+        <Route exact path='/contactus' element={<Contactus />} />
+        <Route exact path="/company" element={<CompanyRegistration />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/signin" element={<SignIn />} />
+        <Route exact path='/uploadedjobs' element={<UploadedJobs />} />
+        <Route exact path='/code/:assessmentId' element={<Coding />} />
+        <Route exact path='/manage-assesment/:jobId' element={<CreateAssessment />} />
+        <Route exact path="/managejobs/:jobId" element={<ManageJobs />} />
+        <Route exact path="/application" element={<ApplicationForm />} />
+        <Route exact path='/shortlist/:jobId' element={<Shortlist />} />
+        <Route exact path='/assessment-results/:jobId' element={<AssessmentResults />} />
+        <Route exact path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
+        <Route path='/not-found' element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
+
       </Routes>
       <BackToTop />
     </Router>
