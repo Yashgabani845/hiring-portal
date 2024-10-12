@@ -67,12 +67,11 @@ const Navbar = () => {
               <InfoIcon />
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
-<<
             <div
               className={`icon contactus ${activeTab === "/contactus" ? "active" : ""
                 }`}
             >
-              <CallIcon />
+              <ContactMailIcon />
               <Link to="/contactus" onClick={() => setActiveTab("/about")}>
                 <span>Contact Us</span>
               </Link>
