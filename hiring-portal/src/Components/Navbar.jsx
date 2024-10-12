@@ -12,6 +12,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
 import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
 import logo from "../assests/logo.png";
+import { FaBlog } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -67,15 +68,19 @@ const Navbar = () => {
               <InfoIcon />
               <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
             </div>
-<<
             <div
               className={`icon contactus ${activeTab === "/contactus" ? "active" : ""
                 }`}
             >
-              <CallIcon />
+              <ContactMailIcon />
               <Link to="/contactus" onClick={() => setActiveTab("/about")}>
                 <span>Contact Us</span>
               </Link>
+            </div>
+
+            <div className={`icon aboutus ${activeTab === '/blog' ? 'active' : ''}`}>
+              <FaBlog />
+              <Link to="/blog" onClick={() => setActiveTab('/blog')}><span>Blog</span></Link>
             </div>
             <div
               className={`icon login ${activeTab === "/profile" ? "active" : ""
