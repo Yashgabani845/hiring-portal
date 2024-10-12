@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Homepage from './Components/Homepage';
 import HeroSection from './Components/HeroSection';
 
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Signup from './Components/Signup';
@@ -27,15 +28,19 @@ import AssessmentResultDetail from './Components/AssessmentResultDetails';
 import About from './Components/About';
 import Contactus from './Components/Contactus';
 import BackToTop from "./Components/BackToTop.jsx";
-
 import NotFound from './Components/NotFound.jsx';
+import BlogPage from './Components/BlogPage.jsx';
+import CreateBlog from './Components/CreateBlog.jsx';
+import ReadMoreBlog from './Components/ReadMoreBlog.jsx';
+
+import PrivacyPolicy from './Components/PrivacyPolicy.jsx';
+
 function App() {
   const [test, setTest] = useState(null);
 
   return (
     <Router>
       <Routes>
-
         <Route exact path='/' element={<Homepage />} />
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/jobcard' element={<Jobpage />} />
@@ -58,8 +63,11 @@ function App() {
         <Route exact path='/assessment-results/:jobId' element={<AssessmentResults />} />
         <Route exact path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
         <Route path='/not-found' element={<NotFound />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/create-blog' element={<CreateBlog />} />
+        <Route path='/read-more-blog/:id' element={<ReadMoreBlog />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
-
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       </Routes>
       <BackToTop />
     </Router>

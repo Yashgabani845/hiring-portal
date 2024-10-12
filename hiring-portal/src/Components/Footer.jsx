@@ -32,7 +32,7 @@ const Footer = () => {
                     <div className="footer-column">
                         <h3>Legal</h3>
                         <ul>
-                            <li><a href="/">Privacy Policy</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
                             <li><a href="/">Terms of Service</a></li>
                         </ul>
                     </div>
