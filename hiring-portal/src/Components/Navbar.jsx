@@ -73,7 +73,10 @@ const Navbar = () => {
                 }`}
             >
               <ContactMailIcon />
-              <Link to="/contactus" onClick={() => setActiveTab("/about")}>
+
+              <Link to="/contactus" onClick={() => setActiveTab("/contactus")}>
+
+
                 <span>Contact Us</span>
               </Link>
             </div>
