@@ -29,6 +29,10 @@ import About from './Components/About';
 import Contactus from './Components/Contactus';
 import BackToTop from "./Components/BackToTop.jsx";
 import NotFound from './Components/NotFound.jsx';
+import BlogPage from './Components/BlogPage.jsx';
+import CreateBlog from './Components/CreateBlog.jsx';
+import ReadMoreBlog from './Components/ReadMoreBlog.jsx';
+
 import PrivacyPolicy from './Components/PrivacyPolicy.jsx';
 
 function App() {
@@ -59,6 +63,9 @@ function App() {
         <Route exact path='/assessment-results/:jobId' element={<AssessmentResults />} />
         <Route exact path='/assessment-results/result/:assessmentId' element={<AssessmentResultDetail />} />
         <Route path='/not-found' element={<NotFound />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/create-blog' element={<CreateBlog />} />
+        <Route path='/read-more-blog/:id' element={<ReadMoreBlog />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       </Routes>
