@@ -15,6 +15,7 @@
     role: { type: String, required: true },
     department: { type: String, required: true },
     employmentType: { type: String, enum: ['part-time', 'full-time'], required: true },
+    experienceLevel:{ type: String, enum: ['entry-level', 'mid-level', 'senior-level'], required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     remote: { type: Boolean, default: false },

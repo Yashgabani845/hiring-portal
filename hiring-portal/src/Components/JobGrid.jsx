@@ -10,10 +10,10 @@ const Jobgrid = ({ filters }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                // Fetch all jobs
+                
                 const jobResponse = await axios.get('http://localhost:5000/api/job');
                 
-                // Fetch company logos for each job
+               
                 const jobsWithLogos = await Promise.all(
                     jobResponse.data.map(async (job) => {
                         const companyResponse = await axios.get(`http://localhost:5000/api/companies/${job.postedBy}`);
@@ -36,15 +36,18 @@ const Jobgrid = ({ filters }) => {
     useEffect(() => {
         const applyFilters = () => {
             let filtered = jobsWithLogos;
-
+    
+          
             if (filters.jobType.length > 0) {
                 filtered = filtered.filter(job => filters.jobType.includes(job.employmentType));
             }
-
+    
+            
             if (filters.remoteOption !== null) {
                 filtered = filtered.filter(job => job.remote === (filters.remoteOption === 'true'));
             }
-
+    
+           
             if (filters.salaryRange.min !== null || filters.salaryRange.max !== null) {
                 filtered = filtered.filter(job => {
                     const minSalary = filters.salaryRange.min ? parseInt(filters.salaryRange.min, 10) : 0;
@@ -52,24 +55,32 @@ const Jobgrid = ({ filters }) => {
                     return job.salaryRange.min >= minSalary && job.salaryRange.max <= maxSalary;
                 });
             }
-
-            if (filters.field) {
-                filtered = filtered.filter(job => job.field === filters.field);
-            }
-
+    
+            
             if (filters.experienceLevel.length > 0) {
                 filtered = filtered.filter(job => filters.experienceLevel.includes(job.experienceLevel));
             }
-
-            if (filters.locations.length > 0) {
-                filtered = filtered.filter(job => filters.locations.includes(job.workLocation));
+    
+            
+            if (filters.industry) {
+                filtered = filtered.filter(job => 
+                    job.industry && job.industry.toLowerCase().includes(filters.industry.toLowerCase())
+                );
             }
-
+    
+            
+            if (filters.workLocation) {
+                filtered = filtered.filter(job => 
+                    job.workLocation && job.workLocation.toLowerCase().includes(filters.workLocation.toLowerCase())
+                );
+            }
+    
             setFilteredJobs(filtered);
         };
-
+    
         applyFilters();
     }, [filters, jobsWithLogos]);
+    
 
     return (
         <div className="jobgrid">

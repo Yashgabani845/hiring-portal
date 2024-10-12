@@ -47,6 +47,7 @@ exports.postJobs=async (req, res) => {
       role,
       department,
       employmentType,
+      experienceLevel,
       remote,
       companyCulture,
       applicationDeadline,
@@ -96,6 +97,7 @@ exports.postJobs=async (req, res) => {
       role,
       department,
       employmentType,
+      experienceLevel,
       remote,
       companyCulture,
       applicationDeadline: applicationDeadline

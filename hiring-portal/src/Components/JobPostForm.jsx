@@ -18,6 +18,7 @@ const JobPostForm = () => {
         role: '',
         department: '',
         employmentType: 'full-time',
+        experienceLevel: 'entry-level',
         remote: false,
         companyCulture: '',
         applicationDeadline: '',
@@ -27,7 +28,7 @@ const JobPostForm = () => {
         companyWebsite: '',
         jobResponsibilities: [],
         languagesRequired: [],
-        link:null
+        link: null
     });
 
     const handleChange = (e) => {
@@ -45,16 +46,42 @@ const JobPostForm = () => {
         const ownerEmail = localStorage.getItem('userEmail');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/jobs', {
+            
+            const response = await axios.post('http://localhost:5000/api/postjob', {
                 ...jobDetails,
                 ownerEmail 
             });
 
             console.log('Job posted successfully:', response.data);
             toast.success('Job posted successfully!');
+            
+            
+            setJobDetails({
+                title: '',
+                description: '',
+                requirements: [],
+                postedBy: '',
+                type: 'native',
+                salaryRange: { min: '', max: '' },
+                workLocation: '',
+                role: '',
+                department: '',
+                employmentType: 'full-time',
+                experienceLevel: 'entry-level',
+                remote: false,
+                companyCulture: '',
+                applicationDeadline: '',
+                industry: '',
+                keywords: [],
+                contactEmail: '',
+                companyWebsite: '',
+                jobResponsibilities: [],
+                languagesRequired: [],
+                link: null
+            });
         } catch (error) {
-            console.error('Failed to post job:', error.response.data);
-            toast.error('Failed to post job. Please try again.');
+            console.error('Failed to post job:', error);
+            toast.error(error.response?.data?.message || 'Failed to post job. Please try again.');
         }
     };
 
@@ -72,6 +99,7 @@ const JobPostForm = () => {
                         required
                     />
                 </label>
+                
                 <label>
                     Description:
                     <textarea
@@ -81,6 +109,7 @@ const JobPostForm = () => {
                         required
                     />
                 </label>
+
                 <label>
                     Requirements:
                     <Select
@@ -89,9 +118,11 @@ const JobPostForm = () => {
                         options={options} 
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        onChange={handleSelectChange}
+                        onChange={(selected) => handleSelectChange(selected, { name: 'requirements' })}
+                        value={options.filter(option => jobDetails.requirements.includes(option.value))}
                     />
                 </label>
+
                 <label>
                     Salary Range:
                     <div className="salary-range">
@@ -113,6 +144,7 @@ const JobPostForm = () => {
                         />
                     </div>
                 </label>
+
                 <label>
                     Work Location:
                     <input
@@ -123,26 +155,7 @@ const JobPostForm = () => {
                         required
                     />
                 </label>
-                <label>
-                    Role:
-                    <input
-                        type="text"
-                        name="role"
-                        value={jobDetails.role}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Department:
-                    <input
-                        type="text"
-                        name="department"
-                        value={jobDetails.department}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
+
                 <label>
                     Employment Type:
                     <select
@@ -155,6 +168,21 @@ const JobPostForm = () => {
                         <option value="part-time">Part-time</option>
                     </select>
                 </label>
+
+                <label>
+                    Experience Level:
+                    <select
+                        name="experienceLevel"
+                        value={jobDetails.experienceLevel}
+                        onChange={handleChange}
+                        // required
+                    >
+                        <option value="entry-level">entry-level</option>
+                        <option value="mid-level">mid-level</option>
+                        <option value="senior-level">senior-level</option>
+                    </select>
+                </label>
+
                 <label>
                     Remote:
                     <input
@@ -164,7 +192,7 @@ const JobPostForm = () => {
                         onChange={(e) => setJobDetails({ ...jobDetails, remote: e.target.checked })}
                     />
                 </label>
-               
+
                 <label>
                     Company Culture:
                     <input
@@ -174,6 +202,7 @@ const JobPostForm = () => {
                         onChange={handleChange}
                     />
                 </label>
+
                 <label>
                     Application Deadline:
                     <input
@@ -183,6 +212,7 @@ const JobPostForm = () => {
                         onChange={handleChange}
                     />
                 </label>
+
                 <label>
                     Industry:
                     <input
@@ -192,6 +222,7 @@ const JobPostForm = () => {
                         onChange={handleChange}
                     />
                 </label>
+
                 <label>
                     Keywords:
                     <Select
@@ -200,9 +231,11 @@ const JobPostForm = () => {
                         options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        onChange={handleSelectChange}
+                        onChange={(selected) => handleSelectChange(selected, { name: 'keywords' })}
+                        value={options.filter(option => jobDetails.keywords.includes(option.value))}
                     />
                 </label>
+
                 <label>
                     Contact Email:
                     <input
@@ -213,12 +246,31 @@ const JobPostForm = () => {
                         required
                     />
                 </label>
+
                 <label>
                     Company Website:
                     <input
                         type="url"
                         name="companyWebsite"
                         value={jobDetails.companyWebsite}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    Role:
+                    <input
+                        type="text"
+                        name="role"
+                        value={jobDetails.role}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    Department:
+                    <input
+                        type="text"
+                        name="department"
+                        value={jobDetails.department}
                         onChange={handleChange}
                     />
                 </label>
@@ -230,9 +282,11 @@ const JobPostForm = () => {
                         options={options} 
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        onChange={handleSelectChange}
+                        onChange={(selected) => handleSelectChange(selected, { name: 'jobResponsibilities' })}
+                        value={options.filter(option => jobDetails.jobResponsibilities.includes(option.value))}
                     />
                 </label>
+
                 <label>
                     Languages Required:
                     <Select
@@ -241,9 +295,11 @@ const JobPostForm = () => {
                         options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        onChange={handleSelectChange}
+                        onChange={(selected) => handleSelectChange(selected, { name: 'languagesRequired' })}
+                        value={options.filter(option => jobDetails.languagesRequired.includes(option.value))}
                     />
                 </label>
+
                 <button type="submit">Post Job</button>
             </form>
             <ToastContainer />

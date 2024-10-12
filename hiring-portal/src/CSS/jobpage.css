@@ -51,35 +51,22 @@
     border-radius: 5px;
 }
 
-.filter select {
+.filter input[type="text"] {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
+    padding: 10px;
+    font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
 }
 
-.filter select[multiple] {
-    height: auto;
+.filter input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-.location-select {
-    width: 100%;
-    margin-top: 5px;
-    font-size: 1em;
-}
-
-.selected-locations {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #333;
-}
-
-.selected-locations span {
-    display: inline-block;
-    margin-right: 5px;
+.filter input[type="text"]::placeholder {
+    color: #aaa;
 }
 
 .mainarea {
