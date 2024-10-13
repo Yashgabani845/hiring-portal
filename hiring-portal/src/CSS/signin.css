@@ -146,7 +146,24 @@
 .signin-form button:hover {
   background-color: #0056b3;
 }
+.signin-form-forgotpassword button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+.signin-form-forgotpassword button:hover {
+  background-color: #0056b3;
+}
+.signin-form-forgotpassword {
+  width: 30%;
+}
 .extra-options {
   text-align: center;
   margin-top: 10px;
@@ -220,7 +237,6 @@
     font-size: 14px; /* Smaller button font size */
   }
 }
-
 
 /* eye icon css */
 
