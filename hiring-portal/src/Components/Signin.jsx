@@ -8,7 +8,7 @@ import jobImage from "../assests/job_search.png"; // Replace with the actual pat
 import logo from "../assests/logo.png";
 import { ClipLoader } from "react-spinners"; // Import the spinner
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
-
+import { Modal, Input, Button } from "antd";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ const SignIn = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true); // Loader state
   const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
-
+  const [isForgotPasswordModalVisible, setIsForgotPasswordModalVisible] =
+    useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,13 +52,49 @@ const SignIn = () => {
       console.error("Error:", error);
       toast.error("An error occurred. Please try again.");
     }
-
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const showForgotPasswordModal = () => {
+    setIsForgotPasswordModalVisible(true);
+  };
 
+  // call the api to send email
+
+  const handleForgotPasswordOk = async () => {
+    if (!forgotPasswordEmail) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/SendResetEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ UserEmail: forgotPasswordEmail }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Password reset link sent!");
+        setIsForgotPasswordModalVisible(false); // Close the modal after success
+      } else {
+        toast.error(data.message || "Failed to send password reset link.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred while sending the password reset link.");
+    }
+  };
+
+  const handleForgotPasswordCancel = () => {
+    setIsForgotPasswordModalVisible(false);
+  };
   return (
     <div className="bg">
       <Navbar />
@@ -110,7 +148,12 @@ const SignIn = () => {
                   </span>
                 </div>
               </div>
-              <button type="submit">Sign In</button>
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <button type="submit">Sign In</button>
+                <button type="button" onClick={showForgotPasswordModal}>
+                  Forgot Password
+                </button>
+              </div>
               <div className="remember-forgot">
                 <div className="remember-me">
                   <input
@@ -129,6 +172,18 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      <Modal
+        title="Forgot Password"
+        visible={isForgotPasswordModalVisible}
+        onOk={handleForgotPasswordOk}
+        onCancel={() => setIsForgotPasswordModalVisible(false)}
+      >
+        <Input
+          placeholder="Enter your email"
+          value={forgotPasswordEmail}
+          onChange={(e) => setForgotPasswordEmail(e.target.value)}
+        />
+      </Modal>
       <ToastContainer />
     </div>
   );
