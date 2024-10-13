@@ -24,6 +24,7 @@ import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
 import PasswordResetPage from "./Components/ForgotPassword";
+import TermsAndConditions from "./Components/TermsAndConditions";
 function App() {
   const [test, setTest] = useState(null);
 
@@ -57,6 +58,7 @@ function App() {
           element={<AssessmentResultDetail />}
         />
         <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
     </Router>
   );
