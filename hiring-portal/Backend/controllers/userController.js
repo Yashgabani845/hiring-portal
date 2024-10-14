@@ -183,3 +183,57 @@ exports.directResetPassword = async (req, res) => {
     res.status(500).json({ message: "Error resetting password", error });
   }
 };
+
+exports.directResetPassword = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { NewPassword } = req.body;
+
+    const hashedPassword = await bcrypt.hash(NewPassword, 10);
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { password: hashedPassword },
+      { new: true }
+    ).select("-photo");
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "Password reset successful",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ message: "Error resetting password", error });
+  }
+};
+
+//api to save user image
+exports.EditImage = async (req, resp) => {
+  try {
+    const { email } = req.params;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return resp.status(404).json({ message: "User not found" });
+    }
+
+    if (!req.file) {
+      return resp.status(400).json({ message: "No image file provided" });
+    }
+
+    user.image.data = req.file.buffer;
+    user.image.contentType = req.file.mimetype;
+
+    await user.save();
+
+    return resp
+      .status(200)
+      .json({ message: "Profile image updated successfully" });
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "Server error", error });
+  }
+};
