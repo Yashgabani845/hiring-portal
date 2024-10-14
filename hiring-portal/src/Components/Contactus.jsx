@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
+
 import pic from '../assests/contact.webp';
+
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ const Contactus = () => {
     lastName: "",
     email: "",
     phoneNumber: "",
-    query: ""
+    query: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -61,16 +63,29 @@ const Contactus = () => {
 
     setLoading(true); // Start loading
     try {
-      const response = await axios.post('http://localhost:5000/api/contact', formData, {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/contact",
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-      console.log('Response:', response.data);
-      setFormData({ firstName: '', lastName: '', email: '', phoneNumber: '', query: '' });
-      alert('Contact form has been successfully submitted.');
+      console.log("Response:", response.data);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        query: "",
+      });
+      alert("Contact form has been successfully submitted.");
     } catch (error) {
-      console.error('Error:', error);
-      setErrors({ submit: 'There was an issue with your submission. Please try again later.' });
+      console.error("Error:", error);
+      setErrors({
+        submit:
+          "There was an issue with your submission. Please try again later.",
+      });
     } finally {
       setLoading(false); // Stop loading
     }
@@ -78,14 +93,12 @@ const Contactus = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
-    setErrors(prevErrors => ({ ...prevErrors, [name]: '' })); // Clear error when user types
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" })); // Clear error when user types
   };
 
   return (
     <>
-
-    
       <div>
         <style>
           {`
@@ -312,31 +325,44 @@ const Contactus = () => {
               <div></div>
             </div>
             <p className="text">
-              We're here to assist you. Reach out to us for any inquiries or assistance you may need.
+              We're here to assist you. Reach out to us for any inquiries or
+              assistance you may need.
             </p>
           </div>
 
           <div className="contact-body">
             <div className="contact-info">
               <div>
-                <span><i className="fas fa-mobile-alt"></i></span>
+                <span>
+                  <i className="fas fa-mobile-alt"></i>
+                </span>
                 <span>Phone No.</span>
                 <span className="text">+91-964-768-5675</span>
               </div>
               <div>
-                <span><i className="fas fa-envelope-open"></i></span>
+                <span>
+                  <i className="fas fa-envelope-open"></i>
+                </span>
                 <span>E-mail</span>
                 <span className="text">hirehubofficial@gmail.com</span>
               </div>
               <div>
-                <span><i className="fas fa-map-marker-alt"></i></span>
+                <span>
+                  <i className="fas fa-map-marker-alt"></i>
+                </span>
                 <span>Address</span>
-                <span className="text">Tejashwi Nagar Jalandhar Cantt, Jalandhar, Pin Code:- 144005.</span>
+                <span className="text">
+                  Tejashwi Nagar Jalandhar Cantt, Jalandhar, Pin Code:- 144005.
+                </span>
               </div>
               <div>
-                <span><i className="fas fa-clock"></i></span>
+                <span>
+                  <i className="fas fa-clock"></i>
+                </span>
                 <span>Opening Hours</span>
-                <span className="text">Monday - Friday (9:00 AM to 5:00 PM)</span>
+                <span className="text">
+                  Monday - Friday (9:00 AM to 5:00 PM)
+                </span>
               </div>
             </div>
 
@@ -351,7 +377,9 @@ const Contactus = () => {
                     onChange={handleChange}
                     placeholder="First Name"
                   />
-                  {errors.firstName && <p className="error">{errors.firstName}</p>}
+                  {errors.firstName && (
+                    <p className="error">{errors.firstName}</p>
+                  )}
                   <input
                     className="form-control"
                     id="last-name"
@@ -360,7 +388,9 @@ const Contactus = () => {
                     onChange={handleChange}
                     placeholder="Last Name"
                   />
-                  {errors.lastName && <p className="error">{errors.lastName}</p>}
+                  {errors.lastName && (
+                    <p className="error">{errors.lastName}</p>
+                  )}
                 </div>
                 <div>
                   <input
@@ -380,7 +410,9 @@ const Contactus = () => {
                     onChange={handleChange}
                     placeholder="Number"
                   />
-                  {errors.phoneNumber && <p className="error">{errors.phoneNumber}</p>}
+                  {errors.phoneNumber && (
+                    <p className="error">{errors.phoneNumber}</p>
+                  )}
                 </div>
 
                 <textarea
@@ -390,16 +422,17 @@ const Contactus = () => {
                   placeholder="Please enter your query..."
                   value={formData.query}
                   onChange={handleChange}
-
                 ></textarea>
                 {errors.query && <p className="error">{errors.query}</p>}
-                <button type="submit" className="send-btn">Send Message</button>
+                <button type="submit" className="send-btn">
+                  Send Message
+                </button>
               </form>
               <div>
                 <img src={pic} alt="Contact Us" />
               </div>
             </div>
-          </div >
+          </div>
 
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3407.604039385933!2d75.58046937553776!3d31.32974775698723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a5747a9eb91%3A0xc74b34c05aa5b4b8!2sTejashwi%20Nagar%2C%20Jalandhar%20Cantt%2C%20Jalandhar%2C%20Punjab%20144005!5e0!3m2!1sen!2sin!4v1696772806485!5m2!1sen!2sin"
@@ -408,17 +441,23 @@ const Contactus = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-        </section >
+        </section>
 
         <footer className="contact-footer">
           <h3>Follow Us</h3>
           <div className="social-links">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
+            <a href="#">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-instagram"></i>
+            </a>
           </div>
         </footer>
-      </div >
+      </div>
       );
     </>
   );
