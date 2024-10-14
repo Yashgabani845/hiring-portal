@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import "../CSS/contactus.css";
 import axios from "axios";
-import pic from '../assets/contact.webp';
+import pic from '../assests/contact.webp';
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
@@ -86,7 +85,7 @@ const Contactus = () => {
   return (
     <>
 
-      return (
+    
       <div>
         <style>
           {`
