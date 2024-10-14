@@ -6,5 +6,5 @@ router.post('/test',otherApiController.test);
 router.post('/hire',otherApiController.hire);
 router.post('/reject',otherApiController.reject);
 router.get('/results/:assessmentId',otherApiController.getResult);
-
+router.post('/subscribe', otherApiController.subscribeNewsletter)
 module.exports=router;

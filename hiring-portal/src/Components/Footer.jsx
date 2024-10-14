@@ -1,11 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CSS/footer.css";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    // Handle form submission
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+        setMessage(""); // Reset message
+    
+        if (!email) {
+            setMessage("Please enter a valid email.");
+            clearMessageAndResetEmail(); // Clear both message and email after timeout
+            return;
+        }
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/subscribe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                setMessage("Thank you for subscribing!");
+            } else {
+                setMessage(data.message || "Subscription failed, please try again.");
+            }
+    
+            clearMessageAndResetEmail(); // Clear both message and email after timeout
+        } catch (error) {
+            console.error("Error subscribing:", error);
+            setMessage("An error occurred, please try again later.");
+            clearMessageAndResetEmail(); // Clear both message and email after timeout
+        }
+    };
+    
+    // Function to clear the message and reset email after a timeout (3 to 5 seconds)
+    const clearMessageAndResetEmail = () => {
+        setTimeout(() => {
+            setMessage(""); // Clear the message
+            setEmail("");   // Clear the email input field
+        }, 4000); // 4000ms = 4 seconds (adjustable)
+    };
+    
+    
+
+    
     return (
         <footer className="footer">
+            <div className="footer-column">
+                <h4>Subscribe to our Newsletter</h4>
+                <form className="subscribe-form" onSubmit={handleSubscribe}>
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Subscribe</button>
+                </form>
+                {message && <p className="message">{message}</p>}
+            </div>
+
             <div className="footer-container">
                 <div className="flex">
                     <div className="footer-column">
@@ -32,8 +97,8 @@ const Footer = () => {
                     <div className="footer-column">
                         <h3>Legal</h3>
                         <ul>
-                            <li><a href="/">Privacy Policy</a></li>
-                            <li><a href="/">Terms of Service</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/terms-and-conditions">Terms of Service</a></li>
                         </ul>
                     </div>
                 </div>
