@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select from 'react-select';
+import Select from "react-select";
 import Jobgrid from "./JobGrid";
 import Navbar from "./Navbar";
 import "../CSS/jobpage.css";
@@ -152,3 +152,4 @@ const Jobpage = () => {
         </>
     );
 };
+export default Jobpage;
