@@ -27,6 +27,15 @@ body {
     width: 100%;
 }
 
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1em;
+    padding-top: 10px;
+    border-top: 1px solid #555;
+}
+
 .footer-column {
     flex: 1;
     margin-right: 20px;
@@ -112,12 +121,65 @@ body {
 }
 
 
-.footer-bottom {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1em;
-    padding-top: 10px;
-    border-top: 1px solid #555;
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center; /* Centers the h4 element */
+}
+
+/* Styling for the h4 */
+.footer-column h4 {
+    margin-bottom: 15px; /* Adds space between h4 and form */
+    font-size: 1.8rem;
+    color: white;
+}
+
+/* Styling for the subscribe form */
+.subscribe-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adds space between input and button */
+    margin-bottom: 10px;
+    min-width: 300px;
+}
+
+/* Styling for the input box */
+.subscribe-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 250px;
+}
+
+/* Styling for the subscribe button */
+.subscribe-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.subscribe-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the message below the form */
+.message {
+    margin-top: 10px;
+    color: rgb(32, 238, 32);
+    font-size: 1.2rem;
+}
+
+.text-black{
+    color: white;
+    font-size: 28px;
 }
 
 
@@ -135,7 +197,21 @@ body {
         font-size: 1.5rem;
     }
 
+    .footer-column h4{
+        font-size: 1.3rem;
+    }
     .social-icons {
         justify-content: center;
+    }
+    .subscribe-form {
+        flex-direction: column; /* Stack the input and button vertically on small screens */
+        width: 50%; /* Full width for input and button */
+    }
+
+    .subscribe-form input, 
+    .subscribe-form button {
+        width: 50%; /* Input and button take full width */
+        min-width: 170px;
+        margin: 1px 0; /* Adds spacing between input and button */
     }
 }
