@@ -24,13 +24,17 @@ import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
 import PasswordResetPage from "./Components/ForgotPassword";
+
 import Chatbot from "./Components/Chatbot";
 import BlogPage from "./Components/BlogPage";
 import Contactus from "./Components/Contactus"
+import TermsAndConditions from "./Components/TermsAndConditions";
+
 function App() {
   const [test, setTest] = useState(null);
 
   return (
+
     <>
       <Chatbot />
       <Router>
@@ -64,11 +68,10 @@ function App() {
             element={<AssessmentResultDetail />}
           />
           <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
-        </Routes>
-      </Router>
+           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      </Routes>
+    </Router>
 
-
-    </>
   );
 }
 
