@@ -13,7 +13,6 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
-import { ChatBubbleTwoTone } from "@mui/icons-material";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -76,6 +75,8 @@ const Navbar = () => {
               <ContactMailIcon />
 
               <Link to="/contactus" onClick={() => setActiveTab("/contactus")}>
+
+
                 <span>Contact Us</span>
               </Link>
             </div>
