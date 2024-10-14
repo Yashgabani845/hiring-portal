@@ -1,0 +1,250 @@
+/* Utility classes converted to plain CSS */
+
+/* Padding */
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+/* Width */
+.w-4\/5 {
+    width: 80%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+/* Margin */
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+/* Font Family */
+.font-sans {
+    font-family: sans-serif;
+}
+
+.font-serif {
+    font-family: serif;
+}
+
+/* Font Weight */
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+/* Text Color */
+.text-gray-900 {
+    color: #1a202c;
+}
+
+.text-red-600 {
+    color: #e53e3e;
+}
+
+.text-red-700 {
+    color: #c53030;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-purple-600 {
+    color: #722072;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Hover Effects */
+.hover\:scale-95:hover {
+    transform: scale(0.95);
+}
+
+.hover\:text-red-600:hover {
+    color: #e53e3e;
+}
+
+.hover\:text-red-700:hover {
+    color: #c53030;
+}
+
+/* Transition */
+.transition {
+    transition-property: all;
+    transition-duration: 300ms;
+}
+
+/* Cursor */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Background Color */
+.bg-gray-100 {
+    background-color: #f7fafc;
+}
+
+/* Border Radius */
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+/* Box Shadow */
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Flexbox */
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Gap */
+.gap-10 {
+    gap: 2.5rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+/* List Styles */
+.list-disc {
+    list-style-type: disc;
+}
+
+.list-inside {
+    list-style-position: inside;
+}
+
+.p-6 {
+    padding: 2rem;
+}
+
+/* Responsive Width */
+@media (min-width: 1024px) {
+    .lg\:w-\[45\%\] {
+        width: 45%;
+    }
+}
+
+
+.terms-and-conditions {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #333;
+}
+
+.terms-and-conditions h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.terms-and-conditions h1:hover {
+    transform: scale(0.95);
+    color: #621375;
+}
+
+.terms-and-conditions h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #000;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.terms-and-conditions h2:hover {
+    transform: scale(0.95);
+    color: #621375;
+}
+
+.terms-and-conditions p,
+.terms-and-conditions ul,
+.terms-and-conditions li {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #374151;
+}
+
+.terms-and-conditions ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.terms-and-conditions ul li {
+    margin-bottom: 0.75rem;
+}
+
+.terms-and-conditions a {
+    color: #2563eb;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.terms-and-conditions a:hover {
+    color: #1d4ed8;
+}
