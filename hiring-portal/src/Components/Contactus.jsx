@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../CSS/contactus.css";
 import axios from "axios";
-import pic from '../assests/contact.png';
+import pic from '../assets/contact.webp';
 
 const Contactus = () => {
   const [formData, setFormData] = useState({

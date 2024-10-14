@@ -24,54 +24,43 @@ import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
 import PasswordResetPage from "./Components/ForgotPassword";
-
-import Chatbot from "./Components/Chatbot";
-import BlogPage from "./Components/BlogPage";
-import Contactus from "./Components/Contactus"
 import TermsAndConditions from "./Components/TermsAndConditions";
-
 function App() {
   const [test, setTest] = useState(null);
 
   return (
-
-    <>
-      <Chatbot />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/jobcard" element={<Jobpage />} />
-          <Route path="/job/:id" element={<Job />} />
-          <Route path="/owner" element={<Employer />} />
-          <Route path="/ownerside" element={<Dashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/postjob" element={<JobPostForm />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/company" element={<CompanyRegistration />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/uploadedjobs" element={<UploadedJobs />} />
-          <Route path="/code/:assessmentId" element={<Coding />} />
-          <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
-          <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-          <Route path="/application" element={<ApplicationForm />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/contactus" element={<Contactus />} />
-          <Route path="/shortlist/:jobId" element={<Shortlist />} />
-          <Route
-            path="/assessment-results/:jobId"
-            element={<AssessmentResults />}
-          />
-          <Route
-            path="/assessment-results/result/:assessmentId"
-            element={<AssessmentResultDetail />}
-          />
-          <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
-           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/jobcard" element={<Jobpage />} />
+        <Route path="/job/:id" element={<Job />} />
+        <Route path="/owner" element={<Employer />} />
+        <Route path="/ownerside" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/postjob" element={<JobPostForm />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/company" element={<CompanyRegistration />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/uploadedjobs" element={<UploadedJobs />} />
+        <Route path="/code/:assessmentId" element={<Coding />} />
+        <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
+        <Route path="/managejobs/:jobId" element={<ManageJobs />} />
+        <Route path="/application" element={<ApplicationForm />} />
+        <Route path="/shortlist/:jobId" element={<Shortlist />} />
+        <Route
+          path="/assessment-results/:jobId"
+          element={<AssessmentResults />}
+        />
+        <Route
+          path="/assessment-results/result/:assessmentId"
+          element={<AssessmentResultDetail />}
+        />
+        <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
     </Router>
-
   );
 }
 
