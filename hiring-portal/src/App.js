@@ -25,6 +25,8 @@ import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
 import PasswordResetPage from "./Components/ForgotPassword";
 import TermsAndConditions from "./Components/TermsAndConditions";
+import Contactus from "./Components/Contactus";
+import BlogPage from "./Components/BlogPage";
 function App() {
   const [test, setTest] = useState(null);
 
@@ -44,9 +46,11 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/uploadedjobs" element={<UploadedJobs />} />
+        <Route path="/contactus" element={<Contactus/>}/>
         <Route path="/code/:assessmentId" element={<Coding />} />
         <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
+        <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
         <Route
