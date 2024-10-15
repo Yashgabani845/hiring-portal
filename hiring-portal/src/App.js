@@ -27,6 +27,7 @@ import PasswordResetPage from "./Components/ForgotPassword";
 import TermsAndConditions from "./Components/TermsAndConditions";
 import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
+import EditProfile from "./Components/EditProfile";
 function App() {
   const [test, setTest] = useState(null);
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/company" element={<CompanyRegistration />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/editProfile" element={<EditProfile/>} />
         <Route path="/uploadedjobs" element={<UploadedJobs />} />
         <Route path="/contactus" element={<Contactus/>}/>
         <Route path="/code/:assessmentId" element={<Coding />} />
