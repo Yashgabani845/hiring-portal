@@ -1,12 +1,10 @@
-
-
 # HireHub 🚀
 
 **HireHub** is a comprehensive hiring portal built using the MERN stack (MongoDB, Express.js, React, Node.js). It provides a platform for job seekers to browse and apply for jobs, employers to manage job postings and candidate shortlisting, and admins to oversee the platform's operations.
 
 ## Technologies Used 🛠️
 
-- **Frontend:** React, Redux 
+- **Frontend:** React, Redux
 
 - **Backend:** Node.js, Express.js
 - **Storage:** Firebase-Clous
@@ -14,23 +12,31 @@
 - **Authentication:** JWT (JSON Web Tokens)
 - **Styling:** CSS, Bootstrap, Material UI
 
+## Project Contributors 🫂
+
+<a href="https://github.com/Yashgabani845/hiring-portal/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Yashgabani845/hiring-portal" />
+</a>
+
 ## Features 🌟
 
 ### For Job Seekers:
+
 - **Apply for Jobs:** Browse job listings and apply directly.📄
 - **Receive Email Notifications:** Get automatic email notifications on application status. 📧
 - **Coding Assessments:** Complete integrated coding tests within the platform, with built-in code compilation and instant feedback. 💻
-- **Secure Link Management:** Ensures data integrity and protection for coding assessments.  🔒
-
+- **Secure Link Management:** Ensures data integrity and protection for coding assessments. 🔒
 
 ### For Employers:
-- **Company Registration:** Register your company and manage your profile. 
+
+- **Company Registration:** Register your company and manage your profile.
 - **Manage Job Postings:** Create, edit, and manage job listings through a user-friendly dashboard.
 - **Create Coding Assessments:** Set up coding tests for candidates and define evaluation criteria.
 - **Assessment Results:** Review detailed reports of coding tests and manage results effectively.
 
 ### Upcoming Features:
-- **Interview Scheduling:** Real-time video interviews using WebRTC.  🎥
+
+- **Interview Scheduling:** Real-time video interviews using WebRTC. 🎥
 
 - **Advanced Search Filters:** Filter jobs by location, experience, and more.🔍
 - **Real-time Notifications:** Get updates for job applications, interviews, etc. ⏰
@@ -77,15 +83,14 @@ To run this project locally, follow these steps:
    node server.js
    ```
 
-
 ---
 
 ## Directory Structure 📂
 
 Here is an overview of the project's directory structure:
 
-
 <!-- START_STRUCTURE -->
+
 ```
 /hiring-portal
 ├── Backend               🔧 Server-side logic and APIs
@@ -101,6 +106,7 @@ Here is an overview of the project's directory structure:
     ├── firebase          🔥 Firebase configuration and integrations
 
 ```
+
 <!-- END_STRUCTURE -->
 
 ---
@@ -126,17 +132,18 @@ We welcome contributions from the community! To contribute, please follow these 
 
 ---
 
-### Issue Reporting  🐛✨
+### Issue Reporting 🐛✨
 
 If you encounter any bugs or have feature requests, please follow this format when opening an issue:
 
 - **Issue Title:** 📝 A concise and descriptive title.
-- **Description:**  🔍 Clear and detailed description of the issue or feature request.
+- **Description:** 🔍 Clear and detailed description of the issue or feature request.
 - **Steps to Reproduce (if applicable):** 🚶Detailed steps to reproduce the issue.
 - **Expected Behavior:** ✅What you expected to happen.
 - **Actual Behavior:** ❌What actually happened.
 
 ---
+
 ## 👀 Our Valuable Contributors 💖✨
 
 <div align="center">
@@ -145,7 +152,7 @@ If you encounter any bugs or have feature requests, please follow this format wh
   </a>
 </div>
 
---- 
+---
 
 ## License 📃
 
@@ -155,17 +162,15 @@ This project is open source and available under the [MIT License](https://openso
 
 Feel free to contribute, suggest features, or report issues to improve **HireHub**!
 
-
 ## 💬 Feedback & Support 📬
 
-If you have any feedback, questions, or issues, feel free to reach out or open a GitHub Issue.
--**Linkedin:-** https://www.linkedin.com/in/yash-gabani-527886258/
--**Github:-** https://github.com/Yashgabani845
+If you have any feedback, questions, or issues, feel free to reach out or open a GitHub Issue. -**Linkedin:-** https://www.linkedin.com/in/yash-gabani-527886258/ -**Github:-** https://github.com/Yashgabani845
 
-Feel free to contact us at 
-any of our social media handles incase of issue. 
+Feel free to contact us at
+any of our social media handles incase of issue.
 
---- 
+---
+
 <h3 align="center"> Happy Coding ✨🚀</h3>
 
 ---
