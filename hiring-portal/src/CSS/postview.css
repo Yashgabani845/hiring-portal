@@ -28,6 +28,11 @@
   height: 100%;
 }
 
+.post-img img:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+} 
+
 .ptext-part {
   max-width: 50%;
  
