@@ -103,6 +103,81 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: "Error fetching user profile", error });
   }
 };
+
+exports.editProfile = async (req, res) => {
+  try {
+    const { email } = req.params;
+    console.log(email);
+    const user = await User.findOne({ email });
+    console.log("user",user);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    const {
+      name,
+      location,
+      locationPreferences,
+      expectedSalary,
+      resume,
+      jobType,
+      jobTitle,
+      techStack,
+      skills,
+      address,
+      degree,
+      university,
+      cgpa,
+      experience,
+      pastJobs,
+      isFresher,
+    } = req.body;
+
+    if (!name) {
+      return res
+        .status(400)
+        .json({ message: "Name is required" });
+    }
+
+    user.name = name || user.name;
+    user.location = location || user.location;
+    user.locationPreferences = locationPreferences || user.locationPreferences;
+    user.expectedSalary = expectedSalary || user.expectedSalary;
+    user.resume = resume || user.resume;
+    user.jobType = jobType || user.jobType;
+    user.jobTitle = jobTitle || user.jobTitle;
+    user.techStack = techStack || user.techStack;
+    user.skills = skills || user.skills;
+    user.address = address || user.address;
+
+    if (!isFresher) {
+      user.profileDetails.education = {
+        degree: degree || user.profileDetails.education?.degree,
+        university: university || user.profileDetails.education?.university,
+        cgpa: cgpa || user.profileDetails.education?.cgpa,
+      };
+
+      // If pastJobs are provided, replace the current pastJobs array
+      if (pastJobs && pastJobs.length > 0) {
+        user.profileDetails.pastJobs = pastJobs.map((job) => ({
+          company: job.company || '',
+          role: job.role || '',
+          duration: job.duration || '',
+          details: job.details || '',
+        }));
+      }
+    } else {
+      // If the user is a fresher, remove past job details
+      user.profileDetails.pastJobs = [];
+      user.profileDetails.education = undefined;
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: "Profile updated successfully", user });
+  } catch (error) {
+    console.error("Error updating user profile:", error);
+    res.status(500).json({ message: "Error updating user profile", error }); 
+  }
+};
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();

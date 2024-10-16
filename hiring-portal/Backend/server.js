@@ -12,9 +12,13 @@ const assessmentRoutes = require("./routes/assessmentRoutes");
 const otherApiRoutes = require("./routes/otherApiRoutes");
 const directRoutes = require("./routes/directRoutes");
 
-const contactRoutes = require("./routes/contactRoutes");
 
-const blogRoutes = require("./routes/blogRoutes");
+const contactRoutes = require('./routes/contactRoutes');
+const bookmarksRoutes = require('./routes/bookmarksRoute');
+
+const blogRoutes = require('./routes/blogRoutes')
+
+
 
 const http = require("http");
 
@@ -45,10 +49,13 @@ app.use("/api", assessmentRoutes);
 app.use("/api", otherApiRoutes);
 app.use("/api", contactRoutes);
 
-app.use("/api", blogRoutes);
-app.use("/api", otherApiRoutes);
 
-app.use("/", directRoutes);
+
+app.use('/api', blogRoutes);
+app.use('/api', otherApiRoutes);
+app.use('/api', bookmarksRoutes);
+app.use('/', directRoutes);
+
 
 app.use(bodyParser.json());
 const options = { stats: true };
