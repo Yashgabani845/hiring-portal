@@ -143,6 +143,10 @@ const Profile = () => {
     navigate("/signin");
   };
 
+  const handleEdit = () => {
+    navigate(`/editProfile`);
+  }
+
   if (loading) return <p>Loading profile...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
@@ -216,6 +220,9 @@ const Profile = () => {
                   Manage Job
                 </button>
               )}
+              <button className="logout-btn" onClick={handleEdit}>
+                Edit Profile
+              </button>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
