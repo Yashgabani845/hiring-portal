@@ -13,7 +13,7 @@ const otherApiRoutes = require('./routes/otherApiRoutes');
 const directRoutes = require('./routes/directRoutes');
 
 const contactRoutes = require('./routes/contactRoutes');
-
+const bookmarksRoutes = require('./routes/bookmarksRoute');
 
 const blogRoutes = require('./routes/blogRoutes')
 
@@ -49,7 +49,7 @@ app.use('/api', contactRoutes);
 
 app.use('/api', blogRoutes);
 app.use('/api', otherApiRoutes);
-
+app.use('/api', bookmarksRoutes);
 app.use('/', directRoutes);
 
 app.use(bodyParser.json());

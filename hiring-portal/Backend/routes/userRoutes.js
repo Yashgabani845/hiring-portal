@@ -24,6 +24,7 @@ const upload = multer({
 router.post("/users/signup", userController.signUp);
 router.post("/users/signin", userController.signIn);
 router.get("/users/profile", userController.getProfile);
+router.post("/users/editProfile/:email", userController.editProfile);
 router.get("/users", userController.getAllUsers);
 router.get(`/DirectResetPassword/:email`, userController.directResetPassword);
 router.get("/SendResetEmail", userController.sendResetEmail);
