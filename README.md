@@ -12,11 +12,6 @@
 - **Authentication:** JWT (JSON Web Tokens)
 - **Styling:** CSS, Bootstrap, Material UI
 
-## Project Contributors 🫂
-
-<a href="https://github.com/Yashgabani845/hiring-portal/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Yashgabani845/hiring-portal" />
-</a>
 
 ## Features 🌟
 
