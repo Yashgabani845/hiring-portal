@@ -221,3 +221,7 @@ a {
   text-decoration: none;
   color: #555;
 }
+
+.modal-select {
+  width: 100%; /* Set width to 80% */
+}

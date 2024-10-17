@@ -169,8 +169,11 @@ const EditProfile = () => {
           'Content-Type': 'application/json'
         }
       });
-      toast.success('Profile updated successfully!'); 
-      navigate('/profile');
+
+      if (response.ok) {
+        toast.success('Profile updated successfully!'); 
+        navigate('/profile');
+      }
     } catch (error) {
       console.error('Error submitting form:', error.response?.data);
       toast.error('Error updating profile. Please try again.');
