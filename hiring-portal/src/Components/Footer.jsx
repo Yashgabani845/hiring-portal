@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../CSS/footer.css";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import GoogleTranslate from "./GoogleTranslator";
 
 const Footer = () => {
     const [email, setEmail] = useState("");
@@ -11,13 +12,13 @@ const Footer = () => {
     const handleSubscribe = async (e) => {
         e.preventDefault();
         setMessage(""); // Reset message
-    
+
         if (!email) {
             setMessage("Please enter a valid email.");
             clearMessageAndResetEmail(); // Clear both message and email after timeout
             return;
         }
-    
+
         try {
             const response = await fetch("http://localhost:5000/api/subscribe", {
                 method: "POST",
@@ -26,15 +27,15 @@ const Footer = () => {
                 },
                 body: JSON.stringify({ email }),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
                 setMessage("Thank you for subscribing!");
             } else {
                 setMessage(data.message || "Subscription failed, please try again.");
             }
-    
+
             clearMessageAndResetEmail(); // Clear both message and email after timeout
         } catch (error) {
             console.error("Error subscribing:", error);
@@ -42,7 +43,7 @@ const Footer = () => {
             clearMessageAndResetEmail(); // Clear both message and email after timeout
         }
     };
-    
+
     // Function to clear the message and reset email after a timeout (3 to 5 seconds)
     const clearMessageAndResetEmail = () => {
         setTimeout(() => {
@@ -50,25 +51,31 @@ const Footer = () => {
             setEmail("");   // Clear the email input field
         }, 4000); // 4000ms = 4 seconds (adjustable)
     };
-    
-    
 
-    
+
+
+
     return (
         <footer className="footer">
-            <div className="footer-column">
-                <h4>Subscribe to our Newsletter</h4>
-                <form className="subscribe-form" onSubmit={handleSubscribe}>
-                    <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Subscribe</button>
-                </form>
-                {message && <p className="message">{message}</p>}
+            <div className="align-content">
+                <div className="footer-column">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <form className="subscribe-form" onSubmit={handleSubscribe}>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    {message && <p className="message">{message}</p>}
+                </div>
+                <div className="footer-column">
+                    <h4>Select your language</h4>
+                    <GoogleTranslate />
+                </div>
             </div>
 
             <div className="footer-container">

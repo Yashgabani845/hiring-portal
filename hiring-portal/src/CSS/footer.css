@@ -8,14 +8,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .footer {
     background-color: #342d3b;
     color: #fff;
     padding: 50px 0;
-    width: 100%; 
+    width: 100%;
 }
 
 .footer-container {
@@ -83,41 +83,43 @@ body {
 
 .social-icons .linkedin:hover {
     color: #0072b1;
-    transform:scale(1.2);
+    transform: scale(1.2);
 }
 
 .social-icons .github {
     /* Add the transition effect */
     transition: transform 0.3s ease;
 }
+
 .social-icons .github:hover {
     /* color: #007bff; */
-    transform:scale(1.1);
+    transform: scale(1.1);
 }
 
-.social-icons .twitter{
+.social-icons .twitter {
     /* Add the transition effect */
     transition: transform 0.3s ease;
 }
+
 .social-icons .twitter:hover {
-    background:none;
-    color:#1DA1F2;
-    transform:scale(1.2);
+    background: none;
+    color: #1DA1F2;
+    transform: scale(1.2);
 }
 
 .social-icons .facebook:hover {
     color: #4267B2;
-    transform:scale(1.2);
+    transform: scale(1.2);
 }
 
-.social-icons  .instagram {
+.social-icons .instagram {
     /* Add the transition effect */
     transition: transform 0.3s ease;
 }
 
 .social-icons .instagram:hover {
     color: #E1306C;
-    transform:scale(1.2);
+    transform: scale(1.2);
 }
 
 
@@ -127,12 +129,14 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    text-align: center; /* Centers the h4 element */
+    text-align: center;
+    /* Centers the h4 element */
 }
 
 /* Styling for the h4 */
 .footer-column h4 {
-    margin-bottom: 15px; /* Adds space between h4 and form */
+    margin-bottom: 15px;
+    /* Adds space between h4 and form */
     font-size: 1.8rem;
     color: white;
 }
@@ -143,7 +147,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Adds space between input and button */
+    gap: 10px;
+    /* Adds space between input and button */
     margin-bottom: 10px;
     min-width: 300px;
 }
@@ -177,11 +182,18 @@ body {
     font-size: 1.2rem;
 }
 
-.text-black{
+.text-black {
     color: white;
     font-size: 28px;
 }
 
+.align-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
 
 @media (max-width: 768px) {
     .footer-container {
@@ -190,28 +202,34 @@ body {
     }
 
     .footer-column {
-        margin-right: 0; 
+        margin-right: 0;
     }
 
-    .footer-column > h3 {
+    .footer-column>h3 {
         font-size: 1.5rem;
     }
 
-    .footer-column h4{
+    .footer-column h4 {
         font-size: 1.3rem;
     }
+
     .social-icons {
         justify-content: center;
     }
+
     .subscribe-form {
-        flex-direction: column; /* Stack the input and button vertically on small screens */
-        width: 50%; /* Full width for input and button */
+        flex-direction: column;
+        /* Stack the input and button vertically on small screens */
+        width: 50%;
+        /* Full width for input and button */
     }
 
-    .subscribe-form input, 
+    .subscribe-form input,
     .subscribe-form button {
-        width: 50%; /* Input and button take full width */
+        width: 50%;
+        /* Input and button take full width */
         min-width: 170px;
-        margin: 1px 0; /* Adds spacing between input and button */
+        margin: 1px 0;
+        /* Adds spacing between input and button */
     }
 }
