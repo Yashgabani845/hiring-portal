@@ -221,3 +221,16 @@ a {
   text-decoration: none;
   color: #555;
 }
+
+
+.password-field {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

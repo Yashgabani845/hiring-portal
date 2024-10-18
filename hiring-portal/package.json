@@ -52,7 +52,7 @@
     "react-monaco-editor": "^0.55.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.25.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.8.0",
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.14.1",

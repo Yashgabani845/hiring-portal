@@ -28,12 +28,15 @@ import TermsAndConditions from "./Components/TermsAndConditions";
 import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
 import EditProfile from "./Components/EditProfile";
+import ResumeAnalyzer from "./Components/ResumeAnalyzer";
+import BackToTop from "./Components/BackToTop";
 function App() {
   const [test, setTest] = useState(null);
 
   return (
-    <Router>
+    <><BackToTop /><Router>
       <Routes>
+
         <Route path="/" element={<Homepage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/jobcard" element={<Jobpage />} />
@@ -46,27 +49,27 @@ function App() {
         <Route path="/company" element={<CompanyRegistration />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/editProfile" element={<EditProfile/>} />
+        <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/uploadedjobs" element={<UploadedJobs />} />
-        <Route path="/contactus" element={<Contactus/>}/>
+        <Route path="/contactus" element={<Contactus />} />
         <Route path="/code/:assessmentId" element={<Coding />} />
         <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
         <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-        <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
         <Route
           path="/assessment-results/:jobId"
-          element={<AssessmentResults />}
-        />
+          element={<AssessmentResults />} />
         <Route
           path="/assessment-results/result/:assessmentId"
-          element={<AssessmentResultDetail />}
-        />
+          element={<AssessmentResultDetail />} />
         <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+
       </Routes>
-    </Router>
+    </Router></>
   );
 }
 

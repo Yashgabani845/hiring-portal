@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,8 +37,15 @@ const ApplicationForm = () => {
     skills: [""],
   });
 
-  const [uploading, setUploading] = useState(false); 
-  const [filesUploaded, setFilesUploaded] = useState({ resume: false, cv: true }); 
+  const [uploading, setUploading] = useState(false);
+  const [filesUploaded, setFilesUploaded] = useState({ resume: false, cv: true });
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [currentField, setCurrentField] = useState('');
+  const [previewHeight, setPreviewHeight] = useState('auto');
+  const previewRef = useRef(null);
 
   useEffect(() => {
     const codes = countryData.map(country => ({
@@ -48,6 +55,21 @@ const ApplicationForm = () => {
     }));
     setCountryCodes(codes);
   }, []);
+
+  useEffect(() => {
+    if (previewRef.current && previewUrl) {
+      const updatePreviewHeight = () => {
+        const windowHeight = window.innerHeight;
+        const maxHeight = windowHeight * 0.8; // 80% of window height
+        setPreviewHeight(`${maxHeight}px`);
+      };
+
+      updatePreviewHeight();
+      window.addEventListener('resize', updatePreviewHeight);
+
+      return () => window.removeEventListener('resize', updatePreviewHeight);
+    }
+  }, [previewUrl]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,10 +110,41 @@ const ApplicationForm = () => {
     );
   };
 
-  const handleFileChange = (e, fieldName) => {
+  const handleFileSelection = (e, fieldName) => {
     const file = e.target.files[0];
-    setFilesUploaded((prevState) => ({ ...prevState, [fieldName]: false })); // Mark file as not uploaded
-    handleFileUpload(file, fieldName);
+    if (file) {
+      setSelectedFile(file);
+      setCurrentField(fieldName);
+      setShowPreview(true);
+    }
+  };
+
+  const handlePreview = () => {
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+        setPreviewHeight('70vh'); // Set a larger height when preview is shown
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const handleUpload = () => {
+    if (selectedFile) {
+      handleFileUpload(selectedFile, currentField);
+      setShowPreview(false);
+      setSelectedFile(null);
+      setPreviewUrl('');
+      setPreviewHeight('auto');
+    }
+  };
+
+  const closePreview = () => {
+    setShowPreview(false);
+    setSelectedFile(null);
+    setPreviewUrl('');
+    setPreviewHeight('auto'); // Reset height when closing preview
   };
 
   const handleSubmit = async (e) => {
@@ -125,7 +178,7 @@ const ApplicationForm = () => {
     }
   };
 
-  const allFilesUploaded = filesUploaded.resume && filesUploaded.cv; // Check if all required files are uploaded
+  const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
     <form className="application-form" onSubmit={handleSubmit}>
@@ -190,7 +243,8 @@ const ApplicationForm = () => {
           {collegesData.map((college, index) => (
             <option key={index} value={college.college}>{college.college}</option>
           ))}
-        </select> </div>
+        </select>
+      </div>
 
       <div className="form-group">
         <label>Course:</label>
@@ -227,7 +281,7 @@ const ApplicationForm = () => {
         <input
           type="file"
           accept=".pdf,.doc,.docx"
-          onChange={(e) => handleFileChange(e, "resume")}
+          onChange={(e) => handleFileSelection(e, "resume")}
           required
         />
       </div>
@@ -237,9 +291,29 @@ const ApplicationForm = () => {
         <input
           type="file"
           accept=".pdf,.doc,.docx"
-          onChange={(e) => handleFileChange(e, "cv")}
+          onChange={(e) => handleFileSelection(e, "cv")}
         />
       </div>
+
+      {showPreview && (
+        <div className="file-preview-dialog" style={{ height: previewHeight }}>
+          <h3>{selectedFile.name}</h3>
+          <div className="preview-options">
+            <button type="button" onClick={handlePreview}>Preview</button>
+            <button type="button" onClick={handleUpload}>Upload</button>
+            <button type="button" onClick={closePreview}>Close</button>
+          </div>
+          {previewUrl && (
+            <div className="file-preview" ref={previewRef}>
+              {selectedFile.type.startsWith('image/') ? (
+                <img src={previewUrl} alt="File preview" />
+              ) : (
+                <iframe src={previewUrl} title="File preview" />
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       <button type="submit" className="submit-btn" disabled={uploading || !allFilesUploaded}>
         {uploading ? "Uploading..." : "Submit Application"}
