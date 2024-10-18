@@ -13,6 +13,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
+import { Dock } from "@mui/icons-material";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -78,6 +79,19 @@ const Navbar = () => {
 
 
                 <span>Contact Us</span>
+              </Link>
+            </div>
+
+            <div
+              className={`icon resume-analyzer ${activeTab === "/resume-analyzer" ? "active" : ""
+                }`}
+            >
+              <Dock />
+
+              <Link to="/resume-analyzer" onClick={() => setActiveTab("/resume-analyzer")}>
+
+
+                <span>Scan Resume</span>
               </Link>
             </div>
 
