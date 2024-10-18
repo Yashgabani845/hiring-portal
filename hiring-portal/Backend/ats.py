@@ -10,12 +10,12 @@ CORS(app)  # Enable CORS for all routes
 
 # Load API key from .env file
 load_dotenv()
-palm_api_key = 'AIzaSyDPVwPxK_ZrpmVVnmUlzZh3v-FAEa0UdHQ'  # Get your API key from environment variable
+palm_api_key = 'YOUR_API_KEY'  # Get your API key from environment variable
 palm.configure(api_key=palm_api_key)
 
 @app.route('/analyze', methods=['GET'])
 def health_check():
-    return jsonify({"message": "Server sawan ka running!"}), 200
+    return jsonify({"message": "Server running!"}), 200
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
