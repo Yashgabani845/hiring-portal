@@ -55,14 +55,15 @@ const GoogleTranslate = () => {
             <style jsx>{`
                     .goog-te-combo {
                         background-color: #f0f8ff; /* Soft blue background */
-                        border-radius: 0.75rem; /* Rounded corners */
-                        padding: 0.5rem 2.45rem;
-                        font-size: 1.175rem;     
+                        border-radius: 0.45rem;
+                        padding: 0.5rem 0.15rem;
+                        font-size: 0.975rem;     
                         transition: all 0.3s ease-in-out; /* Smooth transition */
                         outline: none;
                         color: #007bff; /* Blue text */
                         font-weight: 500; /* Tailwind: font-medium */
-                        cursor: pointer
+                        cursor: pointer;
+                        text-align: center;
                     }
 
                     .goog-te-combo:hover {
