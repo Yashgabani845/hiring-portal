@@ -9,6 +9,7 @@ import logo from "../assests/logo.png";
 import { ClipLoader } from "react-spinners"; // Import the spinner
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
 import { Modal, Input, Button } from "antd";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -105,10 +106,12 @@ const SignIn = () => {
       )}
       <div className="signin-page">
         <center>
+          <Link to="/">
           <div className="welcom1">
             <h1>Welcome to&nbsp;&nbsp;</h1>
             <img src={logo} alt="Logo" />
           </div>
+          </Link>
         </center>
         <div className="signin-data">
           <div className="signin-image">
@@ -148,12 +151,6 @@ const SignIn = () => {
                   </span>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: "1rem" }}>
-                <button type="submit">Sign In</button>
-                <button type="button" onClick={showForgotPasswordModal}>
-                  Forgot Password
-                </button>
-              </div>
               <div className="remember-forgot">
                 <div className="remember-me">
                   <input
@@ -165,6 +162,12 @@ const SignIn = () => {
                   <label htmlFor="rememberMe">Remember Me</label>
                 </div>
               </div>
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <button type="submit">Sign In</button>
+                <button type="button" onClick={showForgotPasswordModal}>
+                  Forgot Password
+                </button>
+              </div>              
             </form>
             <div className="extra-options">
               <a href="/signup">Don't have an account? Sign Up</a>

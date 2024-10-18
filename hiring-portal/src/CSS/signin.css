@@ -76,6 +76,7 @@
 
 .signin-page::before {
   content: "";
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -171,7 +172,7 @@
 
 .extra-options {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .extra-options a {
@@ -262,8 +263,8 @@
 
 .eye-icon {
   position: absolute;
-  right: 10px;
-  top: 60%;
+  right: 30px;
+  top: 70%;
   transform: translateY(-50%);
   cursor: pointer;
 }

@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/firebase';
 import Navbar from "./Navbar";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ const Signup = () => {
     cgpa: "",
     pastJobs: [{ company: "", role: "", duration: "", details: "" }] // Initialize with one job entry
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -125,6 +128,10 @@ const Signup = () => {
       console.error('Error submitting form:', error.response.data);
       toast.error('Error creating user. Please try again.'); // Show error toast
     }
+  };
+  
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
   
   return (
@@ -249,15 +256,19 @@ const Signup = () => {
               />
             </label>
             <br />
-            <label>
+            <label className="password-field">
               Password:
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 className="signupinput"
                 value={formData.password}
                 onChange={handleChange}
               />
+              <span onClick={togglePasswordVisibility} className="eye-icon">
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+
             </label>
             <br />
             <label>
