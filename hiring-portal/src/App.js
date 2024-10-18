@@ -29,12 +29,14 @@ import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
 import EditProfile from "./Components/EditProfile";
 import ResumeAnalyzer from "./Components/ResumeAnalyzer";
+import BackToTop from "./Components/BackToTop";
 function App() {
   const [test, setTest] = useState(null);
 
   return (
-    <Router>
+    <><BackToTop /><Router>
       <Routes>
+
         <Route path="/" element={<Homepage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/jobcard" element={<Jobpage />} />
@@ -58,18 +60,16 @@ function App() {
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
         <Route
           path="/assessment-results/:jobId"
-          element={<AssessmentResults />}
-        />
+          element={<AssessmentResults />} />
         <Route
           path="/assessment-results/result/:assessmentId"
-          element={<AssessmentResultDetail />}
-        />
+          element={<AssessmentResultDetail />} />
         <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
 
       </Routes>
-    </Router>
+    </Router></>
   );
 }
 

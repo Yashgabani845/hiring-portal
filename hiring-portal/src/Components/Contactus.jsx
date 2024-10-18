@@ -337,14 +337,14 @@ const Contactus = () => {
                   <i className="fas fa-mobile-alt"></i>
                 </span>
                 <span>Phone No.</span>
-                <span className="text">+91-964-768-5675</span>
+                <span className="text">+91 7046996816</span>
               </div>
               <div>
                 <span>
                   <i className="fas fa-envelope-open"></i>
                 </span>
                 <span>E-mail</span>
-                <span className="text">hirehubofficial@gmail.com</span>
+                <span className="text">gabaniyash846@gmail.com</span>
               </div>
               <div>
                 <span>
@@ -352,8 +352,8 @@ const Contactus = () => {
                 </span>
                 <span>Address</span>
                 <span className="text">
-                  Tejashwi Nagar Jalandhar Cantt, Jalandhar, Pin Code:- 144005.
-                </span>
+                2,Muktanand Society Ved Road Surat Pin-Code : 395004
+                          </span>
               </div>
               <div>
                 <span>
@@ -434,13 +434,10 @@ const Contactus = () => {
             </div>
           </div>
 
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3407.604039385933!2d75.58046937553776!3d31.32974775698723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a5747a9eb91%3A0xc74b34c05aa5b4b8!2sTejashwi%20Nagar%2C%20Jalandhar%20Cantt%2C%20Jalandhar%2C%20Punjab%20144005!5e0!3m2!1sen!2sin!4v1696772806485!5m2!1sen!2sin"
-            className="google-map"
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.2636923821633!2d72.87936536346761!3d22.67750816815465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e5b3c654679bd%3A0x7fec0936b8b30f97!2sBlossom%20Aura!5e0!3m2!1sen!2sin!4v1729280785053!5m2!1sen!2sin" className="google-map"
             allowFullScreen=""
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
         </section>
 
         <footer className="contact-footer">
