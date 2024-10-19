@@ -6,7 +6,7 @@
 
 - **Frontend:** React, Redux
 
-- **Backend:** Node.js, Express.js
+- **Backend:** Node.js, Express.js, Python
 - **Storage:** Firebase-Clous
 - **Database:** MongoDB
 - **Authentication:** JWT (JSON Web Tokens)
@@ -76,6 +76,18 @@ To run this project locally, follow these steps:
 
    ```bash
    node server.js
+   ```
+
+7. **Install python dependencies:**
+
+   ```bash
+   pip install Flask Flask-CORS PyPDF2 google-generativeai python-dotenv
+   ```
+
+8. **Start the python server:**
+
+   ```bash
+   python ats.py
    ```
 
 ---
