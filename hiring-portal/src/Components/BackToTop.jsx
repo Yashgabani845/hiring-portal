@@ -4,7 +4,6 @@ import "../CSS/backtotop.css";
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scrolled down by 100px
   const toggleVisibility = () => {
     if (window.pageYOffset > 100) {
       setIsVisible(true);
@@ -13,7 +12,6 @@ const BackToTop = () => {
     }
   };
 
-  // Scroll the window to the top smoothly
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -21,7 +19,6 @@ const BackToTop = () => {
     });
   };
 
-  // Effect to add and clean up the scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", toggleVisibility);
 

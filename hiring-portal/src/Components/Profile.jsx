@@ -16,8 +16,11 @@ import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import Select from "react-select";
 import skillsOptions from "./skills.json";
 import "../CSS/signup.css";
-
+import Skeleton from "@mui/material/Skeleton";
+import { IoIosInformationCircle } from "react-icons/io";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import "../CSS/profile.css";
 import {
   FaStar,
@@ -28,6 +31,19 @@ import {
   FaPlus,
 } from "react-icons/fa";
 import axios from "axios";
+
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: "8px",
+  textAlign: "center",
+};
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -63,6 +79,8 @@ const Profile = () => {
   const [profileimage, setProfileImage] = useState(profilepic);
   const [imageFile, setImageFile] = useState(null);
   const [mail, setEmail] = useState("");
+  const [openLogoutModal, setOpenLogoutModal] = useState(false); // Modal state
+
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [languages, setLanguages] = useState([]);
@@ -157,11 +175,54 @@ const Profile = () => {
     }
   };
 
-  const handleLogout = () => {
+  const handleOpenLogoutModal = () => {
+    setOpenLogoutModal(true);
+  };
+
+  // Function to close the modal without logging out
+  const handleCloseLogoutModal = () => {
+    setOpenLogoutModal(false);
+  };
+
+  // Confirm logout and remove local storage data
+  const handleConfirmLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userEmail");
     navigate("/signin");
+    setOpenLogoutModal(false); // Close modal after logout
   };
+
+
+  if (loading)
+    return (
+      <div className="skeletonDiv">
+        <div className="skeleton_Child">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+            }}
+          >
+            {" "}
+            <Skeleton variant="rectangular" width={410} height={400} />
+            <Skeleton variant="rectangular" width={410} height={200} />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+            }}
+          >
+            {" "}
+            <Skeleton variant="rectangular" width={800} height={200} />
+            <Skeleton variant="rectangular" width={800} height={165} />
+            <Skeleton variant="rectangular" width={800} height={150} />
+          </div>
+        </div>
+      </div>
+    );
 
   const handleEdit = () => {
     navigate(`/editProfile`);
@@ -203,7 +264,7 @@ const Profile = () => {
     }
   };
 
-  if (loading) return <p>Loading profile...</p>;
+ 
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
 
@@ -237,7 +298,10 @@ const Profile = () => {
               }}
             >
               <img src={profileimage} alt="Profile" className="profile-pic" />
-              <div style={{ display: "flex", gap: "1rem" }}>
+              <div
+                style={{ display: "flex", gap: "1rem" }}
+                className="buttondiv"
+              >
                 <Button
                   component="label"
                   variant="contained"
@@ -276,14 +340,53 @@ const Profile = () => {
                   Manage Job
                 </button>
               )}
+
+              <button className="logout-btn" onClick={handleOpenLogoutModal}>
+
               <button className="logout-btn" onClick={handleEdit}>
                 Edit Profile
               </button>
-              <button className="logout-btn" onClick={handleLogout}>
+            
+
                 Logout
               </button>
             </div>
           </div>
+          {/* logout modal */}
+          <Modal
+            open={openLogoutModal}
+            onClose={handleCloseLogoutModal}
+            aria-labelledby="logout-confirmation-modal"
+            aria-describedby="confirm-logout-action"
+          >
+            <Box sx={modalStyle}>
+              <p style={{ fontWeight: "600" }}>
+                Are you sure you want to log out?
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  marginTop: "2rem",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleConfirmLogout}
+                >
+                  Yes, Logout
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={handleCloseLogoutModal}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Box>
+          </Modal>
 
           {(!profileDetails.pastJobs || profileDetails.pastJobs.length === 0) &&
             profileDetails.experience &&
@@ -377,15 +480,22 @@ const Profile = () => {
                 <div className="education-info">
                   <div className="info-item">
                     <strong>Degree:</strong>{" "}
-                    <span>{profileDetails.education.degree}</span>
+                    <span className="dataspan">
+                      {profileDetails.education.degree}
+                    </span>
                   </div>
                   <div className="info-item">
                     <strong>University:</strong>{" "}
-                    <span>{profileDetails.education.university}</span>
+                    <span className="dataspan">
+                      {profileDetails.education.university}
+                    </span>
                   </div>
                   <div className="info-item">
                     <strong>CGPA:</strong>{" "}
-                    <span>{profileDetails.education.cgpa}</span>
+                    <span className="dataspan">
+                      {" "}
+                      {profileDetails.education.cgpa}
+                    </span>
                   </div>
                 </div>
               ) : (
@@ -477,26 +587,32 @@ const Profile = () => {
           <div>
             <section className="profile-section additional-info-section">
               <div className="section-header">
-                <MoreHorizIcon className="section-icon" />
+                <IoIosInformationCircle
+                  className="section-icon"
+                  style={{ fontSize: "25px" }}
+                />
                 <h2>Additional Info</h2>
               </div>
               <div className="additional-info-content">
                 <div className="info-item">
-                  <strong>Location:</strong> <span>{location}</span>
+                  <strong>Location:</strong>{" "}
+                  <span className="dataspan">{location}</span>
                 </div>
                 <div className="info-item">
                   <strong>Location Preferences:</strong>{" "}
-                  <span>{locationPreferences}</span>
+                  <span className="dataspan">{locationPreferences}</span>
                 </div>
                 <div className="info-item">
                   <strong>Expected Salary:</strong>{" "}
-                  <span>{expectedSalary}</span>
+                  <span className="dataspan">{expectedSalary}</span>
                 </div>
                 <div className="info-item">
-                  <strong>Job Type:</strong> <span>{jobType}</span>
+                  <strong>Job Type:</strong>{" "}
+                  <span className="dataspan">{jobType}</span>
                 </div>
                 <div className="info-item">
-                  <strong>Job Title:</strong> <span>{jobTitle}</span>
+                  <strong>Job Title:</strong>{" "}
+                  <span className="dataspan">{jobTitle}</span>
                 </div>
                 {resume && (
                   <div className="info-item resume-link-wrapper">
