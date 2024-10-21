@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/footer.css";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -52,6 +52,26 @@ const Footer = () => {
         }, 4000); // 4000ms = 4 seconds (adjustable)
     };
 
+    useEffect(() => {
+        // Configure the chatbot
+        window.embeddedChatbotConfig = {
+            chatbotId: "o4KUJL6ZjS6hreRuBl_g2",
+            domain: "www.chatbase.co"
+        };
+
+        // Dynamically create the script element
+        const script = document.createElement('script');
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.defer = true;
+
+        // Append the script to the body
+        document.body.appendChild(script);
+
+        // Clean up the script when the component unmounts
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
 
 
