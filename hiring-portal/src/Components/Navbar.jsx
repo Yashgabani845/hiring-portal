@@ -61,23 +61,20 @@ const Navbar = () => {
         </div>
         {!hideElements && (
           <>
-            <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
-              <WorkIcon />
-              <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><span>Jobs</span></Link>
+            <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}> 
+              <Link to="/jobcard" onClick={() => setActiveTab('/jobcard')}><WorkIcon /><span>Jobs</span></Link>
             </div>
             <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
-              <InfoIcon />
-              <Link to="/about" onClick={() => setActiveTab('/about')}><span>About</span></Link>
+              <Link to="/about" onClick={() => setActiveTab('/about')}><InfoIcon /><span>About</span></Link>
             </div>
             <div
               className={`icon contactus ${activeTab === "/contactus" ? "active" : ""
                 }`}
             >
-              <ContactMailIcon />
-
+            
               <Link to="/contactus" onClick={() => setActiveTab("/contactus")}>
 
-
+              <ContactMailIcon />
                 <span>Contact Us</span>
               </Link>
             </div>
@@ -86,18 +83,15 @@ const Navbar = () => {
               className={`icon resume-analyzer ${activeTab === "/resume-analyzer" ? "active" : ""
                 }`}
             >
-              <Dock />
-
               <Link to="/resume-analyzer" onClick={() => setActiveTab("/resume-analyzer")}>
 
-
+              <Dock />
                 <span>Scan Resume</span>
               </Link>
             </div>
 
             <div className={`icon aboutus ${activeTab === '/blog' ? 'active' : ''}`}>
-              <FaBlog />
-              <Link to="/blog" onClick={() => setActiveTab('/blog')}><span>Blog</span></Link>
+              <Link to="/blog" onClick={() => setActiveTab('/blog')}><FaBlog /><span>Blog</span></Link>
             </div>
             <div
               className={`icon login ${activeTab === "/profile" ? "active" : ""
@@ -106,13 +100,11 @@ const Navbar = () => {
 
               {isLoggedIn ? (
                 <>
-                  <AccountCircleIcon />
-                  <Link to="/profile" onClick={() => setActiveTab('/profile')}><span>Profile</span></Link>
+                  <Link to="/profile" onClick={() => setActiveTab('/profile')}><AccountCircleIcon /><span>Profile</span></Link>
                 </>
               ) : (
                 <>
-                  <LoginIcon />
-                  <Link to="/signin" onClick={() => setActiveTab('/signin')}><span>Login</span></Link>
+                  <Link to="/signin" onClick={() => setActiveTab('/signin')}><LoginIcon /><span>Login</span></Link>
                 </>
               )}
             </div>
