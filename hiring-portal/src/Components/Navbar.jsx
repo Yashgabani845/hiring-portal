@@ -49,12 +49,12 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="hirehublogo" data-aos="fade-right">
+      <div className="hirehublogo" >
         <LazyLoad height={40} offset={100} once>
           <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
       </div>
-      <div className="icons" data-aos="fade-right" data-aos-delay="300" data-aos-duration="3000">
+      <div className="icons">
         <div className={`icon home ${activeTab === '/' ? 'active' : ''}`}>
           <HomeIcon />
           <Link to="/" onClick={() => setActiveTab('/')}><span>Home</span></Link>
@@ -120,7 +120,7 @@ const Navbar = () => {
         )}
       </div>
       {!hideElements && (
-        <div className="posting" data-aos="fade-left">
+        <div className="posting">
           <span onClick={handlePostJob}>Employer/Post Job</span>
           <LaunchIcon className="posting-icon" />
         </div>
