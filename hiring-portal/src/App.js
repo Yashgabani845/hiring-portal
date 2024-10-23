@@ -32,6 +32,7 @@ import ResumeAnalyzer from "./Components/ResumeAnalyzer";
 import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Error404 from "./Components/Error404";
 
 function App() {
   const [test, setTest] = useState(null);
@@ -68,6 +69,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
+        <Route path="*" element={<Error404 />} />
         <Route
           path="/assessment-results/:jobId"
           element={<AssessmentResults />} />
