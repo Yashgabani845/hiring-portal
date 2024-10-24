@@ -19,8 +19,8 @@ import "../CSS/signup.css";
 import Skeleton from "@mui/material/Skeleton";
 import { IoIosInformationCircle } from "react-icons/io";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
+
+
 import "../CSS/profile.css";
 import {
   FaStar,
@@ -56,18 +56,6 @@ const VisuallyHiddenInput = styled("input")({
   whiteSpace: "nowrap",
   width: 1,
 });
-
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 const Profile = () => {
   const [user, setUser] = useState(null);
