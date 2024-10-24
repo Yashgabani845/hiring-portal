@@ -39,6 +39,7 @@ router.post("/users/signin", loginLimiter, userController.signIn);
 router.post("/users/signup", userController.signUp);
 router.get("/users/profile", userController.getProfile);
 router.post("/users/editProfile/:email", userController.editProfile);
+router.post("/users/addLanguages/:email", userController.addLanguages);
 router.get("/users", userController.getAllUsers);
 router.get(`/DirectResetPassword/:email`, userController.directResetPassword);
 router.get("/SendResetEmail", userController.sendResetEmail);

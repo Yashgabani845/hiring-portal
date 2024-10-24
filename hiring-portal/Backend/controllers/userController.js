@@ -178,6 +178,37 @@ exports.editProfile = async (req, res) => {
   }
 };
 
+exports.addLanguages = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { languages } = req.body;
+    console.log(email);
+    console.log(languages);
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (!user.profileDetails) {
+      user.profileDetails = {};
+    }
+
+    console.log('first',languages);
+
+    user.profileDetails.languages = languages || user.profileDetails.languages || [];
+
+    await user.save();
+
+    res.status(200).json({ message: "Languages updated successfully", user });
+  } catch (error) {
+    console.error("Error updating user profile:", error);
+    res.status(500).json({ message: "Error updating user profile", error });
+  }
+};
+
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
