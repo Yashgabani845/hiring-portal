@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const GoogleTranslate = () => {
+const   GoogleTranslate = () => {
   useEffect(() => {
     window.googleTranslateInit = () => {
       if (!window.google?.translate?.TranslateElement) {

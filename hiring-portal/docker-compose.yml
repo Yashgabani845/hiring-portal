@@ -1,0 +1,39 @@
+services:
+  # Backend Service (Node.js/Express)
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "5000:5000"  # Map backend's container port to host
+    environment:
+      MONGO_URI: mongodb://mongo:27017/hiring-portal-db
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app  # Bind mount the root directory to the container
+    command: node server.js  # Make sure you have a script for starting the backend
+
+  # Frontend Service (React)
+  frontend:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    ports:
+      - "3000:3000"  # Map frontend's container port to host
+    depends_on:
+      - backend  # Ensure backend is up before frontend
+    volumes:
+      - .:/app  # Bind mount the root directory to the container
+    command: npm start # Make sure you have a script for starting the frontend
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"  # Map MongoDB's container port to host
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data
+
+volumes:
+  mongo-data:

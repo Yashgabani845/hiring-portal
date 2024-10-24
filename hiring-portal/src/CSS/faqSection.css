@@ -65,14 +65,19 @@
 .faq-question .icon {
     font-size: 1.5rem;
     color: var(--primary-color);
+    transition: transform 0.3s ease; 
+}
+
+.faq-item.active .icon {
+    transform: rotate(180deg); 
 }
 
 .faq-answer {
+    max-height: 0;
     overflow: hidden;
-    height: 0;
     opacity: 0;
     padding: 0;
-    transition: height 0.3s ease, opacity 0.3s ease;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
 }
 
 .faq-answer p {
@@ -82,7 +87,7 @@
 }
 
 .faq-item.active .faq-answer {
-    height: auto;
+    max-height: 500px; 
     opacity: 1;
     padding-top: 10px;
 }
