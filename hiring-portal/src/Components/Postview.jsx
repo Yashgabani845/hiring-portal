@@ -5,10 +5,10 @@ import postImg from "../assests/3rdone.jpg";
 const PostView = () => {
   return (
     <div className="postview">
-      <div className="post-img">
+      <div className="post-img" data-aos="fade-right" >
         <img src={postImg} alt="Post a Job" />
       </div>
-      <div className="ptext-part ">
+      <div className="ptext-part " data-aos="fade-left">
         <h1>Post Your Job Opening Today!</h1>
         <p>
           Reach thousands of qualified candidates by posting your job on our

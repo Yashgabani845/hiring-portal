@@ -20,7 +20,7 @@ const MiddleView = () => {
 
     return (
         <div className="middleview">
-            <div className="text-part">
+            <div className="text-part" data-aos="fade-right">
                 <h1>Discover Jobs Across Popular Roles</h1>
                 <center>
                     {" "}
@@ -36,7 +36,7 @@ const MiddleView = () => {
                     </div>
                 </div>
             </div>
-            <div className="jobimg">
+            <div className="jobimg" data-aos="fade-left">
                 <LazyLoad height={200} offset={100} once>
                     <img src={jobimg} alt="jobs" className="job-image" loading="lazy" />
                 </LazyLoad>

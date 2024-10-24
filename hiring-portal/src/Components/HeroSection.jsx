@@ -48,7 +48,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="hero-section">
+    <div className="hero-section" data-aos="zoom-in" data-aos-duration="2000">
       <div className="hero-content">
         <h1>Find Your Dream Job</h1>
         <p>

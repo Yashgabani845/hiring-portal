@@ -107,13 +107,13 @@ const SignIn = () => {
       <div className="signin-page">
         <center>
           <Link to="/">
-          <div className="welcom1">
-            <h1>Welcome to&nbsp;&nbsp;</h1>
-            <img src={logo} alt="Logo" />
-          </div>
+            <div className="welcom1">
+              <h1 data-aos='zoom-in'>Welcome to&nbsp;&nbsp;</h1>
+              <img src={logo} alt="Logo" data-aos='zoom-in' />
+            </div>
           </Link>
         </center>
-        <div className="signin-data">
+        <div className="signin-data" data-aos='zoom-in' data-aos-delay='100'>
           <div className="signin-image">
             <img
               src={jobImage}
@@ -167,7 +167,7 @@ const SignIn = () => {
                 <button type="button" onClick={showForgotPasswordModal}>
                   Forgot Password
                 </button>
-              </div>              
+              </div>
             </form>
             <div className="extra-options">
               <a href="/signup">Don't have an account? Sign Up</a>

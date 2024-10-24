@@ -100,8 +100,8 @@ const Job = () => {
     return `${days.toString().padStart(2, "0")}:${hours
       .toString()
       .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
-      .toString()
-      .padStart(2, "0")}`;
+        .toString()
+        .padStart(2, "0")}`;
   };
 
   const formatDate = (dateStr) => {
@@ -270,7 +270,7 @@ const Job = () => {
       <Navbar />
       <div className="job-page">
         <div className="job-container">
-          <div className="job-section">
+          <div className="job-section" data-aos="fade-right" data-aos-delay="100">
             {renderJobDetails()}
             <button
               className="apply-button"
@@ -287,7 +287,7 @@ const Job = () => {
               Apply Now
             </button>
           </div>
-          <div className="recommendation-section">
+          <div className="recommendation-section" data-aos="fade-left" data-aos-delay="100">
             <h2>Recommended Jobs</h2>
             <div className="recommended-job-grid">
               {recommendedJobs.map((job, index) => (

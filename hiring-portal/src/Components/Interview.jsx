@@ -4,10 +4,10 @@ import "../CSS/interview.css"
 const Interview = () => {
     return (
         <div className="interview">
-            <div className="iimg">
+            <div className="iimg" data-aos="fade-left">
                 <img src={getty} alt="Interview Preparation" />
             </div>
-            <div className="itext-part">
+            <div className="itext-part" data-aos="fade-right">
                 <div className="ititle">Shortlisting and Mailing </div>
                 <div className="islogan">
                     Single platform for whole interview process

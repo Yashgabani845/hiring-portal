@@ -49,7 +49,7 @@ const ResumeAnalyzer = () => {
     return (
         <>
             <Navbar />
-            <form onSubmit={handleSubmit} className="upload-form">
+            <form onSubmit={handleSubmit} className="upload-form" data-aos="zoom-in">
                 <h2>Resume and Job Description Analysis</h2>
                 <div
                     className="file-input-container"

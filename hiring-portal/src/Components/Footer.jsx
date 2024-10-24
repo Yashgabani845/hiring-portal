@@ -58,7 +58,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="align-content">
-                <div className="footer-column">
+                <div className="footer-column" data-aos="fade-right">
                     <h4>Subscribe to our Newsletter</h4>
                     <form className="subscribe-form" onSubmit={handleSubscribe}>
                         <input
@@ -72,14 +72,14 @@ const Footer = () => {
                     </form>
                     {message && <p className="message">{message}</p>}
                 </div>
-                <div className="footer-column">
+                <div className="footer-column" data-aos="fade-left">
                     <h4>Select your language</h4>
                     <GoogleTranslate />
                 </div>
             </div>
 
             <div className="footer-container">
-                <div className="flex">
+                <div className="flex" data-aos="fade-up" data-aos-delay="100">
                     <div className="footer-column">
                         <h3>Company</h3>
                         <ul>
@@ -89,7 +89,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="flex">
+                <div className="flex" data-aos="fade-up" data-aos-delay="200">
                     <div className="footer-column">
                         <h3>Resources</h3>
                         <ul>
@@ -100,7 +100,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-                <div className="flex">
+                <div className="flex" data-aos="fade-up" data-aos-delay="300">
                     <div className="footer-column">
                         <h3>Legal</h3>
                         <ul>
@@ -109,7 +109,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="flex">
+                <div className="flex" data-aos="fade-up" data-aos-delay="400">
                     <div className="footer-column">
                         <h3>Follow Us</h3>
                         <div className="social-icons">
@@ -123,7 +123,7 @@ const Footer = () => {
 
                 </div>
             </div>
-            <div className="footer-bottom">
+            <div className="footer-bottom" data-aos="fade-up" data-aos-delay="100" data-aos-offset="30">
                 <p>&copy; 2024 Hirehub. All rights reserved.</p>
             </div>
         </footer>
