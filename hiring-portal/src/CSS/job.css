@@ -288,6 +288,7 @@
   }
 }
 
+
 @media (max-width: 600px) {
   .job-container {
     flex-direction: column !important ;
@@ -308,3 +309,4 @@
     width: 100%;
   }
 }
+
