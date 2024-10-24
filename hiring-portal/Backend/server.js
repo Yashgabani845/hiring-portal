@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
 const { exec } = require("child_process");
 const bodyParser = require("body-parser");
 const compilex = require("compilex");
@@ -33,6 +34,9 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(helmet());
+
 app.use(bodyParser.json());
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose
