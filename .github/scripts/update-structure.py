@@ -3,10 +3,19 @@ import github
 from github import Github
 
 def get_repo_structure(path='.', prefix=''):
+    """
+    Recursively retrieves the directory structure.
+    Returns a list of formatted directory paths.
+    """
     structure = []
-    items = sorted(os.listdir(path))
+    try:
+        items = sorted(os.listdir(path))
+    except FileNotFoundError:
+        print(f"Path {path} not found.")
+        return structure
+
     for i, item in enumerate(items):
-        if item.startswith('.'):
+        if item.startswith('.'):  # Skipping hidden files/folders
             continue
         item_path = os.path.join(path, item)
         if os.path.isdir(item_path):
@@ -18,16 +27,27 @@ def get_repo_structure(path='.', prefix=''):
     return structure
 
 def update_structure_file(structure):
+    """
+    Updates or creates the repo_structure.txt file with the given structure.
+    """
     with open('repo_structure.txt', 'w') as f:
         f.write('\n'.join(structure))
+    print("repo_structure.txt updated.")
 
 def update_readme(structure):
-    with open('README.md', 'r') as f:  # updated file name
-        content = f.read()
+    """
+    Updates the README.md file by inserting the current repo structure between markers.
+    """
+    try:
+        with open('README.md', 'r') as f:
+            content = f.read()
+    except FileNotFoundError:
+        print("README.md file not found.")
+        return
 
     start_marker = '<!-- START_STRUCTURE -->'
     end_marker = '<!-- END_STRUCTURE -->'
-    
+
     start_index = content.find(start_marker)
     end_index = content.find(end_marker)
 
@@ -37,16 +57,31 @@ def update_readme(structure):
             '\n```\n' + '\n'.join(structure) + '\n```\n' +
             content[end_index:]
         )
-        
+
         with open('README.md', 'w') as f:
             f.write(new_content)
         print("README.md updated with new structure.")
     else:
-        print("Markers not found in Repo-structure.md. Structure not updated.")
+        print("Markers not found in README.md. Structure not updated.")
 
 def main():
-    g = Github(os.environ['GH_TOKEN'])
-    repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+    """
+    Main function to handle GitHub repo interaction and structure updating.
+    """
+    gh_token = os.environ.get('GH_TOKEN')
+    repo_name = os.environ.get('GITHUB_REPOSITORY')
+
+    if not gh_token or not repo_name:
+        print("Error: Environment variables GH_TOKEN or GITHUB_REPOSITORY not set.")
+        return
+
+    g = Github(gh_token)
+
+    try:
+        repo = g.get_repo(repo_name)
+    except github.GithubException as e:
+        print(f"GitHub API error: {e}")
+        return
 
     current_structure = get_repo_structure()
 

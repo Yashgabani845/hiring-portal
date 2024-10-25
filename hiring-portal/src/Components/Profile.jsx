@@ -10,12 +10,8 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import SettingsIcon from "@mui/icons-material/Settings";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 import { toast, ToastContainer } from "react-toastify";
-import { AddCircleOutline as CICirclePlus } from "@mui/icons-material";
-import { Modal, Box, Typography, Button, TextField } from "@mui/material";
-import Select from "react-select";
-import skillsOptions from "./skills.json";
-import "../CSS/signup.css";
 import Skeleton from "@mui/material/Skeleton";
 import { IoIosInformationCircle } from "react-icons/io";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -28,10 +24,7 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaExternalLinkAlt,
-  FaPlus,
 } from "react-icons/fa";
-import axios from "axios";
-
 const modalStyle = {
   position: "absolute",
   top: "50%",
@@ -70,47 +63,45 @@ const Profile = () => {
   const [openLogoutModal, setOpenLogoutModal] = useState(false); // Modal state
 
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [languages, setLanguages] = useState([]);
 
-  const fetchUserProfile = async () => {
-    try {
-      const email = localStorage.getItem("userEmail");
-      if (email) {
-        // Fetch user profile
-        const response = await fetch(
-          `http://localhost:5000/api/users/profile?email=${encodeURIComponent(
-            email
-          )}`
-        );
-        if (!response.ok) throw new Error("Failed to fetch user profile");
-        const userData = await response.json();
-        setUser(userData);
-        setLanguages(userData.profileDetails.languages);
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const email = localStorage.getItem("userEmail");
+        if (email) {
+          // Fetch user profile
+          const response = await fetch(
+            `http://localhost:5000/api/users/profile?email=${encodeURIComponent(
+              email
+            )}`
+          );
+          if (!response.ok) throw new Error("Failed to fetch user profile");
+          const userData = await response.json();
+          setUser(userData);
 
-        // Fetch applications
-        const applicantId = userData._id; // Assuming applicantId is part of user data
-        const appsResponse = await fetch(
-          `http://localhost:5000/api/applicationss/${applicantId}`
-        );
-        if (!appsResponse.ok) throw new Error("Failed to fetch applications");
-        const appsData = await appsResponse.json();
-        setApplications(appsData);
+          // Fetch applications
+          const applicantId = userData._id; // Assuming applicantId is part of user data
+          const appsResponse = await fetch(
+            `http://localhost:5000/api/applicationss/${applicantId}`
+          );
+          if (!appsResponse.ok) throw new Error("Failed to fetch applications");
+          const appsData = await appsResponse.json();
+          setApplications(appsData);
 
-        setLoading(false);
-        setAppLoading(false);
-      } else {
-        setError("No email found in localStorage");
+          setLoading(false);
+          setAppLoading(false);
+        } else {
+          setError("No email found in localStorage");
+          setLoading(false);
+          setAppLoading(false);
+        }
+      } catch (err) {
+        setError(err.message);
         setLoading(false);
         setAppLoading(false);
       }
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-      setAppLoading(false);
-    }
-  };
-  useEffect(() => {
+    };
+
     fetchUserProfile();
   }, []);
 
@@ -180,7 +171,6 @@ const Profile = () => {
     setOpenLogoutModal(false); // Close modal after logout
   };
 
-
   if (loading)
     return (
       <div className="skeletonDiv">
@@ -211,48 +201,6 @@ const Profile = () => {
         </div>
       </div>
     );
-
-  const handleEdit = () => {
-    navigate(`/editProfile`);
-  };
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleLanguagesChange = (selectedOptions) => {
-    const selectedLanguages = selectedOptions.map((option) => option.value);
-    setLanguages(selectedLanguages);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("first lan", languages);
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/users/addLanguages/${email}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ languages }),
-        }
-      );
-      console.log(response.data);
-      if (response.status == 200) {
-        alert("Languages added successfully!");
-        fetchUserProfile();
-        setOpen(false);
-      } else {
-        alert("Failed to add languages.");
-      }
-    } catch (error) {
-      console.error("Error submitting languages:", error);
-      alert("An error occurred. Please try again.");
-    }
-  };
-
- 
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
 
@@ -328,14 +276,7 @@ const Profile = () => {
                   Manage Job
                 </button>
               )}
-
               <button className="logout-btn" onClick={handleOpenLogoutModal}>
-
-              <button className="logout-btn" onClick={handleEdit}>
-                Edit Profile
-              </button>
-            
-
                 Logout
               </button>
             </div>
@@ -493,70 +434,10 @@ const Profile = () => {
 
             {/* Languages Section */}
             <section className="profile-section languages-section">
-              <div
-                className="section-header flex"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <ContactMailIcon className="section-icon" />
-                  <h2 style={{ marginLeft: "8px" }}>Languages</h2>{" "}
-                  {/* Optional: Adjust margin as needed */}
-                </div>
-
-                <CICirclePlus
-                  onClick={handleOpen} // Click to open the modal
-                  style={{ cursor: "pointer", verticalAlign: "middle", fontSize: "30px" }}
-                />
+              <div className="section-header">
+                <ContactMailIcon className="section-icon" />
+                <h2>Languages</h2>
               </div>
-
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="add-languages-modal"
-                aria-describedby="add-languages-description"
-              >
-                <Box sx={modalStyle}>
-                  <Typography
-                    id="add-languages-modal"
-                    variant="h6"
-                    component="h2"
-                  >
-                    Add Languages
-                  </Typography>
-
-                  <Typography id="add-languages-description" sx={{ mt: 2 }}>
-                    Please add languages you are familiar with.
-                  </Typography>
-
-                  <form
-                    className="signupform  modal-select"
-                    onSubmit={handleSubmit}
-                  >
-                    <Select
-                      isMulti
-                      name="languages"
-                      options={skillsOptions} // The options from the JSON file
-                      className="basic-multi-select"
-                      classNamePrefix="select"
-                      onChange={handleLanguagesChange} // Handle change event
-                      value={skillsOptions.filter((option) =>
-                        languages.includes(option.value)
-                      )} // Prepopulate selected values
-                    />
-
-                    {/* Action Buttons */}
-                    <Box display="flex" justifyContent="flex-end" mt={2}>
-                      <button type="submit">Submit</button>
-                      <button onClick={handleClose}>Cancel</button>
-                    </Box>
-                  </form>
-                </Box>
-              </Modal>
-
               {profileDetails.languages.length > 0 ? (
                 <ul className="languages-list">
                   {profileDetails.languages.map((language, index) => (
