@@ -171,7 +171,6 @@ const Profile = () => {
     setOpenLogoutModal(false); // Close modal after logout
   };
 
-
   if (loading)
     return (
       <div className="skeletonDiv">
@@ -202,11 +201,6 @@ const Profile = () => {
         </div>
       </div>
     );
-
-  const handleEdit = () => {
-    navigate(`/editProfile`);
-  }
-
 
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
@@ -283,13 +277,7 @@ const Profile = () => {
                   Manage Job
                 </button>
               )}
-
               <button className="logout-btn" onClick={handleOpenLogoutModal}>
-
-                <button className="logout-btn" onClick={handleEdit}>
-                  Edit Profile
-                </button>
-
 
                 Logout
               </button>

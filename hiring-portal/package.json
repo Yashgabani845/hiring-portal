@@ -29,6 +29,7 @@
     "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-rate-limit": "^7.4.1",
     "express-session": "^1.18.0",
     "fetch": "^1.1.0",
     "firebase": "^10.12.5",
