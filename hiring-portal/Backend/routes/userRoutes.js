@@ -43,6 +43,7 @@ router.post("/users/addLanguages/:email", userController.addLanguages);
 router.get("/users", userController.getAllUsers);
 router.get(`/DirectResetPassword/:email`, userController.directResetPassword);
 router.get("/SendResetEmail", userController.sendResetEmail);
+router.post("/users/addskill", userController.Addskill);
 
 router.post(
   "/edit-image/:email",
