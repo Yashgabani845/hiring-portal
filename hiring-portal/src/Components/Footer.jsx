@@ -53,6 +53,7 @@ const Footer = () => {
     }, 4000); // 4000ms = 4 seconds (adjustable)
   };
 
+
   useEffect(() => {
     // Configure the chatbot
     window.embeddedChatbotConfig = {
