@@ -1,6 +1,6 @@
 import logo from "./assests/logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Homepage from "./Components/Homepage";
 import HeroSection from "./Components/HeroSection";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -30,11 +30,20 @@ import BlogPage from "./Components/BlogPage";
 import EditProfile from "./Components/EditProfile";
 import ResumeAnalyzer from "./Components/ResumeAnalyzer";
 import BackToTop from "./Components/BackToTop";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
 
 function App() {
   const [test, setTest] = useState(null);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1800,
+    });
+  }, [])
+
 
   return (
     <><BackToTop /><Router>
@@ -61,7 +70,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
-        <Route path="*" element={<Error404/>} />
+        <Route path="*" element={<Error404 />} />
         <Route
           path="/assessment-results/:jobId"
           element={<AssessmentResults />} />

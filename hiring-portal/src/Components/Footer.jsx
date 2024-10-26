@@ -5,12 +5,9 @@ import { FaXTwitter } from "react-icons/fa6";
 
 import GoogleTranslate from "./GoogleTranslate";
 
-
-
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
 
   // Handle form submission
   const handleSubscribe = async (e) => {
@@ -48,40 +45,35 @@ const Footer = () => {
     }
   };
 
-  
-    // Function to clear the message and reset email after a timeout (3 to 5 seconds)
-    const clearMessageAndResetEmail = () => {
-        setTimeout(() => {
-            setMessage(""); // Clear the message
-            setEmail("");   // Clear the email input field
-        }, 4000); // 4000ms = 4 seconds (adjustable)
+  // Function to clear the message and reset email after a timeout (3 to 5 seconds)
+  const clearMessageAndResetEmail = () => {
+    setTimeout(() => {
+      setMessage(""); // Clear the message
+      setEmail(""); // Clear the email input field
+    }, 4000); // 4000ms = 4 seconds (adjustable)
+  };
+
+
+  useEffect(() => {
+    // Configure the chatbot
+    window.embeddedChatbotConfig = {
+      chatbotId: "o4KUJL6ZjS6hreRuBl_g2",
+      domain: "www.chatbase.co",
     };
 
-    useEffect(() => {
-        // Configure the chatbot
-        window.embeddedChatbotConfig = {
-            chatbotId: "o4KUJL6ZjS6hreRuBl_g2",
-            domain: "www.chatbase.co"
-        };
+    // Dynamically create the script element
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.defer = true;
 
-        // Dynamically create the script element
-        const script = document.createElement('script');
-        script.src = "https://www.chatbase.co/embed.min.js";
-        script.defer = true;
+    // Append the script to the body
+    document.body.appendChild(script);
 
-        // Append the script to the body
-        document.body.appendChild(script);
-
-        // Clean up the script when the component unmounts
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
-
-
-
-
- 
+    // Clean up the script when the component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <footer className="footer">
@@ -99,6 +91,7 @@ const Footer = () => {
         </form>
         {message && <p className="message">{message}</p>}
       </div>
+
 
       <div className="footer-container">
         <div className="flex">

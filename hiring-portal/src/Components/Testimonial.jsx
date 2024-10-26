@@ -79,6 +79,7 @@ const Testimonials = () => {
   return (
     <>
 
+
       <h1 style={{ fontWeight: 'bold', fontSize: '3rem', textAlign: 'center' }}>
         What Our Users Say About HireHub
       </h1>

@@ -23,13 +23,14 @@ const FAQSection = () => {
     return (
         <>
             <section className="faq-section" id="faqs">
-                <h2 className="faq-title">Frequently Asked Questions</h2>
+                <h2 className="faq-title" data-aos="fade-up">Frequently Asked Questions</h2>
                 <div className="faq-container">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
                             className={`faq-item ${activeIndex === index ? "active" : ""}`}
                             onClick={() => toggleFAQ(index)}
+                            data-aos="fade-up"
                         >
                             <div className="faq-question">
                                 <h3>{faq.question}</h3>
