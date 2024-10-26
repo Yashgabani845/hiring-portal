@@ -57,8 +57,8 @@ const Jobpage = () => {
                 <div className="sidebar"
                     style={{ transform: isSidebar ? "translateX(0%)" : "translateX(-100%" }}
                 >
-                    <h2>Filters</h2>
-                    <div className="filter">
+                    <h2 >Filters</h2>
+                    <div className="filter" >
                         <h3>Job Type</h3>
                         <label>
                             <input
@@ -79,7 +79,7 @@ const Jobpage = () => {
                             /> Part-time
                         </label>
                     </div>
-                    <div className="filter">
+                    <div className="filter" >
                         <label>
                             <input type="radio" name="remoteOption" value="true" onChange={handleFilterChange} /> Remote
                         </label>
@@ -87,7 +87,8 @@ const Jobpage = () => {
                             <input type="radio" name="remoteOption" value="false" onChange={handleFilterChange} /> On-site
                         </label>
                     </div>
-                    <div className="filter">
+                     <div className="filter">
+ 
                         <label>
                             Industry:
                             <input
@@ -99,7 +100,8 @@ const Jobpage = () => {
                             />
                         </label>
                     </div>
-                    <div className="filter">
+                     <div className="filter">
+ 
                         <label>
                             Work Location:
                             <input
@@ -112,7 +114,7 @@ const Jobpage = () => {
                         </label>
                     </div>
 
-                    <div className="filter">
+                    <div className="filter"  >
                         <h3>Experience Level</h3>
                         <label>
                             <input

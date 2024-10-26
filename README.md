@@ -168,7 +168,24 @@ If you encounter any bugs or have feature requests, please follow this format wh
   </a>
 </div>
 
----
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+## Stargazers ❤️
+
+<div align='left'>
+
+[![Stargazers repo roster for @Yashgabani845/hiring-portal](https://reporoster.com/stars/dark/Yashgabani845/hiring-portal)](https://github.com/Yashgabani845/hiring-portal/stargazers)
+
+
+</div>
+
+## Forkers ❤️
+
+[![Forkers repo roster for @Yashgabani845/hiring-portal](https://reporoster.com/forks/dark/Yashgabani845/hiring-portal)](https://github.com/Yashgabani845/hiring-portal/network/members)
+
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 
 ## License 📃
 

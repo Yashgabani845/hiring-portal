@@ -1,6 +1,6 @@
 import "./App.css";
-import React from "react";
-import Homepage from "./Components/Homepage";
+import React, { useEffect, useState } from "react";
+ import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -28,9 +28,18 @@ import BlogPage from "./Components/BlogPage";
 import EditProfile from "./Components/EditProfile";
 import ResumeAnalyzer from "./Components/ResumeAnalyzer";
 import BackToTop from "./Components/BackToTop";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
 
 function App() {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1800,
+    });
+  }, [])
+
 
   return (
     <><BackToTop /><Router>

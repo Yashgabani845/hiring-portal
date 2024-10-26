@@ -46,7 +46,7 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
     }, [company]);
 
     return (
-        <Link to={`/job/${id}`}>
+        <Link to={`/job/${id}`} data-aos="fade-up" data-aos-delay="100">
             <div className="job-card-container">
                 <div className="job-image-wrapper">
                     <img src={comlogo || defaultlogo} alt="company logo" className="job-card-image" />

@@ -69,14 +69,14 @@ const About = () => {
     <>
       <Navbar />
       <div className="about-container">
-        <div className="feature-section">
+        <div className="feature-section" data-aos="zoom-in">
           <h1>Welcome to Hiring Hub</h1>
           <p>Our comprehensive platform for job searching and recruitment.</p>
         </div>
 
         <div className="features">
           {featureData.map((feature, index) => (
-            <div className="feature" key={index}>
+            <div className="feature" key={index} data-aos="zoom-in">
               <img src={feature.image} alt={feature.title} className="feature-image" />
               <div className="feature-text">
                 <h2>{feature.title}</h2>

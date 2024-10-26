@@ -109,7 +109,7 @@ exports.editProfile = async (req, res) => {
     const { email } = req.params;
     console.log(email);
     const user = await User.findOne({ email });
-    console.log("user",user);
+    console.log("user", user);
     if (!user) return res.status(404).json({ message: "User not found" });
     const {
       name,
@@ -131,9 +131,7 @@ exports.editProfile = async (req, res) => {
     } = req.body;
 
     if (!name) {
-      return res
-        .status(400)
-        .json({ message: "Name is required" });
+      return res.status(400).json({ message: "Name is required" });
     }
 
     user.name = name || user.name;
@@ -157,10 +155,10 @@ exports.editProfile = async (req, res) => {
       // If pastJobs are provided, replace the current pastJobs array
       if (pastJobs && pastJobs.length > 0) {
         user.profileDetails.pastJobs = pastJobs.map((job) => ({
-          company: job.company || '',
-          role: job.role || '',
-          duration: job.duration || '',
-          details: job.details || '',
+          company: job.company || "",
+          role: job.role || "",
+          duration: job.duration || "",
+          details: job.details || "",
         }));
       }
     } else {
@@ -174,7 +172,7 @@ exports.editProfile = async (req, res) => {
     res.status(200).json({ message: "Profile updated successfully", user });
   } catch (error) {
     console.error("Error updating user profile:", error);
-    res.status(500).json({ message: "Error updating user profile", error }); 
+    res.status(500).json({ message: "Error updating user profile", error });
   }
 };
 
@@ -195,9 +193,10 @@ exports.addLanguages = async (req, res) => {
       user.profileDetails = {};
     }
 
-    console.log('first',languages);
+    console.log("first", languages);
 
-    user.profileDetails.languages = languages || user.profileDetails.languages || [];
+    user.profileDetails.languages =
+      languages || user.profileDetails.languages || [];
 
     await user.save();
 
@@ -207,7 +206,6 @@ exports.addLanguages = async (req, res) => {
     res.status(500).json({ message: "Error updating user profile", error });
   }
 };
-
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -341,5 +339,25 @@ exports.EditImage = async (req, resp) => {
   } catch (error) {
     console.error(error);
     return resp.status(500).json({ message: "Server error", error });
+  }
+};
+exports.Addskill = async (req, resp) => {
+  try {
+    const { email, skill } = req.body;
+
+    const user = await User.findOneAndUpdate(
+      { email },
+      { $addToSet: { "profileDetails.skills": skill } }, // Target the nested skills field
+      { new: true } // Return the updated document
+    );
+
+    if (!user) {
+      return resp.status(404).json({ message: "User not found" });
+    }
+
+    return resp.status(200).json({ message: "Skill added successfully", user });
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "An error occurred", error });
   }
 };

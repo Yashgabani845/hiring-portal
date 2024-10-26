@@ -53,6 +53,7 @@ const Footer = () => {
     }, 4000); // 4000ms = 4 seconds (adjustable)
   };
 
+
   useEffect(() => {
     // Configure the chatbot
     window.embeddedChatbotConfig = {
@@ -90,6 +91,7 @@ const Footer = () => {
         </form>
         {message && <p className="message">{message}</p>}
       </div>
+
 
       <div className="footer-container">
         <div className="flex">
