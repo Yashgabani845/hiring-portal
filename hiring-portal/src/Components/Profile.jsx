@@ -61,9 +61,9 @@ const Profile = () => {
   const [imageFile, setImageFile] = useState(null);
   const [mail, setEmail] = useState("");
   const [openLogoutModal, setOpenLogoutModal] = useState(false); // Modal state
-
+  const [Addskill, SetAddSkill] = useState(false);
   const navigate = useNavigate();
-
+  const [skilltoadd, Setskilltoadd] = useState("");
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -170,6 +170,32 @@ const Profile = () => {
     navigate("/signin");
     setOpenLogoutModal(false); // Close modal after logout
   };
+  async function addSkill(skill) {
+    try {
+      const email = localStorage.getItem("userEmail");
+      const response = await fetch("http://localhost:5000/api/users/addskill", {
+        // Adjust this URL to match your backend route
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, skill }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        Setskilltoadd("");
+      } else {
+        console.error("Error:", data.message);
+        alert("Error: " + data.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
+  }
 
   if (loading)
     return (
@@ -392,6 +418,58 @@ const Profile = () => {
             ) : (
               <p>No skills listed.</p>
             )}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+                gap: "1rem",
+              }}
+            >
+              {" "}
+              <Button
+                className="Save-btn"
+                style={{
+                  backgroundColor: "#007bff",
+                  height: "37px",
+                  color: "white",
+                  marginTop: "1rem",
+                }}
+                onClick={() => {
+                  SetAddSkill(true);
+                }}
+              >
+                Add skill
+              </Button>
+              {Addskill ? (
+                <div
+                  style={{ display: "flex", gap: "2rem", alignItems: "center" }}
+                >
+                  <input
+                    type="text"
+                    style={{ height: "37px" }}
+                    placeholder="Add skill"
+                    value={skilltoadd}
+                    onChange={(e) => {
+                      Setskilltoadd(e.target.value);
+                    }}
+                  ></input>
+                  <Button
+                    className="Save-btn"
+                    style={{
+                      backgroundColor: "#007bff",
+                      height: "37px",
+                      color: "white",
+                    }}
+                    onClick={() => {
+                      addSkill(skilltoadd);
+                    }}
+                  >
+                    Save
+                  </Button>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
 
