@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import '../CSS/createBlog.css'; // Import the CSS file
+import '../CSS/createBlog.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import axios from "axios";
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid'; // Import uuid for generating unique IDs
+import { v4 as uuidv4 } from 'uuid';
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css'; 
 
 const CreateBlog = () => {
     const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ const CreateBlog = () => {
         author: '',
         date: '',
         content: '',
-        id: '', // Add an id field
+        id: '', 
     });
 
     const [loading, setLoading] = useState(false);
@@ -24,6 +26,13 @@ const CreateBlog = () => {
         setFormData({
             ...formData,
             [name]: value
+        });
+    };
+
+    const handleContentChange = (value) => {
+        setFormData({
+            ...formData,
+            content: value
         });
     };
 
@@ -94,17 +103,34 @@ const CreateBlog = () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="content">Content</label>
-                        <textarea
+                        <ReactQuill
                             id="content"
                             name="content"
                             value={formData.content}
-                            onChange={handleChange}
+                            onChange={handleContentChange}
                             required
+                            modules={{
+                                toolbar: [
+                                    [{ 'header': [1, 2, false] }],
+                                    ['bold', 'italic', 'underline'],
+                                    ['link', 'image'],
+                                    ['clean']                                        
+                                ]
+                            }}
+                            formats={[
+                                'header',
+                                'bold',
+                                'italic',
+                                'underline',
+                                'link',
+                                'image'
+                            ]}
                         />
                     </div>
 
                     <button type="submit" className="submit-button">Submit</button>
                 </form>
+                {errors && <p className="error-message">{errors}</p>}
             </div>
             <Footer />
         </>

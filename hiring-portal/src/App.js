@@ -31,6 +31,7 @@ import EditProfile from "./Components/EditProfile";
 import ResumeAnalyzer from "./Components/ResumeAnalyzer";
 import BackToTop from "./Components/BackToTop";
 import Error404 from "./Components/Error404";
+import CreateBlog from "./Components/CreateBlog";
 
 function App() {
   const [test, setTest] = useState(null);
@@ -70,6 +71,7 @@ function App() {
         <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+        <Route path="/create-blog" element={<CreateBlog />} />
 
       </Routes>
     </Router></>
