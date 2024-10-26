@@ -2,22 +2,20 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import "../CSS/signup.css";
 import axios from 'axios';
-import skillsOptions from './skills.json'; 
-import jobOptions from './upJobs.json'; 
+import skillsOptions from './skills.json';
+import jobOptions from './upJobs.json';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase/firebase';
-import Navbar from "./Navbar";
 
 const EditProfile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
 
   const [step, setStep] = useState(1);
   const [isFresher, setIsFresher] = useState(false);
@@ -68,9 +66,9 @@ const EditProfile = () => {
             // role: userData.profileDetails.pastJobs.role || "",
             // duration: userData.profileDetails.pastJobs.duration || "",
             // details: userData.profileDetails.pastJobs.details || "",
-            pastJobs: userData.profileDetails.pastJobs.length > 0 
-            ? userData.profileDetails.pastJobs 
-            : [{ company: "", role: "", duration: "", details: "" }]
+            pastJobs: userData.profileDetails.pastJobs.length > 0
+              ? userData.profileDetails.pastJobs
+              : [{ company: "", role: "", duration: "", details: "" }]
           });
 
           setLoading(false);
@@ -97,7 +95,7 @@ const EditProfile = () => {
 
       uploadTask.on(
         "state_changed",
-        () => {},
+        () => { },
         (error) => {
           console.error("Upload failed:", error);
         },
@@ -117,9 +115,9 @@ const EditProfile = () => {
         degree: "",
         university: "",
         cgpa: "",
-    });
-} else {
-    setFormData({
+      });
+    } else {
+      setFormData({
         ...formData,
         [name]: value,
         pastJobs: [{ company: "", role: "", duration: "", details: "" }] // Reset past jobs if fresher
@@ -130,10 +128,10 @@ const EditProfile = () => {
   const handleSkillsChange = (selectedOptions) => {
     setFormData({
       ...formData,
-    //   skills: selectedOptions.map(option => option.value)
-    skills: selectedOptions ? selectedOptions.map(option => option.value) : []
+      //   skills: selectedOptions.map(option => option.value)
+      skills: selectedOptions ? selectedOptions.map(option => option.value) : []
     });
-    console.log('skills',formData.skills);
+    console.log('skills', formData.skills);
   };
 
   const handleJobChange = (index, e) => {
@@ -171,7 +169,7 @@ const EditProfile = () => {
       });
 
       if (response.ok) {
-        toast.success('Profile updated successfully!'); 
+        toast.success('Profile updated successfully!');
         navigate('/profile');
       }
     } catch (error) {
@@ -192,7 +190,7 @@ const EditProfile = () => {
           <div className={step >= 3 ? 'active' : ''}></div>
           <div className={step >= 4 ? 'active' : ''}></div>
         </div>
-      
+
         {/* Step 1: Personal Information */}
         {step === 1 && (
           <div>
@@ -228,19 +226,19 @@ const EditProfile = () => {
                 classNamePrefix="select"
                 // onChange={handleSkillsChange}
                 onChange={(selectedOptions) => {
-                    // Get the updated skills list
-                    const updatedSkills = selectedOptions ? selectedOptions.map(option => option.value) : [];
-              
-                    // Log the updated skills (to see the immediate change)
-                    console.log("Updated skills:", updatedSkills);
-              
-                    // Update the formData.skills state
-                    setFormData((prevData) => ({
-                        ...prevData,
-                        skills: updatedSkills
-                      }));
-                    console.log('first',formData.skills);
-                  }}
+                  // Get the updated skills list
+                  const updatedSkills = selectedOptions ? selectedOptions.map(option => option.value) : [];
+
+                  // Log the updated skills (to see the immediate change)
+                  console.log("Updated skills:", updatedSkills);
+
+                  // Update the formData.skills state
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    skills: updatedSkills
+                  }));
+                  console.log('first', formData.skills);
+                }}
                 value={skillsOptions.filter(option => formData.skills.includes(option.value))}
               />
             </label>
@@ -274,134 +272,134 @@ const EditProfile = () => {
         {/* Step 2: Job and Education Information */}
         {step === 2 && (
           <div>
-          {isFresher ? (
-            <div>
-              <h2>Educational Information</h2>
-              <label>
-                Degree:
-                <input
-                  type="text"
-                  name="degree"
-                  className="signupinput"
-                  value={formData.degree}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <label>
-                University:
-                <input
-                  type="text"
-                  name="university"
-                  className="signupinput"
-                  value={formData.university}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <label>
-                CGPA:
-                <input
-                  type="text"
-                  name="cgpa"
-                  className="signupinput"
-                  value={formData.cgpa}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-            </div>
-          ) : (
-            <div>
-              <h2>Educational and Past Job Details</h2>
-              <label>
-                Degree:
-                <input
-                  type="text"
-                  name="degree"
-                  className="signupinput"
-                  value={formData.degree}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <label>
-                University:
-                <input
-                  type="text"
-                  name="university"
-                  className="signupinput"
-                  value={formData.university}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <label>
-                CGPA:
-                <input
-                  type="text"
-                  name="cgpa"
-                  className="signupinput"
-                  value={formData.cgpa}
-                  onChange={handleChange}
-                />
-              </label>
-              <br />
-              <h3>Past Job Details</h3>
-              {formData.pastJobs.map((job, index) => (
-                <div key={index}>
-                  <label>
-                    Company:
-                    <input
-                      type="text"
-                      name="company"
-                      value={job.company}
-                      onChange={(e) => handleJobChange(index, e)}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    Role:
-                    <input
-                      type="text"
-                      name="role"
-                      value={job.role}
-                      onChange={(e) => handleJobChange(index, e)}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    Duration:
-                    <input
-                      type="text"
-                      name="duration"
-                      value={job.duration}
-                      onChange={(e) => handleJobChange(index, e)}
-                    />
-                  </label>
-                  <br />
-                  <label>
-                    Details:
-                    <textarea
-                      name="details"
-                      value={job.details}
-                      onChange={(e) => handleJobChange(index, e)}
-                    ></textarea>
-                  </label>
-                  <br />
-                  <button type="button" onClick={addJob}>
-                    Add Another Job
-                  </button>
-                  <br />
-                </div>
-              ))}
-            </div>
-          )}
-          <button type="button" onClick={prevStep}>
-            Previous
-          </button>
-          <button type="submit">Submit</button>
-        </div>
+            {isFresher ? (
+              <div>
+                <h2>Educational Information</h2>
+                <label>
+                  Degree:
+                  <input
+                    type="text"
+                    name="degree"
+                    className="signupinput"
+                    value={formData.degree}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  University:
+                  <input
+                    type="text"
+                    name="university"
+                    className="signupinput"
+                    value={formData.university}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  CGPA:
+                  <input
+                    type="text"
+                    name="cgpa"
+                    className="signupinput"
+                    value={formData.cgpa}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+              </div>
+            ) : (
+              <div>
+                <h2>Educational and Past Job Details</h2>
+                <label>
+                  Degree:
+                  <input
+                    type="text"
+                    name="degree"
+                    className="signupinput"
+                    value={formData.degree}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  University:
+                  <input
+                    type="text"
+                    name="university"
+                    className="signupinput"
+                    value={formData.university}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  CGPA:
+                  <input
+                    type="text"
+                    name="cgpa"
+                    className="signupinput"
+                    value={formData.cgpa}
+                    onChange={handleChange}
+                  />
+                </label>
+                <br />
+                <h3>Past Job Details</h3>
+                {formData.pastJobs.map((job, index) => (
+                  <div key={index}>
+                    <label>
+                      Company:
+                      <input
+                        type="text"
+                        name="company"
+                        value={job.company}
+                        onChange={(e) => handleJobChange(index, e)}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      Role:
+                      <input
+                        type="text"
+                        name="role"
+                        value={job.role}
+                        onChange={(e) => handleJobChange(index, e)}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      Duration:
+                      <input
+                        type="text"
+                        name="duration"
+                        value={job.duration}
+                        onChange={(e) => handleJobChange(index, e)}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      Details:
+                      <textarea
+                        name="details"
+                        value={job.details}
+                        onChange={(e) => handleJobChange(index, e)}
+                      ></textarea>
+                    </label>
+                    <br />
+                    <button type="button" onClick={addJob}>
+                      Add Another Job
+                    </button>
+                    <br />
+                  </div>
+                ))}
+              </div>
+            )}
+            <button type="button" onClick={prevStep}>
+              Previous
+            </button>
+            <button type="submit">Submit</button>
+          </div>
         )}
 
         {/* Step 3: Location and Preferences */}

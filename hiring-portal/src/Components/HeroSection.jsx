@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/herosection.css";
 import SearchIcon from "@mui/icons-material/Search";
-import LazyLoad from "react-lazyload";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 

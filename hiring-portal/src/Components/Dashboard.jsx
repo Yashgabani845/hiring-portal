@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/dashboard.css';
 import Jobpost from "./JobPostForm";
-import Managejob from "./Managejob";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faEdit, faEye, faFilter, faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';

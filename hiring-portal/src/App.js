@@ -1,8 +1,6 @@
-import logo from "./assests/logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import Homepage from "./Components/Homepage";
-import HeroSection from "./Components/HeroSection";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -33,7 +31,6 @@ import BackToTop from "./Components/BackToTop";
 import Error404 from "./Components/Error404";
 
 function App() {
-  const [test, setTest] = useState(null);
 
   return (
     <><BackToTop /><Router>
@@ -60,7 +57,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/application" element={<ApplicationForm />} />
         <Route path="/shortlist/:jobId" element={<Shortlist />} />
-        <Route path="*" element={<Error404/>} />
+        <Route path="*" element={<Error404 />} />
         <Route
           path="/assessment-results/:jobId"
           element={<AssessmentResults />} />

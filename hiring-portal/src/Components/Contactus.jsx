@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 import axios from "axios";
 
 import pic from '../assests/contact.webp';
@@ -352,8 +351,8 @@ const Contactus = () => {
                 </span>
                 <span>Address</span>
                 <span className="text">
-                2,Muktanand Society Ved Road Surat Pin-Code : 395004
-                          </span>
+                  2,Muktanand Society Ved Road Surat Pin-Code : 395004
+                </span>
               </div>
               <div>
                 <span>
