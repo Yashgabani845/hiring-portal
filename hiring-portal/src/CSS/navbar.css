@@ -14,10 +14,8 @@
 }
 
 .hirehublogo {
-
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 28px;
-
   font-weight: bold;
   color: #343a40;
 }
@@ -133,18 +131,13 @@
 }
 
 @media (max-width: 480px) {
-  .icon span {
-    display: none;
-  }
 
-  .icon {
-    margin: 10px;
-  }
-
+  .icon span,
   .posting span {
     display: none;
   }
+
   .navbar {
-    padding: 0px !important;  
+    padding: 0 !important;
   }
 }

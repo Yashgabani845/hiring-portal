@@ -91,6 +91,7 @@ const Footer = () => {
         {message && <p className="message">{message}</p>}
       </div>
 
+
       <div className="footer-container">
         <div className="flex">
           <div className="footer-column">

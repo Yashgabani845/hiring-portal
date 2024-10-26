@@ -201,6 +201,7 @@ const Profile = () => {
         </div>
       </div>
     );
+
   if (error) return <p>Error: {error}</p>;
   if (!user) return <p>No user data found</p>;
 
@@ -224,7 +225,7 @@ const Profile = () => {
       <div className="profile-container">
         {/* Left side: Profile image, work info, skills */}
         <div className="profile-left">
-          <div className="profile-card">
+          <div className="profile-card" data-aos="fade-right" data-aos-delay="100">
             <div
               style={{
                 textAlign: "center",
@@ -277,6 +278,7 @@ const Profile = () => {
                 </button>
               )}
               <button className="logout-btn" onClick={handleOpenLogoutModal}>
+
                 Logout
               </button>
             </div>
@@ -288,7 +290,7 @@ const Profile = () => {
             aria-labelledby="logout-confirmation-modal"
             aria-describedby="confirm-logout-action"
           >
-            <Box sx={modalStyle}>
+            <Box sx={modalStyle} data-aos="fade-right" data-aos-delay="200">
               <p style={{ fontWeight: "600" }}>
                 Are you sure you want to log out?
               </p>
@@ -320,7 +322,7 @@ const Profile = () => {
           {(!profileDetails.pastJobs || profileDetails.pastJobs.length === 0) &&
             profileDetails.experience &&
             profileDetails.experience.length > 0 && (
-              <section className="profile-section">
+              <section className="profile-section" data-aos="fade-right" data-aos-delay="200">
                 <div className="section-header">
                   <WorkIcon className="section-icon" />
                   <h2>Experience</h2>
@@ -346,7 +348,7 @@ const Profile = () => {
               </section>
             )}
           {profileDetails.pastJobs && profileDetails.pastJobs.length > 0 && (
-            <div className="work-info">
+            <div className="work-info" data-aos="fade-right" data-aos-delay="200">
               <div className="exp">
                 <WorkIcon className="section-icon" />
                 <h2>Past Jobs</h2>
@@ -376,7 +378,7 @@ const Profile = () => {
             </div>
           )}
 
-          <div className="skills-info">
+          <div className="skills-info" data-aos="fade-right" data-aos-delay="300">
             <h2>
               <SettingsIcon className="section-icon" />
               Skills
@@ -400,7 +402,7 @@ const Profile = () => {
           {/* top */}
           <div>
             {/* Education Section */}
-            <section className="profile-section education-section">
+            <section className="profile-section education-section" data-aos="fade-left" data-aos-delay="100">
               <div className="section-header">
                 <DescriptionIcon className="section-icon" />
                 <h2>Education</h2>
@@ -433,7 +435,7 @@ const Profile = () => {
             </section>
 
             {/* Languages Section */}
-            <section className="profile-section languages-section">
+            <section className="profile-section languages-section" data-aos="fade-left" data-aos-delay="200">
               <div className="section-header">
                 <ContactMailIcon className="section-icon" />
                 <h2>Languages</h2>
@@ -454,7 +456,7 @@ const Profile = () => {
 
           {/* bottom */}
           <div>
-            <section className="profile-section additional-info-section">
+            <section className="profile-section additional-info-section" data-aos="fade-left" data-aos-delay="300">
               <div className="section-header">
                 <IoIosInformationCircle
                   className="section-icon"

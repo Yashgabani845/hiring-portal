@@ -16,16 +16,16 @@ const Jobpage = () => {
         workLocation: ''
     });
 
-//filter logic
+    //filter logic
 
     const handleFilterChange = (e) => {
         const { name, value, type, checked } = e.target;
-        
+
         if (type === 'checkbox') {
             if (name === 'jobType' || name === 'experienceLevel') {
                 setFilters(prevFilters => ({
                     ...prevFilters,
-                    [name]: checked 
+                    [name]: checked
                         ? [...(prevFilters[name] || []), value]
                         : (prevFilters[name] || []).filter(item => item !== value)
                 }));
@@ -52,36 +52,36 @@ const Jobpage = () => {
             <Navbar />
             {/* sidebar mobile toggle */}
             <div className="sidebar-toggle" onClick={toggleSidebar}>
-                {isSidebar?"x":"Filters"}
+                {isSidebar ? "x" : "Filters"}
             </div>
             {/*  */}
             <div className="jobpage">
-                <div className="sidebar" 
-                    style={{transform: isSidebar?"translateX(0%)":"translateX(-100%"}}
+                <div className="sidebar"
+                    style={{ transform: isSidebar ? "translateX(0%)" : "translateX(-100%" }}
                 >
-                    <h2>Filters</h2>
-                    <div className="filter">
+                    <h2 >Filters</h2>
+                    <div className="filter" >
                         <h3>Job Type</h3>
                         <label>
-                            <input 
-                                type="checkbox" 
-                                name="jobType" 
-                                value="full-time" 
+                            <input
+                                type="checkbox"
+                                name="jobType"
+                                value="full-time"
                                 checked={filters.jobType.includes('full-time')}
-                                onChange={handleFilterChange} 
+                                onChange={handleFilterChange}
                             /> Full-time
                         </label>
                         <label>
-                            <input 
-                                type="checkbox" 
-                                name="jobType" 
-                                value="part-time" 
+                            <input
+                                type="checkbox"
+                                name="jobType"
+                                value="part-time"
                                 checked={filters.jobType.includes('part-time')}
-                                onChange={handleFilterChange} 
+                                onChange={handleFilterChange}
                             /> Part-time
                         </label>
                     </div>
-                    <div className="filter">
+                    <div className="filter" >
                         <label>
                             <input type="radio" name="remoteOption" value="true" onChange={handleFilterChange} /> Remote
                         </label>
@@ -89,58 +89,58 @@ const Jobpage = () => {
                             <input type="radio" name="remoteOption" value="false" onChange={handleFilterChange} /> On-site
                         </label>
                     </div>
-                    <div className="filter">
-    <label>
-        Industry:
-        <input
-            type="text"
-            name="industry"
-            value={filters.industry || ""}
-            onChange={handleFilterChange}
-            placeholder="Search for industry"
-        />
-    </label>
-</div>
-<div className="filter">
-    <label>
-        Work Location:
-        <input
-            type="text"
-            name="workLocation"
-            value={filters.workLocation || ""}
-            onChange={handleFilterChange}
-            placeholder="Search for location"
-        />
-    </label> 
-</div>
+                    <div className="filter"  >
+                        <label>
+                            Industry:
+                            <input
+                                type="text"
+                                name="industry"
+                                value={filters.industry || ""}
+                                onChange={handleFilterChange}
+                                placeholder="Search for industry"
+                            />
+                        </label>
+                    </div>
+                    <div className="filter"  >
+                        <label>
+                            Work Location:
+                            <input
+                                type="text"
+                                name="workLocation"
+                                value={filters.workLocation || ""}
+                                onChange={handleFilterChange}
+                                placeholder="Search for location"
+                            />
+                        </label>
+                    </div>
 
-                    <div className="filter">
+                    <div className="filter"  >
                         <h3>Experience Level</h3>
                         <label>
-                            <input 
-                                type="checkbox" 
-                                name="experienceLevel" 
-                                value="entry-level" 
+                            <input
+                                type="checkbox"
+                                name="experienceLevel"
+                                value="entry-level"
                                 checked={filters.experienceLevel.includes('entry-level')}
-                                onChange={handleFilterChange} 
+                                onChange={handleFilterChange}
                             /> entry-level
                         </label>
                         <label>
-                            <input 
-                                type="checkbox" 
-                                name="experienceLevel" 
-                                value="mid-level" 
+                            <input
+                                type="checkbox"
+                                name="experienceLevel"
+                                value="mid-level"
                                 checked={filters.experienceLevel.includes('mid-level')}
-                                onChange={handleFilterChange} 
+                                onChange={handleFilterChange}
                             /> mid-level
                         </label>
                         <label>
-                            <input 
-                                type="checkbox" 
-                                name="experienceLevel" 
-                                value="senior-level" 
+                            <input
+                                type="checkbox"
+                                name="experienceLevel"
+                                value="senior-level"
                                 checked={filters.experienceLevel.includes('senior-level')}
-                                onChange={handleFilterChange} 
+                                onChange={handleFilterChange}
                             /> senior-level
                         </label>
                     </div>

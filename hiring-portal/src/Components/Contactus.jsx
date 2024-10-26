@@ -324,21 +324,21 @@ const Contactus = () => {
         <section className="contact-section">
           <Navbar />
           <div className="contact-bg">
-            <h3>Get in Touch with Us</h3>
-            <h2>Contact Us</h2>
-            <div className="line">
+            <h3 data-aos="zoom-in">Get in Touch with Us</h3>
+            <h2 data-aos="zoom-in">Contact Us</h2>
+            <div className="line" data-aos="zoom-in">
               <div></div>
               <div></div>
               <div></div>
             </div>
-            <p className="text">
+            <p className="text" data-aos="zoom-in">
               We're here to assist you. Reach out to us for any inquiries or
               assistance you may need.
             </p>
           </div>
 
           <div className="contact-body">
-            <div className="contact-info">
+            <div className="contact-info" data-aos="zoom-in">
               <div>
                 <span>
                   <i className="fas fa-mobile-alt"></i>
@@ -373,7 +373,7 @@ const Contactus = () => {
               </div>
             </div>
 
-            <div className="contact-form">
+            <div className="contact-form" data-aos="zoom-in">
               <form onSubmit={handleSubmit}>
                 <div>
                   <input
