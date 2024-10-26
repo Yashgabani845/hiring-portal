@@ -3,8 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
 
-import pic from '../assests/contact.webp';
-
+import pic from "../assests/contact.webp";
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
@@ -72,6 +71,10 @@ const Contactus = () => {
       );
 
       console.log("Response:", response.data);
+      const resp = await axios.post("http://localhost:5000/api/email", {
+        formData,
+      });
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -79,7 +82,11 @@ const Contactus = () => {
         phoneNumber: "",
         query: "",
       });
-      alert("Contact form has been successfully submitted.");
+      if (resp.status === 200 && response.status === 201) {
+        alert("Contact form has been successfully submitted.");
+      } else {
+        alert("error in submission");
+      }
     } catch (error) {
       console.error("Error:", error);
       setErrors({
@@ -352,8 +359,8 @@ const Contactus = () => {
                 </span>
                 <span>Address</span>
                 <span className="text">
-                2,Muktanand Society Ved Road Surat Pin-Code : 395004
-                          </span>
+                  2,Muktanand Society Ved Road Surat Pin-Code : 395004
+                </span>
               </div>
               <div>
                 <span>
@@ -434,10 +441,13 @@ const Contactus = () => {
             </div>
           </div>
 
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.2636923821633!2d72.87936536346761!3d22.67750816815465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e5b3c654679bd%3A0x7fec0936b8b30f97!2sBlossom%20Aura!5e0!3m2!1sen!2sin!4v1729280785053!5m2!1sen!2sin" className="google-map"
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.2636923821633!2d72.87936536346761!3d22.67750816815465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e5b3c654679bd%3A0x7fec0936b8b30f97!2sBlossom%20Aura!5e0!3m2!1sen!2sin!4v1729280785053!5m2!1sen!2sin"
+            className="google-map"
             allowFullScreen=""
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"></iframe>
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </section>
 
         <footer className="contact-footer">
