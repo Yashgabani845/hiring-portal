@@ -1,6 +1,3 @@
-<div align="center">
-<img  src="https://readme-typing-svg.herokuapp.com?color=FEFF30&center=true&vCenter=true&size=40&width=900&height=80&lines=Welcome+to+Hire+Hub"/>
-</div>
 
 # HireHub 🚀
 
@@ -41,12 +38,10 @@
 - **Real-time Notifications:** Get updates for job applications, interviews, etc. ⏰
 
   <!-- Added Hacktoberfest 2024 and GSSoc Extended 2024 banners -->
+<!--<div align="center">
 ### This project is now OFFICIALLY accepted for
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/SwanandD121/FeatherPerfect_fe/refs/heads/main/Untitled%20design.png" alt="GSSoC 2024 Extd" width="80%">
-  <img src="https://cdn.discordapp.com/attachments/657543125190967316/1294560786114674748/Screenshot_2024-10-12_122347.png?ex=670b752f&is=670a23af&hm=26ddd7f41740b8b19ee4985e7568b3892091384b3b85e7165770a4b10f4d1050&" alt="Hacktoberfest 2024" width="80%">
-</div>
+   <img src="https://raw.githubusercontent.com/SwanandD121/FeatherPerfect_fe/refs/heads/main/Untitled%20design.png" alt="GSSoC 2024 Extd" width="80%"> -->
+<!-- </div> -->
 <br>
 
 ---
@@ -237,3 +232,34 @@ any of our social media handles incase of issue.
 <h3 align="center"> Happy Coding ✨🚀</h3>
 
 ---
+## 📋 Participating Programs
+
+| Name                  | Logo                                                      | Purpose                                                                                                      |
+|-----------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| GSSoC'2024-Extd       | ![GSSoC Logo](assets/GSSoC-Ext.png)             | The coding period is from October 1st to October 30th, during which contributors make contributions and earn points on the platform. |
+| Hacktoberfest 2024    | ![Hacktoberfest Logo](assets/hacktoberfest.png) | Hacktoberfest is a month-long October event welcoming all skill levels to join the open-source community.     |
+
+---
+
+## 📊 Project Metrics
+
+<table align="center">
+    <thead align="center">
+        <tr>
+            <td><b>🌟 Stars</b></td>
+            <td><b>🍴 Forks</b></td>
+            <td><b>🐛 Issues</b></td>
+            <td><b>🔔 Open PRs</b></td>
+            <td><b>🔕 Closed PRs</b></td>
+        </tr>
+     </thead>
+    <tbody>
+         <tr>
+            <td><img alt="Stars" src="https://img.shields.io/github/stars/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Forks" src="https://img.shields.io/github/forks/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Issues" src="https://img.shields.io/github/issues/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/Yashgabani845/hiring-portal?style=flat&color=green&logo=github"/></td>
+        </tr>
+    </tbody>
+</table>
