@@ -1,36 +1,3 @@
-## 📋 Participating Programs
-
-| Name                  | Logo                                                      | Purpose                                                                                                      |
-|-----------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| GSSoC'2024-Extd       | ![GSSoC Logo](assets/GSSoC-Ext.png)             | The coding period is from October 1st to October 30th, during which contributors make contributions and earn points on the platform. |
-| Hacktoberfest 2024    | ![Hacktoberfest Logo](assets/hacktoberfest.png) | Hacktoberfest is a month-long October event welcoming all skill levels to join the open-source community.     |
-
----
-
-## 📊 Project Metrics
-
-<table align="center">
-    <thead align="center">
-        <tr>
-            <td><b>🌟 Stars</b></td>
-            <td><b>🍴 Forks</b></td>
-            <td><b>🐛 Issues</b></td>
-            <td><b>🔔 Open PRs</b></td>
-            <td><b>🔕 Closed PRs</b></td>
-        </tr>
-     </thead>
-    <tbody>
-         <tr>
-            <td><img alt="Stars" src="https://img.shields.io/github/stars/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
-            <td><img alt="Forks" src="https://img.shields.io/github/forks/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
-            <td><img alt="Issues" src="https://img.shields.io/github/issues/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
-            <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
-            <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/Yashgabani845/hiring-portal?style=flat&color=green&logo=github"/></td>
-        </tr>
-    </tbody>
-</table>
-
----
 
 # HireHub 🚀
 
@@ -74,7 +41,6 @@
 <!--<div align="center">
 ### This project is now OFFICIALLY accepted for
    <img src="https://raw.githubusercontent.com/SwanandD121/FeatherPerfect_fe/refs/heads/main/Untitled%20design.png" alt="GSSoC 2024 Extd" width="80%"> -->
-<!--   <img src="https://cdn.discordapp.com/attachments/657543125190967316/1294560786114674748/Screenshot_2024-10-12_122347.png?ex=670b752f&is=670a23af&hm=26ddd7f41740b8b19ee4985e7568b3892091384b3b85e7165770a4b10f4d1050&" alt="Hacktoberfest 2024" width="80%"> -->
 <!-- </div> -->
 <br>
 
@@ -181,6 +147,32 @@ We welcome contributions from the community! To contribute, please follow these 
 
 ---
 
+## Contact 👤
+
+### Project Admin⚡
+ 
+<table>
+<tr>
+<td align="center"><a href="https://github.com/Yashgabani845"><img src="https://avatars.githubusercontent.com/u/127788321?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Yash Niteshbhai Gabani</h4>
+ <a href="https://www.linkedin.com/in/yash-gabani-527886258/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></img></a>
+</td>
+</tr>
+</table>
+
+### Project Mentors✨
+ 
+<table>
+<tr>
+<td align="center"><a href="https://github.com/anikethgojee"><img src="https://media.licdn.com/dms/image/v2/D5603AQFY233u5XNbmg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722448250152?e=1735776000&v=beta&t=or5XPzLRtYn4t0J1fM3yz5B53gpRQ0HEDjD66kqEmHw" width=150px height=150px /></a></br> <h4 style="color:red;">Aniketh Goje</h4>
+ <a href="https://www.linkedin.com/in/aniketh-goje/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></img></a>
+</td>
+<td align="center"><a href="https://github.com/03-sakshi"><img src="https://avatars.githubusercontent.com/u/121297541?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Sakshi Gupta
+</h4>
+</tr>
+</table>
+
+---
+
 ### Issue Reporting 🐛✨
 
 If you encounter any bugs or have feature requests, please follow this format when opening an issue:
@@ -240,3 +232,34 @@ any of our social media handles incase of issue.
 <h3 align="center"> Happy Coding ✨🚀</h3>
 
 ---
+## 📋 Participating Programs
+
+| Name                  | Logo                                                      | Purpose                                                                                                      |
+|-----------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| GSSoC'2024-Extd       | ![GSSoC Logo](assets/GSSoC-Ext.png)             | The coding period is from October 1st to October 30th, during which contributors make contributions and earn points on the platform. |
+| Hacktoberfest 2024    | ![Hacktoberfest Logo](assets/hacktoberfest.png) | Hacktoberfest is a month-long October event welcoming all skill levels to join the open-source community.     |
+
+---
+
+## 📊 Project Metrics
+
+<table align="center">
+    <thead align="center">
+        <tr>
+            <td><b>🌟 Stars</b></td>
+            <td><b>🍴 Forks</b></td>
+            <td><b>🐛 Issues</b></td>
+            <td><b>🔔 Open PRs</b></td>
+            <td><b>🔕 Closed PRs</b></td>
+        </tr>
+     </thead>
+    <tbody>
+         <tr>
+            <td><img alt="Stars" src="https://img.shields.io/github/stars/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Forks" src="https://img.shields.io/github/forks/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Issues" src="https://img.shields.io/github/issues/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/Yashgabani845/hiring-portal?style=flat&logo=github"/></td>
+            <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/Yashgabani845/hiring-portal?style=flat&color=green&logo=github"/></td>
+        </tr>
+    </tbody>
+</table>
