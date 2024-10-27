@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import axios from "axios";
-
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import pic from "../assests/contact.webp";
+import { toast, ToastContainer } from "react-toastify";
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
@@ -70,10 +73,6 @@ const Contactus = () => {
       );
 
       console.log("Response:", response.data);
-      const resp = await axios.post("http://localhost:5000/api/email", {
-        formData,
-      });
-
       setFormData({
         firstName: "",
         lastName: "",
@@ -81,11 +80,7 @@ const Contactus = () => {
         phoneNumber: "",
         query: "",
       });
-      if (resp.status === 200 && response.status === 201) {
-        alert("Contact form has been successfully submitted.");
-      } else {
-        alert("error in submission");
-      }
+      toast.success("Contact form has been successfully submitted.");
     } catch (error) {
       console.error("Error:", error);
       setErrors({
@@ -322,22 +317,34 @@ const Contactus = () => {
         </style>
         <section className="contact-section">
           <Navbar />
+          <ToastContainer />
           <div className="contact-bg">
-            <h3 data-aos="zoom-in">Get in Touch with Us</h3>
-            <h2 data-aos="zoom-in">Contact Us</h2>
-            <div className="line" data-aos="zoom-in">
+            {loading ? (
+              <Backdrop
+                sx={(theme) => ({
+                  color: "#fff",
+                  zIndex: theme.zIndex.drawer + 1,
+                })}
+                open={loading}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>
+            ) : null}
+            <h3>Get in Touch with Us</h3>
+            <h2>Contact Us</h2>
+            <div className="line">
               <div></div>
               <div></div>
               <div></div>
             </div>
-            <p className="text" data-aos="zoom-in">
+            <p className="text">
               We're here to assist you. Reach out to us for any inquiries or
               assistance you may need.
             </p>
           </div>
 
           <div className="contact-body">
-            <div className="contact-info" data-aos="zoom-in">
+            <div className="contact-info">
               <div>
                 <span>
                   <i className="fas fa-mobile-alt"></i>
@@ -372,7 +379,7 @@ const Contactus = () => {
               </div>
             </div>
 
-            <div className="contact-form" data-aos="zoom-in">
+            <div className="contact-form">
               <form onSubmit={handleSubmit}>
                 <div>
                   <input
