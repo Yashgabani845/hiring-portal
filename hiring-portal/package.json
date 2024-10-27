@@ -59,7 +59,7 @@
     "react-select": "^5.8.0",
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.14.1",
-    "react-toastify": "^10.0.5",
+    "react-toastify": "^10.0.6",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "styled-components": "^6.1.12",
