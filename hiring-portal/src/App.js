@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
- import Homepage from "./Components/Homepage";
+import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -32,6 +32,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
+import ContributorPage from "./Components/ContributorPage";
 
 function App() {
 
@@ -78,6 +79,7 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
         <Route path="/create-blog" element={<CreateBlog />} />
+        <Route path="/contributor" element={<ContributorPage />} />
 
       </Routes>
     </Router></>
