@@ -31,8 +31,12 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
+<<<<<<< HEAD
 import CreateBlog from "./Components/CreateBlog";
 
+=======
+import ResumeScreening from "./Components/ResumeScreening";
+>>>>>>> 59fa2f6 (add resume screening)
 function App() {
 
   useEffect(() => {
@@ -78,7 +82,7 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
         <Route path="/create-blog" element={<CreateBlog />} />
-
+        <Route path="/resume-screening" element={<ResumeScreening />} />
       </Routes>
     </Router></>
   );
