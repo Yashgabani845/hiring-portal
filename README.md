@@ -1,3 +1,7 @@
+<div align="center">
+<img  src="https://readme-typing-svg.herokuapp.com?color=FEFF30&center=true&vCenter=true&size=40&width=900&height=80&lines=Welcome+to+Hire+Hub"/>
+</div>
+
 # HireHub 🚀
 
 **HireHub** is a comprehensive hiring portal built using the MERN stack (MongoDB, Express.js, React, Node.js). It provides a platform for job seekers to browse and apply for jobs, employers to manage job postings and candidate shortlisting, and admins to oversee the platform's operations.
@@ -145,6 +149,32 @@ We welcome contributions from the community! To contribute, please follow these 
    git push origin feature/your-feature-name
    ```
 5. **Open a Pull Request (PR)** 🔀and describe your changes in detail.
+
+---
+
+## Contact 👤
+
+### Project Admin⚡
+ 
+<table>
+<tr>
+<td align="center"><a href="https://github.com/Yashgabani845"><img src="https://avatars.githubusercontent.com/u/127788321?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Yash Niteshbhai Gabani</h4>
+ <a href="https://www.linkedin.com/in/yash-gabani-527886258/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></img></a>
+</td>
+</tr>
+</table>
+
+### Project Mentors✨
+ 
+<table>
+<tr>
+<td align="center"><a href="https://github.com/anikethgojee"><img src="https://media.licdn.com/dms/image/v2/D5603AQFY233u5XNbmg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722448250152?e=1735776000&v=beta&t=or5XPzLRtYn4t0J1fM3yz5B53gpRQ0HEDjD66kqEmHw" width=150px height=150px /></a></br> <h4 style="color:red;">Aniketh Goje</h4>
+ <a href="https://www.linkedin.com/in/aniketh-goje/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></img></a>
+</td>
+<td align="center"><a href="https://github.com/03-sakshi"><img src="https://avatars.githubusercontent.com/u/121297541?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Sakshi Gupta
+</h4>
+</tr>
+</table>
 
 ---
 
