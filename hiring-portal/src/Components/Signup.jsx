@@ -105,8 +105,35 @@ const Signup = () => {
     });
   };
 
-  const nextStep = () => {
-    setStep(step + 1);
+   const validateFields = () => {
+    const requiredFields = {
+      1: ["name", "email", "password", "techStack", "skills", "resume", "address"],
+      2: ["expectedSalary", "jobType", "jobTitle"],
+      3: ["location", "locationPreferences"],
+      4: isFresher ? ["degree", "university", "cgpa"] : ["degree", "university", "cgpa", "pastJobs"]
+    };
+
+    const missingFields = requiredFields[step].filter(field => {
+      if (field === "skills") {
+        return formData.skills.length === 0;
+      }
+      if (field === "pastJobs") {
+        return formData.pastJobs.some(job => !job.company || !job.role || !job.duration || !job.details);
+      }
+      return !formData[field];
+    });
+
+    if (missingFields.length > 0) {
+      toast.error(`Please fill in the required fields: ${missingFields.join(", ")}`);
+      return false;
+    }
+    return true;
+  };
+
+ const nextStep = () => {
+    if (validateFields()) {
+      setStep(step + 1);
+    }
   };
 
   const prevStep = () => {
@@ -125,7 +152,7 @@ const Signup = () => {
       toast.success('User created successfully!'); // Show success toast
       navigate('/signin');
     } catch (error) {
-      console.error('Error submitting form:', error.response.data);
+      console.error('Error submitting form:', error);
       toast.error('Error creating user. Please try again.'); // Show error toast
     }
   };
