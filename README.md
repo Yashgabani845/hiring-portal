@@ -73,26 +73,24 @@ To run this project locally, follow these steps:
    ```bash
    npm start
    ```
-
-5. **Open a new terminal and navigate to the backend directory:**
-
+   Or
    ```bash
-   cd backend
+   npm run start:client
    ```
 
-6. **Start the backend server:**
+5. **Start the backend server:**
 
    ```bash
-   node server.js
+   npm run start:server
    ```
 
-7. **Install python dependencies:**
+6. **Install python dependencies:**
 
    ```bash
    pip install Flask Flask-CORS PyPDF2 google-generativeai python-dotenv
    ```
 
-8. **Start the python server:**
+7. **Start the python server:**
 
    ```bash
    python ats.py

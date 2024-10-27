@@ -69,6 +69,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:client": "react-scripts start",
+    "start:server": "cd Backend && nodemon server.js",
+    "dev": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -90,5 +93,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9",
+    "concurrently": "^9.0.1"
   }
 }
