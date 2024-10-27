@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 import axios from "axios";
 
 import pic from "../assests/contact.webp";

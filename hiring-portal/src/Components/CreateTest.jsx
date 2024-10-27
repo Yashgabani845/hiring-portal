@@ -1,29 +1,29 @@
-import React, { useState,useEffect } from "react";
-import {Navigate, useNavigate,useParams} from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom"
 import "../CSS/test.css"
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; 
+import 'react-quill/dist/quill.snow.css';
 import { toast, ToastContainer } from "react-toastify";
 const CreateAssessment = () => {
-  const { jobId } = useParams(); 
+  const { jobId } = useParams();
   const [job, setJob] = useState(null);
   useEffect(() => {
     fetch(`http://localhost:5000/api/jobs/${jobId}`)
-        .then(response => response.json())
-        .then(data => setJob(data))
-        .catch(error => console.error('Error fetching job:', error));
-}, [jobId]);
+      .then(response => response.json())
+      .then(data => setJob(data))
+      .catch(error => console.error('Error fetching job:', error));
+  }, [jobId]);
 
-  const navigate=useNavigate();
-  const ownerEmail = localStorage.getItem('userEmail'); 
+  const navigate = useNavigate();
+  const ownerEmail = localStorage.getItem('userEmail');
   const [formData, setFormData] = useState({
     jobId: jobId,
-    owner:ownerEmail,
+    owner: ownerEmail,
     questions: [],
     overallTime: 0,
     maxMarks: 0,
-    startTime:"",
-    endTime:""
+    startTime: "",
+    endTime: ""
   });
 
   const [currentQuestion, setCurrentQuestion] = useState({
@@ -65,37 +65,37 @@ const CreateAssessment = () => {
     }));
   };
   const parseTestCases = (fileContent) => {
-const lines = fileContent.split('\n');
-const testCases = [];
+    const lines = fileContent.split('\n');
+    const testCases = [];
 
-let input = '';
-let output = '';
+    let input = '';
+    let output = '';
 
-lines.forEach((line) => {
-  if (line.startsWith('input:')) {
-    input = line.replace('input:', '').trim();
-  } else if (line.startsWith('output:')) {
-    output = line.replace('output:', '').trim();
-    if (input && output) {
-      testCases.push({ input, output });
-      input = ''; 
-      output = ''; 
-    }
-  }
-});
+    lines.forEach((line) => {
+      if (line.startsWith('input:')) {
+        input = line.replace('input:', '').trim();
+      } else if (line.startsWith('output:')) {
+        output = line.replace('output:', '').trim();
+        if (input && output) {
+          testCases.push({ input, output });
+          input = '';
+          output = '';
+        }
+      }
+    });
 
-return testCases;
-};
+    return testCases;
+  };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-  
+
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
         const fileContent = event.target.result;
         const testCases = parseTestCases(fileContent);
-  
+
         setCurrentQuestion((prev) => ({
           ...prev,
           codingQuestion: {
@@ -107,7 +107,7 @@ return testCases;
       reader.readAsText(file);
     }
   };
-  
+
 
   const handleExampleChange = (index, e) => {
     const newExamples = [...currentQuestion.codingQuestion.examples];
@@ -264,14 +264,14 @@ return testCases;
           <div>
             <h3>Problem Description</h3>
             <ReactQuill
-      value={currentQuestion.codingQuestion.problemDescription}
-      onChange={Descriptionchange}
-      theme="snow"
-      placeholder="Enter problem description"
-    />
+              value={currentQuestion.codingQuestion.problemDescription}
+              onChange={Descriptionchange}
+              theme="snow"
+              placeholder="Enter problem description"
+            />
             <div style={{ marginTop: "20px" }}>
               <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-              &laquo; Previous
+                &laquo; Previous
               </button>
               <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
                 Next &raquo;
@@ -299,9 +299,9 @@ return testCases;
             </button>
             <div style={{ marginTop: "20px" }}>
               <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-              &laquo; Previous 
+                &laquo; Previous
               </button>
-              <button type="button"  className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
+              <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
                 Next &raquo;
               </button>
             </div>
@@ -350,7 +350,7 @@ return testCases;
             </button>
             <div style={{ marginTop: "20px" }}>
               <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-              &laquo; Previous
+                &laquo; Previous
               </button>
               <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
                 Next &raquo;
@@ -391,15 +391,15 @@ return testCases;
               Add Test Case
             </button>
             <input
-type="file"
-className="prevbtn"
-style={{ padding: "5px", marginTop: "10px", marginLeft: "10px" }}
-onChange={handleFileUpload}
-/>
+              type="file"
+              className="prevbtn"
+              style={{ padding: "5px", marginTop: "10px", marginLeft: "10px" }}
+              onChange={handleFileUpload}
+            />
 
             <div style={{ marginTop: "20px" }}>
               <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-              &laquo;  Previous
+                &laquo;  Previous
               </button>
               <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
                 Next &raquo;
@@ -419,7 +419,7 @@ onChange={handleFileUpload}
             />
             <div style={{ marginTop: "20px" }}>
               <button type="button" className="prevbtn" onClick={prevStep} style={{ padding: "10px", marginRight: "10px" }}>
-              &laquo; Previous
+                &laquo; Previous
               </button>
               <button type="button" className="nextbtn" onClick={nextStep} style={{ padding: "10px" }}>
                 Next &raquo;
@@ -459,41 +459,41 @@ onChange={handleFileUpload}
       <hr />
       <form onSubmit={handleSubmit}>
         <div className="global-fields">
-         
+
           <label>Max Marks:</label>
           <input
             type="number"
             className="marksinput"
             value={formData.maxMarks}
             onChange={(e) => setFormData({ ...formData, maxMarks: e.target.value })}
-           
+
           />
-           <label>Start Time:</label>
-  <input
-    type="datetime-local"
-    value={formData.startTime}
-    onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-    required
-  />
-  <label>End Time:</label>
-  <input
-    type="datetime-local"
-    value={formData.endTime}
-    onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-    required
-  />
+          <label>Start Time:</label>
+          <input
+            type="datetime-local"
+            value={formData.startTime}
+            onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+            required
+          />
+          <label>End Time:</label>
+          <input
+            type="datetime-local"
+            value={formData.endTime}
+            onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+            required
+          />
         </div>
         <div className="step-container">
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${((currentStep - 1) / 6) * 100}%` }}
-          ></div>
-        </div>
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${((currentStep - 1) / 6) * 100}%` }}
+            ></div>
+          </div>
           {renderStep()}
         </div>
         <button type="submit" onClick={handleSubmit} className="submitbtn" style={{ padding: "10px", marginTop: "20px" }}>
-          Submit 
+          Submit
         </button>
       </form>
       <div className="added-questions">
@@ -665,16 +665,16 @@ onChange={handleFileUpload}
               />
             </div>
             <div className="modal-buttons">
-            <div className="modal-buttons">
-            <button onClick={handleModalSave}>Save</button>
-            <button onClick={handleModalClose}>Close</button>
-          </div>
+              <div className="modal-buttons">
+                <button onClick={handleModalSave}>Save</button>
+                <button onClick={handleModalClose}>Close</button>
+              </div>
             </div>
           </div>
         </div>
-      )}   <ToastContainer/>
+      )}   <ToastContainer />
     </div>
- 
+
   );
 };
 

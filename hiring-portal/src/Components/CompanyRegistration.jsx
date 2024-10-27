@@ -4,8 +4,8 @@ import Select from 'react-select';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaLinkedin, FaFacebook, FaTwitter, FaPhone, FaEnvelope, FaGlobe } from 'react-icons/fa';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage, auth } from '../firebase/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase/firebase';
 
 const CompanyRegistration = () => {
   const navigate = useNavigate();

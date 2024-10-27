@@ -1,8 +1,6 @@
-import logo from "./assests/logo.svg";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Homepage from "./Components/Homepage";
-import HeroSection from "./Components/HeroSection";
+ import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -36,7 +34,6 @@ import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
 
 function App() {
-  const [test, setTest] = useState(null);
 
   useEffect(() => {
     AOS.init({

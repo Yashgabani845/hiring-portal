@@ -8,7 +8,7 @@ import jobImage from "../assests/job_search.png"; // Replace with the actual pat
 import logo from "../assests/logo.png";
 import { ClipLoader } from "react-spinners"; // Import the spinner
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
-import { Modal, Input, Button } from "antd";
+import { Modal, Input } from "antd";
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
@@ -93,9 +93,9 @@ const SignIn = () => {
     }
   };
 
-  const handleForgotPasswordCancel = () => {
-    setIsForgotPasswordModalVisible(false);
-  };
+  // const handleForgotPasswordCancel = () => {
+  //   setIsForgotPasswordModalVisible(false);
+  // };
   return (
     <div className="bg">
       <Navbar />
@@ -108,9 +108,10 @@ const SignIn = () => {
         <center>
           <Link to="/">
             <div className="welcom1">
+ 
               <h1 data-aos='zoom-in'>Welcome to&nbsp;&nbsp;</h1>
               <img src={logo} alt="Logo" data-aos='zoom-in' />
-            </div>
+             </div>
           </Link>
         </center>
         <div className="signin-data" data-aos='zoom-in' data-aos-delay='100'>

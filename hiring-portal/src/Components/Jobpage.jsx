@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Select from "react-select";
 import Jobgrid from "./JobGrid";
 import Navbar from "./Navbar";
 import "../CSS/jobpage.css";
 
 const Jobpage = () => {
     const [isSidebar, setIsSidebar] = useState(true);
-    const [selectedLocations, setSelectedLocations] = useState([]);
     const [filters, setFilters] = useState({
         jobType: [],
         remoteOption: null,
@@ -89,7 +87,8 @@ const Jobpage = () => {
                             <input type="radio" name="remoteOption" value="false" onChange={handleFilterChange} /> On-site
                         </label>
                     </div>
-                    <div className="filter"  >
+                     <div className="filter">
+ 
                         <label>
                             Industry:
                             <input
@@ -101,7 +100,8 @@ const Jobpage = () => {
                             />
                         </label>
                     </div>
-                    <div className="filter"  >
+                     <div className="filter">
+ 
                         <label>
                             Work Location:
                             <input

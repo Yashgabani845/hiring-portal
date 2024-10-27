@@ -2,14 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import profilepic from "../assests/profile.jpg";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
-import SchoolIcon from "@mui/icons-material/School";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import SettingsIcon from "@mui/icons-material/Settings";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { toast, ToastContainer } from "react-toastify";
 import Skeleton from "@mui/material/Skeleton";
@@ -19,11 +15,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 import "../CSS/profile.css";
 import {
-  FaStar,
-  FaEnvelope,
-  FaPhone,
   FaMapMarkerAlt,
-  FaExternalLinkAlt,
 } from "react-icons/fa";
 const modalStyle = {
   position: "absolute",
@@ -38,17 +30,7 @@ const modalStyle = {
   textAlign: "center",
 };
 
-const VisuallyHiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
-  height: 1,
-  overflow: "hidden",
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  whiteSpace: "nowrap",
-  width: 1,
-});
+
 
 const Profile = () => {
   const [user, setUser] = useState(null);
