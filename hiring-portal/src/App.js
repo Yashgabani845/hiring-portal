@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
- import Homepage from "./Components/Homepage";
+import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -31,14 +31,12 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
-<<<<<<< HEAD
-import CreateBlog from "./Components/CreateBlog";
-import { ToastContainer } from "react-toastify";
-
-=======
-import ResumeScreening from "./Components/ResumeScreening";
->>>>>>> 59fa2f6 (add resume screening)
-function App() {
+ import CreateBlog from "./Components/CreateBlog";
+ import ContributorPage from "./Components/ContributorPage";
+ import { ToastContainer } from "react-toastify";
+ 
+ import ResumeScreening from "./Components/ResumeScreening";
+ function App() {
 
   useEffect(() => {
     AOS.init({
@@ -85,8 +83,10 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
         <Route path="/create-blog" element={<CreateBlog />} />
-        <Route path="/resume-screening" element={<ResumeScreening />} />
-      </Routes>
+         <Route path="/contributor" element={<ContributorPage />} />
+
+         <Route path="/resume-screening" element={<ResumeScreening />} />
+       </Routes>
     </Router></>
   );
 }

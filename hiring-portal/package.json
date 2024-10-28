@@ -33,6 +33,7 @@
     "express-session": "^1.18.0",
     "fetch": "^1.1.0",
     "firebase": "^10.12.5",
+    "framer-motion": "^11.11.10",
     "helmet": "^8.0.0",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
