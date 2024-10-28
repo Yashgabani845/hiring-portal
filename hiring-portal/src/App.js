@@ -32,6 +32,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -43,7 +44,9 @@ function App() {
 
 
   return (
-    <><BackToTop /><Router>
+    <><BackToTop />
+    <ToastContainer />
+    <Router>
       <Routes>
 
         <Route path="/" element={<Homepage />} />
