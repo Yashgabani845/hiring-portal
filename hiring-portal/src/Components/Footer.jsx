@@ -123,6 +123,9 @@ const Footer = () => {
               <li>
                 <a href="/">Support</a>
               </li>
+              <li>
+                <a href="/contributor">Our Contributors</a>
+              </li>
             </ul>
           </div>
         </div>

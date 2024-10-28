@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
- import Homepage from "./Components/Homepage";
+import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -31,9 +31,12 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
-import CreateBlog from "./Components/CreateBlog";
-
-function App() {
+ import CreateBlog from "./Components/CreateBlog";
+ import ContributorPage from "./Components/ContributorPage";
+ import { ToastContainer } from "react-toastify";
+ 
+ import ResumeScreening from "./Components/ResumeScreening";
+ function App() {
 
   useEffect(() => {
     AOS.init({
@@ -43,7 +46,9 @@ function App() {
 
 
   return (
-    <><BackToTop /><Router>
+    <><BackToTop />
+    <ToastContainer />
+    <Router>
       <Routes>
 
         <Route path="/" element={<Homepage />} />
@@ -78,8 +83,10 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
         <Route path="/create-blog" element={<CreateBlog />} />
+         <Route path="/contributor" element={<ContributorPage />} />
 
-      </Routes>
+         <Route path="/resume-screening" element={<ResumeScreening />} />
+       </Routes>
     </Router></>
   );
 }
