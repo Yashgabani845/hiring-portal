@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/middleview.css";
+import styles from "../CSS/middleview.module.css";
 import jobimg from "../assests/jobs.png";
 import LazyLoad from 'react-lazyload';
 
@@ -19,26 +19,25 @@ const roles = [
 const MiddleView = () => {
 
     return (
-        <div className="middleview">
-            <div className="text-part" data-aos="fade-right">
+        <div className={styles.middleview}>
+            <div className={styles.textPart} data-aos="fade-right">
                 <h1>Discover Jobs Across Popular Roles</h1>
                 <center>
-                    {" "}
                     <p>Select a role and we'll show you relevant jobs for it!</p>
                 </center>
-                <div className="roles-carousel">
-                    <div className="roles-list">
+                <div className={styles.rolesCarousel}>
+                    <div className={styles.rolesList}>
                         {roles.map((item, index) => (
-                            <div className="role" key={index}>
-                                <span>{item.role}</span> <span className="job-count">jobs</span>
+                            <div className={styles.role} key={index}>
+                                <span>{item.role}</span> <span className={styles.jobCount}>jobs</span>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="jobimg" data-aos="fade-left">
+            <div className={styles.jobimg} data-aos="fade-left">
                 <LazyLoad height={200} offset={100} once>
-                    <img src={jobimg} alt="jobs" className="job-image" loading="lazy" />
+                    <img src={jobimg} alt="jobs" className={styles.jobImage} loading="lazy" />
                 </LazyLoad>
             </div>
         </div>

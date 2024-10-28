@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import '../CSS/blog.css';
+import styles from '../CSS/blog.module.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,23 +37,23 @@ const formatDate = (dateString) => {
 
 const BlogCard = ({ blog }) => {
     return (
-        <div className="blog-card">
-            <div className="blog-card__header">
-                <img src={profilepic} alt={blog.title} className="blog-card__image" />
-                <div className="blog-card__info">
-                    <h2 className="blog-card__title">{blog.title}</h2>
-                    <p className="blog-card__meta">
+        <div className={styles.blogCard}> {/* Updated class name to use CSS Module */}
+            <div className={styles.blogCardHeader}>
+                <img src={profilepic} alt={blog.title} className={styles.blogCardImage} />
+                <div className={styles.blogCardInfo}>
+                    <h2 className={styles.blogCardTitle}>{blog.title}</h2>
+                    <p className={styles.blogCardMeta}>
                         By {blog.author} • {formatDate(blog.date)}
                     </p>
                 </div>
             </div>
-            <div className="blog-card__content">
-                <p className="blog-card__description">
+            <div className={styles.blogCardContent}>
+                <p className={styles.blogCardDescription}>
                     {blog.content.slice(0, 100)}...
                 </p>
                 <div>
-                    <Link to={`/read-more-blog/${blog._id}`} className="blog-card__button">Read More</Link>
-                    <button className="blog-card__button" onClick={() => deleteBlog(blog._id)}>Delete</button>
+                    <Link to={`/read-more-blog/${blog._id}`} className={styles.blogCardButton}>Read More</Link>
+                    <button className={styles.blogCardButton} onClick={() => deleteBlog(blog._id)}>Delete</button>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@ const BlogCard = ({ blog }) => {
 
 const BlogList = ({ blogs }) => {
     return (
-        <div className="blog-list">
+        <div className={styles.blogList}>
             {blogs.map((blog) => (
                 <BlogCard key={blog.id} blog={blog} />
             ))}
@@ -104,16 +104,21 @@ const BlogPage = () => {
     return (
         <>
             <Navbar />
-            <div className="blog-page">
-                <div className="header">
-                    <h1 className="blog-page__title">Latest Blogs</h1>
+            <div className={styles.blogPage}>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>Latest Blogs</h1>
                     <div>
-
-                        <button className="create-blog-button" onClick={() => {
-                            navigate("/create-blog")
-                        }}>Create Blog</button>
-                        {blogs.length > 0 &&
-                            <button className="delete-blog-button" onClick={handleDeleteAll}>Delete All</button>}
+                        <button
+                            className={styles.createBlogButton}
+                            onClick={() => navigate("/create-blog")}
+                        >
+                            Create Blog
+                        </button>
+                        {blogs.length > 0 && (
+                            <button className={styles.deleteBlogButton} onClick={handleDeleteAll}>
+                                Delete All
+                            </button>
+                        )}
                     </div>
                 </div>
                 {blogs.length > 0 ? <BlogList blogs={blogs} /> : <p>No blog to show...</p>}

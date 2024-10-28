@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
- import Homepage from "./Components/Homepage";
+import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
 import Jobpage from "./Components/Jobpage";
@@ -31,13 +31,11 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
-<<<<<<< HEAD
 import CreateBlog from "./Components/CreateBlog";
 import { ToastContainer } from "react-toastify";
 
-=======
 import ResumeScreening from "./Components/ResumeScreening";
->>>>>>> 59fa2f6 (add resume screening)
+import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
 
   useEffect(() => {
@@ -49,45 +47,46 @@ function App() {
 
   return (
     <><BackToTop />
-    <ToastContainer />
-    <Router>
-      <Routes>
+      <ToastContainer />
+      <Router>
+        <Routes>
 
-        <Route path="/" element={<Homepage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/jobcard" element={<Jobpage />} />
-        <Route path="/job/:id" element={<Job />} />
-        <Route path="/owner" element={<Employer />} />
-        <Route path="/ownerside" element={<Dashboard />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/postjob" element={<JobPostForm />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/company" element={<CompanyRegistration />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/uploadedjobs" element={<UploadedJobs />} />
-        <Route path="/contactus" element={<Contactus />} />
-        <Route path="/code/:assessmentId" element={<Coding />} />
-        <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
-        <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/application" element={<ApplicationForm />} />
-        <Route path="/shortlist/:jobId" element={<Shortlist />} />
-        <Route path="*" element={<Error404 />} />
-        <Route
-          path="/assessment-results/:jobId"
-          element={<AssessmentResults />} />
-        <Route
-          path="/assessment-results/result/:assessmentId"
-          element={<AssessmentResultDetail />} />
-        <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
-        <Route path="/create-blog" element={<CreateBlog />} />
-        <Route path="/resume-screening" element={<ResumeScreening />} />
-      </Routes>
-    </Router></>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/jobcard" element={<Jobpage />} />
+          <Route path="/job/:id" element={<Job />} />
+          <Route path="/owner" element={<Employer />} />
+          <Route path="/ownerside" element={<Dashboard />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/postjob" element={<JobPostForm />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/company" element={<CompanyRegistration />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/editProfile" element={<EditProfile />} />
+          <Route path="/uploadedjobs" element={<UploadedJobs />} />
+          <Route path="/contactus" element={<Contactus />} />
+          <Route path="/code/:assessmentId" element={<Coding />} />
+          <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
+          <Route path="/managejobs/:jobId" element={<ManageJobs />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/application" element={<ApplicationForm />} />
+          <Route path="/shortlist/:jobId" element={<Shortlist />} />
+          <Route path="*" element={<Error404 />} />
+          <Route
+            path="/assessment-results/:jobId"
+            element={<AssessmentResults />} />
+          <Route
+            path="/assessment-results/result/:assessmentId"
+            element={<AssessmentResultDetail />} />
+          <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+          <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/resume-screening" element={<ResumeScreening />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Routes>
+      </Router></>
   );
 }
 

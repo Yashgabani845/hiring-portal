@@ -6,13 +6,13 @@
   transition: transform 0.3s ease;
 }
 
-.text-part {
+.textPart {
   max-width: 50%;
   padding-left: 10%;
   margin-top: 5%;
 }
 
-.text-part h1 {
+.textPart h1 {
   font-size: 30px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -20,19 +20,19 @@
   margin-bottom: 10px;
 }
 
-.text-part p {
+.textPart p {
   font-size: 1.2em;
   color: #666;
   width: fit-content;
 }
 
-.roles-carousel {
+.rolesCarousel {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
 
-.roles-list {
+.rolesList {
   display: flex;
   overflow-x: scroll;
   scrollbar-width: none;
@@ -40,7 +40,7 @@
   padding: 4px;
 }
 
-.roles-list::-webkit-scrollbar {
+.rolesList::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -60,11 +60,12 @@
   cursor: pointer;
   color: #333;
 }
+
 .role:hover {
   transform: scale(1.05);
 }
 
-.job-count {
+.jobCount {
   font-size: 0.9em;
   color: #504d4d;
   font-weight: 100;
@@ -86,32 +87,37 @@
     flex-direction: column;
     justify-content: center;
   }
-  .text-part {
+
+  .textPart {
     padding: 0px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .lazyload-wrapper {
+
+  .lazyloadWrapper {
     display: flex;
     justify-content: center;
   }
-  .job-image {
+
+  .jobImage {
     margin: 0px !important;
   }
 }
 
 @media (max-width: 480px) {
-  .text-part {
+  .textPart {
     max-width: 100%;
     padding: 10px;
   }
-  .lazyload-wrapper {
+
+  .lazyloadWrapper {
     display: flex;
     justify-content: center;
   }
-  .job-image {
+
+  .jobImage {
     margin: auto !important;
     width: 100%;
   }

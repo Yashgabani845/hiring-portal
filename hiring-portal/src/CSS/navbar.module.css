@@ -1,3 +1,4 @@
+/* Navbar.module.css */
 .navbar {
   display: flex;
   flex-direction: row;
@@ -64,7 +65,6 @@
 .icon span {
   display: inline;
 }
-
 
 .icon.active span::after {
   content: "";

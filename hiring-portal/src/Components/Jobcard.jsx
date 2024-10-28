@@ -5,7 +5,7 @@ import { MdWorkOutline } from "react-icons/md";
 import styled from 'styled-components';
 import defaultlogo from '../assests/company.png'
 
-import "../CSS/jobcard.css";
+import styles from "../CSS/jobcard.module.css";
 
 // Styled components for icons
 const LocationIcon = styled(IoLocationOutline)`
@@ -47,22 +47,27 @@ const Jobcard = ({ id, comlogo, company, worklocation, department, role }) => {
 
     return (
         <Link to={`/job/${id}`} data-aos="fade-up" data-aos-delay="100">
-            <div className="job-card-container">
-                <div className="job-image-wrapper">
-                    <img src={comlogo || defaultlogo} alt="company logo" className="job-card-image" />
+            <div className={styles.jobCardContainer}>
+                <div className={styles.jobImageWrapper}>
+                    <img src={comlogo || defaultlogo} alt="company logo" className={styles.jobCardImage} />
                 </div>
-                <div className="job-card-details">
-                    <div className="job-info">
-                        <span className="company-name-tag">{companyName}</span>
-                        <span className="job-location">
+                <div className={styles.jobCardDetails}>
+                    <div className={styles.jobInfo}>
+                        <span className={styles.companyNameTag}>{companyName}</span>
+                        <span className={styles.jobLocation}>
                             <LocationIcon />
                             <span>{worklocation}</span>
                         </span>
                     </div>
-                    <h3 className="job-card-title">{role}</h3>
-                    <div className="job-extra-info">
-                        <span className="job-department"><WorkIcon /><span>{department}</span></span>
-                        <Link to={`/job/${id}`}><span className="job-view-link">View Job</span></Link>
+                    <h3 className={styles.jobCardTitle}>{role}</h3>
+                    <div className={styles.jobExtraInfo}>
+                        <span className={styles.jobDepartment}>
+                            <WorkIcon />
+                            <span>{department}</span>
+                        </span>
+                        <Link to={`/job/${id}`}>
+                            <span className={styles.jobViewLink}>View Job</span>
+                        </Link>
                     </div>
                 </div>
             </div>

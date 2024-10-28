@@ -1,4 +1,4 @@
-.new-job-card {
+.newJobCard {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -8,20 +8,20 @@
     max-width: 300px;
 }
 
-.new-job-card .job-title {
+.jobTitle {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #333;
 }
 
-.new-job-card .job-description,
-.new-job-card .job-salary,
-.new-job-card .job-location {
+.jobDescription,
+.jobSalary,
+.jobLocation {
     margin: 5px 0;
     color: #555;
 }
 
-.new-job-card .edit-button {
+.editButton {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -31,6 +31,6 @@
     margin-top: 10px;
 }
 
-.new-job-card .edit-button:hover {
+.editButton:hover {
     background-color: #0056b3;
 }
