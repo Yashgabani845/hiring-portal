@@ -90,6 +90,7 @@ const Navbar = () => {
             </div>
             <div className={`icon blog ${activeTab === '/blog' ? 'active' : ''}`}>
               <Link to="/blog"><FaBlog /><span>Blog</span></Link>
+              </div>
               <div
                 className={`icon resume-analyzer ${activeTab === "/resume-screening" ? "active" : ""
                   }`}
