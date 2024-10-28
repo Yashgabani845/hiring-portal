@@ -10,11 +10,11 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
-import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
 import { Dock } from "@mui/icons-material";
-import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
@@ -47,7 +47,6 @@ const Navbar = () => {
           console.error('Error fetching user profile:', error);
         });
     } else {
-      // Show toast if user is not logged in
       toast.error('Please log in to continue', {
         position: "top-center",
         autoClose: 3000,
@@ -62,10 +61,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-
       <ToastContainer />
       <div className="hirehublogo">
-
         <LazyLoad height={40} offset={100} once>
           <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
         </LazyLoad>
@@ -90,37 +87,30 @@ const Navbar = () => {
             </div>
             <div className={`icon blog ${activeTab === '/blog' ? 'active' : ''}`}>
               <Link to="/blog"><FaBlog /><span>Blog</span></Link>
-              <div
-                className={`icon resume-analyzer ${activeTab === "/resume-screening" ? "active" : ""
-                  }`}
-              >
-                <Dock />
-                <Link to="/resume-screening" onClick={() => setActiveTab("/resume-analyzer")}>
-                  <span>Resume Screening</span>
-                </Link>
-              </div>
-              <div className={`icon aboutus ${activeTab === '/blog' ? 'active' : ''}`}>
-                <FaBlog />
-                <Link to="/blog" onClick={() => setActiveTab('/blog')}><span>Blog</span></Link>
-              </div>
-              <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
-                {isLoggedIn ? (
-                  <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
-                ) : (
-                  <Link to="/signin"><LoginIcon /><span>Login</span></Link>
-                )}
-              </div>
-            </>
-        )}
-          </div>
-        {!hideElements && (
-          <div className="posting">
-            <span onClick={handlePostJob}>Employer/Post Job</span>
-            <LaunchIcon className="posting-icon" />
-          </div>
+            </div>
+            <div className={`icon resume-screening ${activeTab === "/resume-screening" ? "active" : ""}`}>
+              <Link to="/resume-screening" onClick={() => setActiveTab("/resume-screening")}>
+                <Dock /><span>Resume Screening</span>
+              </Link>
+            </div>
+            <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
+              {isLoggedIn ? (
+                <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
+              ) : (
+                <Link to="/signin"><LoginIcon /><span>Login</span></Link>
+              )}
+            </div>
+          </>
         )}
       </div>
-      );
+      {!hideElements && (
+        <div className="posting">
+          <span onClick={handlePostJob}>Employer/Post Job</span>
+          <LaunchIcon className="posting-icon" />
+        </div>
+      )}
+    </div>
+  );
 };
 
-      export default Navbar;
+export default Navbar;
