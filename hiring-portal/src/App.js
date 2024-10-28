@@ -31,7 +31,9 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
+
 import CreateBlog from "./Components/CreateBlog";
+import ContributorPage from "./Components/ContributorPage";
 import { ToastContainer } from "react-toastify";
 
 import ResumeScreening from "./Components/ResumeScreening";
@@ -50,6 +52,7 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
+
 
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
@@ -83,6 +86,8 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/contributor" element={<ContributorPage />} />
+
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>

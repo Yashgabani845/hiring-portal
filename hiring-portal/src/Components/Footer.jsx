@@ -107,9 +107,19 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <h3>Resources</h3>
             <ul>
-              <li><a href="/">Blog</a></li>
-              <li><a href="#faqs">FAQs</a></li>
-              <li><a href="/">Support</a></li>
+
+              <li>
+                <a href="/">Blog</a>
+              </li>
+              <li>
+                <a href="#faqs">FAQs</a>
+              </li>
+              <li>
+                <a href="/">Support</a>
+              </li>
+              <li>
+                <a href="/contributor">Our Contributors</a>
+              </li>
             </ul>
           </div>
         </div>
