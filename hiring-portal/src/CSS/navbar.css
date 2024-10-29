@@ -150,3 +150,26 @@
     padding: 0 !important;
   }
 }
+
+/* Sign-In Button Styles */
+.sign {
+  background-color: #0077b6;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px; /* Add right margin to create gap */
+}
+
+.sign:hover {
+  background-color: #005b8f;
+}
+
+.sign:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

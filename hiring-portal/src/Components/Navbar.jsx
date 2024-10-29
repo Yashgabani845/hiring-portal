@@ -58,7 +58,13 @@ const Navbar = () => {
       });
     }
   };
+  const handleSignIn = () => {
+    navigate('/signin');
+  };
 
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
   return (
     <div className="navbar">
       <ToastContainer />
@@ -105,6 +111,11 @@ const Navbar = () => {
             </div>
           </>
         )}
+
+      <div>
+        <button className="sign" onClick={handleSignIn}>Sign In</button>
+        <button className="sign" onClick={handleSignUp}>Sign Up</button>
+      </div>
       </div>
       {!hideElements && (
         <div className="posting">
