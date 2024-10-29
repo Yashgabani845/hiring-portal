@@ -112,10 +112,7 @@ const Navbar = () => {
           </>
         )}
 
-      <div>
-        <button className="sign" onClick={handleSignIn}>Sign In</button>
-        <button className="sign" onClick={handleSignUp}>Sign Up</button>
-      </div>
+     
       </div>
       {!hideElements && (
         <div className="posting">
