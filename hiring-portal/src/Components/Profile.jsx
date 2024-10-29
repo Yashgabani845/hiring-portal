@@ -19,7 +19,6 @@ import "../CSS/profile.css";
 import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { Box, Modal } from "@mui/material";
 const modalStyle = {
   position: "absolute",
   top: "50%",

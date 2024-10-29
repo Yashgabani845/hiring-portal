@@ -62,12 +62,10 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-
       <ToastContainer />
       <div className="hirehublogo">
-
         <LazyLoad height={40} offset={100} once>
-          <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
+          <Link to={'/'}><img className="logoimg" src={logo} alt="Logo" /></Link>
         </LazyLoad>
       </div>
       <div className="icons">
@@ -77,7 +75,7 @@ const Navbar = () => {
         {!hideElements && (
           <>
             <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
-              <Link to="/jobcard"><WorkIcon /><span>Jobs</span></Link>
+              <Link to="/jobcard"><WorkIcon /><span className="icon-name">Jobs</span></Link>
             </div>
             <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
               <Link to="/about"><InfoIcon /><span>About</span></Link>
@@ -90,37 +88,26 @@ const Navbar = () => {
             </div>
             <div className={`icon blog ${activeTab === '/blog' ? 'active' : ''}`}>
               <Link to="/blog"><FaBlog /><span>Blog</span></Link>
-              <div
-                className={`icon resume-analyzer ${activeTab === "/resume-screening" ? "active" : ""
-                  }`}
-              >
-                <Dock />
-                <Link to="/resume-screening" onClick={() => setActiveTab("/resume-analyzer")}>
-                  <span>Resume Screening</span>
-                </Link>
-              </div>
-              <div className={`icon aboutus ${activeTab === '/blog' ? 'active' : ''}`}>
-                <FaBlog />
-                <Link to="/blog" onClick={() => setActiveTab('/blog')}><span>Blog</span></Link>
-              </div>
-              <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
-                {isLoggedIn ? (
-                  <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
-                ) : (
-                  <Link to="/signin"><LoginIcon /><span>Login</span></Link>
-                )}
-              </div>
-            </>
-        )}
-          </div>
-        {!hideElements && (
-          <div className="posting">
-            <span onClick={handlePostJob}>Employer/Post Job</span>
-            <LaunchIcon className="posting-icon" />
-          </div>
+            </div>
+            <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
+              {isLoggedIn ? (
+                <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
+              ) : (
+                <Link to="/signin"><LoginIcon /><span>Login</span></Link>
+              )}
+            </div>
+          </>
         )}
       </div>
-      );
+      {!hideElements && (
+        <div className="posting">
+          <span onClick={handlePostJob}>Employer/Post Job</span>
+          <LaunchIcon className="posting-icon" />
+        </div>
+      )}
+    </div>
+  );
+  
 };
 
       export default Navbar;
