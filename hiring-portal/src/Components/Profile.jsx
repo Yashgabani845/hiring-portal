@@ -11,8 +11,6 @@ import { toast, ToastContainer } from "react-toastify";
 import Skeleton from "@mui/material/Skeleton";
 import { IoIosInformationCircle } from "react-icons/io";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 
 
 import "../CSS/profile.css";
