@@ -1,6 +1,7 @@
 const Job = require("../models/Job");
 const User = require("../models/User");
 const Application = require("../models/Application");
+const nodemailer = require('nodemailer');
 
 
 
