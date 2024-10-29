@@ -38,6 +38,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: 4px;
+  transition: transform 0.5s ease;
 }
 
 .roles-list::-webkit-scrollbar {
