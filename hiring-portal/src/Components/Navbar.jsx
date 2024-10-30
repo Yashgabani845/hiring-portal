@@ -94,14 +94,11 @@ const Navbar = () => {
             <div className={`icon blog ${activeTab === '/blog' ? 'active' : ''}`}>
               <Link to="/blog"><FaBlog /><span>Blog</span></Link>
             </div>
-<<<<<<< feature/Subodh
-=======
             <div className={`icon resume-screening ${activeTab === "/resume-screening" ? "active" : ""}`}>
               <Link to="/resume-screening" onClick={() => setActiveTab("/resume-screening")}>
                 <Dock /><span>Resume Screening</span>
               </Link>
             </div>
->>>>>>> main
             <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
               {isLoggedIn ? (
                 <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
