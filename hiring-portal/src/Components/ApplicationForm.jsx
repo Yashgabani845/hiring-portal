@@ -7,6 +7,8 @@ import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
 import "../CSS/ApplicationForm.css";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
@@ -195,7 +197,9 @@ const ApplicationForm = () => {
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
-    <form className="application-form" onSubmit={handleSubmit}>
+     <div>
+      <Navbar/>
+       <form className="application-form" onSubmit={handleSubmit}>
       <h2>Apply for the Job</h2>
       
       <div className="form-group">
@@ -334,6 +338,8 @@ const ApplicationForm = () => {
       </button>
       <ToastContainer />
     </form>
+    <Footer/>
+     </div>
   );
 };
 
