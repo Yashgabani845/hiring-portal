@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 import Courses from "./course.json";
@@ -70,6 +69,7 @@ const ApplicationForm = () => {
       return () => window.removeEventListener('resize', updatePreviewHeight);
     }
   }, [previewUrl]);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -149,6 +149,20 @@ const ApplicationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("submit clicked");
+
+    const requiredFields = [
+      "email", "mobileNumber", "firstName", "gender",
+      "instituteName", "course", "graduatingYear", 
+      "courseDuration", "countryOfResidence", "resume"
+    ];
+    
+    const emptyFields = requiredFields.filter(field => !formData[field]);
+    if (emptyFields.length > 0) {
+      toast.error(`Please fill out all required fields: ${emptyFields.join(", ")}`);
+      return;
+    }
+
     const applicationData = {
       ...formData,
       jobId,

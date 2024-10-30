@@ -10,11 +10,11 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
-import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
 import { Dock } from "@mui/icons-material";
-import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
@@ -47,7 +47,6 @@ const Navbar = () => {
           console.error('Error fetching user profile:', error);
         });
     } else {
-      // Show toast if user is not logged in
       toast.error('Please log in to continue', {
         position: "top-center",
         autoClose: 3000,
@@ -64,6 +63,7 @@ const Navbar = () => {
       <ToastContainer />
 
       <div className={styles.hirehublogo}>
+
         <LazyLoad height={40} offset={100} once>
           <Link to="/">
             <img className={styles.logoimg} src={logo} alt="Logo" />
@@ -127,16 +127,19 @@ const Navbar = () => {
                 </Link>
               )}
             </div>
-
-            <div className={styles.posting} onClick={handlePostJob}>
-              <span>Employer/Post Job</span>
-              <LaunchIcon className={styles.postingIcon} />
-            </div>
+            {!hideElements && (
+              <div className={styles.posting} onClick={handlePostJob}>
+                <span>Employer/Post Job</span>
+                <LaunchIcon className={styles.postingIcon} />
+              </div>
+            )}
           </>
         )}
       </div>
+
     </div>
   );
 };
 
 export default Navbar;
+

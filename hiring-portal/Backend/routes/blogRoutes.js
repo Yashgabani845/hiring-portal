@@ -8,4 +8,4 @@ router.delete('/delete-all', blogController.deleteAllBlogs);
 router.delete('/delete-by-id/:id', blogController.deleteBlog);
 router.get('/get-by-id/:id', blogController.getBlog);
 
-module.exports = router;
+module.exports = router; 
