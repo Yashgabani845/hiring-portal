@@ -1,3 +1,7 @@
+## Project Structure ✨
+
+<!-- START_STRUCTURE -->
+```
 ├── Code_Of_Conduct.md
 ├── Contributing.md
 ├── LICENSE
@@ -1332,3 +1336,5 @@
 │       └── setupTests.js
 ├── package-lock.json
 └── repo_structure.txt
+```
+<!-- END_STRUCTURE -->
