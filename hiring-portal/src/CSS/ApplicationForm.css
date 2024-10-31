@@ -1,0 +1,155 @@
+.application-form {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.application-form:hover {
+  transform: scale(1.01);
+}
+
+.application-form h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submit-btn {
+  display: inline-block;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #189F93;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0f756c;
+  transform: translateY(-2px);
+}
+
+.education-section h3,
+.experience-section h3,
+.skills-section h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #444;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 5px;
+}
+
+.fgn {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.form-group-number input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.file-preview-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 80%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s ease;
+}
+
+.file-preview-dialog h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.preview-options {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.preview-options button {
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: #189F93;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.preview-options button:hover {
+  background-color: rgb(1, 86, 176);
+  transform: translateY(-1px);
+}
+
+.file-preview {
+  flex-grow: 1;
+  overflow: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.file-preview img,
+.file-preview iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: none;
+}

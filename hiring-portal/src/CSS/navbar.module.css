@@ -36,9 +36,6 @@
 }
 
 .icon {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin: 10px;
   font-size: 19px;
   font-weight: 600;
@@ -46,25 +43,38 @@
   color: #343a40;
   cursor: pointer;
   position: relative;
+}
+
+.icon a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  color: inherit;
 }
 
 .icon svg {
   margin-right: 5px;
   color: #6c757d;
   transition: color 0.3s ease;
+  vertical-align: middle;
+}
+
+.icon span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .icon:hover svg {
   color: #007bff;
+}
+
+.icon:hover span {
   text-decoration: underline;
   text-underline-offset: 1rem;
   text-decoration-color: #007bff;
 }
 
-.icon span {
-  display: inline;
-}
 
 .icon.active span::after {
   content: "";
@@ -92,11 +102,13 @@
 
 .posting span {
   margin-right: 5px;
+  line-height: normal;
 }
 
 .posting-icon {
   color: #000000;
   transition: color 0.3s ease;
+  vertical-align: middle;
 }
 
 .posting:hover svg {

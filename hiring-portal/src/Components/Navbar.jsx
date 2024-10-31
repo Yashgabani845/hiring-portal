@@ -58,6 +58,10 @@ const Navbar = () => {
       });
     }
   };
+
+
+
+
   return (
     <div className={styles.navbar}>
       <ToastContainer />
@@ -68,6 +72,7 @@ const Navbar = () => {
           <Link to="/">
             <img className={styles.logoimg} src={logo} alt="Logo" />
           </Link>
+
         </LazyLoad>
       </div>
 
@@ -84,6 +89,7 @@ const Navbar = () => {
               <Link to="/jobcard">
                 <WorkIcon /><span>Jobs</span>
               </Link>
+
             </div>
 
             <div className={`${styles.icon} ${activeTab === '/about' ? styles.active : ''}`}>
@@ -135,10 +141,13 @@ const Navbar = () => {
             )}
           </>
         )}
+
+
       </div>
 
     </div>
   );
+
 };
 
 export default Navbar;
