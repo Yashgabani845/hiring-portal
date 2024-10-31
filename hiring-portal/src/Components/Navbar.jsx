@@ -58,13 +58,19 @@ const Navbar = () => {
       });
     }
   };
+  const handleSignIn = () => {
+    navigate('/signin');
+  };
 
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
   return (
     <div className="navbar">
       <ToastContainer />
       <div className="hirehublogo">
         <LazyLoad height={40} offset={100} once>
-          <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
+          <Link to={'/'}><img className="logoimg" src={logo} alt="Logo" /></Link>
         </LazyLoad>
       </div>
       <div className="icons">
@@ -74,7 +80,7 @@ const Navbar = () => {
         {!hideElements && (
           <>
             <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
-              <Link to="/jobcard"><WorkIcon /><span>Jobs</span></Link>
+              <Link to="/jobcard"><WorkIcon /><span className="icon-name">Jobs</span></Link>
             </div>
             <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
               <Link to="/about"><InfoIcon /><span>About</span></Link>
@@ -102,6 +108,8 @@ const Navbar = () => {
             </div>
           </>
         )}
+
+     
       </div>
       {!hideElements && (
         <div className="posting">
@@ -111,6 +119,7 @@ const Navbar = () => {
       )}
     </div>
   );
+
 };
 
 export default Navbar;
