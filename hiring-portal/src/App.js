@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
@@ -21,7 +21,7 @@ import Employer from "./Components/Employer";
 import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
-import PasswordResetPage from "./Components/ForgotPassword";
+
 import TermsAndConditions from "./Components/TermsAndConditions";
 import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
@@ -31,7 +31,7 @@ import BackToTop from "./Components/BackToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Error404 from "./Components/Error404";
-
+ 
 import CreateBlog from "./Components/CreateBlog";
 import ContributorPage from "./Components/ContributorPage";
 import { ToastContainer } from "react-toastify";
@@ -39,6 +39,7 @@ import { ToastContainer } from "react-toastify";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
+ 
 
   useEffect(() => {
     AOS.init({
@@ -54,7 +55,7 @@ function App() {
         <Routes>
 
 
-          <Route path="/" element={<Homepage />} />
+           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/jobcard" element={<Jobpage />} />
           <Route path="/job/:id" element={<Job />} />
@@ -87,6 +88,7 @@ function App() {
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route path="/create-blog" element={<CreateBlog />} />
           <Route path="/contributor" element={<ContributorPage />} />
+ 
 
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
