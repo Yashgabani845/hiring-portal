@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const forgotPasswordController = require("../controllers/forgotPasswordController");
+const otpVerifyController = require("../controllers/otpVerifyController");
 const multer = require("multer");
 const path = require("path");
 const rateLimit = require("express-rate-limit"); // Import rate-limiter
@@ -38,6 +39,7 @@ const upload = multer({
 router.post("/users/signin", loginLimiter, userController.signIn);
 
 router.post("/users/signup", userController.signUp);
+router.post("/users/verify-otp", otpVerifyController.verifyOtp);
 router.post("/users/request-password-reset", forgotPasswordController.requestPasswordReset);
 router.post("/users/verify-otp", forgotPasswordController.verifyOtp);
 router.post("/users/reset-password", forgotPasswordController.resetPassword);

@@ -42,7 +42,10 @@ const userSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  otp: String,
+  otp: { type: String }, // Store the hashed OTP
+  verified: { type: Boolean, default: false },
+  otpExpiry: Date,   
 });
+
 
 module.exports = mongoose.model("User", userSchema);

@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const nodemailer = require("nodemailer");
+const crypto = require('crypto');
 
 exports.signUp = async (req, res) => {
   try {
@@ -32,36 +33,63 @@ exports.signUp = async (req, res) => {
         .json({ message: "Name, email, and password are required" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit OTP
+    const hashedOtp = await bcrypt.hash(otp, 10); // Hash the OTP for storage
 
-    const newUser = new User({
-      name,
-      email,
-      password: hashedPassword,
-      profileDetails: {
-        education: !isFresher ? { degree, university, cgpa } : undefined,
-        skills,
-        address,
-        techStack,
-        pastJobs: !isFresher && pastJobs.length > 0 ? pastJobs : undefined,
+    // Create transporter for sending emails
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
-      location,
-      locationPreferences,
-      expectedSalary,
-      jobType,
-      jobTitle,
-      resume,
     });
 
-    await newUser.save();
+    const mailOptions = {
+      from: process.env.EMAIL_USER ,
+      to: email,
+      subject: 'Your OTP Code from hiring-portal',
+      text: `Your OTP code for verification is: ${otp}`,
+    };
 
-    res.status(201).json({ message: "User created successfully" });
+    // Send OTP email
+    transporter.sendMail(mailOptions, async (error, info) => {
+      if (error) {
+        return res.status(500).json({ message: 'Error sending OTP', error });
+      }
+
+      // Create the user without activating it yet
+      const newUser = new User({
+        name,
+        email,
+        password: await bcrypt.hash(password, 10),
+        otp: hashedOtp, // Save the hashed OTP
+        profileDetails: {
+          education: !isFresher ? { degree, university, cgpa } : undefined,
+          skills,
+          address,
+          techStack,
+          pastJobs: !isFresher && pastJobs.length > 0 ? pastJobs : undefined,
+        },
+        location,
+        locationPreferences,
+        expectedSalary,
+        jobType,
+        jobTitle,
+        resume,
+        verified: false, // Initially set to false
+      });
+
+      await newUser.save();
+
+      res.status(201).json({ message: "User created successfully, please verify your email" });
+    });
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ message: "Error creating user", error });
   }
 };
-
 exports.signIn = async (req, res) => {
   try {
     const { email, password, rememberMe } = req.body;
