@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from '../CSS/herosection.module.css';
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { SearchIcon } from "lucide-react";
 
 const HeroSection = () => {
   const [keywords, setKeywords] = useState("");
@@ -56,7 +57,7 @@ const HeroSection = () => {
       <center className={styles.center}>
         <div className={styles.searchBar}>
           <div className={styles.searchDiv}>
-            <searchIcon className={styles.searchIcon} />
+            <SearchIcon className={styles.searchIcon} />
             <input
               type="text"
               className={styles.search}
