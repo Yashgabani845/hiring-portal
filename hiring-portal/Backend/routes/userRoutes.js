@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const forgotPasswordController = require("../controllers/forgotPasswordController");
 const multer = require("multer");
 const path = require("path");
 const rateLimit = require("express-rate-limit"); // Import rate-limiter
@@ -37,6 +38,9 @@ const upload = multer({
 router.post("/users/signin", loginLimiter, userController.signIn);
 
 router.post("/users/signup", userController.signUp);
+router.post("/users/request-password-reset", forgotPasswordController.requestPasswordReset);
+router.post("/users/verify-otp", forgotPasswordController.verifyOtp);
+router.post("/users/reset-password", forgotPasswordController.resetPassword);
 router.get("/users/profile", userController.getProfile);
 router.post("/users/editProfile/:email", userController.editProfile);
 router.post("/users/addLanguages/:email", userController.addLanguages);

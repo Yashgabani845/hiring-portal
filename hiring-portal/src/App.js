@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import Homepage from "./Components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Components/Signup";
@@ -21,7 +21,7 @@ import Employer from "./Components/Employer";
 import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
-import PasswordResetPage from "./Components/ForgotPassword";
+
 import TermsAndConditions from "./Components/TermsAndConditions";
 import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
@@ -36,6 +36,7 @@ import Error404 from "./Components/Error404";
  import { ToastContainer } from "react-toastify";
  
  import ResumeScreening from "./Components/ResumeScreening";
+
  function App() {
 
   useEffect(() => {
@@ -79,7 +80,7 @@ import Error404 from "./Components/Error404";
         <Route
           path="/assessment-results/result/:assessmentId"
           element={<AssessmentResultDetail />} />
-        <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} />
+       
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
         <Route path="/create-blog" element={<CreateBlog />} />

@@ -402,7 +402,7 @@ const Profile = () => {
                 {profileDetails.skills.map((skill, index) => (
                   <li key={index} className="skill-item">
                     {skill}
-                  </li>
+                  </li> 
                 ))}
               </ul>
             ) : (
