@@ -1,66 +1,56 @@
-.postview {
+.postView {
   display: flex;
   align-items: center;
   background-color: #f9f9f9;
   border-radius: 10px;
   margin: 20px 0;
-  /* border: 1px solid black; */
   transition: transform 0.3s ease;
-  display: flex;
   justify-content: center;
-  align-items: center;
   gap: 50px;
 }
 
-.post-img {
+.postImg {
   max-width: 400px;
   height: 400px;
-  /* border: 1px solid black; */
   border-radius: 10px;
   overflow: hidden;
-  
-
-
 }
 
-.post-img img {
+.postImg img {
   width: 100%;
   height: 100%;
 }
 
-.post-img img:hover {
+.postImg img:hover {
   transform: scale(1.1);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-} 
-
-.ptext-part {
-  max-width: 50%;
- 
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-    /* border:1px solid black; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    column-gap: 20px;
 }
 
-.ptext-part h1 {
+.ptextPart {
+  max-width: 50%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.ptextPart h1 {
   font-size: 2em;
   color: #333;
   margin-bottom: 10px;
- text-align: start;
- 
+  text-align: start;
 }
 
-.ptext-part p {
+.ptextPart p {
   font-size: 1.2em;
   color: #666;
   margin-bottom: 20px;
   width: 380px;
 }
 
-.post-btn {
+.postBtn {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #0564c9;
@@ -72,37 +62,35 @@
   font-weight: 600;
 }
 
-.post-btn:hover {
+.postBtn:hover {
   background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
-  .postview {
+  .postView {
     flex-direction: column;
   }
-  .ptext-part {
-    display: flex;
+
+  .ptextPart {
     justify-content: center;
-    flex-direction: column;
-    align-items: center; 
-  text-align: center;
+    align-items: center;
+    text-align: center;
     max-width: 100% !important;
   }
 }
 
 @media (max-width: 480px) {
-  .postview {
+  .postView {
     flex-direction: column;
   }
-  .post-img {
+
+  .postImg {
     padding: 0;
   }
-  .ptext-part {
+
+  .ptextPart {
     padding: 10px;
     max-width: 100% !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     text-align: center;
   }

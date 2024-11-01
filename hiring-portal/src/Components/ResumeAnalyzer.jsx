@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../CSS/resumeAnalyzer.css'
+import styles from '../CSS/resumeAnalyzer.module.css'
 import Navbar from "../Components/Navbar"
 import Footer from "../Components/Footer"
 
@@ -49,64 +49,63 @@ const ResumeAnalyzer = () => {
     return (
         <>
             <Navbar />
-            <form onSubmit={handleSubmit} className="upload-form" data-aos="zoom-in">
+            <form onSubmit={handleSubmit} className={styles.uploadForm} data-aos="zoom-in">
                 <h2>Resume and Job Description Analysis</h2>
                 <div
-                    className="file-input-container"
+                    className={styles.fileInputContainer}
                     onDragOver={preventDefaults}
                     onDrop={(event) => handleDrop(event, 'resume')}
                 >
-                    <label className="file-input-label">
+                    <label className={styles.fileInputLabel}>
                         {resume ? resume.name : 'Drag & Drop Resume or Click to Upload'}
                         <input
                             type="file"
                             onChange={(e) => setResume(e.target.files[0])}
-                            className="file-input"
+                            className={styles.fileInput}
                         />
                     </label>
                 </div>
                 <div
-                    className="file-input-container"
+                    className={styles.fileInputContainer}
                     onDragOver={preventDefaults}
                     onDrop={(event) => handleDrop(event, 'jd')}
                 >
-                    <label className="file-input-label">
+                    <label className={styles.fileInputLabel}>
                         {jobDescription ? jobDescription.name : 'Drag & Drop Job Description or Click to Upload'}
                         <input
                             type="file"
                             onChange={(e) => setJobDescription(e.target.files[0])}
-                            className="file-input"
+                            className={styles.fileInput}
                         />
                     </label>
                 </div>
-                <button type="submit" className="submit-button">Analyze</button>
-                {loading && <div className="loader">Loading...</div>}
+                <button type="submit" className={styles.submitButton}>Analyze</button>
+                {loading && <div className={styles.loader}>Loading...</div>}
             </form>
             {result && (
-                <div className="result-container">
-                    <h3 className="result-title">Result of RESUME Analysis</h3>
-                    <div className="result-item">
-                        <strong className="result-label">Job Description Match : </strong>
-                        <span className="result-value">{result["JD Match"]}</span>
+                <div className={styles.resultContainer}>
+                    <h3 className={styles.resultTitle}>Result of RESUME Analysis</h3>
+                    <div className={styles.resultItem}>
+                        <strong className={styles.resultLabel}>Job Description Match: </strong>
+                        <span className={styles.resultValue}>{result["JD Match"]}</span>
                     </div>
-                    <div className="result-item">
-                        <strong className="result-label">Missing Keywords:</strong>
+                    <div className={styles.resultItem}>
+                        <strong className={styles.resultLabel}>Missing Keywords:</strong>
                         {result.MissingKeywords.length > 0 ? (
-                            <ul className="result-keywords">
+                            <ul className={styles.resultKeywords}>
                                 {result.MissingKeywords.map((keyword, index) => (
-                                    <li key={index} className="keyword-item">{keyword}</li>
+                                    <li key={index} className={styles.keywordItem}>{keyword}</li>
                                 ))}
                             </ul>
                         ) : (
-                            <span className="no-keywords">No missing keywords</span>
+                            <span className={styles.noKeywords}>No missing keywords</span>
                         )}
                     </div>
-                    <div className="result-item">
-                        <strong className="result-label">Profile Summary:</strong>
-                        <p className="result-summary">{result["Profile Summary"]}</p>
+                    <div className={styles.resultItem}>
+                        <strong className={styles.resultLabel}>Profile Summary:</strong>
+                        <p className={styles.resultSummary}>{result["Profile Summary"]}</p>
                     </div>
                 </div>
-
             )}
             <Footer />
         </>

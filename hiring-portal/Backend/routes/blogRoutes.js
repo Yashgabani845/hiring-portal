@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const blogController = require('../controllers/blogController');
 const authMiddleware = require('../middlewares/authMiddleware');
-  // Import auth middleware
+// Import auth middleware
 
 // Secure routes with authMiddleware
 router.post('/create-blog', authMiddleware, blogController.postBlog);
@@ -12,3 +12,4 @@ router.delete('/delete-by-id/:id', authMiddleware, blogController.deleteBlog);
 router.get('/get-by-id/:id', authMiddleware, blogController.getBlog);
 
 module.exports = router;
+

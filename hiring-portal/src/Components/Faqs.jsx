@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import "../CSS/faqSection.css";
+import styles from "../CSS/faqSection.module.css";
 
 const FAQSection = () => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -22,23 +22,23 @@ const FAQSection = () => {
 
     return (
         <>
-            <section className="faq-section" id="faqs">
-                <h2 className="faq-title" data-aos="fade-up">Frequently Asked Questions</h2>
-                <div className="faq-container">
+            <section className={styles.faqSection} id="faqs">
+                <h2 className={styles.faqTitle} data-aos="fade-up">Frequently Asked Questions</h2>
+                <div className={styles.faqContainer}>
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className={`faq-item ${activeIndex === index ? "active" : ""}`}
+                            className={`${styles.faqItem} ${activeIndex === index ? styles.active : ''}`}
                             onClick={() => toggleFAQ(index)}
                             data-aos="fade-up"
                         >
-                            <div className="faq-question">
+                            <div className={styles.faqQuestion}>
                                 <h3>{faq.question}</h3>
-                                <span className="icon">
+                                <span className={styles.icon}>
                                     {activeIndex === index ? <FiChevronUp /> : <FiChevronDown />}
                                 </span>
                             </div>
-                            <div className={`faq-answer ${activeIndex === index ? "open" : ""}`}>
+                            <div className={`${styles.faqAnswer} ${activeIndex === index ? styles.open : ''}`}>
                                 <p>{faq.answer}</p>
                             </div>
                         </div>

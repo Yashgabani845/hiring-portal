@@ -1,26 +1,26 @@
 /* Blog Page Styles */
-.blog-page {
+.blogPage {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     text-align: left;
 }
 
-.blog-page__title {
+.blogPageTitle {
     font-size: 36px;
     margin-bottom: 20px;
     color: #333;
 }
 
 /* Blog List Styles */
-.blog-list {
+.blogList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
 }
 
-.blog-card {
+.blogCard {
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
@@ -32,17 +32,17 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-.blog-card:hover {
+.blogCard:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.blog-card__header {
+.blogCardHeader {
     display: flex;
     align-items: center;
 }
 
-.blog-card__image {
+.blogCardImage {
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -50,34 +50,34 @@
     margin-right: 15px;
 }
 
-.blog-card__info {
+.blogCardInfo {
     flex-grow: 1;
 }
 
-.blog-card__title {
+.blogCardTitle {
     font-size: 22px;
     margin: 0;
     color: #333;
     font-weight: 700;
 }
 
-.blog-card__meta {
+.blogCardMeta {
     font-size: 14px;
     color: #777;
     margin-top: 5px;
 }
 
-.blog-card__content {
+.blogCardContent {
     padding-top: 10px;
 }
 
-.blog-card__description {
+.blogCardDescription {
     font-size: 16px;
     color: #555;
     margin: 10px 0;
 }
 
-.blog-card__button {
+.blogCardButton {
     background-color: #007bff;
     color: white;
     border: none;
@@ -89,32 +89,32 @@
     font-size: 14px;
 }
 
-.blog-card__button:hover {
+.blogCardButton:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-    .blog-card {
+    .blogCard {
         flex: 0 1 calc(50% - 20px);
     }
 }
 
 @media (max-width: 768px) {
-    .blog-card {
+    .blogCard {
         flex: 0 1 100%;
     }
 }
 
-.create-blog-button {
+.createBlogButton {
     background-color: #007bff;
     color: white;
     border: none;
 }
 
-.create-blog-button,
-.delete-blog-button {
+.createBlogButton,
+.deleteBlogButton {
     background-color: #007bff;
     color: white;
     border: none;
@@ -134,8 +134,8 @@
     display: inline-block;
 }
 
-.create-blog-button:before,
-.delete-blog-button::before {
+.createBlogButton::before,
+.deleteBlogButton::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -147,26 +147,26 @@
     transform: translate(-50%, -50%) scale(0);
 }
 
-.create-blog-button:hover:before,
-.delete-blog-button:hover::before {
+.createBlogButton:hover::before,
+.deleteBlogButton:hover::before {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.create-blog-button:hover,
-.delete-blog-button:hover {
+.createBlogButton:hover,
+.deleteBlogButton:hover {
     background-color: #0056b3;
     transform: translateY(-3px);
 }
 
-.create-blog-button:focus,
-.delete-blog-button:focus {
+.createBlogButton:focus,
+.deleteBlogButton:focus {
     outline: none;
 }
 
-.delete-blog-button {
+.deleteBlogButton {
     background: rgb(248, 45, 45);
 }
 
-.delete-blog-button:hover {
+.deleteBlogButton:hover {
     background: rgb(247, 21, 21);
 }

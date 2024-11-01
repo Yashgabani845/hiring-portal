@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../CSS/herosection.css";
-import SearchIcon from "@mui/icons-material/Search";
+import styles from '../CSS/herosection.module.css';
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
@@ -47,48 +46,48 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="hero-section" data-aos="zoom-in" data-aos-duration="2000">
-      <div className="hero-content">
+    <div className={styles.heroSection} data-aos="zoom-in" data-aos-duration="2000">
+      <div className={styles.heroContent}>
         <h1>Find Your Dream Job</h1>
         <p>
           Explore Thousands of job opportunities and connect with top employers.
         </p>
       </div>
-      <center className="center">
-        <div className="search-bar">
-          <div className="searchdiv">
-            <SearchIcon className="search-icon" />
+      <center className={styles.center}>
+        <div className={styles.searchBar}>
+          <div className={styles.searchDiv}>
+            <searchIcon className={styles.searchIcon} />
             <input
               type="text"
-              className="search"
+              className={styles.search}
               placeholder="Job title, Keywords"
               value={keywords}
               onChange={(e) => setKeywords(e.target.value)}
             />
           </div>
-          <div className="seprate">|</div>
-          <div className="searchdiv">
-            <LocationOnIcon className="location-icon" />
+          <div className={styles.separate}>|</div>
+          <div className={styles.searchDiv}>
+            <LocationOnIcon className={styles.locationIcon} />
             <input
               type="text"
-              className="search"
+              className={styles.search}
               placeholder="Search by location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
-          <button className="searchbtn" onClick={handleSearch}>
+          <button className={styles.searchBtn} onClick={handleSearch}>
             Find
           </button>
         </div>
       </center>
 
-      <div className="search-results">
+      <div className={styles.searchResults}>
         {searchResults.length > 0 ? (
           searchResults.map((job) => (
             <div
               key={job._id}
-              className="job-item"
+              className={styles.jobItem}
               onClick={() => handleJobClick(job._id)}
             >
               <h3>{job.title}</h3>
@@ -96,11 +95,7 @@ const HeroSection = () => {
             </div>
           ))
         ) : (
-          <p
-            style={{
-              display: "hidden",
-            }}
-          ></p>
+          <p style={{ display: "none" }}>No jobs found.</p>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../CSS/footer.css";
+import styles from "../CSS/footer.module.css";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -76,10 +76,10 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="footer">
-      <div className="footer-column">
+    <footer className={styles.footer}>
+      <div className={styles.footerColumn}>
         <h4>Subscribe to our Newsletter</h4>
-        <form className="subscribe-form" onSubmit={handleSubscribe}>
+        <form className={styles.subscribeForm} onSubmit={handleSubscribe}>
           <input
             type="email"
             placeholder="Enter your email"
@@ -89,31 +89,25 @@ const Footer = () => {
           />
           <button type="submit">Subscribe</button>
         </form>
-        {message && <p className="message">{message}</p>}
+        {message && <p className={styles.message}>{message}</p>}
       </div>
 
-
-      <div className="footer-container">
-        <div className="flex">
-          <div className="footer-column">
+      <div className={styles.footerContainer}>
+        <div className={styles.flex}>
+          <div className={styles.footerColumn}>
             <h3>Company</h3>
             <ul>
-              <li>
-                <a href="/about">About Us</a>
-              </li>
-              <li>
-                <a href="/">Careers</a>
-              </li>
-              <li>
-                <a href="/contactus">Contact Us</a>
-              </li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/">Careers</a></li>
+              <li><a href="/contactus">Contact Us</a></li>
             </ul>
           </div>
         </div>
-        <div className="flex">
-          <div className="footer-column">
+        <div className={styles.flex}>
+          <div className={styles.footerColumn}>
             <h3>Resources</h3>
             <ul>
+
               <li>
                 <a href="/">Blog</a>
               </li>
@@ -129,54 +123,42 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="flex">
-          <div className="footer-column">
+        <div className={styles.flex}>
+          <div className={styles.footerColumn}>
             <h3>Legal</h3>
             <ul>
-              <li>
-                <a href="/privacy-policy">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="/terms-and-conditions">Terms of Service</a>
-              </li>
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/terms-and-conditions">Terms of Service</a></li>
             </ul>
           </div>
         </div>
-        <div className="flex">
-          <div className="footer-column">
+        <div className={styles.flex}>
+          <div className={styles.footerColumn}>
             <h3>Follow Us</h3>
-            <div className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/yash-gabani-527886258/"
-                className="linkedin"
-              >
+            <div className={styles.socialIcons}>
+              <a href="https://www.linkedin.com/in/yash-gabani-527886258/" className={styles.linkedin}>
                 <FaLinkedin />
               </a>
-              <a href="https://twitter.com/Hirehub280355" className="twitter">
+              <a href="https://twitter.com/Hirehub280355" className={styles.twitter}>
                 <FaXTwitter />
               </a>
-              <a href="https://github.com/Yashgabani845" className="github">
-                {" "}
+              <a href="https://github.com/Yashgabani845" className={styles.github}>
                 <FaGithub />
               </a>
-              <a
-                href="https://www.instagram.com/yash845_/"
-                className="instagram"
-              >
+              <a href="https://www.instagram.com/yash845_/" className={styles.instagram}>
                 <FaInstagram />
               </a>
-              <a href="https://www.facebook.com/" className="facebook">
+              <a href="https://www.facebook.com/" className={styles.facebook}>
                 <FaFacebook />
-              </a>{" "}
-              {/* Assuming you're using this for Facebook */}
+              </a>
             </div>
-            <div className="translate flex ml-4 my-auto">
+            <div className={`${styles.translate} ${styles.flex} ml-4 my-auto`}>
               <GoogleTranslate />
             </div>
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className={styles.footerBottom}>
         <p>&copy; 2024 Hirehub. All rights reserved.</p>
       </div>
     </footer>
