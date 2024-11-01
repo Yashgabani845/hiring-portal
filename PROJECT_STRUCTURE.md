@@ -18,9 +18,12 @@
 │   │   │   ├── companyController.js
 │   │   │   ├── contactController.js
 │   │   │   ├── directController.js
+│   │   │   ├── forgotPasswordController.js
 │   │   │   ├── jobController.js
 │   │   │   ├── otherApiController.js
 │   │   │   └── userController.js
+│   │   ├── middlewares/
+│   │   │   └── authMiddleware.js
 │   │   ├── models/
 │   │   │   ├── Application.js
 │   │   │   ├── Assesment.js
@@ -1264,7 +1267,6 @@
 │       │   ├── Error404.jsx
 │       │   ├── Faqs.jsx
 │       │   ├── Footer.jsx
-│       │   ├── ForgotPassword.jsx
 │       │   ├── GoogleTranslate.jsx
 │       │   ├── GoogleTranslator.jsx
 │       │   ├── HeroSection.jsx
