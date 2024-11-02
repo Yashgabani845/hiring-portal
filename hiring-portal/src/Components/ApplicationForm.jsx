@@ -6,19 +6,13 @@ import { storage } from "../firebase/firebase";
 import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
-<<<<<<< HEAD
 import styles from '../CSS/ApplicationForm.module.css'; // Import the CSS module
-=======
-import "../CSS/ApplicationForm.css";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
->>>>>>> main
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
   const [countryCodes, setCountryCodes] = useState([]);
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
-  const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
+  // const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
 
   const location = useLocation();
   const { jobId, emailcurrent } = location.state || {};
@@ -84,9 +78,9 @@ const ApplicationForm = () => {
 
   const handleCountryChange = (e) => {
     const selectedCode = e.target.value;
-    const selectedCountry = countryCodes.find(country => country.code === selectedCode);
+    // const selectedCountry = countryCodes.find(country => country.code === selectedCode);
     setSelectedCountryCode(selectedCode);
-    setCountryEmoji(selectedCountry.emoji);
+    // setCountryEmoji(selectedCountry.emoji);
   };
 
   const handleFileUpload = async (file, fieldName) => {
@@ -201,14 +195,8 @@ const ApplicationForm = () => {
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
-<<<<<<< HEAD
 
     <form className={styles.applicationForm} onSubmit={handleSubmit}>
-=======
-     <div>
-      <Navbar/>
-       <form className="application-form" onSubmit={handleSubmit}>
->>>>>>> main
       <h2>Apply for the Job</h2>
 
       <div className={styles.formGroup}>
@@ -416,12 +404,6 @@ const ApplicationForm = () => {
       </button>
       <ToastContainer />
     </form>
-<<<<<<< HEAD
-
-=======
-    <Footer/>
-     </div>
->>>>>>> main
   );
 };
 
