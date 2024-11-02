@@ -3,18 +3,18 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 
-import "../CSS/navbar.css";
+import styles from "../CSS/navbar.module.css";
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaunchIcon from '@mui/icons-material/Launch';
-import ContactMailIcon from '@mui/icons-material/ContactMail'; // Import the Contact Mail icon
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
 import { Dock } from "@mui/icons-material";
-import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
@@ -47,7 +47,6 @@ const Navbar = () => {
           console.error('Error fetching user profile:', error);
         });
     } else {
-      // Show toast if user is not logged in
       toast.error('Please log in to continue', {
         position: "top-center",
         autoClose: 3000,
@@ -60,68 +59,96 @@ const Navbar = () => {
     }
   };
 
-  return (
-    <div className="navbar">
 
+
+
+  return (
+    <div className={styles.navbar}>
       <ToastContainer />
-      <div className="hirehublogo">
+
+      <div className={styles.hirehublogo}>
 
         <LazyLoad height={40} offset={100} once>
-          <Link to={'/'}> <img className="logoimg" src={logo} alt="Logo" /> </Link>
+          <Link to="/">
+            <img className={styles.logoimg} src={logo} alt="Logo" />
+          </Link>
+
         </LazyLoad>
       </div>
-      <div className="icons">
-        <div className={`icon home ${activeTab === '/' ? 'active' : ''}`}>
-          <Link to="/"><HomeIcon /><span>Home</span></Link>
+
+      <div className={styles.icons}>
+        <div className={`${styles.icon} ${activeTab === '/' ? styles.active : ''}`}>
+          <Link to="/">
+            <HomeIcon /><span>Home</span>
+          </Link>
         </div>
+
         {!hideElements && (
           <>
-            <div className={`icon jobs ${activeTab === '/jobcard' ? 'active' : ''}`}>
-              <Link to="/jobcard"><WorkIcon /><span>Jobs</span></Link>
+            <div className={`${styles.icon} ${activeTab === '/jobcard' ? styles.active : ''}`}>
+              <Link to="/jobcard">
+                <WorkIcon /><span>Jobs</span>
+              </Link>
+
             </div>
-            <div className={`icon aboutus ${activeTab === '/about' ? 'active' : ''}`}>
-              <Link to="/about"><InfoIcon /><span>About</span></Link>
+
+            <div className={`${styles.icon} ${activeTab === '/about' ? styles.active : ''}`}>
+              <Link to="/about">
+                <InfoIcon /><span>About</span>
+              </Link>
             </div>
-            <div className={`icon contactus ${activeTab === "/contactus" ? "active" : ""}`}>
-              <Link to="/contactus"><ContactMailIcon /><span>Contact Us</span></Link>
+
+            <div className={`${styles.icon} ${activeTab === "/contactus" ? styles.active : ""}`}>
+              <Link to="/contactus">
+                <ContactMailIcon /><span>Contact Us</span>
+              </Link>
             </div>
-            <div className={`icon resume-analyzer ${activeTab === "/resume-analyzer" ? "active" : ""}`}>
-              <Link to="/resume-analyzer"><Dock /><span>Scan Resume</span></Link>
+
+            <div className={`${styles.icon} ${activeTab === "/resume-analyzer" ? styles.active : ""}`}>
+              <Link to="/resume-analyzer">
+                <Dock /><span>Scan Resume</span>
+              </Link>
             </div>
-            <div className={`icon blog ${activeTab === '/blog' ? 'active' : ''}`}>
-              <Link to="/blog"><FaBlog /><span>Blog</span></Link>
-              </div>
-              <div
-                className={`icon resume-analyzer ${activeTab === "/resume-screening" ? "active" : ""
-                  }`}
-              >
-                <Dock />
-                <Link to="/resume-screening" onClick={() => setActiveTab("/resume-analyzer")}>
-                  <span>Resume Screening</span>
+
+            <div className={`${styles.icon} ${activeTab === '/blog' ? styles.active : ''}`}>
+              <Link to="/blog">
+                <FaBlog /><span>Blog</span>
+              </Link>
+            </div>
+
+            <div className={`${styles.icon} ${activeTab === "/resume-screening" ? styles.active : ""}`}>
+              <Link to="/resume-screening" onClick={() => setActiveTab("/resume-analyzer")}>
+                <Dock /><span>Resume Screening</span>
+              </Link>
+            </div>
+
+            <div className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""}`}>
+              {isLoggedIn ? (
+                <Link to="/profile">
+                  <AccountCircleIcon /><span>Profile</span>
                 </Link>
+              ) : (
+                <Link to="/signin">
+                  <LoginIcon /><span>Login</span>
+                </Link>
+              )}
+            </div>
+            {!hideElements && (
+              <div className={styles.posting} onClick={handlePostJob}>
+                <span>Employer/Post Job</span>
+                <LaunchIcon className={styles.postingIcon} />
               </div>
-              <div className={`icon aboutus ${activeTab === '/blog' ? 'active' : ''}`}>
-                <FaBlog />
-                <Link to="/blog" onClick={() => setActiveTab('/blog')}><span>Blog</span></Link>
-              </div>
-              <div className={`icon login ${activeTab === "/profile" ? "active" : ""}`}>
-                {isLoggedIn ? (
-                  <Link to="/profile"><AccountCircleIcon /><span>Profile</span></Link>
-                ) : (
-                  <Link to="/signin"><LoginIcon /><span>Login</span></Link>
-                )}
-              </div>
-            </>
+            )}
+          </>
         )}
-          </div>
-        {!hideElements && (
-          <div className="posting">
-            <span onClick={handlePostJob}>Employer/Post Job</span>
-            <LaunchIcon className="posting-icon" />
-          </div>
-        )}
+
+
       </div>
-      );
+
+    </div>
+  );
+
 };
 
-      export default Navbar;
+export default Navbar;
+

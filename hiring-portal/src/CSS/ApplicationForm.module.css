@@ -1,0 +1,149 @@
+.applicationForm {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.applicationFormTitle {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroupLabel {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.formGroupInput,
+.formGroupTextarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formGroupInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.formGroupInput[type="number"]::-webkit-inner-spin-button,
+.formGroupInput[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submitButton {
+  display: inline-block;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #009688;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submitButton:hover {
+  opacity: 0.9;
+}
+
+.educationSection,
+.experienceSection,
+.skillsSection {
+  margin-bottom: 20px;
+}
+
+.educationSectionTitle,
+.experienceSectionTitle,
+.skillsSectionTitle {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #444;
+}
+
+.flexGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.formGroupNumberInput {
+  width: 300px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.filePreviewDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 70%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s ease;
+}
+
+.filePreviewDialogTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.previewOptions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.previewOptionsButton {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #189F93;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.previewOptionsButton:hover {
+  background-color: #147c72;
+}
+
+.filePreview {
+  flex-grow: 1;
+  overflow: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.filePreview img,
+.filePreview iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: none;
+}

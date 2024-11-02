@@ -1,4 +1,4 @@
-.job-card-container {
+.jobCardContainer {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
@@ -11,26 +11,26 @@
     position: relative;
 }
 
-.job-card-container:hover {
+.jobCardContainer:hover {
     transform: translateY(-5px);
 }
 
-.job-image-wrapper {
+.jobImageWrapper {
     position: relative;
     height: 115px;
 }
 
-.job-card-image {
+.jobCardImage {
     width: 100%;
     border-radius: 12px;
     height: 100%;
 }
 
-.job-card-details {
+.jobCardDetails {
     margin-top: 15px;
 }
 
-.job-info {
+.jobInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,57 +38,57 @@
     margin-bottom: 10px;
 }
 
-.company-name-tag {
+.companyNameTag {
     background-color: #e1e1e1;
     padding: 6px 12px;
     border-radius: 5px;
     color: rgb(14, 14, 14);
 }
 
-.job-location {
+.jobLocation {
     font-size: 0.85rem;
     color: #aaa;
     display: flex;
     align-items: center;
 }
 
-.job-card-title {
+.jobCardTitle {
     font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 10px;
     color: black;
 }
 
-.job-extra-info {
+.jobExtraInfo {
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
 }
 
-.job-department {
+.jobDepartment {
     color: #ccc;
     display: flex;
     align-items: center;
 }
 
-.job-view-link {
+.jobViewLink {
     color: #ff6347;
 }
 
-.job-view-link:hover {
+.jobViewLink:hover {
     text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-    .job-card-container {
+    .jobCardContainer {
         width: 100%;
     }
 
-    .job-card-title {
+    .jobCardTitle {
         font-size: 1rem;
     }
 
-    .job-extra-info {
+    .jobExtraInfo {
         font-size: 0.8rem;
     }
 }

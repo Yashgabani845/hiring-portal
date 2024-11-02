@@ -1,4 +1,6 @@
-.hero-section {
+/* HeroSection.module.css */
+
+.heroSection {
   position: relative;
   color: #000000;
   text-align: center;
@@ -9,25 +11,25 @@
   width: 100%;
 }
 
-.hero-content {
+.heroContent {
   max-width: 90%;
   margin: auto;
   position: relative;
   z-index: 1;
 }
 
-.hero-content h1 {
+.heroContent h1 {
   font-size: 36px;
   margin-bottom: 20px;
   font-family: sans-serif;
 }
 
-.hero-content p {
+.heroContent p {
   font-size: 16px;
   margin-bottom: 30px;
 }
 
-.search-bar {
+.searchBar {
   margin-top: 20px;
   display: flex;
   max-width: 100%;
@@ -40,7 +42,7 @@
   flex-wrap: wrap;
 }
 
-.searchdiv {
+.searchDiv {
   display: flex;
   align-items: center;
   position: relative;
@@ -58,14 +60,14 @@
   max-width: 100%;
 }
 
-.search-icon,
-.location-icon {
+.searchIcon,
+.locationIcon {
   position: absolute;
-  left: 10px;
+  left: 200px;
   color: #000000;
 }
 
-.searchbtn {
+.searchBtn {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #0564c9;
@@ -78,7 +80,7 @@
   margin-left: 10px;
 }
 
-.seprate {
+.separate {
   font-size: x-large;
   color: #565353;
   opacity: 0.3;
@@ -86,7 +88,7 @@
   margin: 0 10px;
 }
 
-.search-results {
+.searchResults {
   margin-top: 20px;
   max-height: 250px;
   overflow-y: auto;
@@ -96,7 +98,7 @@
   border-radius: 6px;
 }
 
-.job-item {
+.jobItem {
   padding: 10px 15px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
@@ -106,54 +108,56 @@
   transition: background-color 0.3s ease;
 }
 
-.job-item h3 {
+.jobItem h3 {
   font-size: 16px;
   margin: 0;
   color: #333;
   font-weight: 600;
 }
 
-.job-item p {
+.jobItem p {
   font-size: 14px;
   margin: 0;
   color: #555;
 }
 
-.job-item:hover {
+.jobItem:hover {
   background-color: #e0e0e0;
 }
 
 @media (max-width: 768px) {
-  .hero-content h1 {
+  .heroContent h1 {
     font-size: 28px;
   }
 
-  .search-bar {
+  .searchBar {
     flex-direction: column;
     padding: 15px;
   }
 
-  .searchbtn {
+  .searchBtn {
     margin-top: 15px;
   }
 
-  .search-results {
+  .searchResults {
     max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-content h1 {
+  .heroContent h1 {
     font-size: 24px;
   }
 
-  .hero-content p {
+  .heroContent p {
     font-size: 14px;
   }
+
   .center {
     width: 100% !important;
   }
-  .search-bar {
+
+  .searchBar {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -165,27 +169,29 @@
     height: 35px;
     padding-left: 35px;
   }
-  .searchdiv {
+
+  .searchDiv {
     display: flex;
     align-items: center;
     position: relative;
     border: 1px solid rgb(141, 141, 141);
     width: 100%;
   }
-  .seprate {
+
+  .separate {
     display: none;
   }
 
-  .searchbtn {
+  .searchBtn {
     padding: 8px 16px;
     font-size: 14px;
   }
 
-  .job-item h3 {
+  .jobItem h3 {
     font-size: 14px;
   }
 
-  .job-item p {
+  .jobItem p {
     font-size: 12px;
   }
 }

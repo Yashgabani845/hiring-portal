@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import "../CSS/about.css";
+import styles from "../CSS/About.module.css";
 import searchimage from "../assests/job_search.jpg";
 import js1 from "../assests/js1.jpg";
 import email from "../assests/email.jpg";
@@ -68,17 +68,17 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <div className="about-container">
-        <div className="feature-section" data-aos="zoom-in">
+      <div className={styles.aboutContainer}>
+        <div className={styles.featureSection} data-aos="zoom-in">
           <h1>Welcome to Hiring Hub</h1>
           <p>Our comprehensive platform for job searching and recruitment.</p>
         </div>
 
-        <div className="features">
+        <div className={styles.features}>
           {featureData.map((feature, index) => (
-            <div className="feature" key={index} data-aos="zoom-in">
-              <img src={feature.image} alt={feature.title} className="feature-image" />
-              <div className="feature-text">
+            <div className={styles.feature} key={index} data-aos="zoom-in">
+              <img src={feature.image} alt={feature.title} className={styles.featureImage} />
+              <div className={styles.featureText}>
                 <h2>{feature.title}</h2>
                 <p>{feature.description}</p>
                 <ul>

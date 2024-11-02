@@ -1,27 +1,32 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import "../CSS/signin.css";
-import jobImage from "../assests/job_search.png"; // Replace with the actual path to your image
+import jobImage from "../assests/job_search.png";
 import logo from "../assests/logo.png";
-import { ClipLoader } from "react-spinners"; // Import the spinner
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
-import { Modal, Input } from "antd";
-import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Modal, Input, Button } from "antd";
 
 const SignIn = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [loadingImage, setLoadingImage] = useState(true); // Loader state
-  const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
+  const [loadingImage, setLoadingImage] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [isForgotPasswordModalVisible, setIsForgotPasswordModalVisible] =
     useState(false);
+
+  // New states for multi-step password reset
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [currentStep, setCurrentStep] = useState(1); // Track current step in the reset process
+
+  // Sign In logic
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,21 +41,16 @@ const SignIn = () => {
 
       const data = await response.json();
       if (response.ok) {
-        console.log("Sign in successful:", data);
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("token", data.token);
         toast.success("Sign in successful!");
-        if (email === "admin@gmail.com" && password === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
+        navigate(
+          email === "admin@gmail.com" && password === "admin" ? "/admin" : "/"
+        );
       } else {
-        console.error("Sign in failed:", data.message);
         toast.error(`Sign in failed: ${data.message}`);
       }
     } catch (error) {
-      console.error("Error:", error);
       toast.error("An error occurred. Please try again.");
     }
   };
@@ -58,44 +58,114 @@ const SignIn = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   const showForgotPasswordModal = () => {
     setIsForgotPasswordModalVisible(true);
+    setCurrentStep(1); // Reset to first step when modal opens
   };
 
-  // call the api to send email
-
-  const handleForgotPasswordOk = async () => {
+  // Step 1: Request OTP
+  const handleForgotPasswordRequest = async () => {
     if (!forgotPasswordEmail) {
       toast.error("Please enter your email address");
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/SendResetEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ UserEmail: forgotPasswordEmail }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/users/request-password-reset",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ UserEmail: forgotPasswordEmail }),
+        }
+      );
 
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Password reset link sent!");
-        setIsForgotPasswordModalVisible(false); // Close the modal after success
+        toast.success("OTP sent! Please check your email.");
+        setCurrentStep(2); // Move to next step
       } else {
-        toast.error(data.message || "Failed to send password reset link.");
+        toast.error(data.message || "Failed to send OTP.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      toast.error("An error occurred while sending the password reset link.");
+      toast.error("An error occurred while sending the OTP.");
     }
   };
 
-  // const handleForgotPasswordCancel = () => {
-  //   setIsForgotPasswordModalVisible(false);
-  // };
+  // Step 2: Verify OTP
+  const handleVerifyOtp = async () => {
+    if (!forgotPasswordEmail || !otp) {
+      toast.error("Please enter both your email and OTP.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/users/verify-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: forgotPasswordEmail, otp }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("OTP verified! Now enter a new password.");
+        setCurrentStep(3); // Move to final step
+      } else {
+        toast.error(data.message || "Failed to verify OTP.");
+      }
+    } catch (error) {
+      toast.error("An error occurred during OTP verification.");
+    }
+  };
+
+  // Step 3: Reset Password
+  const handleResetPassword = async () => {
+    if (!forgotPasswordEmail || !otp || !newPassword) {
+      toast.error("Please complete all fields to reset your password.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/users/reset-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: forgotPasswordEmail,
+            otp,
+            newPassword,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(
+          "Password reset successful! Please sign in with your new password."
+        );
+        setIsForgotPasswordModalVisible(false); // Close the modal after success
+      } else {
+        toast.error(data.message || "Failed to reset password.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while resetting the password.");
+    }
+  };
+
   return (
     <div className="bg">
       <Navbar />
@@ -106,15 +176,16 @@ const SignIn = () => {
       )}
       <div className="signin-page">
         <center>
-          <Link to="/">
+           <Link to="/">
             <div className="welcom1">
- 
+
               <h1 data-aos='zoom-in'>Welcome to&nbsp;&nbsp;</h1>
               <img src={logo} alt="Logo" data-aos='zoom-in' />
-             </div>
+            </div>
           </Link>
+ 
         </center>
-        <div className="signin-data" data-aos='zoom-in' data-aos-delay='100'>
+        <div className="signin-data" data-aos="zoom-in" data-aos-delay="100">
           <div className="signin-image">
             <img
               src={jobImage}
@@ -141,7 +212,7 @@ const SignIn = () => {
                 <label htmlFor="password">Password:</label>
                 <div className="password-field">
                   <input
-                    type={showPassword ? "text" : "password"} // Toggle input type between text and password
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -171,22 +242,52 @@ const SignIn = () => {
               </div>
             </form>
             <div className="extra-options">
-              <a href="/signup">Don't have an account? Sign Up</a>
+              <Link to="/signup">Don't have an account? Sign Up</Link>
             </div>
           </div>
         </div>
       </div>
       <Modal
         title="Forgot Password"
-        visible={isForgotPasswordModalVisible}
-        onOk={handleForgotPasswordOk}
+        open={isForgotPasswordModalVisible}
         onCancel={() => setIsForgotPasswordModalVisible(false)}
+        footer={null}
       >
-        <Input
-          placeholder="Enter your email"
-          value={forgotPasswordEmail}
-          onChange={(e) => setForgotPasswordEmail(e.target.value)}
-        />
+        {currentStep === 1 && (
+          <div>
+            <Input
+              placeholder="Enter your email to receive an OTP"
+              value={forgotPasswordEmail}
+              onChange={(e) => setForgotPasswordEmail(e.target.value)}
+              style={{ marginBottom: "1rem" }}
+            />
+            <Button onClick={handleForgotPasswordRequest}>Send OTP</Button>
+          </div>
+        )}
+        {currentStep === 2 && (
+          <div>
+            <Input
+              placeholder="Enter your OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              style={{ marginBottom: "1rem" }}
+            />
+            <Button onClick={handleVerifyOtp}>Verify OTP</Button>
+          </div>
+        )}
+        {currentStep === 3 && (
+          <div>
+            <Input.Password
+              placeholder="Enter your new password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              style={{ marginBottom: "1rem" }}
+            />
+            <Button type="primary" onClick={handleResetPassword}>
+              Reset Password
+            </Button>
+          </div>
+        )}
       </Modal>
       <ToastContainer />
     </div>

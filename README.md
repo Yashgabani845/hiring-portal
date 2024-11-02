@@ -3,6 +3,10 @@
 
 **HireHub** is a comprehensive hiring portal built using the MERN stack (MongoDB, Express.js, React, Node.js). It provides a platform for job seekers to browse and apply for jobs, employers to manage job postings and candidate shortlisting, and admins to oversee the platform's operations.
 
+## Project Structure ✨
+
+Check the project structure here [Project Structure](PROJECT_STRUCTURE.md)
+
 ## Technologies Used 🛠️
 
 - **Frontend:** React, Redux
