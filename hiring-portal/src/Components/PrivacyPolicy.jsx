@@ -1,26 +1,25 @@
 import React from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import '../CSS/privacyPolicy.css';
+import styles from '../CSS/privacyPolicy.module.css';
 
 const PrivacyPolicy = () => {
     return (
         <>
             <Navbar />
-            <section className="privacy-policy">
-                <h1 className="title">Privacy Policy</h1>
-                <p className="intro">
+            <section className={styles.privacyPolicy}>
+                <h1 className={styles.title}>Privacy Policy</h1>
+                <p className={styles.intro}>
                     Welcome to Hiring Portal. This privacy policy explains how we collect, use, and share your personal information when you use our platform. By using Hiring Portal, you agree to the terms of this policy.
                 </p>
 
-                <div className='info-group'>
-
-                    <div className="info-section">
-                        <h2 className="section-title">1. Information We Collect</h2>
-                        <p className="section-description">
+                <div className={styles.infoGroup}>
+                    <div className={styles.infoSection}>
+                        <h2 className={styles.sectionTitle}>1. Information We Collect</h2>
+                        <p className={styles.sectionDescription}>
                             When you use Hiring Portal, we may collect the following types of information:
                         </p>
-                        <ul className="info-list">
+                        <ul className={styles.infoList}>
                             <li>
                                 <strong>Personal Information:</strong> This includes your name, email address, phone number, and any other information you provide when registering or using our services.
                             </li>
@@ -36,12 +35,12 @@ const PrivacyPolicy = () => {
                         </ul>
                     </div>
 
-                    <div className="info-section">
-                        <h2 className="section-title">2. How We Use Your Information</h2>
-                        <p className="section-description">
+                    <div className={styles.infoSection}>
+                        <h2 className={styles.sectionTitle}>2. How We Use Your Information</h2>
+                        <p className={styles.sectionDescription}>
                             We use the information we collect for the following purposes:
                         </p>
-                        <ul className="info-list">
+                        <ul className={styles.infoList}>
                             <li>To provide, operate, and maintain the Hiring Portal platform.</li>
                             <li>To process job applications and provide notifications on application status.</li>
                             <li>To facilitate coding assessments and manage secure link integrity.</li>
@@ -51,12 +50,12 @@ const PrivacyPolicy = () => {
                         </ul>
                     </div>
 
-                    <div className="info-section">
-                        <h2 className="section-title">3. How We Share Your Information</h2>
-                        <p className="section-description">
+                    <div className={styles.infoSection}>
+                        <h2 className={styles.sectionTitle}>3. How We Share Your Information</h2>
+                        <p className={styles.sectionDescription}>
                             We do not sell your personal information. However, we may share your information in the following cases:
                         </p>
-                        <ul className="info-list">
+                        <ul className={styles.infoList}>
                             <li>
                                 <strong>With Service Providers:</strong> We share your information with trusted third-party service providers to facilitate job postings, manage assessments, and improve our services.
                             </li>
@@ -66,12 +65,12 @@ const PrivacyPolicy = () => {
                         </ul>
                     </div>
 
-                    <div className="info-section">
-                        <h2 className="section-title">4. Your Rights</h2>
-                        <p className="section-description">
+                    <div className={styles.infoSection}>
+                        <h2 className={styles.sectionTitle}>4. Your Rights</h2>
+                        <p className={styles.sectionDescription}>
                             As a user of Hiring Portal, you have the following rights regarding your personal data:
                         </p>
-                        <ul className="info-list">
+                        <ul className={styles.infoList}>
                             <li>
                                 <strong>Access:</strong> You have the right to request access to the information we hold about you.
                             </li>
@@ -85,41 +84,40 @@ const PrivacyPolicy = () => {
                                 <strong>Objection:</strong> You have the right to object to the processing of your data in certain circumstances.
                             </li>
                         </ul>
-                        <p className="contact-info">
+                        <p className={styles.contactInfo}>
                             To exercise any of these rights, please contact us at
-                            <a href="mailto:hiringportal@gmail.com" className="email-link"> hiringportal@gmail.com</a>.
+                            <a href="mailto:hiringportal@gmail.com" className={styles.emailLink}> hiringportal@gmail.com</a>.
                         </p>
                     </div>
                 </div>
 
-
-                <div className="info-section">
-                    <h2 className="section-title">5. Data Security</h2>
-                    <p className="section-description">
+                <div className={styles.infoSection}>
+                    <h2 className={styles.sectionTitle}>5. Data Security</h2>
+                    <p className={styles.sectionDescription}>
                         We take the security of your personal information seriously and use appropriate measures to protect it. However, please note that no method of transmission over the Internet is completely secure, and we cannot guarantee absolute security.
                     </p>
                 </div>
 
-                <div className="info-section">
-                    <h2 className="section-title">6. Upcoming Features</h2>
-                    <p className="section-description">
+                <div className={styles.infoSection}>
+                    <h2 className={styles.sectionTitle}>6. Upcoming Features</h2>
+                    <p className={styles.sectionDescription}>
                         We are continually working to improve our platform and are excited to announce the following upcoming features:
                     </p>
-                    <ul className="info-list">
+                    <ul className={styles.infoList}>
                         <li><strong>Interview Scheduling:</strong> Real-time video interviews using WebRTC.</li>
                         <li><strong>Advanced Search Filters:</strong> Filter jobs by location, experience, and more.</li>
                         <li><strong>Real-time Notifications:</strong> Get updates for job applications, interviews, etc.</li>
                     </ul>
                 </div>
 
-                <div className="info-section">
-                    <h2 className="section-title">7. Changes to This Privacy Policy</h2>
-                    <p className="section-description">
+                <div className={styles.infoSection}>
+                    <h2 className={styles.sectionTitle}>7. Changes to This Privacy Policy</h2>
+                    <p className={styles.sectionDescription}>
                         We may update this privacy policy from time to time. Any changes will be posted on this page, and we will notify you of significant changes by email or via a notification on the platform.
                     </p>
                 </div>
 
-                <p className="last-updated">Last updated: October 11, 2024</p>
+                <p className={styles.lastUpdated}>Last updated: October 11, 2024</p>
             </section>
             <Footer />
         </>

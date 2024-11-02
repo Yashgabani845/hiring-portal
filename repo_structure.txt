@@ -17,6 +17,7 @@
 │   │   │   ├── forgotPasswordController.js
 │   │   │   ├── jobController.js
 │   │   │   ├── otherApiController.js
+│   │   │   ├── otpVerifyController.js
 │   │   │   └── userController.js
 │   │   ├── middlewares/
 │   │   │   └── authMiddleware.js
@@ -1199,14 +1200,15 @@
 │       ├── App.js
 │       ├── App.test.js
 │       ├── CSS/
+│       │   ├── About.module.css
 │       │   ├── ApplicationForm.css
+│       │   ├── ApplicationForm.module.css
 │       │   ├── NotFound.css
-│       │   ├── about.css
 │       │   ├── admin.css
 │       │   ├── ass.css
 │       │   ├── assessmentResults.css
 │       │   ├── backtotop.css
-│       │   ├── blog.css
+│       │   ├── blog.module.css
 │       │   ├── coding.css
 │       │   ├── company.css
 │       │   ├── contactus.css
@@ -1214,26 +1216,26 @@
 │       │   ├── createBlog.css
 │       │   ├── dashboard.css
 │       │   ├── employer.css
-│       │   ├── faqSection.css
-│       │   ├── footer.css
-│       │   ├── herosection.css
-│       │   ├── interview.css
+│       │   ├── faqSection.module.css
+│       │   ├── footer.module.css
+│       │   ├── herosection.module.css
+│       │   ├── interview.module.css
 │       │   ├── job.css
-│       │   ├── jobcard.css
+│       │   ├── jobcard.module.css
 │       │   ├── jobgrid.css
 │       │   ├── joblist.css
 │       │   ├── jobpage.css
 │       │   ├── jobpostform.css
 │       │   ├── jobs.css
 │       │   ├── manageJobs.css
-│       │   ├── middleview.css
-│       │   ├── navbar.css
-│       │   ├── newJobCard.css
-│       │   ├── postview.css
-│       │   ├── privacyPolicy.css
+│       │   ├── middleview.module.css
+│       │   ├── navbar.module.css
+│       │   ├── newJobCard.module.css
+│       │   ├── postview.module.css
+│       │   ├── privacyPolicy.module.css
 │       │   ├── profile.css
 │       │   ├── readMoreBlog.css
-│       │   ├── resumeAnalyzer.css
+│       │   ├── resumeAnalyzer.module.css
 │       │   ├── shortlist.css
 │       │   ├── signin.css
 │       │   ├── signup.css

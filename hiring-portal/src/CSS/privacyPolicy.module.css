@@ -1,4 +1,4 @@
-.privacy-policy {
+.privacyPolicy {
     padding: 40px 24px;
     max-width: 80%;
     margin: 0 auto;
@@ -31,7 +31,7 @@
     line-height: 1.6;
 }
 
-.info-section {
+.infoSection {
     margin-bottom: 2.5rem;
     padding: 24px;
     background-color: #F5F5F5;
@@ -42,7 +42,7 @@
     line-height: 1.6;
 }
 
-.section-title {
+.sectionTitle {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
@@ -52,60 +52,60 @@
     cursor: pointer;
 }
 
-.section-title:hover {
+.sectionTitle:hover {
     transform: scale(0.95);
     color: #3A006A;
     /* Dark Indigo for hover effect */
 }
 
-.section-description {
+.sectionDescription {
     margin-bottom: 1rem;
     font-size: 1.125rem;
     color: #666;
     /* Lighter gray for section description */
 }
 
-.info-list {
+.infoList {
     list-style-type: disc;
     padding-left: 20px;
     margin-top: 0;
     line-height: 1.6;
 }
 
-.contact-info {
+.contactInfo {
     margin-top: 1rem;
     font-size: 1.125rem;
     color: #555;
     /* Mid Gray for contact info */
 }
 
-.email-link {
+.emailLink {
     color: #007BFF;
     /* Blue for links */
     text-decoration: underline;
     transition: color 0.3s;
 }
 
-.email-link:hover {
+.emailLink:hover {
     color: #0056b3;
     /* Darker blue for link hover */
 }
 
-.last-updated {
+.lastUpdated {
     font-size: 0.875rem;
     color: #999;
     /* Light gray for last updated text */
 }
 
-.info-group {
+.infoGroup {
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.info-group .info-section {
-    width: 48%;
+.infoGroup .infoSection {
+    width: 45%;
 }
 
 li {

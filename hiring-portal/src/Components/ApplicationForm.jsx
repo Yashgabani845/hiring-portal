@@ -2,13 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../firebase/firebase"; 
+import { storage } from "../firebase/firebase";
 import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
+<<<<<<< HEAD
+import styles from '../CSS/ApplicationForm.module.css'; // Import the CSS module
+=======
 import "../CSS/ApplicationForm.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+>>>>>>> main
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
@@ -197,21 +201,38 @@ const ApplicationForm = () => {
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
+<<<<<<< HEAD
+
+    <form className={styles.applicationForm} onSubmit={handleSubmit}>
+=======
      <div>
       <Navbar/>
        <form className="application-form" onSubmit={handleSubmit}>
+>>>>>>> main
       <h2>Apply for the Job</h2>
-      
-      <div className="form-group">
+
+      <div className={styles.formGroup}>
         <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" required />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          placeholder="Enter your email"
+          required
+        />
       </div>
 
-      <div className="form-group">
-        <div className="fgn">
-          <div className="form-group-code">
+      <div className={styles.formGroup}>
+        <div className={styles.fgn}>
+          <div className={styles.formGroupCode}>
             <label>Country Code:</label>
-            <select name="countryCode" value={selectedCountryCode} onChange={handleCountryChange} required>
+            <select
+              name="countryCode"
+              value={selectedCountryCode}
+              onChange={handleCountryChange}
+              required
+            >
               {countryCodes.map((country, index) => (
                 <option key={index} value={country.code}>
                   {country.emoji} ({country.code})
@@ -220,7 +241,7 @@ const ApplicationForm = () => {
             </select>
           </div>
 
-          <div className="form-group-number">
+          <div className={styles.formGroupNumber}>
             <label>Mobile Number:</label>
             <input
               type="text"
@@ -234,19 +255,37 @@ const ApplicationForm = () => {
         </div>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>First Name:</label>
-        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" required />
+        <input
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleInputChange}
+          placeholder="Enter your first name"
+          required
+        />
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Last Name (if applicable):</label>
-        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" />
+        <input
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleInputChange}
+          placeholder="Enter your last name"
+        />
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Gender:</label>
-        <select name="gender" value={formData.gender} onChange={handleInputChange} required>
+        <select
+          name="gender"
+          value={formData.gender}
+          onChange={handleInputChange}
+          required
+        >
           <option value="">Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -254,75 +293,110 @@ const ApplicationForm = () => {
         </select>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Institute Name:</label>
-        <select name="instituteName" value={formData.college} onChange={handleInputChange} required>
+        <select
+          name="instituteName"
+          value={formData.college}
+          onChange={handleInputChange}
+          required
+        >
           <option value="">Select College</option>
           {collegesData.map((college, index) => (
-            <option key={index} value={college.college}>{college.college}</option>
+            <option key={index} value={college.college}>
+              {college.college}
+            </option>
           ))}
         </select>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Course:</label>
-        <select name="course" value={formData.course} onChange={handleInputChange} required>
+        <select
+          name="course"
+          value={formData.course}
+          onChange={handleInputChange}
+          required
+        >
           <option value="">Select Course</option>
           {Courses.map((course, index) => (
-            <option key={index} value={course}>{course}</option>
+            <option key={index} value={course}>
+              {course}
+            </option>
           ))}
         </select>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Graduating Year:</label>
-        <input type="number" name="graduatingYear" value={formData.graduatingYear} onChange={handleInputChange} placeholder="Enter your graduating year" required />
+        <input
+          type="number"
+          name="graduatingYear"
+          value={formData.graduatingYear}
+          onChange={handleInputChange}
+          placeholder="Enter your graduating year"
+          required
+        />
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Course Duration:</label>
-        <input type="text" name="courseDuration" value={formData.courseDuration} onChange={handleInputChange} placeholder="Enter course duration" required />
+        <input
+          type="text"
+          name="courseDuration"
+          value={formData.courseDuration}
+          onChange={handleInputChange}
+          placeholder="Enter course duration"
+          required
+        />
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Country of Residence:</label>
-        <select name="countryOfResidence" value={formData.countryOfResidence} onChange={handleInputChange} required>
+        <select
+          name="countryOfResidence"
+          value={formData.countryOfResidence}
+          onChange={handleInputChange}
+          required
+        >
           <option value="">Select Country</option>
           {countryData.map((country, index) => (
-            <option key={index} value={country.name}>{country.name}</option>
+            <option key={index} value={country.name}>
+              {country.name}
+            </option>
           ))}
         </select>
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Resume (Upload File):</label>
         <input
           type="file"
           accept=".pdf,.doc,.docx"
-          onChange={(e) => handleFileSelection(e, "resume")}
+          onChange={(e) => handleFileSelection(e, 'resume')}
           required
         />
       </div>
-      
-      <div className="form-group">
+
+      <div className={styles.formGroup}>
         <label>CV (Upload File, optional):</label>
         <input
           type="file"
           accept=".pdf,.doc,.docx"
-          onChange={(e) => handleFileSelection(e, "cv")}
+          onChange={(e) => handleFileSelection(e, 'cv')}
         />
       </div>
 
       {showPreview && (
-        <div className="file-preview-dialog" style={{ height: previewHeight }}>
+        <div className={styles.filePreviewDialog} style={{ height: previewHeight }}>
           <h3>{selectedFile.name}</h3>
-          <div className="preview-options">
+          <div className={styles.previewOptions}>
             <button type="button" onClick={handlePreview}>Preview</button>
             <button type="button" onClick={handleUpload}>Upload</button>
             <button type="button" onClick={closePreview}>Close</button>
           </div>
           {previewUrl && (
-            <div className="file-preview" ref={previewRef}>
+            <div className={styles.filePreview} ref={previewRef}>
               {selectedFile.type.startsWith('image/') ? (
                 <img src={previewUrl} alt="File preview" />
               ) : (
@@ -333,13 +407,21 @@ const ApplicationForm = () => {
         </div>
       )}
 
-      <button type="submit" className="submit-btn" disabled={uploading || !allFilesUploaded}>
-        {uploading ? "Uploading..." : "Submit Application"}
+      <button
+        type="submit"
+        className={styles.submitBtn}
+        disabled={uploading || !allFilesUploaded}
+      >
+        {uploading ? 'Uploading...' : 'Submit Application'}
       </button>
       <ToastContainer />
     </form>
+<<<<<<< HEAD
+
+=======
     <Footer/>
      </div>
+>>>>>>> main
   );
 };
 

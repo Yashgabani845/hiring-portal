@@ -1,16 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-}
-
 .footer {
     background-color: #342d3b;
     color: #fff;
@@ -18,7 +5,7 @@ body {
     width: 100%;
 }
 
-.footer-container {
+.footerContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -27,8 +14,7 @@ body {
     width: 100%;
 }
 
-
-.footer-bottom {
+.footerBottom {
     margin-top: 20px;
     text-align: center;
     font-size: 1em;
@@ -36,133 +22,100 @@ body {
     border-top: 1px solid #555;
 }
 
-.footer-column {
+.footerColumn {
     flex: 1;
     margin-right: 20px;
-}
-
-.footer-column h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 8px;
-}
-
-.footer-column ul li a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-column ul li a:hover {
-    color: #007bff;
-}
-
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-icons a {
-    color: #fff;
-    font-size: 1.5em;
-    transition: color 0.3s ease;
-}
-
-.social-icons .linkedin {
-    /* Add the transition effect */
-    transition: transform 0.3s ease;
-}
-
-.social-icons .linkedin:hover {
-    color: #0072b1;
-    transform: scale(1.2);
-}
-
-.social-icons .github {
-    /* Add the transition effect */
-    transition: transform 0.3s ease;
-}
-
-.social-icons .github:hover {
-    /* color: #007bff; */
-    transform: scale(1.1);
-}
-
-.social-icons .twitter {
-    /* Add the transition effect */
-    transition: transform 0.3s ease;
-}
-
-.social-icons .twitter:hover {
-    background: none;
-    color: #1DA1F2;
-    transform: scale(1.2);
-}
-
-.social-icons .facebook:hover {
-    color: #4267B2;
-    transform: scale(1.2);
-}
-
-.social-icons .instagram {
-    /* Add the transition effect */
-    transition: transform 0.3s ease;
-}
-
-.social-icons .instagram:hover {
-    color: #E1306C;
-    transform: scale(1.2);
-}
-
-
-.footer-column {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
     text-align: center;
-    /* Centers the h4 element */
 }
 
-/* Styling for the h4 */
-.footer-column h4 {
+.footerColumn h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.footerColumn ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerColumn ul li {
+    margin-bottom: 8px;
+}
+
+.footerColumn ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footerColumn ul li a:hover {
+    color: #007bff;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 10px;
+}
+
+.socialIcons a {
+    color: #fff;
+    font-size: 1.5em;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialIcons .linkedin:hover {
+    color: #0072b1;
+    transform: scale(1.2);
+}
+
+.socialIcons .github:hover {
+    transform: scale(1.1);
+}
+
+.socialIcons .twitter:hover {
+    color: #1DA1F2;
+    transform: scale(1.2);
+}
+
+.socialIcons .facebook:hover {
+    color: #4267B2;
+    transform: scale(1.2);
+}
+
+.socialIcons .instagram:hover {
+    color: #E1306C;
+    transform: scale(1.2);
+}
+
+.footerColumn h4 {
     margin-bottom: 15px;
-    /* Adds space between h4 and form */
     font-size: 1.8rem;
     color: white;
 }
 
-/* Styling for the subscribe form */
-.subscribe-form {
+.subscribeForm {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /* Adds space between input and button */
     margin-bottom: 10px;
     min-width: 300px;
 }
 
-/* Styling for the input box */
-.subscribe-form input {
+.subscribeForm input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     min-width: 250px;
 }
 
-/* Styling for the subscribe button */
-.subscribe-form button {
+.subscribeForm button {
     padding: 10px 20px;
     border: none;
     background-color: #007BFF;
@@ -171,23 +124,22 @@ body {
     cursor: pointer;
 }
 
-.subscribe-form button:hover {
+.subscribeForm button:hover {
     background-color: #0056b3;
 }
 
-/* Styling for the message below the form */
 .message {
     margin-top: 10px;
     color: rgb(32, 238, 32);
     font-size: 1.2rem;
 }
 
-.text-black {
+.textBlack {
     color: white;
     font-size: 28px;
 }
 
-.align-content {
+.alignContent {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,40 +148,36 @@ body {
 }
 
 @media (max-width: 768px) {
-    .footer-container {
+    .footerContainer {
         flex-direction: column;
         text-align: center;
     }
 
-    .footer-column {
+    .footerColumn {
         margin-right: 0;
     }
 
-    .footer-column>h3 {
+    .footerColumn>h3 {
         font-size: 1.5rem;
     }
 
-    .footer-column h4 {
+    .footerColumn h4 {
         font-size: 1.3rem;
     }
 
-    .social-icons {
+    .socialIcons {
         justify-content: center;
     }
 
-    .subscribe-form {
+    .subscribeForm {
         flex-direction: column;
-        /* Stack the input and button vertically on small screens */
         width: 50%;
-        /* Full width for input and button */
     }
 
-    .subscribe-form input,
-    .subscribe-form button {
+    .subscribeForm input,
+    .subscribeForm button {
         width: 50%;
-        /* Input and button take full width */
         min-width: 170px;
         margin: 1px 0;
-        /* Adds spacing between input and button */
     }
 }

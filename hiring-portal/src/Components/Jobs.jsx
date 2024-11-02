@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../CSS/newJobCard.css';
+import styles from '../CSS/newJobCard.module.css';
 
 const Jobs = ({ job }) => {
     const navigate = useNavigate();
@@ -9,11 +9,11 @@ const Jobs = ({ job }) => {
     };
 
     return (
-        <div className="job-card">
-            <h3 className="job-title">{job.title}</h3>
-            <p className="job-salary"><strong>Salary:</strong> {job.salaryRange.min}</p>
-            <p className="job-location"><strong>Location:</strong> {job.workLocation}</p>
-            <button className="edit-button" onClick={handleEditClick}>Edit</button>
+        <div className={styles.jobCard}>
+            <h3 className={styles.jobTitle}>{job.title}</h3>
+            <p className={styles.jobSalary}><strong>Salary:</strong> {job.salaryRange.min}</p>
+            <p className={styles.jobLocation}><strong>Location:</strong> {job.workLocation}</p>
+            <button className={styles.editButton} onClick={handleEditClick}>Edit</button>
         </div>
     );
 };

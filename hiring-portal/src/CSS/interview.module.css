@@ -2,18 +2,14 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-justify-content: center;
-/* border: 1px solid black; */
+  justify-content: center;
   border-radius: 8px;
-  padding:20px 0;
+  padding: 20px 0;
   gap: 50px;
 }
 
-.itext-part {
-  
-
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+.itextPart {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .ititle {
@@ -50,7 +46,6 @@ justify-content: center;
 }
 
 .iimg {
- /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +63,7 @@ justify-content: center;
 .iimg img:hover {
   transform: scale(1.05);
 }
+
 @media (max-width: 768px) {
   .interview {
     display: flex;
@@ -76,11 +72,13 @@ justify-content: center;
     padding-bottom: 5%;
     flex-direction: column;
   }
-  .itext-part {
+
+  .itextPart {
     padding: 0px;
     text-align: center;
   }
-  .iimg img{
+
+  .iimg img {
     width: 100%;
   }
 }
@@ -89,7 +87,8 @@ justify-content: center;
   .interview {
     flex-direction: column;
   }
-  .itext-part {
+
+  .itextPart {
     padding: 5px;
     display: flex;
     justify-content: center;
@@ -97,9 +96,11 @@ justify-content: center;
     align-items: center;
     text-align: center;
   }
+
   .iimg {
     width: 100%;
   }
+
   .iimg img {
     width: 100%;
     border-radius: 8px;

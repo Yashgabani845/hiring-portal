@@ -1,3 +1,4 @@
+/* Navbar.module.css */
 .navbar {
   display: flex;
   flex-direction: row;
@@ -35,7 +36,7 @@
 }
 
 .icon {
-  margin: 10px;  
+  margin: 10px;
   font-size: 19px;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -73,6 +74,7 @@
   text-underline-offset: 1rem;
   text-decoration-color: #007bff;
 }
+
 
 .icon.active span::after {
   content: "";
@@ -141,6 +143,7 @@
 }
 
 @media (max-width: 480px) {
+
   .icon span,
   .posting span {
     display: none;
