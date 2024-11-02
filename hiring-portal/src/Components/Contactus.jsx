@@ -70,9 +70,7 @@ const Contactus = () => {
       );
 
       console.log("Response:", response.data);
-      const resp = await axios.post("http://localhost:5000/api/email", {
-        formData,
-      });
+
 
       setFormData({
         firstName: "",
@@ -81,7 +79,7 @@ const Contactus = () => {
         phoneNumber: "",
         query: "",
       });
-      if (resp.status === 200 && response.status === 201) {
+      if (response.status === 201) {
         alert("Contact form has been successfully submitted.");
       } else {
         alert("error in submission");
