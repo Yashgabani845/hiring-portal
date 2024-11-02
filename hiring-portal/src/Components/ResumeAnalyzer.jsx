@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from '../CSS/resumeAnalyzer.module.css';
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import styles from '../CSS/resumeAnalyzer.module.css'
+import Navbar from "../Components/Navbar"
+import Footer from "../Components/Footer"
 
 const ResumeAnalyzer = () => {
     const [resume, setResume] = useState(null);
@@ -124,7 +124,7 @@ const ResumeAnalyzer = () => {
             )}
             {result && (
                 <div className={styles.resultContainer}>
-                    <h3 className={styles.resultTitle}>Result of Resume Analysis</h3>
+                    <h3 className={styles.resultTitle}>Result of RESUME Analysis</h3>
                     <div className={styles.resultItem}>
                         <strong className={styles.resultLabel}>Job Description Match:</strong>
                         <span className={styles.resultValue}>{result["JD Match"]}</span>
