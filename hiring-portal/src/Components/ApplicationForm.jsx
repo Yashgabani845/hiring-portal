@@ -409,7 +409,6 @@ const ApplicationForm = () => {
       </button>
       <ToastContainer />
     </form>
-
     <Footer/>
      </div>
   );
