@@ -15,6 +15,26 @@ if not palm_api_key:
     raise ValueError("API key is missing. Please set your API key in the environment variables.")
 palm.configure(api_key=palm_api_key)
 
+# Return only the first 1000 characters for preview purposes
+@app.route('/preview', methods=['POST'])
+def preview_text():
+    try:
+        if 'file' not in request.files:
+            return jsonify({"error": "PDF file is required."}), 400
+
+        file = request.files['file']
+        if not file.filename.endswith('.pdf'):
+            return jsonify({"error": "File must be in PDF format."}), 400
+            
+        text = extract_text_from_pdf(file)
+        return jsonify({"text": text[:1000]}), 200
+
+    except PyPDF2.errors.PdfReadError:
+        return jsonify({"error": "Error reading the PDF file. Please ensure it is valid."}), 400
+    except Exception as e:
+        print("Unexpected Error:", str(e))  
+        return jsonify({"error": "An unexpected error occurred while processing the PDF."}), 500
+
 @app.route('/analyze', methods=['GET'])
 def health_check():
     return jsonify({"message": "Server running!"}), 200
