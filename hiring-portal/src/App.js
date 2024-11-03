@@ -28,8 +28,8 @@ import BlogPage from "./Components/BlogPage";
 import EditProfile from "./Components/EditProfile";
 import ResumeAnalyzer from "./Components/ResumeAnalyzer";
 import BackToTop from "./Components/BackToTop";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Error404 from "./Components/Error404";
 
 import CreateBlog from "./Components/CreateBlog";
@@ -39,22 +39,20 @@ import { ToastContainer } from "react-toastify";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
-
-
+ 
   useEffect(() => {
     AOS.init({
       duration: 1800,
     });
-  }, [])
-
+  }, []);
 
   return (
-    <><BackToTop />
+    <>
+      <BackToTop />
       <ToastContainer />
       <Router>
         <Routes>
-
-
+ 
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/jobcard" element={<Jobpage />} />
@@ -71,7 +69,10 @@ function App() {
           <Route path="/uploadedjobs" element={<UploadedJobs />} />
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/code/:assessmentId" element={<Coding />} />
-          <Route path="/manage-assesment/:jobId" element={<CreateAssessment />} />
+          <Route
+            path="/manage-assesment/:jobId"
+            element={<CreateAssessment />}
+          />
           <Route path="/managejobs/:jobId" element={<ManageJobs />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/application" element={<ApplicationForm />} />
@@ -79,21 +80,27 @@ function App() {
           <Route path="*" element={<Error404 />} />
           <Route
             path="/assessment-results/:jobId"
-            element={<AssessmentResults />} />
+            element={<AssessmentResults />}
+          />
           <Route
             path="/assessment-results/result/:assessmentId"
-            element={<AssessmentResultDetail />} />
+ 
+            element={<AssessmentResultDetail />}
+          />
           {/* <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} /> */}
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route path="/create-blog" element={<CreateBlog />} />
           <Route path="/contributor" element={<ContributorPage />} />
-
-
+ 
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
-      </Router></>
+      </Router>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
 import styles from '../CSS/ApplicationForm.module.css'; // Import the CSS module
+ 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -197,6 +198,7 @@ const ApplicationForm = () => {
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
+ 
 
     <>
 
@@ -249,7 +251,7 @@ const ApplicationForm = () => {
             </div>
           </div>
         </div>
-
+ 
         <div className={styles.formGroup}>
           <label>First Name:</label>
           <input
@@ -413,6 +415,7 @@ const ApplicationForm = () => {
       </form>
       <Footer />
     </>
+ 
   );
 };
 
