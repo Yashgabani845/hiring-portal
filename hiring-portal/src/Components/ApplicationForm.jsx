@@ -7,6 +7,11 @@ import Courses from "./course.json";
 import countryData from "./country.json";
 import collegesData from "./colleges.json";
 import styles from '../CSS/ApplicationForm.module.css'; // Import the CSS module
+ 
+import "../CSS/ApplicationForm.css";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+ 
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
@@ -194,9 +199,12 @@ const ApplicationForm = () => {
 
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
-  return (
-
-    <form className={styles.applicationForm} onSubmit={handleSubmit}>
+  return ( 
+ 
+     <div>
+      <Navbar/>
+       <form className="application-form" onSubmit={handleSubmit}>
+ 
       <h2>Apply for the Job</h2>
 
       <div className={styles.formGroup}>
@@ -403,7 +411,9 @@ const ApplicationForm = () => {
         {uploading ? 'Uploading...' : 'Submit Application'}
       </button>
       <ToastContainer />
-    </form>
+    </form> 
+    <Footer/>
+     </div> 
   );
 };
 
