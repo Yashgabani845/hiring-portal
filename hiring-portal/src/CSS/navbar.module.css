@@ -153,3 +153,33 @@
     padding: 0 !important;
   }
 }
+
+
+/* General login button styles */
+.login {
+  padding: 12px 12px; /* Vertical | Horizontal */
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px;
+  font-weight: bold;
+  color: white; /* Text color */
+  background-color: #007bff; /* Primary color */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Hover effects */
+.login:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Optional focus effect */
+.login:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus ring */
+}
+
+
+
+

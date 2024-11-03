@@ -60,7 +60,13 @@ const Navbar = () => {
   };
 
 
+  const handleSignIn = () => {
+    navigate('/signin');
+  };
 
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
 
   return (
     <div className={styles.navbar}>
@@ -132,7 +138,13 @@ const Navbar = () => {
                   <LoginIcon /><span>Login</span>
                 </Link>
               )}
+
             </div>
+            {!isLoggedIn && (
+              <button className={styles.login} onClick={handleSignIn}>Login</button>
+            )}
+
+
             {!hideElements && (
               <div className={styles.posting} onClick={handlePostJob}>
                 <span>Employer/Post Job</span>

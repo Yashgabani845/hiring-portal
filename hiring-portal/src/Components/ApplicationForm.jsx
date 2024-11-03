@@ -198,6 +198,7 @@ const ApplicationForm = () => {
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
 
   return (
+
      <div>
       <Navbar/>
        <form className="application-form" onSubmit={handleSubmit}>

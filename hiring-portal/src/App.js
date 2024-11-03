@@ -82,13 +82,10 @@ function App() {
           />
           <Route
             path="/assessment-results/result/:assessmentId"
-            element={<AssessmentResultDetail />}
-          />
+            element={<AssessmentResultDetail />} />
           {/* <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} /> */}
-          <Route
-            path="/terms-and-conditions"
-            element={<TermsAndConditions />}
-          />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+         
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route path="/create-blog" element={<CreateBlog />} />
           <Route path="/contributor" element={<ContributorPage />} />
