@@ -48,6 +48,7 @@
 │   │   │   ├── jobRoutes.js
 │   │   │   ├── otherApiRoutes.js
 │   │   │   └── userRoutes.js
+│   │   ├── sendMail.js
 │   │   ├── server.js
 │   │   └── temp/
 │   │       ├── 0412t1ge.cpp
@@ -1256,6 +1257,7 @@
 │       │   ├── AssesmentResult.jsx
 │       │   ├── AssessmentResultDetails.jsx
 │       │   ├── BackToTop.jsx
+│       │   ├── BlogDetailsPage.jsx
 │       │   ├── BlogPage.jsx
 │       │   ├── Coding.jsx
 │       │   ├── CompanyRegistration.jsx
