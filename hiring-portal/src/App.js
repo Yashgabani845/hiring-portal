@@ -35,7 +35,7 @@ import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
 import ContributorPage from "./Components/ContributorPage";
 import { ToastContainer } from "react-toastify";
-
+import BlogDetailPage from "./Components/BlogDetailsPage";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
@@ -75,6 +75,7 @@ function App() {
           />
           <Route path="/managejobs/:jobId" element={<ManageJobs />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/read-more-blog/:id" element={<BlogDetailPage />} />
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/shortlist/:jobId" element={<Shortlist />} />
           <Route path="*" element={<Error404 />} />
