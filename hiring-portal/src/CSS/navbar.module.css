@@ -15,7 +15,7 @@
 }
 
 .hirehublogo {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 28px;
   font-weight: bold;
   color: #343a40;
@@ -75,7 +75,6 @@
   text-decoration-color: #007bff;
 }
 
-
 .icon.active span::after {
   content: "";
   position: absolute;
@@ -114,8 +113,17 @@
 .posting:hover svg {
   color: #007bff;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-@media (max-width: 768px) {
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
   .navbar {
     flex-direction: column;
     height: auto;
@@ -143,7 +151,6 @@
 }
 
 @media (max-width: 480px) {
-
   .icon span,
   .posting span {
     display: none;
@@ -153,7 +160,7 @@
     padding: 0 !important;
   }
 }
-
+ 
 
 /* Theme toggle button styles */
 .themeToggle {
@@ -185,5 +192,26 @@ body.dark-theme {
 }
 
 .navbar.dark .logoimg {
-  filter: brightness(0.8);
+  filter: brightness(0.8); 
+@media (max-width: 850px) {
+  .navbar {
+    padding: 0px !important;
+  }
+  .header {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .icons {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .showMenu {
+    display: flex;
+  } 
 }

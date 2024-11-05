@@ -1,5 +1,5 @@
 const Contact = require("../models/Contact"); // Import the Contact model
-const nodemailer = require("nodemailer");
+const { sendMailToAdmin } = require("../sendMail");
 
 exports.postContact = async (req, res) => {
   try {
@@ -18,6 +18,8 @@ exports.postContact = async (req, res) => {
       query,
     });
 
+    sendMailToAdmin(newContact) // this call method , to send the mail on admin mail
+
     const result = await newContact.save();
     console.log("Contact saved:", result);
 
@@ -35,33 +37,3 @@ exports.getContact = async (req, res) => {
   res.status(201).json({ message: "Contact Form handling", details: req.body });
 };
 
-exports.sendEmail = async (req, resp) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "your email id",
-      pass: "your password",
-    },
-  });
-
-  const mailOptions = {
-    from: req.body.Email,
-    to: "taskmaster991@gmail.com",
-    subject: "Hiring Portal",
-    text: `
-          Name: ${req.body.formData.firstName} ${req.body.formData.lastName}
-          Email: ${req.body.formData.email}
-          Number:${req.body.formData.phoneNumber}
-          Message: ${req.body.formData.query}`,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending email: " + error);
-      resp.status(500).send("Error sending email");
-    } else {
-      console.log("Email sent: " + info.response);
-      resp.status(200).send("Form data sent successfully");
-    }
-  });
-};

@@ -24,7 +24,6 @@ const MiddleView = () => {
   
   const [isDarkTheme, setIsDarkTheme] = useState(false); // State for dark theme
 
-
   // Function to handle the click event and redirect
   const handleRoleClick = () => {
     navigate("/jobcard");
@@ -43,7 +42,6 @@ const MiddleView = () => {
     return () => clearInterval(intervalId); // Clear interval on unmount
   }, [currentIndex]);
 
-
   return (
     <>
       <div className={styles.middleview}>
@@ -56,7 +54,8 @@ const MiddleView = () => {
             <div className={styles.rolesList}>
               {roles.map((item, index) => (
                 <div className={styles.role} key={index}>
-                  <span>{item.role}</span> <span className={styles.jobCount}>jobs</span>
+                  <span>{item.role}</span>{" "}
+                  <span className={styles.jobCount}>jobs</span>
                 </div>
               ))}
             </div>
@@ -64,14 +63,14 @@ const MiddleView = () => {
         </div>
         <div className={styles.jobimg} data-aos="fade-left">
           <LazyLoad height={200} offset={100} once>
-            <img src={jobimg} alt="jobs" className={styles.jobImage} loading="lazy" />
+            <img
+              src={jobimg}
+              alt="jobs"
+              className={styles.jobImage}
+              loading="lazy"
+            />
           </LazyLoad>
         </div>
-      </div>
-      <div className="jobimg" data-aos="fade-left">
-        <LazyLoad height={200} offset={100} once>
-          <img src={jobimg} alt="jobs" className="job-image" loading="lazy" />
-        </LazyLoad>
       </div>
     </>
   );
