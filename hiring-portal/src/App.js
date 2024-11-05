@@ -21,7 +21,7 @@ import Employer from "./Components/Employer";
 import AssessmentResults from "./Components/AssesmentResult";
 import AssessmentResultDetail from "./Components/AssessmentResultDetails";
 import About from "./Components/About";
-
+import PrivateRoute from "./PrivateRoute";
 import TermsAndConditions from "./Components/TermsAndConditions";
 import Contactus from "./Components/Contactus";
 import BlogPage from "./Components/BlogPage";
@@ -39,7 +39,6 @@ import BlogDetailPage from "./Components/BlogDetailsPage";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
- 
   useEffect(() => {
     AOS.init({
       duration: 1800,
@@ -52,7 +51,6 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
- 
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/jobcard" element={<Jobpage />} />
@@ -94,9 +92,12 @@ function App() {
           />
 
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
-          <Route path="/create-blog" element={<CreateBlog />} />
+          <Route
+            path="/create-blog"
+            element={<PrivateRoute element={CreateBlog} />}
+          />
           <Route path="/contributor" element={<ContributorPage />} />
- 
+
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
