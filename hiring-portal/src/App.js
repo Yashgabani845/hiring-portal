@@ -35,10 +35,11 @@ import Error404 from "./Components/Error404";
 import CreateBlog from "./Components/CreateBlog";
 import ContributorPage from "./Components/ContributorPage";
 import { ToastContainer } from "react-toastify";
-
+import BlogDetailPage from "./Components/BlogDetailsPage";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 function App() {
+ 
   useEffect(() => {
     AOS.init({
       duration: 1800,
@@ -51,6 +52,7 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
+ 
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/jobcard" element={<Jobpage />} />
@@ -73,6 +75,7 @@ function App() {
           />
           <Route path="/managejobs/:jobId" element={<ManageJobs />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/read-more-blog/:id" element={<BlogDetailPage />} />
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/shortlist/:jobId" element={<Shortlist />} />
           <Route path="*" element={<Error404 />} />
@@ -89,10 +92,11 @@ function App() {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
+
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route path="/create-blog" element={<CreateBlog />} />
           <Route path="/contributor" element={<ContributorPage />} />
-
+ 
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
