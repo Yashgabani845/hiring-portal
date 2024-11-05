@@ -1318,6 +1318,7 @@
 │       │   ├── employer2.jpg
 │       │   ├── employer3.jpg
 │       │   ├── employer3.png
+│       │   ├── emptyanimation.json
 │       │   ├── facebooklogo.png
 │       │   ├── gett.jpg
 │       │   ├── googlelogo.png
