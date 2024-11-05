@@ -4,6 +4,7 @@ import PyPDF2
 import google.generativeai as palm
 import os
 from dotenv import load_dotenv
+import hashlib
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -14,6 +15,14 @@ palm_api_key = os.getenv('PALM_API_KEY')  # Get your API key from environment va
 if not palm_api_key:
     raise ValueError("API key is missing. Please set your API key in the environment variables.")
 palm.configure(api_key=palm_api_key)
+
+# Simple in-memory cache
+cache = {}
+
+# Function to generate a unique cache key
+def generate_cache_key(resume_text, job_description_text):
+    """Generate a unique key using a hash of the resume and job description content."""
+    return hashlib.sha256((resume_text + job_description_text).encode('utf-8')).hexdigest()
 
 # Return only the first 1000 characters for preview purposes
 @app.route('/preview', methods=['POST'])
@@ -56,7 +65,17 @@ def analyze():
         resume_text = extract_text_from_pdf(resume)
         job_description_text = extract_text_from_pdf(job_description)
 
+        # Generate cache key and check cache
+        cache_key = generate_cache_key(resume_text, job_description_text)
+        if cache_key in cache:
+            print("Returning cached result")
+            return jsonify({"analysis": cache[cache_key]}), 200
+
+        # Perform analysis if not cached
         analysis_result = analyze_resume(resume_text, job_description_text)
+
+        # Store result in cache
+        cache[cache_key] = analysis_result
 
         return jsonify({"analysis": analysis_result}), 200
     except PyPDF2.errors.PdfReadError:
