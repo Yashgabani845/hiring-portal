@@ -15,6 +15,7 @@ const directRoutes = require("./routes/directRoutes");
 
 
 const contactRoutes = require('./routes/contactRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 
 
 const blogRoutes = require('./routes/blogRoutes')
@@ -55,6 +56,7 @@ app.use("/api", assessmentRoutes);
 
 app.use("/api", otherApiRoutes);
 app.use("/api", contactRoutes);
+app.use("/api", feedbackRoutes);
 
 
 
