@@ -38,6 +38,7 @@ import { ToastContainer } from "react-toastify";
 import BlogDetailPage from "./Components/BlogDetailsPage";
 import ResumeScreening from "./Components/ResumeScreening";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsOfUse from "./Components/TermsOfUse";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -100,6 +101,7 @@ function App() {
 
           <Route path="/resume-screening" element={<ResumeScreening />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
         </Routes>
       </Router>
     </>
