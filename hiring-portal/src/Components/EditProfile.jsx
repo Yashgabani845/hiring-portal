@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import "../CSS/signup.css";
 import axios from 'axios';
-import skillsOptions from './skills.json';
-import jobOptions from './upJobs.json';
+import skillsOptions from '../Json/skills.json';
+import jobOptions from '../Json/upJobs.json';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

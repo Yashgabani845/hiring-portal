@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Select from 'react-select';
 import "../CSS/signup.css";
 import axios from 'axios';
-import skillsOptions from './skills.json'; 
-import jobOptions from './upJobs.json'; 
+import skillsOptions from '../Json/skills.json';
+import jobOptions from '../Json/upJobs.json';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -51,7 +51,7 @@ const Signup = () => {
 
       uploadTask.on(
         "state_changed",
-        (snapshot) => {},
+        (snapshot) => { },
         (error) => {
           console.error("Upload failed:", error);
         },
@@ -105,7 +105,7 @@ const Signup = () => {
     });
   };
 
-   const validateFields = () => {
+  const validateFields = () => {
     const requiredFields = {
       1: ["name", "email", "password", "techStack", "skills", "resume", "address"],
       2: ["expectedSalary", "jobType", "jobTitle"],
@@ -130,7 +130,7 @@ const Signup = () => {
     return true;
   };
 
- const nextStep = () => {
+  const nextStep = () => {
     if (validateFields()) {
       setStep(step + 1);
     }
@@ -156,15 +156,15 @@ const Signup = () => {
       toast.error('Error creating user. Please try again.'); // Show error toast
     }
   };
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  
+
   return (
-    
+
     <div className="signupform">
-      <Navbar/>
+      <Navbar />
       <h1>Signup Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="step-indicator">
@@ -174,7 +174,7 @@ const Signup = () => {
           <div className={step >= 4 ? 'active' : ''}></div>
           <div className={step >= 5 ? 'active' : ''}></div>
         </div>
-      
+
         {step === 3 && (
           <div>
             <h2>Location and Preferences</h2>
@@ -351,7 +351,7 @@ const Signup = () => {
               />
             </label>
             <br />
-        
+
             <button type="button" onClick={nextStep}>
               Next
             </button>

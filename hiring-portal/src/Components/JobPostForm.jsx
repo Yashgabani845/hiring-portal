@@ -3,7 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import options from './skills.json'; 
+import options from '../Json/skills.json';
 import '../CSS/jobpostform.css';
 
 const JobPostForm = () => {
@@ -46,16 +46,16 @@ const JobPostForm = () => {
         const ownerEmail = localStorage.getItem('userEmail');
 
         try {
-            
+
             const response = await axios.post('http://localhost:5000/api/postjob', {
                 ...jobDetails,
-                ownerEmail 
+                ownerEmail
             });
 
             console.log('Job posted successfully:', response.data);
             toast.success('Job posted successfully!');
-            
-            
+
+
             setJobDetails({
                 title: '',
                 description: '',
@@ -99,7 +99,7 @@ const JobPostForm = () => {
                         required
                     />
                 </label>
-                
+
                 <label>
                     Description:
                     <textarea
@@ -115,7 +115,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="requirements"
-                        options={options} 
+                        options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={(selected) => handleSelectChange(selected, { name: 'requirements' })}
@@ -175,7 +175,7 @@ const JobPostForm = () => {
                         name="experienceLevel"
                         value={jobDetails.experienceLevel}
                         onChange={handleChange}
-                        // required
+                    // required
                     >
                         <option value="entry-level">entry-level</option>
                         <option value="mid-level">mid-level</option>
@@ -279,7 +279,7 @@ const JobPostForm = () => {
                     <Select
                         isMulti
                         name="jobResponsibilities"
-                        options={options} 
+                        options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={(selected) => handleSelectChange(selected, { name: 'jobResponsibilities' })}
