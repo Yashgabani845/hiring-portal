@@ -18,6 +18,7 @@
 │   │   │   ├── companyController.js
 │   │   │   ├── contactController.js
 │   │   │   ├── directController.js
+│   │   │   ├── feedbackController.js
 │   │   │   ├── forgotPasswordController.js
 │   │   │   ├── jobController.js
 │   │   │   ├── otherApiController.js
@@ -37,7 +38,8 @@
 │   │   │   ├── Newsletter.js
 │   │   │   ├── Notification.js
 │   │   │   ├── Result.js
-│   │   │   └── User.js
+│   │   │   ├── User.js
+│   │   │   └── feedback.js
 │   │   ├── routes/
 │   │   │   ├── applicationRoute.js
 │   │   │   ├── assessmentRoutes.js
@@ -45,6 +47,7 @@
 │   │   │   ├── companyRoutes.js
 │   │   │   ├── contactRoutes.js
 │   │   │   ├── directRoutes.js
+│   │   │   ├── feedbackRoutes.js
 │   │   │   ├── jobRoutes.js
 │   │   │   ├── otherApiRoutes.js
 │   │   │   └── userRoutes.js
@@ -1208,7 +1211,10 @@
 │       │   ├── About.module.css
 │       │   ├── ApplicationForm.css
 │       │   ├── ApplicationForm.module.css
+│       │   ├── Feedback.module.css
 │       │   ├── NotFound.css
+│       │   ├── SigninWithGoogle.module.css
+│       │   ├── TermsOfUse.module.css
 │       │   ├── admin.css
 │       │   ├── ass.css
 │       │   ├── assessmentResults.css
@@ -1270,6 +1276,7 @@
 │       │   ├── Employer.jsx
 │       │   ├── Error404.jsx
 │       │   ├── Faqs.jsx
+│       │   ├── Feedback.jsx
 │       │   ├── Footer.jsx
 │       │   ├── GoogleTranslate.jsx
 │       │   ├── GoogleTranslator.jsx
@@ -1293,17 +1300,22 @@
 │       │   ├── ResumeAnalyzer.jsx
 │       │   ├── ResumeScreening.jsx
 │       │   ├── Shortlist.jsx
+│       │   ├── SignInWithGoogle.jsx
 │       │   ├── Signin.jsx
 │       │   ├── Signup.jsx
+│       │   ├── Spinner.jsx
 │       │   ├── TermsAndConditions.jsx
+│       │   ├── TermsOfUse.jsx
 │       │   ├── Testimonial.jsx
-│       │   ├── UploadedJobs.jsx
+│       │   └── UploadedJobs.jsx
+│       ├── Dockerfile
+│       ├── Json/
 │       │   ├── colleges.json
 │       │   ├── country.json
 │       │   ├── course.json
 │       │   ├── skills.json
 │       │   └── upJobs.json
-│       ├── Dockerfile
+│       ├── PrivateRoute.jsx
 │       ├── assests/
 │       │   ├── 3rdone.jpg
 │       │   ├── amazon.png
