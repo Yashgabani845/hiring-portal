@@ -464,3 +464,168 @@
      opacity: 0.6;
      box-shadow: none;
  }
+
+
+
+
+
+
+
+
+
+ .issue-card-container {
+     border-radius: 0.5rem;
+     overflow: hidden;
+     border: 1px solid;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .issue-card-container:hover {
+     transform: translateY(-5px);
+     transition: all 0.3s ease-in-out;
+ }
+
+ .issue-card-container-light {
+     background-color: white;
+     backdrop-filter: blur(0.5rem);
+     border-color: #d1d5db;
+ }
+
+ .issue-card-container-dark {
+     background-color: rgba(0, 0, 0, 0.3);
+     backdrop-filter: blur(1rem);
+     border-color: rgba(255, 255, 255, 0.1);
+ }
+
+ .issue-card-content {
+     padding: 1.5rem;
+     text-align: center;
+ }
+
+ .issue-card-avatar {
+     width: 6rem;
+     height: 6rem;
+     border-radius: 50%;
+     margin: 0 auto 1rem;
+     border-width: 4px;
+ }
+
+ .issue-card-avatar-light {
+     border-color: #3b82f6;
+ }
+
+ .issue-card-avatar-dark {
+     border-color: #06b6d4;
+ }
+
+ .issue-card-title {
+     font-weight: bold;
+     font-size: 1.25rem;
+ }
+
+ .issue-card-title-light {
+     color: #1f2937;
+ }
+
+ .issue-card-title-dark {
+     color: white;
+ }
+
+ .issue-card-number {
+     font-size: 0.875rem;
+     margin-bottom: 0.5rem;
+ }
+
+ .issue-card-number-light {
+     color: #4b5563;
+ }
+
+ .issue-card-number-dark {
+     color: #06b6d4;
+ }
+
+ .issue-card-state {
+     font-size: 0.875rem;
+     margin-bottom: 0.5rem;
+ }
+
+ .issue-card-state-light {
+     color: #4b5563;
+ }
+
+ .issue-card-state-dark {
+     color: #06b6d4;
+ }
+
+ .issue-card-footer {
+     padding: 0.75rem 1.5rem;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .issue-card-footer-light {
+     background-color: #93c5fd;
+ }
+
+ .issue-card-footer-dark {
+     background-color: rgba(255, 255, 255, 0.05);
+ }
+
+ .issue-card-link {
+     display: flex;
+     align-items: center;
+     transition: color 0.2s;
+ }
+
+ .issue-card-link-light {
+     color: #1e40af;
+ }
+
+ .issue-card-link-dark {
+     color: white;
+ }
+
+ .issue-card-link:hover {
+     color: rgba(255, 255, 255, 0.8);
+ }
+
+ .issue-card-github-icon {
+     color: rgba(255, 255, 255, 0.5);
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .contributors-issue-container {
+     display: grid;
+     grid-template-columns: repeat(1, 1fr);
+     /* Default to 1 column */
+     gap: 2rem;
+     /* Equivalent to Tailwind's gap-8 */
+ }
+
+ /* For small screens and up (sm) */
+ @media (min-width: 640px) {
+     .contributors-issue-container {
+         grid-template-columns: repeat(2, 1fr);
+         /* 2 columns for small screens */
+     }
+ }
+
+ /* For large screens and up (lg) */
+ @media (min-width: 1024px) {
+     .contributors-issue-container {
+         grid-template-columns: repeat(3, 1fr);
+         /* 3 columns for large screens */
+     }
+ }
