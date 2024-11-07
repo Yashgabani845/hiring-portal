@@ -1,0 +1,113 @@
+.formContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.inputContainer {
+    flex: 1;
+}
+
+.label {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.input,
+.select,
+.textarea {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    width: 100%;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    outline: none;
+    border-color: #0564c9;
+    box-shadow: 0 0 0 2px rgba(5, 100, 201, 0.3);
+}
+
+.select {
+    padding: 0.75rem;
+}
+
+.textarea {
+    resize: vertical;
+}
+
+.submitButton {
+    padding: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    background-color: #0564c9;
+    color: white;
+    border: none;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #0453a2;
+}
+
+.submitButton:disabled {
+    background-color: #cccccc;
+}
+
+.rating,
+.selectedRating {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.rating {
+    background-color: #e0e0e0;
+    color: #757575;
+}
+
+.selectedRating {
+    background-color: #0564c9;
+    color: white;
+    transform: scale(1.1);
+}
+
+.rating:hover {
+    background-color: #3b82f6;
+    color: white;
+}
