@@ -8,6 +8,8 @@ const HeroSection = () => {
   const [keywords, setKeywords] = useState("");
   const [location, setLocation] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  
+  const [isDarkTheme, setIsDarkTheme] = useState(false); // State for dark theme
   const navigate = useNavigate();
 
   const handleSearch = async () => {
@@ -48,7 +50,10 @@ const HeroSection = () => {
   return (
     <div className={styles.heroSection} data-aos="zoom-in" data-aos-duration="2000">
       <div className={styles.heroContent}>
-        <h1>Find Your Dream Job</h1>
+      <h1
+  className="findjob"
+  style={{ color: isDarkTheme ? "#ffffff" : "#000000" }} 
+>Find Your Dream Job</h1>
         <p>
           Explore Thousands of job opportunities and connect with top employers.
         </p>

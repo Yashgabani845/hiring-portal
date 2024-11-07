@@ -7,15 +7,18 @@ import Courses from "../Json/course.json";
 import countryData from "../Json/country.json";
 import collegesData from "../Json/colleges.json";
 import styles from '../CSS/ApplicationForm.module.css'; // Import the CSS module
-
+ 
+import "../CSS/ApplicationForm.css"; 
+ 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+ 
 
 const ApplicationForm = () => {
   const navigate = useNavigate();
   const [countryCodes, setCountryCodes] = useState([]);
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
-  const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
+  // const [countryEmoji, setCountryEmoji] = useState("🇺🇸");
 
   const location = useLocation();
   const { jobId, emailcurrent } = location.state || {};
@@ -81,9 +84,9 @@ const ApplicationForm = () => {
 
   const handleCountryChange = (e) => {
     const selectedCode = e.target.value;
-    const selectedCountry = countryCodes.find(country => country.code === selectedCode);
+    // const selectedCountry = countryCodes.find(country => country.code === selectedCode);
     setSelectedCountryCode(selectedCode);
-    setCountryEmoji(selectedCountry.emoji);
+    // setCountryEmoji(selectedCountry.emoji);
   };
 
   const handleFileUpload = async (file, fieldName) => {
@@ -196,9 +199,10 @@ const ApplicationForm = () => {
   };
 
   const allFilesUploaded = filesUploaded.resume && filesUploaded.cv;
-
-  return (
-
+ 
+  
+  return ( 
+ 
 
     <>
 
@@ -382,8 +386,9 @@ const ApplicationForm = () => {
             accept=".pdf,.doc,.docx"
             onChange={(e) => handleFileSelection(e, 'cv')}
           />
-        </div>
-
+        </div> 
+      )}
+ 
         {showPreview && (
           <div className={styles.filePreviewDialog} style={{ height: previewHeight }}>
             <h3>{selectedFile.name}</h3>
@@ -413,9 +418,8 @@ const ApplicationForm = () => {
         </button>
         <ToastContainer />
       </form>
-      <Footer />
-    </>
-
+      <Footer /> 
+    </>  
   );
 };
 

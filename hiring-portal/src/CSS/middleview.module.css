@@ -5,6 +5,14 @@
   margin: 20px 0;
   transition: transform 0.3s ease;
 }
+.middleview .dark-theme{
+  display: flex;
+  background-color: #000000;
+  border-radius: 10px;
+  margin: 20px 0;
+  transition: transform 0.3s ease;
+}
+
 
 .textPart {
   max-width: 50%;

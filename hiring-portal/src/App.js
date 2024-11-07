@@ -87,15 +87,14 @@ function App() {
             element={<AssessmentResults />}
           />
           <Route
-            path="/assessment-results/result/:assessmentId"
-            element={<AssessmentResultDetail />}
-          />
+            path="/assessment-results/result/:assessmentId" 
+            element={<AssessmentResultDetail />} />
+          
           {/* <Route path="/ForgotPassword/:email" element={<PasswordResetPage />} /> */}
           <Route
             path="/terms-and-conditions"
-            element={<TermsAndConditions />}
-          />
-
+            element={<TermsAndConditions />} 
+          />   
           <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
           <Route
             path="/create-blog"

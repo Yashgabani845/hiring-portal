@@ -160,7 +160,39 @@
     padding: 0 !important;
   }
 }
+ 
 
+/* Theme toggle button styles */
+.themeToggle {
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moonIcon, .sunIcon {
+  font-size: 20px;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar.dark {
+  background-color: #444;
+  color: #fff;
+}
+
+/* Override other styles as needed for dark mode */
+.navbar.dark .icon span {
+  color: #ccc;
+}
+
+.navbar.dark .logoimg {
+  filter: brightness(0.8); 
 @media (max-width: 850px) {
   .navbar {
     padding: 0px !important;
@@ -181,5 +213,5 @@
 
   .showMenu {
     display: flex;
-  }
+  } 
 }
