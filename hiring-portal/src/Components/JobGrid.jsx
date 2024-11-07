@@ -26,34 +26,34 @@ const Jobgrid = ({ filters }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  //   useEffect(() => {
-  //     const fetchJobs = async () => {
-  //       try {
-  //         Setload(true);
-  //         const jobResponse = await axios.get("http://localhost:5000/api/job");
+    useEffect(() => {
+      const fetchJobs = async () => {
+        try {
+          Setload(true);
+          const jobResponse = await axios.get("http://localhost:5000/api/job");
 
-  //         const jobsWithLogos = await Promise.all(
-  //           jobResponse.data.map(async (job) => {
-  //             const companyResponse = await axios.get(
-  //               `http://localhost:5000/api/companies/${job.postedBy}`
-  //             );
-  //             Setload(false);
-  //             return {
-  //               ...job,
-  //               logo: companyResponse.data.logo,
-  //             };
-  //           })
-  //         );
+          const jobsWithLogos = await Promise.all(
+            jobResponse.data.map(async (job) => {
+              const companyResponse = await axios.get(
+                `http://localhost:5000/api/companies/${job.postedBy}`
+              );
+              Setload(false);
+              return {
+                ...job,
+                logo: companyResponse.data.logo,
+              };
+            })
+          );
 
-  //         setJobs(jobsWithLogos);
-  //       } catch (error) {
-  //         Setload(false);
-  //         console.error("Error fetching jobs:", error);
-  //       }
-  //     };
+          setJobs(jobsWithLogos);
+        } catch (error) {
+          Setload(false);
+          console.error("Error fetching jobs:", error);
+        }
+      };
 
-  //     fetchJobs();
-  //   }, []);
+      fetchJobs();
+    }, []);
 
   useEffect(() => {
     const applyFilters = () => {
