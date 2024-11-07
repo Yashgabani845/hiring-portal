@@ -5,6 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import GoogleTranslate from "./GoogleTranslate";
+import SignInWithGoogle from "./SignInWithGoogle";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -188,6 +189,9 @@ const Footer = () => {
               <a href="https://www.facebook.com/" className={styles.facebook}>
                 <FaFacebook />
               </a>
+            </div>
+            <div>
+              <SignInWithGoogle />
             </div>
             <div className={`${styles.translate} ${styles.flex} ml-4 my-auto`}>
               <GoogleTranslate />
