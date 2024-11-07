@@ -1,0 +1,77 @@
+/* Example styles in styles.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin: 20px 0px;
+}
+
+.button,
+.signOutButton,
+.viewProfileButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4285F4;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover,
+.signOutButton:hover,
+.viewProfileButton:hover {
+    background-color: #3367D6;
+}
+
+.googleLogo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.authStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.authStatus p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #41f6ff;
+    margin-bottom: 10px;
+}
+
+.viewProfileButton {
+    background-color: #34A853;
+    color: #ffffff;
+    margin-right: 8px;
+}
+
+.viewProfileButton:hover {
+    background-color: #2A8D47;
+}
+
+.signOutButton {
+    background-color: #DB4437;
+    color: #ffffff;
+    margin-left: 8px;
+}
+
+.signOutButton:hover {
+    background-color: #C23321;
+}
+
+.actionButton {
+    display: flex;
+}

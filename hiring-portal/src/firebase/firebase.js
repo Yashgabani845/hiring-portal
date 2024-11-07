@@ -1,17 +1,19 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCMMWVRUTyTz6mHBbWiW5mdsMoI_F22Tmw",
-  authDomain: "hirehub-5324e.firebaseapp.com",
-  projectId: "hirehub-5324e",
-  storageBucket: "hirehub-5324e.appspot.com",
-  messagingSenderId: "345550423208",
-  appId: "1:345550423208:web:28898e1094d65023206e9d",
-  measurementId: "G-YK5F7D84RT"
+  apiKey: "AIzaSyDwowmzH0skVhieH3KPgIP8_vQBzhJmIi4",
+  authDomain: "wordwise-d1607.firebaseapp.com",
+  projectId: "wordwise-d1607",
+  storageBucket: "wordwise-d1607.appspot.com",
+  messagingSenderId: "426579758621",
+  appId: "1:426579758621:web:5bc883cd5eea3a416940f4",
+  measurementId: "G-QL9ZF6G3HH"
 };
 
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 const auth = getAuth(app);
-export { storage, auth };
+const storage = getStorage(app);
+
+export { app, auth, storage };
