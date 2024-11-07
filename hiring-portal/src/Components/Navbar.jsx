@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; 
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import LazyLoad from "react-lazyload"; 
+import LazyLoad from "react-lazyload";
 import styles from "../CSS/navbar.module.css";
 import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
@@ -14,9 +14,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assests/logo.png";
 import { FaBlog } from "react-icons/fa";
-import { Dock } from "@mui/icons-material"; 
+import { Dock } from "@mui/icons-material";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -24,9 +24,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState("/");
   const [hideElements, setHideElements] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false); // State for dark theme
-
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -72,21 +70,13 @@ const Navbar = () => {
       });
     }
   };
- 
 
-  // Toggle dark theme function
-  const toggleTheme = () => {
-    setIsDarkTheme((prevTheme) => !prevTheme);
-    document.body.classList.toggle('dark-theme', !isDarkTheme); // Toggle the class on body
-  };
- 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  }; 
+  };
 
   return (
-    // <div className={styles.navbar}>
-    <div className={`${styles.navbar} ${isDarkTheme ? styles.dark : ''}`}>
+    <div className={styles.navbar}>
       <ToastContainer />
 
       <div className={styles.header}>
@@ -176,18 +166,11 @@ const Navbar = () => {
                 <span>Resume Screening</span>
               </Link>
             </div>
- 
 
-             {/* Theme toggle button */}
-            <div className={styles.themeToggle} onClick={toggleTheme}>
-              {isDarkTheme ? (
-                <div className={styles.moonIcon}>🌙</div>
-              ) : (
-                <div className={styles.sunIcon}>☀️</div>
-              )}
-            </div>
-            <div className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""}`}>
- 
+            <div
+              className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""
+                }`}
+            >
               {isLoggedIn ? (
                 <Link to="/profile">
                   <AccountCircleIcon />

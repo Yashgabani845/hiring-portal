@@ -57,8 +57,3 @@
   background: #b0b0b0; /* Darker gray on hover for a visual cue */
   border-radius: 12px;
 }
-body.dark-theme {
-  background-color: #333;
-  color: #fff;  
-}
- 

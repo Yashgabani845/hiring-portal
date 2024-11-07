@@ -21,8 +21,6 @@ const roles = [
 const MiddleView = () => {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const [isDarkTheme, setIsDarkTheme] = useState(false); // State for dark theme
 
   // Function to handle the click event and redirect
   const handleRoleClick = () => {
