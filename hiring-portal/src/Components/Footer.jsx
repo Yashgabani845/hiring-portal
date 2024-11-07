@@ -151,6 +151,9 @@ const Footer = () => {
               <li>
                 <a href="/terms-and-conditions">Terms of Service</a>
               </li>
+              <li>
+                <a href="/terms-of-use">Terms of use</a>
+              </li>
             </ul>
           </div>
         </div>
