@@ -6,7 +6,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 // Secure routes with authMiddleware
 router.post("/create-blog", authMiddleware, blogController.postBlog);
-router.get("/all-blog", blogController.getAllBlogs);
+router.get("/all-blog", authMiddleware, blogController.getAllBlogs);
 router.delete("/delete-all", authMiddleware, blogController.deleteAllBlogs);
 router.delete("/delete-by-id/:id", authMiddleware, blogController.deleteBlog);
 router.get("/get-by-id/:id", authMiddleware, blogController.getBlog);
