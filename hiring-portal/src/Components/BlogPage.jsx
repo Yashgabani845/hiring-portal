@@ -5,13 +5,13 @@ import Footer from "./Footer";
 import { Link, useNavigate } from "react-router-dom";
 import profilepic from "../assests/profile.jpg";
 import axios from "axios";
-//import animation data
 import Lottie from "react-lottie";
 import animationData from "../assests/emptyanimation.json";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const deleteBlog = async (id) => {
   try {
-    console.log("Deleting blog with ID:", id); // Log ID
+    console.log("Deleting blog with ID:", id);
     let res = await axios.delete(
       `http://localhost:5000/api/delete-by-id/${id}`
     );
@@ -22,7 +22,7 @@ const deleteBlog = async (id) => {
     console.log(error);
   }
 };
-// animation options
+
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -34,23 +34,18 @@ const defaultOptions = {
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-
   if (isNaN(date.getTime())) {
     throw new Error("Invalid date format");
   }
-
   const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
-
   return `${day}-${month}-${year}`;
 };
 
 const BlogCard = ({ blog }) => {
   return (
     <div className={styles.blogCard}>
-      {" "}
-      {/* Updated class name to use CSS Module */}
       <div className={styles.blogCardHeader}>
         <img
           src={profilepic}
@@ -91,7 +86,7 @@ const BlogList = ({ blogs }) => {
   return (
     <div className={styles.blogList}>
       {blogs.map((blog) => (
-        <BlogCard key={blog.id} blog={blog} />
+        <BlogCard key={blog._id} blog={blog} />
       ))}
     </div>
   );
@@ -99,29 +94,32 @@ const BlogList = ({ blogs }) => {
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       let response = await fetch("http://localhost:5000/api/all-blog");
       let data = await response.json();
-      console.log("fetched data");
-      // console.log(data);
       setBlogs(data.blogs);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDeleteAll = async () => {
     try {
       let res = await axios.delete("http://localhost:5000/api/delete-all");
-      alert("All blog deleted");
+      alert("All blogs deleted");
       fetchData();
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -146,7 +144,7 @@ const BlogPage = () => {
             >
               Create Blog
             </button>
-            {blogs.length > 0 && (
+            {blogs && blogs.length > 0 && (
               <button
                 className={styles.deleteBlogButton}
                 onClick={handleDeleteAll}
@@ -156,7 +154,18 @@ const BlogPage = () => {
             )}
           </div>
         </div>
-        {blogs.length > 0 ? (
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "200px",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        ) : blogs && blogs.length > 0 ? (
           <BlogList blogs={blogs} />
         ) : (
           <div
@@ -167,7 +176,6 @@ const BlogPage = () => {
             }}
           >
             <Lottie options={defaultOptions} height={250} width={200} />
-
             <p>No blog to show...</p>
           </div>
         )}

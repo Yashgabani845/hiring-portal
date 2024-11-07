@@ -50,6 +50,15 @@ const Navbar = () => {
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
+          toast.error("Please log in to continue", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     } else {
       toast.error("Please log in to continue", {
@@ -106,9 +115,8 @@ const Navbar = () => {
         {!hideElements && (
           <>
             <div
-              className={`${styles.icon} ${
-                activeTab === "/jobcard" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/jobcard" ? styles.active : ""
+                }`}
             >
               <Link to="/jobcard">
                 <WorkIcon />
@@ -117,9 +125,8 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`${styles.icon} ${
-                activeTab === "/about" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/about" ? styles.active : ""
+                }`}
             >
               <Link to="/about">
                 <InfoIcon />
@@ -128,9 +135,8 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`${styles.icon} ${
-                activeTab === "/contactus" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/contactus" ? styles.active : ""
+                }`}
             >
               <Link to="/contactus">
                 <ContactMailIcon />
@@ -139,9 +145,8 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`${styles.icon} ${
-                activeTab === "/resume-analyzer" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/resume-analyzer" ? styles.active : ""
+                }`}
             >
               <Link to="/resume-analyzer">
                 <Dock />
@@ -150,9 +155,8 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`${styles.icon} ${
-                activeTab === "/blog" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/blog" ? styles.active : ""
+                }`}
             >
               <Link to="/blog">
                 <FaBlog />
@@ -161,9 +165,8 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`${styles.icon} ${
-                activeTab === "/resume-screening" ? styles.active : ""
-              }`}
+              className={`${styles.icon} ${activeTab === "/resume-screening" ? styles.active : ""
+                }`}
             >
               <Link
                 to="/resume-screening"
@@ -184,7 +187,7 @@ const Navbar = () => {
               )}
             </div>
             <div className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""}`}>
-
+ 
               {isLoggedIn ? (
                 <Link to="/profile">
                   <AccountCircleIcon />

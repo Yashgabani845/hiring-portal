@@ -6,6 +6,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import GoogleTranslate from "./GoogleTranslate";
 import SignInWithGoogle from "./SignInWithGoogle";
+import VisitorCounter from "./VisitorCount";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -105,6 +106,8 @@ const Footer = () => {
         </form>
         {message && <p className={styles.message}>{message}</p>}
       </div>
+
+      <VisitorCounter />
 
       <div className={styles.footerContainer}>
         <div className={styles.flex}>
