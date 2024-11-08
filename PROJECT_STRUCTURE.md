@@ -1346,6 +1346,7 @@
 │       │   ├── job_search.png
 │       │   ├── jobs.png
 │       │   ├── js1.jpg
+│       │   ├── loading.json
 │       │   ├── logo.png
 │       │   ├── logo.svg
 │       │   ├── microsoft.png
