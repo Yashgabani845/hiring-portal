@@ -23,7 +23,8 @@
 │   │   │   ├── jobController.js
 │   │   │   ├── otherApiController.js
 │   │   │   ├── otpVerifyController.js
-│   │   │   └── userController.js
+│   │   │   ├── userController.js
+│   │   │   └── visitorController.js
 │   │   ├── middlewares/
 │   │   │   └── authMiddleware.js
 │   │   ├── models/
@@ -39,6 +40,7 @@
 │   │   │   ├── Notification.js
 │   │   │   ├── Result.js
 │   │   │   ├── User.js
+│   │   │   ├── Visitor.js
 │   │   │   └── feedback.js
 │   │   ├── routes/
 │   │   │   ├── applicationRoute.js
@@ -50,7 +52,8 @@
 │   │   │   ├── feedbackRoutes.js
 │   │   │   ├── jobRoutes.js
 │   │   │   ├── otherApiRoutes.js
-│   │   │   └── userRoutes.js
+│   │   │   ├── userRoutes.js
+│   │   │   └── visitorRoutes.js
 │   │   ├── sendMail.js
 │   │   ├── server.js
 │   │   └── temp/
@@ -1307,7 +1310,8 @@
 │       │   ├── TermsAndConditions.jsx
 │       │   ├── TermsOfUse.jsx
 │       │   ├── Testimonial.jsx
-│       │   └── UploadedJobs.jsx
+│       │   ├── UploadedJobs.jsx
+│       │   └── VisitorCount.jsx
 │       ├── Dockerfile
 │       ├── Json/
 │       │   ├── colleges.json
@@ -1336,11 +1340,13 @@
 │       │   ├── facebooklogo.png
 │       │   ├── gett.jpg
 │       │   ├── googlelogo.png
+│       │   ├── img.png
 │       │   ├── interview.png
 │       │   ├── job_search.jpg
 │       │   ├── job_search.png
 │       │   ├── jobs.png
 │       │   ├── js1.jpg
+│       │   ├── loading.json
 │       │   ├── logo.png
 │       │   ├── logo.svg
 │       │   ├── microsoft.png
