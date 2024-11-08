@@ -42,6 +42,7 @@ import PrivacyPolicy from "./Components/PrivacyPolicy";
 import Feedback from "./Components/Feedback";
 
 import TermsOfUse from "./Components/TermsOfUse";
+import DiscussionForum from "./Components/DiscussionSection";
 
 function App() {
   useEffect(() => {
@@ -77,7 +78,7 @@ function App() {
             element={<CreateAssessment />}
           />
           <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<z />} />
           <Route path="/read-more-blog/:id" element={<BlogDetailPage />} />
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/shortlist/:jobId" element={<Shortlist />} />
@@ -109,6 +110,7 @@ function App() {
           <Route path="/feedback" element={<Feedback />} />
 
           <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/discussionForum" element={<DiscussionForum />} />
 
         </Routes>
       </Router>
