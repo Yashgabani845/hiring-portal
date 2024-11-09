@@ -9,6 +9,8 @@ import logo from "../assests/logo.png";
 import { ClipLoader } from "react-spinners";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Modal, Input, Button } from "antd";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -26,9 +28,13 @@ const SignIn = () => {
   const [newPassword, setNewPassword] = useState("");
   const [currentStep, setCurrentStep] = useState(1); // Track current step in the reset process
 
+  // State for Backdrop loading
+  const [loadingBackdrop, setLoadingBackdrop] = useState(false);
+
   // Sign In logic
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoadingBackdrop(true); // Show backdrop loader
 
     try {
       const response = await fetch("http://localhost:5000/api/users/signin", {
@@ -42,7 +48,7 @@ const SignIn = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("userEmail", data.email);
-        // localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
         toast.success("Sign in successful!");
         navigate(
           email === "admin@gmail.com" && password === "admin" ? "/admin" : "/"
@@ -52,6 +58,8 @@ const SignIn = () => {
       }
     } catch (error) {
       toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoadingBackdrop(false); // Hide backdrop loader
     }
   };
 
@@ -254,32 +262,33 @@ const SignIn = () => {
         {currentStep === 1 && (
           <div>
             <Input
-              placeholder="Enter your email to receive an OTP"
+              placeholder="Enter your email"
               value={forgotPasswordEmail}
               onChange={(e) => setForgotPasswordEmail(e.target.value)}
-              style={{ marginBottom: "1rem" }}
             />
-            <Button onClick={handleForgotPasswordRequest}>Send OTP</Button>
+            <Button type="primary" onClick={handleForgotPasswordRequest}>
+              Request OTP
+            </Button>
           </div>
         )}
         {currentStep === 2 && (
           <div>
             <Input
-              placeholder="Enter your OTP"
+              placeholder="Enter OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              style={{ marginBottom: "1rem" }}
             />
-            <Button onClick={handleVerifyOtp}>Verify OTP</Button>
+            <Button type="primary" onClick={handleVerifyOtp}>
+              Verify OTP
+            </Button>
           </div>
         )}
         {currentStep === 3 && (
           <div>
             <Input.Password
-              placeholder="Enter your new password"
+              placeholder="Enter new password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              style={{ marginBottom: "1rem" }}
             />
             <Button type="primary" onClick={handleResetPassword}>
               Reset Password
@@ -287,7 +296,13 @@ const SignIn = () => {
           </div>
         )}
       </Modal>
-      <ToastContainer />
+
+      {/* Backdrop with CircularProgress */}
+      <Backdrop open={loadingBackdrop} style={{ zIndex: 10 }}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+      <ToastContainer position="top-center" />
     </div>
   );
 };
