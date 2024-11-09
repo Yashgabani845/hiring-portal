@@ -43,6 +43,7 @@ import Feedback from "./Components/Feedback";
 
 import TermsOfUse from "./Components/TermsOfUse";
 import DiscussionForum from "./Components/DiscussionSection";
+import Stories from "./Components/Stories";
 
 function App() {
   useEffect(() => {
@@ -111,6 +112,7 @@ function App() {
 
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/discussionForum" element={<DiscussionForum />} />
+          <Route path="/stories" element={<Stories />} />
 
         </Routes>
       </Router>
