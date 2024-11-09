@@ -46,11 +46,17 @@ const Testimonials = () => {
     }
   ];
 
-
-
   useEffect(() => {
     loadShow();
   }, [active]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive(prev => (prev + 1) % items.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval); // Clear interval on component unmount
+  }, [items.length]);
 
   const loadShow = () => {
     const itemsElement = document.querySelectorAll('.slider .item');
@@ -58,7 +64,7 @@ const Testimonials = () => {
     itemsElement[active].style.zIndex = 1;
     itemsElement[active].style.filter = 'none';
     itemsElement[active].style.opacity = 1;
-    // Show after
+
     let stt = 0;
     for (let i = active + 1; i < itemsElement.length; i++) {
       stt++;
@@ -78,10 +84,10 @@ const Testimonials = () => {
   };
 
   return (
-    <>
-
+    <> 
 
       <h1 style={{ fontWeight: 'bold', fontSize: '3rem', textAlign: 'center', color: isDarkTheme ? "#ffffff" : "#000000" }}>
+ 
         What Our Users Say About HireHub
       </h1>
       <div className="slider" style={{ position: 'relative', marginTop: '100px', width: '100%', height: '550px', overflow: 'hidden' }}>
@@ -89,7 +95,7 @@ const Testimonials = () => {
           <div className="item" key={index} style={{
             position: 'absolute',
             width: '350px',
-            height: '500px',
+            height: '430px',
             textAlign: 'justify',
             backgroundColor: '#fff',
             borderRadius: '10px',
@@ -111,10 +117,12 @@ const Testimonials = () => {
               cursor: 'pointer',
               transition: 'transform 0.3s ease',
             }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
+ 
             <div className="stars" style={{ color: '#ffd700', fontSize: '1.6em', marginTop: 'auto' }}>{item.stars}</div>
             <p style={{ textAlign: 'justify', fontSize: '0.9em', marginBottom: '20px',  color: isDarkTheme ? "#ffffff" : "#000000" }}>{item.text}</p>
 
             <h2 style={{ margin: '0 0 10px 0', fontSize: '1.2em',color: isDarkTheme ? "#ffffff" : "#000000"}}>{item.name}</h2> 
+ 
             <div className="job-title" style={{ color: '#007BFF', fontWeight: 'bold', margin: '0 0 5px 0', fontSize: '1.2rem' }}>{item.jobTitle}</div>
             <div className="location" style={{ color: '#000408', fontStyle: 'italic', margin: '0 0 15px 0' }}>{item.location}</div>
           </div>
