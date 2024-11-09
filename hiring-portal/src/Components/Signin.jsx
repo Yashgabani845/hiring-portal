@@ -42,7 +42,7 @@ const SignIn = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("userEmail", data.email);
-        // localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
         toast.success("Sign in successful!");
         navigate(
           email === "admin@gmail.com" && password === "admin" ? "/admin" : "/"
