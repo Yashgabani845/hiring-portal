@@ -134,15 +134,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div
-              className={`${styles.icon} ${activeTab === "/resume-analyzer" ? styles.active : ""
-                }`}
-            >
-              <Link to="/resume-analyzer">
-                <Dock />
-                <span>Scan Resume</span>
-              </Link>
-            </div>
+            
 
             <div
               className={`${styles.icon} ${activeTab === "/blog" ? styles.active : ""
@@ -154,6 +146,30 @@ const Navbar = () => {
               </Link>
             </div>
 
+            
+                {/* Explore dropdown menu */}
+      <div className={styles.dropdown}>
+        <div className={styles.icon}>
+          <span>Explore</span>
+        </div>
+        <div className={styles.dropdownContent}>
+          <div
+            className={`${styles.icon} ${activeTab === "/jobcard" ? styles.active : ""}`}
+          >
+            <Link to="/jobcard">
+              <WorkIcon />
+              <span>Jobs</span>
+            </Link>
+          </div> 
+          <div
+              className={`${styles.icon} ${activeTab === "/resume-analyzer" ? styles.active : ""
+                }`}
+            >
+              <Link to="/resume-analyzer">
+                <Dock />
+                <span>Scan Resume</span>
+              </Link>
+            </div>
             <div
               className={`${styles.icon} ${activeTab === "/resume-screening" ? styles.active : ""
                 }`}
@@ -163,9 +179,19 @@ const Navbar = () => {
                 onClick={() => setActiveTab("/resume-analyzer")}
               >
                 <Dock />
-                <span>Resume Screening</span>
+                <span >Resume Screening</span>
               </Link>
             </div>
+          <div
+            className={`${styles.icon} ${activeTab === "/contactus" ? styles.active : ""}`}
+          >
+            <Link to="/contactus">
+              <ContactMailIcon />
+              <span>Contact Us</span>
+            </Link>
+          </div>
+        </div>
+      </div>
 
             <div
               className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""
@@ -187,6 +213,7 @@ const Navbar = () => {
               <span>Employer/Post Job</span>
               <LaunchIcon className={styles.postingIcon} />
             </div>
+            
           </>
         )}
       </div>
