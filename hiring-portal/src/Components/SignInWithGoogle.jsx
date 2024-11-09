@@ -49,7 +49,7 @@ const SignInWithGoogle = () => {
         localStorage.removeItem("userEmail");
       })
       .catch((error) => {
-        console.error("Error during sign-out:", error);
+        console.error("Error during sign-out:", error); 
       });
   };
 
