@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 
 
 exports.deleteApplication= async (req, res) => {
-    const applicationId = req.params.id;
+    const applicationId = req.params.id;z
   
     try {
       const deletedApplication = await Application.findByIdAndDelete(
