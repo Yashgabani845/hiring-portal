@@ -78,7 +78,7 @@ function App() {
             element={<CreateAssessment />}
           />
           <Route path="/managejobs/:jobId" element={<ManageJobs />} />
-          <Route path="/blog" element={<z />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/read-more-blog/:id" element={<BlogDetailPage />} />
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/shortlist/:jobId" element={<Shortlist />} />
@@ -111,7 +111,6 @@ function App() {
 
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/discussionForum" element={<DiscussionForum />} />
-
         </Routes>
       </Router>
     </>
