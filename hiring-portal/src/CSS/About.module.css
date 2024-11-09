@@ -13,7 +13,8 @@
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #333;
+  /* color: #333; */
+  color: (51, 127, 239);
 }
 
 .featureSection p {

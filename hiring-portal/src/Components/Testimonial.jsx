@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Testimonials = () => {
   const [active, setActive] = useState(3);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const items = [
     {
       img: "https://img.freepik.com/free-vector/gradient-professional-sarah-smith-linkedin-personal-profile-picture_742173-13011.jpg?ga=GA1.1.713761379.1679213202&semt=ais_hybrid",
@@ -80,7 +81,7 @@ const Testimonials = () => {
     <>
 
 
-      <h1 style={{ fontWeight: 'bold', fontSize: '3rem', textAlign: 'center' }}>
+      <h1 style={{ fontWeight: 'bold', fontSize: '3rem', textAlign: 'center', color: isDarkTheme ? "#ffffff" : "#000000" }}>
         What Our Users Say About HireHub
       </h1>
       <div className="slider" style={{ position: 'relative', marginTop: '100px', width: '100%', height: '550px', overflow: 'hidden' }}>
@@ -111,8 +112,9 @@ const Testimonials = () => {
               transition: 'transform 0.3s ease',
             }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
             <div className="stars" style={{ color: '#ffd700', fontSize: '1.6em', marginTop: 'auto' }}>{item.stars}</div>
-            <p style={{ textAlign: 'justify', fontSize: '0.9em', marginBottom: '20px' }}>{item.text}</p>
-            <h2 style={{ margin: '0 0 10px 0', fontSize: '1.2em' }}>{item.name}</h2>
+            <p style={{ textAlign: 'justify', fontSize: '0.9em', marginBottom: '20px',  color: isDarkTheme ? "#ffffff" : "#000000" }}>{item.text}</p>
+
+            <h2 style={{ margin: '0 0 10px 0', fontSize: '1.2em',color: isDarkTheme ? "#ffffff" : "#000000"}}>{item.name}</h2> 
             <div className="job-title" style={{ color: '#007BFF', fontWeight: 'bold', margin: '0 0 5px 0', fontSize: '1.2rem' }}>{item.jobTitle}</div>
             <div className="location" style={{ color: '#000408', fontStyle: 'italic', margin: '0 0 15px 0' }}>{item.location}</div>
           </div>

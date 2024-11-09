@@ -25,6 +25,7 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState("/");
   const [hideElements, setHideElements] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false); // State for dark theme
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -71,12 +72,20 @@ const Navbar = () => {
     }
   };
 
+
+  // Toggle dark theme function
+  const toggleTheme = () => {
+    setIsDarkTheme((prevTheme) => !prevTheme);
+    document.body.classList.toggle('dark-theme', !isDarkTheme); // Toggle the class on body
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className={styles.navbar}>
+    // <div className={styles.navbar}>
+    <div className={`${styles.navbar} ${isDarkTheme ? styles.dark : ''}`}>
       <ToastContainer />
 
       <div className={styles.header}>
@@ -167,10 +176,15 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div
-              className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""
-                }`}
-            >
+             {/* Theme toggle button */}
+             <div className={styles.themeToggle} onClick={toggleTheme}>
+              {isDarkTheme ? (
+                <div className={styles.moonIcon}>🌙</div>
+              ) : (
+                <div className={styles.sunIcon}>☀️</div>
+              )}
+            </div>
+            <div className={`${styles.icon} ${activeTab === "/profile" ? styles.active : ""}`}>
               {isLoggedIn ? (
                 <Link to="/profile">
                   <AccountCircleIcon />
