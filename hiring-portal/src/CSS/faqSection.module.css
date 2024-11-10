@@ -1,51 +1,52 @@
 :root {
-    --primary-color: #2d2d2d;
-    --dark-blue: #000000;
-    --light-blue: #dedfdf;
-    --active-blue: #e5e5e5;
-    --white: #ffffff;
-    --border-color: #e0eafc;
-    --dark-text: #333;
+    --primary-color: #0056b3; /* Blue */
+    --secondary-color: #b3d7ff; /* Light blue */
+    --background-color: #ffffff; /* White */
+    --border-color: #cce0ff; /* Soft blue */
+    --hover-color: #e6f2ff; /* Lighter blue for hover */
+    --text-color: #333333; /* Dark text for readability */
+    --active-bg-color: #e6f2ff; /* Light blue background for active items */
 }
 
 .faqSection {
-    padding: 40px;
+    padding: 50px 20px;
     font-family: 'Inter', sans-serif;
-    padding-top: 10px;
+    background-color: var(--background-color);
 }
 
 .faqTitle {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: var(--dark-blue);
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
 }
 
 .faqContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 70%;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .faqItem {
-    background: var(--white);
+    background: var(--background-color);
     border: 2px solid var(--border-color);
-    border-radius: 8px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 15px;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .faqItem:hover {
-    transform: translateY(-3px);
-    background-color: var(--light-blue);
+    transform: translateY(-5px);
+    background-color: var(--hover-color);
     border-color: var(--primary-color);
 }
 
 .faqItem.active {
-    background-color: var(--active-blue);
+    background-color: var(--active-bg-color);
     border-color: var(--primary-color);
 }
 
@@ -53,9 +54,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--dark-blue);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
 }
 
 .faqQuestion h3 {
@@ -63,7 +64,7 @@
 }
 
 .faqQuestion .icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
     transition: transform 0.3s ease;
 }
@@ -78,12 +79,13 @@
     opacity: 0;
     padding: 0;
     transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    margin-top: 10px;
 }
 
 .faqAnswer p {
-    font-size: 1rem;
-    color: var(--dark-text);
-    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-top: 15px;
 }
 
 .faqItem.active .faqAnswer {
@@ -98,6 +100,10 @@
     }
 
     .faqSection {
-        padding: 7px;
+        padding: 20px;
+    }
+
+    .faqTitle {
+        font-size: 2.3rem;
     }
 }
