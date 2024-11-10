@@ -167,19 +167,7 @@ We welcome contributions from the community! To contribute, please follow these 
 </tr>
 </table>
 
-### Project Mentors✨
- 
-<table>
-<tr>
-<td align="center"><a href="https://github.com/anikethgojee"><img src="https://media.licdn.com/dms/image/v2/D5603AQFY233u5XNbmg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1722448250152?e=1735776000&v=beta&t=or5XPzLRtYn4t0J1fM3yz5B53gpRQ0HEDjD66kqEmHw" width=150px height=150px /></a></br> <h4 style="color:red;">Aniketh Goje</h4>
- <a href="https://www.linkedin.com/in/aniketh-goje/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></img></a>
-</td>
-<td align="center"><a href="https://github.com/03-sakshi"><img src="https://avatars.githubusercontent.com/u/121297541?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Sakshi Gupta
-</h4>
-</tr>
-</table>
 
----
 
 ### Issue Reporting 🐛✨
 
@@ -192,33 +180,6 @@ If you encounter any bugs or have feature requests, please follow this format wh
 - **Actual Behavior:** ❌What actually happened.
 
 ---
-
-## 👀 Our Valuable Contributors 💖✨
-
-<div align="center">
-  <a href="https://github.com/Yashgabani845/hiring-portal/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=Yashgabani845/hiring-portal&max=100" />
-  </a>
-</div>
-
-![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-## Stargazers ❤️
-
-<div align='left'>
-
-[![Stargazers repo roster for @Yashgabani845/hiring-portal](https://reporoster.com/stars/dark/Yashgabani845/hiring-portal)](https://github.com/Yashgabani845/hiring-portal/stargazers)
-
-
-</div>
-
-## Forkers ❤️
-
-[![Forkers repo roster for @Yashgabani845/hiring-portal](https://reporoster.com/forks/dark/Yashgabani845/hiring-portal)](https://github.com/Yashgabani845/hiring-portal/network/members)
-
-
-![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
 
 ## License 📃
 
