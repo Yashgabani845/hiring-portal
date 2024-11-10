@@ -49,11 +49,11 @@ const Jobpage = () => {
         <>
             <Navbar />
             {/* sidebar mobile toggle */}
-            <div className="sidebar-toggle" onClick={toggleSidebar}>
-                {isSidebar ? "x" : "Filters"}
-            </div>
             {/*  */}
             <div className="jobpage">
+                <div className="sidebar-toggle" onClick={toggleSidebar}>
+                    {isSidebar ? "x" : "Filters"}
+                </div>
                 <div className="sidebar"
                     style={{ transform: isSidebar ? "translateX(0%)" : "translateX(-100%" }}
                 >
@@ -87,8 +87,8 @@ const Jobpage = () => {
                             <input type="radio" name="remoteOption" value="false" onChange={handleFilterChange} /> On-site
                         </label>
                     </div>
-                     <div className="filter">
- 
+                    <div className="filter">
+
                         <label>
                             Industry:
                             <input
@@ -100,8 +100,8 @@ const Jobpage = () => {
                             />
                         </label>
                     </div>
-                     <div className="filter">
- 
+                    <div className="filter">
+
                         <label>
                             Work Location:
                             <input
