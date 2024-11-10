@@ -1,144 +1,151 @@
 .jobpage {
-    display: flex;
-    font-family: Arial, sans-serif;
-  }
-  
+  display: flex;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  /* border: 2px solid red; */
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+.Clear-btn {
+  background-color: rgb(234, 39, 39);
+  cursor: pointer;
+  color: #ddd;
+  padding: 8px;
+  font-weight: 600;
+  border-radius: 5px;
+
+}
+
+@media (max-width: 500px) {
   .sidebar {
-    width: 300px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 100vh;
-    box-sizing: border-box;
-    overflow-y: auto;
-    /* border: 2px solid red; */
+    /* display: none; */
+    transform: translateX(-100%);
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
   }
+
   .sidebar-toggle {
-    display: none;
-  }
-  .Clear-btn {
-    background-color: rgb(234, 39, 39);
-    cursor: pointer;
-    color: #ddd;
-    padding: 8px;
-    font-weight: 600;
-    border-radius: 5px;
-    
-  }
-  @media (max-width: 500px) {
-    .sidebar {
-      /* display: none; */
-      transform: translateX(-100%);
-      position: absolute;
-      z-index: 10;
-      transition: all 0.3s ease-in-out;
-    }
-    .sidebar-toggle {
-      letter-spacing: 3px;
-  
-      display: flex;
-      justify-content: center;
-      /* border: 2px solid green; */
-    }
-  }
-  
-  .sidebar h2 {
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-  }
-  
-  .filter {
-    margin-bottom: 20px;
-  }
-  
-  .filter label {
-    font-size: 1em;
-    color: #555;
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .filter input[type="checkbox"],
-  .filter input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .salary-range {
+    letter-spacing: 3px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    position: absolute;
+    top: 61px;
+    right: 144px;
+    z-index: 60;
+    font-size: 40px;
+    cursor: pointer;
   }
-  
-  .salary-range input {
-    width: 48%;
-    padding: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  <<<<<<< main
-  .filter input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: border-color 0.3s ease-in-out;
-  }
-  
-  .filter input[type="text"]:focus {
-      border-color: #007bff;
-      outline: none;
-  }
-  
-  .filter input[type="text"]::placeholder {
-      color: #aaa;
-  }
-  .filter select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .filter select[multiple] {
-    height: auto;
-  }
-  
-  .location-select {
-    width: 100%;
-    margin-top: 5px;
-    font-size: 1em;
-  }
-  
-  .selected-locations {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #333;
-  }
-  
-  .selected-locations span {
-    display: inline-block;
-    margin-right: 5px;
- 
-  }
-  
-  .mainarea {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .mainarea h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.filter {
+  margin-bottom: 20px;
+}
+
+.filter label {
+  font-size: 1em;
+  color: #555;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filter input[type="checkbox"],
+.filter input[type="radio"] {
+  margin-right: 10px;
+}
+
+.salary-range {
+  display: flex;
+  justify-content: space-between;
+}
+
+.salary-range input {
+  width: 48%;
+  padding: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+<<<<<<< main .filter input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.filter input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.filter input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.filter select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter select[multiple] {
+  height: auto;
+}
+
+.location-select {
+  width: 100%;
+  margin-top: 5px;
+  font-size: 1em;
+}
+
+.selected-locations {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.selected-locations span {
+  display: inline-block;
+  margin-right: 5px;
+
+}
+
+.mainarea {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mainarea h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}

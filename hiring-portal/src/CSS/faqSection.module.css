@@ -91,3 +91,13 @@
     opacity: 1;
     padding-top: 10px;
 }
+
+@media (max-width: 768px) {
+    .faqContainer {
+        width: 100%;
+    }
+
+    .faqSection {
+        padding: 7px;
+    }
+}
