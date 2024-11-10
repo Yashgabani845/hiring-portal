@@ -114,6 +114,7 @@
 .posting:hover svg {
   color: #007bff;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -124,6 +125,7 @@
   display: none;
   cursor: pointer;
 }
+
 @media (max-width: 1024px) {
   .navbar {
     flex-direction: column;
@@ -152,11 +154,6 @@
 }
 
 @media (max-width: 480px) {
-  .icon span,
-  .posting span {
-    display: none;
-  }
-
   .navbar {
     padding: 0 !important;
   }
@@ -166,10 +163,14 @@
   .navbar {
     padding: 0px !important;
   }
+
   .header {
     display: flex !important;
     justify-content: space-between;
+    padding: 0px 20px;
+    width: 100%;
   }
+
   .hamburger {
     display: block;
   }
@@ -182,8 +183,11 @@
 
   .showMenu {
     display: flex;
+    align-items: start;
+    margin-left: 6rem;
   }
 }
+
 .dropdown {
   position: relative;
   cursor: pointer;
@@ -203,7 +207,7 @@
 }
 
 .dropdownContent .icon {
-  padding: 8px 10px; 
+  padding: 8px 10px;
   display: flex;
   align-items: center;
 }
