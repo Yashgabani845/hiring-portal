@@ -32,6 +32,7 @@
   flex-direction: row;
   align-items: center;
   margin-left: 20px;
+  justify-content: space-around;
   flex-grow: 1;
 }
 
@@ -182,4 +183,31 @@
   .showMenu {
     display: flex;
   }
+}
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 1px;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent .icon {
+  padding: 8px 10px; 
+  display: flex;
+  align-items: center;
+}
+
+.dropdownContent .icon:hover {
+  background-color: #f1f1f1;
 }
