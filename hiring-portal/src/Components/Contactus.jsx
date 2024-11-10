@@ -454,7 +454,7 @@ const Contactus = () => {
               <i className="fab fa-facebook-f"></i>
             </a>
             <a href="#">
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-x-twitter"></i>
             </a>
             <a href="#">
               <i className="fab fa-instagram"></i>
