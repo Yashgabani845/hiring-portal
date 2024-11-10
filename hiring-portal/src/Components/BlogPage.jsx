@@ -8,15 +8,14 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import animationData from "../assests/emptyanimation.json";
 import CircularProgress from "@mui/material/CircularProgress";
+import Pagination from "@mui/material/Pagination";
+import Skeleton from "@mui/material/Skeleton";
 
 const deleteBlog = async (id) => {
   try {
     console.log("Deleting blog with ID:", id);
-    let res = await axios.delete(
-      `http://localhost:5000/api/delete-by-id/${id}`
-    );
+    await axios.delete(`http://localhost:5000/api/delete-by-id/${id}`);
     alert("Blog deleted successfully");
-    console.log(res);
     window.location.reload();
   } catch (error) {
     console.log(error);
@@ -43,86 +42,124 @@ const formatDate = (dateString) => {
   return `${day}-${month}-${year}`;
 };
 
-const BlogCard = ({ blog }) => {
-  return (
-    <div className={styles.blogCard}>
-      <div className={styles.blogCardHeader}>
-        <img
-          src={profilepic}
-          alt={blog.title}
-          className={styles.blogCardImage}
-        />
-        <div className={styles.blogCardInfo}>
-          <h2 className={styles.blogCardTitle}>{blog.title}</h2>
-          <p className={styles.blogCardMeta}>
-            By {blog.author} • {formatDate(blog.date)}
-          </p>
-        </div>
-      </div>
-      <div className={styles.blogCardContent}>
-        <p className={styles.blogCardDescription}>
-          {blog.content.slice(0, 100)}...
+const BlogCard = ({ blog }) => (
+  <div className={styles.blogCard}>
+    <div className={styles.blogCardHeader}>
+      <img src={profilepic} alt={blog.title} className={styles.blogCardImage} />
+      <div className={styles.blogCardInfo}>
+        <h2 className={styles.blogCardTitle}>{blog.title}</h2>
+        <p className={styles.blogCardMeta}>
+          By {blog.author} • {formatDate(blog.date)}
         </p>
-        <div>
-          <Link
-            to={`/read-more-blog/${blog._id}`}
-            className={styles.blogCardButton}
-          >
-            Read More
-          </Link>
-          <button
-            className={styles.blogCardButton}
-            onClick={() => deleteBlog(blog._id)}
-          >
-            Delete
-          </button>
-        </div>
       </div>
     </div>
-  );
-};
-
-const BlogList = ({ blogs }) => {
-  return (
-    <div className={styles.blogList}>
-      {blogs.map((blog) => (
-        <BlogCard key={blog._id} blog={blog} />
-      ))}
+    <div className={styles.blogCardContent}>
+      <p className={styles.blogCardDescription}>
+        {blog.content.slice(0, 100)}...
+      </p>
+      <div>
+        <Link
+          to={`/read-more-blog/${blog._id}`}
+          className={styles.blogCardButton}
+        >
+          Read More
+        </Link>
+        <button
+          className={styles.blogCardButton}
+          onClick={() => deleteBlog(blog._id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
-  );
-};
+  </div>
+);
+
+const BlogSkeleton = () => (
+  <div className={styles.blogCard}>
+    <div className={styles.blogCardHeader}>
+      <Skeleton variant="circular" width={40} height={40} />
+      <div className={styles.blogCardInfo}>
+        <Skeleton variant="text" width="60%" />
+        <Skeleton variant="text" width="40%" />
+      </div>
+    </div>
+    <div className={styles.blogCardContent}>
+      <Skeleton variant="text" width="90%" />
+      <Skeleton variant="text" width="80%" />
+      <Skeleton variant="rectangular" width="100%" height={40} />
+    </div>
+  </div>
+);
+
+const BlogList = ({ blogs, totalBlogs, currentPage, onPageChange }) => (
+  <div className={styles.blogList}>
+    {blogs.map((blog) => (
+      <BlogCard key={blog._id} blog={blog} />
+    ))}
+    <Pagination
+      count={Math.ceil(totalBlogs / 3)}
+      page={currentPage}
+      onChange={onPageChange}
+    />
+  </div>
+);
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
+  const [totalBlogs, setTotalBlogs] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const fetchData = async () => {
+  const fetchTotalBlogs = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/get-total-blogs"
+      );
+      setTotalBlogs(response.data.totalblogs);
+    } catch (err) {
+      console.error("Error fetching total blogs:", err);
+    }
+  };
+
+  const fetchData = async (page = 1) => {
     setLoading(true);
     try {
-      let response = await fetch("http://localhost:5000/api/all-blog");
+      let response = await fetch(
+        `http://localhost:5000/api/all-blog/${page - 1}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
       let data = await response.json();
       setBlogs(data.blogs);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
   };
 
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+    fetchData(page);
+  };
+
   const handleDeleteAll = async () => {
     try {
-      let res = await axios.delete("http://localhost:5000/api/delete-all");
+      await axios.delete("http://localhost:5000/api/delete-all");
       alert("All blogs deleted");
-      fetchData();
+      fetchData(currentPage);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchTotalBlogs();
+    fetchData(currentPage);
+  }, [currentPage]);
 
   return (
     <>
@@ -144,7 +181,8 @@ const BlogPage = () => {
             >
               Create Blog
             </button>
-            {blogs && blogs.length > 0 && (
+
+            {blogs.length > 0 && (
               <button
                 className={styles.deleteBlogButton}
                 onClick={handleDeleteAll}
@@ -155,18 +193,18 @@ const BlogPage = () => {
           </div>
         </div>
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "200px",
-            }}
-          >
-            <CircularProgress />
+          <div className={styles.blogList}>
+            {[...Array(3)].map((_, index) => (
+              <BlogSkeleton key={index} />
+            ))}
           </div>
-        ) : blogs && blogs.length > 0 ? (
-          <BlogList blogs={blogs} />
+        ) : blogs.length > 0 ? (
+          <BlogList
+            blogs={blogs}
+            totalBlogs={totalBlogs}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
         ) : (
           <div
             style={{
