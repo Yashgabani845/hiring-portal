@@ -17,6 +17,8 @@ const discussion = require('./routes/discussionRoutes')
 const contactRoutes = require('./routes/contactRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 const visitorRoutes = require('./routes/visitorRoutes');
+const stories = require("./routes/storiesRoutes.js");
+
 
 
 const blogRoutes = require('./routes/blogRoutes')
@@ -60,6 +62,8 @@ app.use("/api", contactRoutes);
 app.use("/api", feedbackRoutes);
 app.use("/api", visitorRoutes);
 app.use("/api/discussion", discussion);
+app.use("/api/stories", stories);
+
 
 
 

@@ -10,18 +10,50 @@ const Stories = () => {
     const [category, setCategory] = useState('');
 
     useEffect(() => {
-        const savedPosts = JSON.parse(localStorage.getItem('stories')) || [];
-        setPosts(savedPosts);
+        // Fetch posts from the backend API
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/stories/getposts');
+                if (response.ok) {
+                    const data = await response.json();
+                    setPosts(data);
+                } else {
+                    console.error("Failed to fetch posts");
+                }
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        };
+
+        fetchPosts();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (title && content && category) {
             const newPost = { title, content, category, date: new Date().toISOString() };
-            const updatedPosts = [newPost, ...posts];
-            setPosts(updatedPosts);
-            localStorage.setItem('stories', JSON.stringify(updatedPosts));
+
+            try {
+                const response = await fetch('http://localhost:5000/api/stories/saveposts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newPost),
+                });
+
+                if (response.ok) {
+                    const savedPost = await response.json();
+                    setPosts([savedPost, ...posts]);  // Add the new post to state
+                } else {
+                    console.error("Failed to save the post");
+                }
+            } catch (error) {
+                console.error("Error saving the post:", error);
+            }
+
+            // Clear form fields
             setTitle('');
             setContent('');
             setCategory('');
