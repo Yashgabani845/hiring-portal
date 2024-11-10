@@ -1,69 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../CSS/DiscussionSection.module.css';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import { useState, useEffect } from 'react';
+import styles from '../CSS/DiscussionSection.module.css';  // Import CSS Module
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-// QuestionForm Component (for submitting questions)
-const QuestionForm = ({ addQuestion }) => {
-    const [content, setContent] = useState('');
+const DiscussionForum = () => {
+    const [questions, setQuestions] = useState([]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (content.trim()) {
-            addQuestion(content);
-            setContent('');
+    // Fetch questions from the backend API
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/discussion/getQuestion');
+                if (response.ok) {
+                    const data = await response.json();
+                    setQuestions(data);
+                } else {
+                    console.error('Failed to fetch questions');
+                }
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+            }
+        };
+
+        fetchQuestions();
+    }, []);
+
+    // Helper function to save a new question
+    const addQuestion = async (content) => {
+        const newQuestion = {
+            content,
+            answered: false,
+            answer: '',
+        };
+
+        try {
+            const response = await fetch('http://localhost:5000/api/discussion/postQuestion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newQuestion),
+            });
+
+            if (response.ok) {
+                const savedQuestion = await response.json();
+                setQuestions((prevQuestions) => [...prevQuestions, savedQuestion]);
+            } else {
+                console.error('Failed to add question');
+            }
+        } catch (error) {
+            console.error('Error adding question:', error);
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Ask your question..."
-                className={styles.textarea}
-                required
-            />
-            <button type="submit" className={styles.submitButton}>
-                Ask Question
-            </button>
-        </form>
-    );
-};
+    // Helper function to add an answer to a question
+    const addAnswer = async (questionId, answerContent) => {
+        console.log(questionId + " " + answerContent)
+        try {
+            const response = await fetch(`http://localhost:5000/api/discussion/${questionId}/answer`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answer: answerContent }),
+            });
 
-// AnswerForm Component (for submitting answers to questions)
-const AnswerForm = ({ questionId, addAnswer }) => {
-    const [answer, setAnswer] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (answer.trim()) {
-            addAnswer(questionId, answer);
-            setAnswer('');
+            if (response.ok) {
+                const updatedQuestion = await response.json();
+                setQuestions((prevQuestions) =>
+                    prevQuestions.map((question) =>
+                        question._id === questionId
+                            ? { ...question, ...updatedQuestion }
+                            : question
+                    )
+                );
+            } else {
+                console.error('Failed to add answer');
+            }
+        } catch (error) {
+            console.error('Error adding answer:', error);
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.answerForm}>
-            <textarea
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                placeholder="Write your answer..."
-                className={styles.textarea}
-                required
-            />
-            <button type="submit" className={styles.submitButton}>
-                Submit Answer
-            </button>
-        </form>
-    );
-};
-
-// QuestionCard Component (for displaying each question and its answer)
-const QuestionCard = ({ question, addAnswer }) => {
-    return (
-        <>
-            <div className={styles.card}>
+    // Function to render the Question Card
+    const renderQuestionCard = (question) => {
+        return (
+            <div
+                className={`${styles.card} ${styles.cardWrapper}`}
+                key={question._id}
+            >
                 <p className={styles.questionContent}>{question.content}</p>
                 {question.answered ? (
                     <div className={styles.answers}>
@@ -71,96 +96,98 @@ const QuestionCard = ({ question, addAnswer }) => {
                         <p>{question.answer}</p>
                     </div>
                 ) : (
-                    <AnswerForm questionId={question.id} addAnswer={addAnswer} />
+                    <AnswerForm questionId={question._id} />
                 )}
             </div>
-        </>
-    );
-};
-
-// QuestionList Component (for displaying unanswered and answered questions)
-const QuestionList = ({ questions, addAnswer }) => {
-    const unansweredQuestions = questions.filter((q) => !q.answered);
-    const answeredQuestions = questions.filter((q) => q.answered);
-
-    return (
-        <div className={styles.listContainer}>
-            <h2 className={styles.sectionTitle}>Unanswered Questions</h2>
-            <div className={styles.section}>
-                {unansweredQuestions.length === 0 ? (
-                    <p>No unanswered questions yet.</p>
-                ) : (
-                    unansweredQuestions.map((q) => (
-                        <QuestionCard
-                            key={q.id}
-                            question={q}
-                            addAnswer={addAnswer}
-                        />
-                    ))
-                )}
-            </div>
-
-
-            <h2 className={styles.sectionTitle}>Answered Questions</h2>
-            <div className={styles.section}>
-                {answeredQuestions.length === 0 ? (
-                    <p>No answered questions yet.</p>
-                ) : (
-                    answeredQuestions.map((q) => (
-                        <QuestionCard
-                            key={q.id}
-                            question={q}
-                            addAnswer={addAnswer}
-                        />
-                    ))
-                )}
-            </div>
-        </div>
-    );
-};
-
-// Main DiscussionForum Component
-const DiscussionForum = () => {
-    const [questions, setQuestions] = useState([]);
-
-    useEffect(() => {
-        // Load questions from localStorage on component mount
-        const savedQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-        setQuestions(savedQuestions);
-    }, []);
-
-    useEffect(() => {
-        // Save questions to localStorage whenever they change
-        localStorage.setItem('questions', JSON.stringify(questions));
-    }, [questions]);
-
-    const addQuestion = (questionContent) => {
-        const newQuestion = {
-            id: Date.now(),
-            content: questionContent,
-            answered: false,
-            answer: '',
-        };
-        setQuestions([...questions, newQuestion]);
+        );
     };
 
-    const addAnswer = (questionId, answerContent) => {
-        const updatedQuestions = questions.map((q) =>
-            q.id === questionId ? { ...q, answered: true, answer: answerContent } : q
+    // Function to render the Answer Form
+    const AnswerForm = ({ questionId }) => {
+        const [answer, setAnswer] = useState('');
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            if (answer.trim()) {
+                addAnswer(questionId, answer);
+                setAnswer('');
+            }
+        };
+
+        return (
+            <form onSubmit={handleSubmit} className={styles.answerForm}>
+                <textarea
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    placeholder="Write your answer..."
+                    className={styles.textarea}
+                />
+                <button
+                    type="submit"
+                    className={styles.submitButton}
+                >
+                    Submit Answer
+                </button>
+            </form>
         );
-        setQuestions(updatedQuestions);
+    };
+
+    // Function to render the Question Form
+    const QuestionForm = () => {
+        const [newQuestion, setNewQuestion] = useState('');
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            if (newQuestion.trim()) {
+                addQuestion(newQuestion);
+            }
+        };
+
+        return (
+            <div className={styles.form}>
+                <textarea
+                    value={newQuestion}
+                    onChange={(e) => setNewQuestion(e.target.value)}
+                    placeholder="Ask your question..."
+                    className={styles.textarea}
+                />
+                <button
+                    onClick={handleSubmit}
+                    className={styles.submitButton}
+                >
+                    Ask Question
+                </button>
+            </div>
+        );
     };
 
     return (
         <>
             <Navbar />
             <div className={styles.container}>
-                <h1 className={styles.title}>Discussion Forum</h1>
-                <QuestionForm addQuestion={addQuestion} />
-                <QuestionList questions={questions} addAnswer={addAnswer} />
+                <h1 className={styles.title}>HIREHUB Discussion Forum</h1>
+
+                <QuestionForm />
+
+                <div className={styles.listContainer}>
+                    <h2 className={styles.sectionTitle}>Unanswered Questions</h2>
+                    <div className={styles.section}>
+                        {questions
+                            .filter((question) => !question.answered)
+                            .map((question) => renderQuestionCard(question))}
+                    </div>
+                </div>
+
+                <div className={styles.listContainer}>
+                    <h2 className={styles.sectionTitle}>Answered Questions</h2>
+                    <div className={styles.section}>
+                        {questions
+                            .filter((question) => question.answered)
+                            .map((question) => renderQuestionCard(question))}
+                    </div>
+                </div>
             </div>
             <Footer />
-
         </>
     );
 };

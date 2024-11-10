@@ -12,7 +12,7 @@ const companyRoutes = require("./routes/companyRoutes");
 const assessmentRoutes = require("./routes/assessmentRoutes");
 const otherApiRoutes = require("./routes/otherApiRoutes");
 const directRoutes = require("./routes/directRoutes");
-
+const discussion = require('./routes/discussionRoutes')
 
 const contactRoutes = require('./routes/contactRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type'],
     credentials: true,
   })
@@ -59,6 +59,7 @@ app.use("/api", otherApiRoutes);
 app.use("/api", contactRoutes);
 app.use("/api", feedbackRoutes);
 app.use("/api", visitorRoutes);
+app.use("/api/discussion", discussion);
 
 
 
