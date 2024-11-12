@@ -35,19 +35,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .feature:hover {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  background-color: #007bff; /* Blue background on hover */
-  transform: translateY(-5px); /* Lift the card slightly */
-}
-
-.feature:hover .featureText h2,
-.feature:hover .featureText p,
-.feature:hover .featureText ul li {
-  color: #ffffff; /* Change text color to white on hover */
 }
 
 .featureImage {
@@ -67,7 +59,6 @@
   margin: 10px 0;
   text-align: center;
   color: #222;
-  transition: color 0.3s ease;
 }
 
 .featureText p {
@@ -75,7 +66,6 @@
   color: #777;
   margin-bottom: 10px;
   line-height: 1.5;
-  transition: color 0.3s ease;
 }
 
 .featureText ul {
@@ -88,7 +78,6 @@
   font-size: 1rem;
   margin-bottom: 8px;
   color: #444;
-  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
