@@ -1,312 +1,435 @@
-.job-page {
-  display: flex;
-  justify-content: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 1.3rem 0rem;
-}
 
-.company-logo {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 20px;
+/* Job Page Layout */
+.job-page {
+  background-color: #f6f8fa;
+  min-height: 100vh;
+  padding: 2rem 0;
 }
 
 .job-container {
-  display: flex;
-  /* Stack job details and recommendations vertically */
-  width: 80%;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 0 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .job-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Job Section Styles */
 .job-section {
-  width: 100%;
-  border-right: 2px solid #bbb;
-  /* Full width for the main job details */
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  position: relative;
 }
 
 .job-title {
-  font-size: 2.2em;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
   color: #333;
-  margin-bottom: 20px;
 }
 
-.job-detail-section {
-  margin-bottom: 20px;
+.company-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
-.job-detail-section h2 {
-  font-size: 1.5em;
-  color: #555;
-  margin-bottom: 8px;
+/* Job Card Styles for Native Jobs */
+.job-job-card {
+  width: 100%;
+}
+
+.job-job-card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.job-job-card .company-details {
+  flex: 1;
+}
+
+.job-job-card .company-details .job-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.job-job-card .name-location {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1.5rem;
+  font-size: 1rem;
+  color: #6b7280;
 }
 
-.job-detail-section p {
-  font-size: 1.2em;
-  color: #333;
+.job-job-card .name-location p {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.apply-button {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
+.job-job-card .name-location svg {
+  color: #90b3db; /* Secondary purple */
+}
+
+.job-job-card .logo {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8ff;
   border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 1em;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: 1.5rem;
 }
 
-.apply-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-.recommendation-section {
-  width: 50%;
-  /* Full width for the recommended jobs section */
-}
-
-.recommendation-section h2 {
-  margin-bottom: 1rem;
-  color: #555;
-}
-
-.recommend-image {
-  width: 35%;
-  display: flex;
-  align-items: flex-end;
-}
-
-.recommended-job-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* Responsive columns */
-  gap: 20px;
-  margin: 1rem 0px;
-  /* Space between cards */
-}
-
-.recommended-job-card {
-  display: flex;
-  flex-direction: row-reverse;
-  /* Stack image and text vertically */
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  justify-content: space-between;
-}
-
-.recommended-job-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
-}
-
-.job-logo {
-  width: 100%;
-  /* Full width for the job logo */
-  height: 100%;
-  margin-bottom: 15px;
+.job-job-card .logo img {
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
-.recommended-job-card h3 {
-  font-size: 1.4em;
-  color: #0056b3;
-  margin-bottom: 10px;
+.job-job-card .pay-benefits {
+  background-color: #f8f9fc;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-.recommended-job-card p {
-  font-size: 1em;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.view-button {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9em;
-  margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.view-button:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-}
-
-/* dkjflsdkjflsdfjldfj */
-
-.job-job-card {
+.job-job-card .pay-benefits p {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.company-details {
-  min-width: 30%;
-}
-
-.company-details h2 {
-  font-size: 2rem;
-  color: #0056b3;
-}
-
-.company-details p {
-  font-size: 14px;
-  color: #666;
-  margin: 4px 0;
-}
-
-.logo img {
-  max-width: 80px;
-}
-
-.pay-benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.pay-benefits p {
-  display: flex;
-}
-
-.pay-benefits p span {
+  gap: 0.375rem;
   color: #555;
-  font-size: 1.1rem;
-  width: 20%;
 }
 
-.section {
-  margin-bottom: 20px;
-}
-
-.section h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.section p {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.section ul {
-  list-style: disc;
-  margin-left: 20px;
-}
-
-.apply-btn {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.apply-btn:hover {
-  background-color: #45a049;
-}
-
-.name-location {
+.pay-benefits-details {
   display: flex;
-  justify-content: space-between;
-  font-size: 1.1rem;
-}
-
-.spinner-job {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent; /* Light background to cover content */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: 0.375rem;
+  font-weight: 600;
+  color: #2484de; /* Job primary color */
+  font-size: 0.95rem;
 }
 
-.spinner-text {
-  margin-top: 20px;
-}
-
-.name-location p {
-  font-size: 1.2rem;
+.job-job-card .section {
+  margin-bottom: 1.75rem;
 }
 
 .color-font-head {
-  color: #555;
-  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2484de; /* Job primary color */
+  margin-bottom: 0.875rem;
 }
 
-/* Responsive design */
+/* Requirements list styling */
+.requirements-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.requirements-list li {
+  margin-bottom: 0.5rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Tags container styling */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.job-tag {
+  background-color: #f0e8ff;
+  color: #2484de;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* Apply Button */
+.apply-button {
+  background-color: #2484de; /* Job primary color */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.apply-button:hover {
+  background-color: #2484de; /* Darker purple */
+}
+
+/* Recommendation Section */
+.recommendation-section {
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.recommendation-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #333;
+}
+
+/* Company overview styling */
+.company-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.company-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8ff;
+  border-radius: 8px;
+}
+
+.company-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.company-name h3 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #333;
+}
+
+.company-name p {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.company-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.company-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.company-detail:last-child {
+  border-bottom: none;
+}
+
+.company-detail span:first-child {
+  color: #6b7280;
+}
+
+.company-detail span:last-child {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Recommended Jobs Section */
+.recommended-job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.recommended-job-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  border: 1px solid #eee;
+  padding: 1.25rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.recommended-job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.recommend-image {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8ff;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.job-logo {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.recommend-job-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recommended-job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.view-button {
+  background-color: #f0e8ff;
+  color: #2484de;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.view-button:hover {
+  background-color: #e1d4ff;
+}
+
+/* Loading Spinner */
+.spinner-job {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.spinner-text h3 {
+  color: #2484de; /* Job primary color */
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Animation Classes */
+[data-aos="fade-right"] {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+[data-aos="fade-left"] {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+[data-aos="fade-right"].aos-animate,
+[data-aos="fade-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Add responsive styles */
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logo img {
-    max-width: 60px;
-    margin-top: 10px;
-  }
-
-  .job-card {
-    padding: 15px;
-  }
-
-  .apply-btn {
-    width: 100%;
-    padding: 12px;
-  }
-}
-
-
-@media (max-width: 600px) {
   .job-container {
-    flex-direction: column !important ;
-    width: 100%;
-    padding: 5px;
+    padding: 0 1rem;
   }
-  .job-section {
-    width: 100%;
+  
+  .job-section, .recommendation-section {
+    padding: 1.5rem;
   }
-  .pay-benefits-details {
-    width: 50% !important;
-  }
-  .recommendation-section {
-    display: flex;
+  
+  .job-job-card .header {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  }
+  
+  .job-job-card .logo {
+    margin: 1rem 0 0;
+  }
+  
+  .job-job-card .pay-benefits {
+    grid-template-columns: 1fr;
+  }
+  
+  .recommendation-section {
+    position: static;
+  }
+  
+  .recommended-job-grid {
+    grid-template-columns: 1fr;
   }
 }
-
