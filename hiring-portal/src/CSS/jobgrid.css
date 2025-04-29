@@ -1,7 +1,58 @@
-.jobgrid {
+/* Updated JobGrid styling */
+.jobCardsGrid {
     display: flex;
-    gap: 32px;
-    padding: 20px;
     flex-wrap: wrap;
     justify-content: center;
-}
+    gap: 24px; /* Uniform gap between cards */
+    padding: 20px;
+    width: 100%;
+    max-width: 1280px; /* Control the maximum width of the grid */
+    margin: 0 auto; /* Center the grid */
+  }
+  
+  /* Adjusting the job card container to work with the parent grid */
+  .jobCardContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    padding: 16px;
+    text-decoration: none;
+    width: calc(33% - 12px); /* Adjusted for gap instead of margin */
+    height: 140px; /* Fixed height for uniformity */
+    margin: 0; /* Remove margins as we're using gap */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .jobCardContainer {
+      width: calc(50% - 12px); /* 2 cards per row */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .jobCardsGrid {
+      gap: 16px; /* Smaller gap on mobile */
+    }
+    
+    .jobCardContainer {
+      width: 100%; /* 1 card per row */
+      height: auto;
+      min-height: 140px; /* Minimum height instead of fixed */
+    }
+  }
+  
+  /* For very large screens */
+  @media (min-width: 1440px) {
+    .jobCardsGrid {
+      gap: 32px; /* Larger gap on very wide screens */
+    }
+    
+    .jobCardContainer {
+      width: calc(33.333% - 22px); /* 3 cards per row on very large screens */
+    }
+  }

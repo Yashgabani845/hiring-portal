@@ -39,9 +39,8 @@ const Navbar = () => {
     const email = localStorage.getItem("userEmail");
     if (email) {
       axios
-        .get("http://localhost:5000/api/users/profile", {
-          params: { email },
-        })
+        .get(`http://localhost:5000/api/users/profile/${email}`        
+        )
         .then((response) => {
           const { role } = response.data;
           navigate("/owner");
@@ -124,24 +123,8 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div
-              className={`${styles.icon} ${activeTab === "/contactus" ? styles.active : ""
-                }`}
-            >
-              <Link to="/contactus">
-                <ContactMailIcon />
-                <span>Contact Us</span>
-              </Link>
-            </div>
-            <div
-              className={`${styles.icon} ${activeTab === "/blog" ? styles.active : ""
-                }`}
-            >
-              <Link to="/blog">
-                <FaBlog />
-                <span>Blog</span>
-              </Link>
-            </div>
+            
+           
 
 
             {/* Explore dropdown menu */}

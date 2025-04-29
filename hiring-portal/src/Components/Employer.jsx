@@ -28,9 +28,7 @@ const Employer = () => {
     const email = localStorage.getItem("userEmail");
     if (email) {
       axios
-        .get("http://localhost:5000/api/users/profile", {
-          params: { email },
-        })
+        .get(`http://localhost:5000/api/users/profile/${email}`)
         .then((response) => {
           const { role } = response.data;
           if (role === "owner") {
@@ -47,9 +45,7 @@ const Employer = () => {
     const email = localStorage.getItem("userEmail");
     if (email) {
       axios
-        .get("http://localhost:5000/api/users/profile", {
-          params: { email },
-        })
+        .get(`http://localhost:5000/api/users/profile/${email}`)
         .then((response) => {
           const { role } = response.data;
           if (role === "owner") {

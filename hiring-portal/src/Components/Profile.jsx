@@ -54,9 +54,9 @@ const Profile = () => {
         if (email) {
           // Fetch user profile
           const response = await fetch(
-            `http://localhost:5000/api/users/profile?email=${encodeURIComponent(
+            `http://localhost:5000/api/users/profile/${
               email
-            )}`
+            }`
           );
           if (!response.ok) throw new Error("Failed to fetch user profile");
           const userData = await response.json();

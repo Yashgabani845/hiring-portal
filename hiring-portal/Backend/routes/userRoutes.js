@@ -43,7 +43,7 @@ router.post("/users/verify-otp", otpVerifyController.verifyOtp);
 router.post("/users/request-password-reset", forgotPasswordController.requestPasswordReset);
 router.post("/users/verify-otp", forgotPasswordController.verifyOtp);
 router.post("/users/reset-password", forgotPasswordController.resetPassword);
-router.get("/users/profile", userController.getProfile);
+router.get("/users/profile/:email", userController.getProfile);
 router.post("/users/editProfile/:email", userController.editProfile);
 router.post("/users/addLanguages/:email", userController.addLanguages);
 router.get("/users", userController.getAllUsers);

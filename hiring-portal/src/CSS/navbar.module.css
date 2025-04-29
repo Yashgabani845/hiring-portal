@@ -1,217 +1,296 @@
-/* Navbar.module.css */
+/* Navbar Container */
 .navbar {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  height: 80px;
-  width: 100%;
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
+  justify-content: space-between;
+  background: white;
+  color: #4a90e2;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
-  left: 0;
   z-index: 1000;
+  transition: all 0.3s ease;
+  height: 70px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
+/* Header Section with Logo */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo Container */
 .hirehublogo {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #343a40;
+  display: flex;
+  align-items: center;
 }
 
+/* Logo Image */
 .logoimg {
-  height: 55px;
-  max-width: 190px;
-  padding-top: 5px;
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
 }
 
+.logoimg:hover {
+  transform: scale(1.05);
+}
+
+/* Icons Container */
 .icons {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin-left: 20px;
-  justify-content: space-around;
-  flex-grow: 1;
+  gap: 1.5rem;
+  margin-left: auto;
 }
 
+/* Individual Icon Items */
 .icon {
-  margin: 10px;
-  font-size: 19px;
-  font-weight: 600;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #343a40;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
 .icon a {
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: inherit;
+  color: #5c6b7f;
+  font-size: 0.85rem;
+  gap: 0.25rem;
 }
 
 .icon svg {
-  margin-right: 5px;
-  color: #6c757d;
-  transition: color 0.3s ease;
-  vertical-align: middle;
+  color: #4a90e2;
 }
 
-.icon span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+.icon:hover {
+  background-color: #f5f9ff;
+  transform: translateY(-2px);
 }
 
-.icon:hover svg {
-  color: #007bff;
+.icon:hover a {
+  color: #4a90e2;
 }
 
-.icon:hover span {
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: #007bff;
+/* Active Tab Styling */
+.active {
+  background-color: #f0f7ff;
+  font-weight: 600;
+  position: relative;
 }
 
-.icon.active span::after {
-  content: "";
+.active a {
+  color: #4a90e2;
+}
+
+.active::after {
+  content: '';
   position: absolute;
+  bottom: 0;
   left: 0;
-  right: 0;
-  bottom: -10px;
+  width: 100%;
   height: 3px;
-  background-color: #007bff;
-  border-radius: 2px;
+  background-color: #4a90e2;
+  border-radius: 2px 2px 0 0;
 }
 
+/* Employer/Post Job Button */
 .posting {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: 400;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #0e0c0c;
-  border-radius: 5px;
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
   transition: all 0.3s ease;
+  margin-left: auto;
+  gap: 0.5rem;
+  box-shadow: 0 2px 5px rgba(74, 144, 226, 0.2);
 }
 
-.posting span {
-  margin-right: 5px;
-  line-height: normal;
+.posting:hover {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
 }
 
-.posting-icon {
-  color: #000000;
-  transition: color 0.3s ease;
-  vertical-align: middle;
+.postingIcon {
+  font-size: 1rem;
 }
 
-.posting:hover svg {
-  color: #007bff;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hamburger {
-  display: none;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .logo {
-    margin-bottom: 10px;
-  }
-
-  .icons {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-bottom: 10px;
-  }
-
-  .icon {
-    margin: 10px;
-  }
-
-  .posting {
-    margin-top: 10px;
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0 !important;
-  }
-}
-
-@media (max-width: 850px) {
-  .navbar {
-    padding: 0px !important;
-  }
-
-  .header {
-    display: flex !important;
-    justify-content: space-between;
-    padding: 0px 20px;
-    width: 100%;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .icons {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .showMenu {
-    display: flex;
-    align-items: start;
-    margin-left: 6rem;
-  }
-}
-
+/* Dropdown Menu */
 .dropdown {
   position: relative;
+  display: inline-block;
+}
+
+.dropdown .icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #5c6b7f;
   cursor: pointer;
 }
 
 .dropdownContent {
   display: none;
   position: absolute;
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
   z-index: 1;
-  margin-top: 1px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  border: 1px solid #f0f0f0;
 }
 
 .dropdown:hover .dropdownContent {
   display: block;
+  animation: fadeIn 0.3s ease;
 }
 
-.dropdownContent .icon {
-  padding: 8px 10px;
+.dropdownContent .icon a {
+  color: #5c6b7f;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdownContent .icon a span {
+  white-space: nowrap;
 }
 
 .dropdownContent .icon:hover {
-  background-color: #f1f1f1;
+  background-color: #f5f9ff;
+  transform: none;
+}
+
+.dropdownContent .icon:hover a {
+  color: #4a90e2;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #4a90e2;
+}
+
+/* Toast Container Styling */
+:global(.Toastify__toast) {
+  border-radius: 4px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .header {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+  
+  .icons {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+  
+  .showMenu {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+  
+  .icon {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0;
+  }
+  
+  .icon a {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .posting {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
+  
+  .dropdown {
+    width: 100%;
+  }
+  
+  .dropdownContent {
+    position: static;
+    background-color: #f9fbff;
+    box-shadow: none;
+    transform: none;
+    margin-top: 0;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .dropdownContent .icon a {
+    color: #5c6b7f;
+    padding: 0.5rem;
+  }
+  
+  .dropdownContent .icon:hover {
+    background-color: #f0f7ff;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
